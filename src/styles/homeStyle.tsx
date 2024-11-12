@@ -8,7 +8,6 @@ export const Banner = styled.div`
   justify-content: center;
   padding: 60px;
   height: 100vh;
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
   background-size: cover;
 `;
 
@@ -18,6 +17,21 @@ export const Title = styled.h2`
 `;
 
 export const Overview = styled.p`
-  font-size: 30px;
   width: 50%;
+  font-size: 25px;
+  line-height: 140%;
+`;
+
+export const Slider = styled.div``;
+
+export const Row = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+export const Box = styled.li`
+  background-color: white;
+  height: 200px;
 `;

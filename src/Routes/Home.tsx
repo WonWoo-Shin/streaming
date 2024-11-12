@@ -1,7 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNowPlaying } from "../api";
 import { IGetResult } from "../type";
-import { Banner, Overview, Title, Wrapper } from "../styles/homeStyle";
+import {
+  Banner,
+  Box,
+  Overview,
+  Row,
+  Slider,
+  Title,
+  Wrapper,
+} from "../styles/homeStyle";
 
 export const Home = () => {
   const { data, isLoading } = useQuery<IGetResult>({
@@ -23,6 +31,32 @@ export const Home = () => {
         <Title>{data?.results[0].title}</Title>
         <Overview>{data?.results[0].overview}</Overview>
       </Banner>
+      <Slider>
+        <Row>
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+        </Row>
+        <Row>
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+        </Row>
+        <Row>
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+          <Box />
+        </Row>
+      </Slider>
     </Wrapper>
   );
 };
