@@ -9,7 +9,7 @@ import {
   SearchBar,
   SearchIcon,
   SearchInput,
-} from "../styles/style";
+} from "../styles/navStyle";
 import {
   AnimatePresence,
   motion,
