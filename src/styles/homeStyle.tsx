@@ -1,8 +1,21 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $scrollWidth: number }>`
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: ${(props) => props.$scrollWidth}px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    background-clip: padding-box;
+    border: 3px solid rgba(0, 0, 0, 0);
+  }
+  &::-webkit-scrollbar-track {
+    padding: 5px;
+    background-color: #ffffff;
+  }
 `;
 
 export const Banner = styled.div<{ $bgImage: string }>`
@@ -29,12 +42,13 @@ export const Overview = styled.p`
 
 export const Slider = styled.div`
   position: relative;
+  width: 100%;
 `;
 
-export const Row = styled(motion.ul)`
+export const Row = styled(motion.ul)<{ $gap: number }>`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  gap: ${(props) => props.$gap}px;
   position: absolute;
   top: -100px;
   width: 100%;

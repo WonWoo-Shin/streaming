@@ -29,7 +29,10 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	background-color: black;
-	color : ${(props) => props.theme.white.darker}
+	color : ${(props) => props.theme.white.darker};
+	&::-webkit-scrollbar {
+    	display: none;
+	}
 }
 ol, ul {
 	list-style: none;
