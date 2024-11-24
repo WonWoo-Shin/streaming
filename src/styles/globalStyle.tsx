@@ -30,9 +30,20 @@ body {
 	line-height: 1;
 	background-color: black;
 	color : ${(props) => props.theme.white.darker};
+	overflow-x: hidden;
 	&::-webkit-scrollbar {
-    	display: none;
-	}
+    width: 16px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    background-clip: padding-box;
+    border: 4px solid rgba(0, 0, 0, 0);
+  }
+  &::-webkit-scrollbar-track {
+    padding: 5px;
+    background-color: #ffffff;
+  }
 }
 ol, ul {
 	list-style: none;

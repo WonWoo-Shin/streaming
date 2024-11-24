@@ -1,22 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Wrapper = styled.div<{ $scrollWidth: number }>`
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: ${(props) => props.$scrollWidth}px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    background-clip: padding-box;
-    border: 3px solid rgba(0, 0, 0, 0);
-  }
-  &::-webkit-scrollbar-track {
-    padding: 5px;
-    background-color: #ffffff;
-  }
-`;
+export const Wrapper = styled.div``;
 
 export const Banner = styled.div<{ $bgImage: string }>`
   display: flex;
@@ -40,28 +25,36 @@ export const Overview = styled.p`
   line-height: 140%;
 `;
 
-export const Slider = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-export const Row = styled(motion.ul)<{ $gap: number }>`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: ${(props) => props.$gap}px;
+export const SliderContainer = styled.ol<{ $translate: number }>`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  overflow-x: visible;
   position: absolute;
-  top: -100px;
+  bottom: -100px;
   width: 100%;
+  padding: 0px 50px;
+  transition: transform 0.75s;
+  transform: translateX(-${(props) => props.$translate}px);
 `;
 
 export const Box = styled.li<{ $bgImage?: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 0 0 calc((100% - (6 - 1) * 8px) / 6);
   height: 200px;
   background-color: white;
   background-image: url(${(props) => props.$bgImage});
   background-size: cover;
   font-size: 64px;
   color: black;
+`;
+
+export const ModalBox = styled(motion.div)`
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 800px;
+  height: 700px;
+  background-color: white;
 `;

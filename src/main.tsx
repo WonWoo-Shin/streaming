@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")!).render(
     <GlobalStyle />
     <QueryClientProvider client={queryClient}>
       <App />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} buttonPosition="top-right" />
     </QueryClientProvider>
   </ThemeProvider>
   // </StrictMode>
