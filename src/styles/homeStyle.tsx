@@ -35,7 +35,7 @@ export const SliderContainer = styled.ol<{ $translate: number }>`
   width: 100%;
   padding: 0px 50px;
   transition: transform 0.75s;
-  transform: translateX(-${(props) => props.$translate}px);
+  transform: translate3d(-${(props) => props.$translate}px, 0, 0);
 `;
 
 export const Box = styled.li<{ $bgImage?: string }>`

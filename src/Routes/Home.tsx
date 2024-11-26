@@ -18,8 +18,6 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 const gap = 8;
-const padding = 50;
-const scrollWidth = 16;
 
 export const Home = () => {
   const { data, isLoading } = useQuery<IGetResult>({
@@ -32,21 +30,29 @@ export const Home = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [translate, setTranslate] = useState(0);
-  const totalChild = data?.results.length;
   const [isTransition, setIsTransition] = useState(false);
   const boxRef = useRef<HTMLLIElement>(null);
   const boxWidth = boxRef.current?.offsetWidth;
 
   useEffect(() => {
-    if (totalChild && boxWidth) {
+    if (data && boxWidth) {
       const translate = currentIndex * (boxWidth * 6 + gap * 6);
-      setTranslate(translate);
+      const totalChild = data.results.length - 1;
+      if (totalChild - currentIndex * 6 > 6) {
+        setTranslate(translate);
+      } else {
+        const remainChild = totalChild % 6;
+        console.log(remainChild);
+        const remainTranslate = boxWidth * remainChild + gap * remainChild;
+        setTranslate((prev) => prev + remainTranslate);
+      }
     }
   }, [currentIndex]);
 
   const handleCarousel = () => {
-    if (!isTransition) {
-      setCurrentIndex((prev) => prev + 1);
+    if (!isTransition && data) {
+      const maxIndex = Math.floor((data.results.length - 1) / 6);
+      setCurrentIndex((prev) => (prev === maxIndex ? prev : prev + 1));
       setIsTransition(true);
     }
   };
