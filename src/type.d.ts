@@ -16,3 +16,5 @@ export interface IGetResult {
   total_pages: number;
   total_results: number;
 }
+
+export type TDirection = "left" | "right";

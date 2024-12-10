@@ -11,6 +11,7 @@ import { IGetResult } from "../type";
 
 import Slider, { Settings } from "react-slick";
 import { SliderItem } from "./SliderItem";
+import { SlideArrow } from "./SliderArrow";
 
 export const Home = () => {
   const { data: nowPlayingData } = useQuery<IGetResult>({
@@ -31,6 +32,8 @@ export const Home = () => {
         <ul>{dots}</ul>
       </SliderDots>
     ),
+    prevArrow: <SlideArrow position={"left"} />,
+    nextArrow: <SlideArrow position={"right"} />,
   };
 
   return (

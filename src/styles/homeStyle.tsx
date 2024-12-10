@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TDirection } from "../type";
 
 export const Wrapper = styled.div`
   height: 200vh;
@@ -40,7 +41,7 @@ export const BannerTitleSection = styled.div`
   align-items: center;
   position: relative;
   height: 100%;
-  padding-left: 5%;
+  padding-left: var(--padding-width);
   color: #ffffff;
   background-color: #141517;
 `;
@@ -51,6 +52,7 @@ export const BannerTitle = styled.h1`
 
 export const BannerImage = styled.div<{ $bgImage: string }>`
   height: 100%;
+  padding-right: var(--padding-width);
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
     url(${(props) => props.$bgImage});
@@ -61,15 +63,15 @@ export const SliderDots = styled.section`
   justify-content: flex-end;
   bottom: 0;
   height: 20%;
-  padding-right: 5%;
+  padding-right: var(--padding-width);
   ul {
     display: flex;
     justify-content: space-between;
     gap: 1em;
     align-items: center;
     li {
-      width: 1em;
-      height: 1em;
+      width: 0.8em;
+      height: 0.8em;
       border-radius: 50%;
       background-color: rgba(255, 255, 255, 0.3);
       button {
@@ -83,5 +85,26 @@ export const SliderDots = styled.section`
     .slick-active {
       background-color: #f7f7f7;
     }
+  }
+`;
+
+export const SlideArrowStyle = styled.div<{ $position: TDirection }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: ${(props) => (props.$position === "left" ? 0 : "none")};
+  right: ${(props) => (props.$position === "right" ? 0 : "none")};
+  z-index: 1;
+  width: var(--padding-width);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+  svg {
+    width: 1.5em;
+    height: 1.5em;
   }
 `;
