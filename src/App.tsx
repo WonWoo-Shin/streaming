@@ -1,26 +1,10 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home } from "./Routes/Home";
-import { Tv } from "./Routes/Tv";
-import { Search } from "./Routes/Search";
-import { Header } from "./Components/Header";
+import { Home } from "./Components/Home";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
-  return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/tv">
-          <Tv />
-        </Route>
-        <Route path="/search">
-          <Search />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
-  );
+  return <Home />;
 }
 
 export default App;

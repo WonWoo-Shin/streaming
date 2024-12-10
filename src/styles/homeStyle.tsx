@@ -1,60 +1,87 @@
-import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
-
-export const Banner = styled.div<{ $bgImage: string }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)),
-    url(${(props) => props.$bgImage});
-  background-size: cover;
+export const Wrapper = styled.div`
+  height: 200vh;
+  font-size: 1vw;
 `;
 
-export const Title = styled.h2`
-  margin-bottom: 20px;
-  font-size: 68px;
-`;
-
-export const Overview = styled.p`
-  width: 50%;
-  font-size: 25px;
-  line-height: 140%;
-`;
-
-export const SliderContainer = styled.ol<{ $translate: number }>`
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 8px;
-  overflow-x: visible;
-  position: absolute;
-  bottom: -100px;
+export const SliderContainer = styled.div`
+  position: relative;
   width: 100%;
-  padding: 0px 50px;
-  transition: transform 0.75s;
-  transform: translate3d(-${(props) => props.$translate}px, 0, 0);
+  padding-bottom: 40%;
 `;
 
-export const Box = styled.li<{ $bgImage?: string }>`
-  flex: 0 0 calc((100% - (6 - 1) * 8px) / 6);
-  height: 200px;
-  background-color: white;
-  background-image: url(${(props) => props.$bgImage});
+export const BannerSlider = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  .slick-slider,
+  .slick-list,
+  .slick-track,
+  .slick-slide {
+    height: 100%;
+    div {
+      height: inherit;
+    }
+  }
+`;
+
+export const ItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
+  height: 100%;
+`;
+
+export const BannerTitleSection = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  padding-left: 5%;
+  color: #ffffff;
+  background-color: #141517;
+`;
+
+export const BannerTitle = styled.h1`
+  font-size: 2vw;
+`;
+
+export const BannerImage = styled.div<{ $bgImage: string }>`
+  height: 100%;
   background-size: cover;
-  font-size: 64px;
-  color: black;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url(${(props) => props.$bgImage});
 `;
 
-export const ModalBox = styled(motion.div)`
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 800px;
-  height: 700px;
-  background-color: white;
+export const SliderDots = styled.section`
+  display: flex;
+  justify-content: flex-end;
+  bottom: 0;
+  height: 20%;
+  padding-right: 5%;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    align-items: center;
+    li {
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      button {
+        width: 100%;
+        height: 100%;
+        &:before {
+          content: "";
+        }
+      }
+    }
+    .slick-active {
+      background-color: #f7f7f7;
+    }
+  }
 `;

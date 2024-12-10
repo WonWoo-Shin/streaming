@@ -28,8 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: black;
-	color : ${(props) => props.theme.white.darker};
+	background-color: white;
 	overflow-x: hidden;
 	&::-webkit-scrollbar {
     width: 16px;
