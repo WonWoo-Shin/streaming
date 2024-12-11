@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const SliderContainer = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 40%;
+  padding-bottom: 42.5%;
 `;
 
 export const BannerSlider = styled.div`
@@ -17,7 +17,6 @@ export const BannerSlider = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
   .slick-slider,
   .slick-list,
   .slick-track,
@@ -26,6 +25,11 @@ export const BannerSlider = styled.div`
     div {
       height: inherit;
     }
+  }
+  // 현재 index를 뒤에 배치하고 transition을 제거하여 이전의 index만 자연스럽게 사라지도록 설정
+  .slick-current {
+    z-index: -1 !important;
+    transition: none !important;
   }
 `;
 
@@ -38,7 +42,9 @@ export const ItemContainer = styled.div`
 
 export const BannerTitleSection = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10%;
   position: relative;
   height: 100%;
   padding-left: var(--padding-width);
@@ -48,6 +54,18 @@ export const BannerTitleSection = styled.div`
 
 export const BannerTitle = styled.h1`
   font-size: 2vw;
+`;
+
+export const BannerButton = styled.button`
+  position: absolute;
+  bottom: 30%;
+  width: 30%;
+  height: 7%;
+  border: none;
+  border-radius: 0.3em;
+  background-color: white;
+  font-size: 100%;
+  font-weight: 600;
 `;
 
 export const BannerImage = styled.div<{ $bgImage: string }>`

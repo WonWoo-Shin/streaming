@@ -1,4 +1,5 @@
 import {
+  BannerButton,
   BannerImage,
   BannerTitle,
   BannerTitleSection,
@@ -12,6 +13,7 @@ export const SliderItem = ({ title, backdrop_path }: IMovie) => {
     <ItemContainer>
       <BannerTitleSection>
         <BannerTitle>{title}</BannerTitle>
+        <BannerButton>확인하기</BannerButton>
       </BannerTitleSection>
       <BannerImage $bgImage={createBgImage("original", backdrop_path ?? "")} />
     </ItemContainer>
