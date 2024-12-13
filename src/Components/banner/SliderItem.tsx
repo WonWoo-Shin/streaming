@@ -4,9 +4,9 @@ import {
   BannerTitle,
   BannerTitleSection,
   ItemContainer,
-} from "../styles/homeStyle";
-import { IMovie } from "../type";
-import { createBgImage } from "../utils/createBgImgae";
+} from "../../styles/bannerStyle";
+import { IMovie } from "../../type";
+import { createBgImage } from "../../utils/createBgImgae";
 
 export const SliderItem = ({ title, backdrop_path }: IMovie) => {
   return (

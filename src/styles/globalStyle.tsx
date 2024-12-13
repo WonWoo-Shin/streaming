@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: white;
+	background-color: #141517;
 	overflow-x: hidden;
 	&::-webkit-scrollbar {
     width: 16px;

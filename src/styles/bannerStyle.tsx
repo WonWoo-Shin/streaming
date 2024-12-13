@@ -22,7 +22,7 @@ export const BannerSlider = styled.div`
   .slick-track,
   .slick-slide {
     height: 100%;
-    div {
+    > div {
       height: inherit;
     }
   }
