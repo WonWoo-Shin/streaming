@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Carousel,
@@ -32,11 +32,22 @@ export const ListCarousel = () => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1040px)" });
   const showItem = isSmallScreen ? 4 : isMediumScreen ? 5 : 6;
 
-  const [cloneItems, setCloneItems] = useState(
-    sliceArray(items, 0, showItem * 2 + 1)
-  );
+  const [cloneItems, setCloneItems] = useState<any[]>([]);
 
   const itemWidth = 100 / showItem;
+
+  useEffect(() => {
+    setCloneItems(
+      isCarouselActive
+        ? sliceArray(
+            items,
+            carouselLocation - showItem - 1,
+            carouselLocation + showItem * 2 + 1
+          )
+        : sliceArray(items, 0, 13)
+    );
+    setTranslate(isCarouselActive ? showItem * itemWidth + itemWidth : 0);
+  }, [showItem]);
 
   const handleCarousel = (direction: "left" | "right") => {
     if (isTransition) return;
@@ -87,6 +98,8 @@ export const ListCarousel = () => {
     });
     setTranslate(itemWidth * (showItem + 1));
   };
+
+  console.log(carouselLocation, showItem);
 
   return (
     <CarouselSection>

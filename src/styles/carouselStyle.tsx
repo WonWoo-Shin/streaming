@@ -2,19 +2,7 @@ import styled from "styled-components";
 
 export const CarouselSection = styled.div`
   width: 100%;
-  font-size: 0.82646vw;
-  @media (max-width: 1416px) {
-    font-size: 0.97871vw;
-  }
-  @media (max-width: 1040px) {
-    font-size: 1.20052vw;
-  }
 `;
-
-// 1 vw = 1920px
-//      = 1904px
-// 1em  = 19.2px
-// 100em = 화면 1개
 
 export const Container = styled.div`
   display: flex;
