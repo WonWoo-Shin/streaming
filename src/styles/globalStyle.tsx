@@ -2,7 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 	:root{
-		--padding-width : 3em
+		--padding-width : 3em;
+		--carousel-gap : 0.2vw;
+		--carousel-padding : 4%;
+		--arrow-color : rgba(255, 255, 255, 0.6)
 	}
 
     html, body, div, span, applet, object, iframe,

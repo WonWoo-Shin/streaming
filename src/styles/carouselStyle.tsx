@@ -11,7 +11,7 @@ export const Container = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 0 4%;
+  padding: 0 var(--carousel-padding);
 `;
 
 interface ICarouselProps {
@@ -31,7 +31,7 @@ export const Carousel = styled.ol<ICarouselProps>`
 
 export const ItemContainer = styled.li<{ $itemWidth: number }>`
   flex: 0 0 ${(props) => props.$itemWidth}%;
-  padding: 0 0.2vw;
+  padding: 0 var(--carousel-gap);
 `;
 
 export const ItemParent = styled.div`
@@ -40,23 +40,15 @@ export const ItemParent = styled.div`
   padding-bottom: 56.25%;
 `;
 
-export const Item = styled.div`
+export const Item = styled.div<{ $bgImage: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #f2a65e;
-  color: white;
-  font-size: 2em;
-  font-family: sans-serif;
-`;
-
-export const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100px;
+  background-image: url(${(props) => props.$bgImage});
+  background-size: cover;
 `;
 
 interface IButtonProps {
@@ -71,17 +63,19 @@ export const Button = styled.div<IButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(4% - 0.2vw);
+  width: calc(var(--carousel-padding) - var(--carousel-gap));
   height: 100%;
-  opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.25s ease-in;
-  &.show {
-    opacity: 1;
-  }
   svg {
-    width: 2em;
-    height: 2em;
-    color: #ffffff;
+    width: 1.7em;
+    height: 1.7em;
+    color: var(--arrow-color);
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    svg {
+      color: #fff;
+    }
   }
 `;
