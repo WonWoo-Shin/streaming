@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export const CarouselSection = styled.div`
-  width: 100%;
-`;
-
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   position: relative;
   width: 100%;
   padding: 0 var(--carousel-padding);
+`;
+
+export const LoadingContainer = styled.ol`
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
 `;
 
 interface ICarouselProps {
@@ -40,13 +40,18 @@ export const ItemParent = styled.div`
   padding-bottom: 56.25%;
 `;
 
-export const Item = styled.div<{ $bgImage: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const ItemDesign = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: var(--border-radius);
+`;
+
+export const LoadingItem = styled(ItemDesign)`
+  background-color: #e5e5e5;
+`;
+
+export const Item = styled(ItemDesign)<{ $bgImage: string }>`
   background-image: url(${(props) => props.$bgImage});
   background-size: cover;
 `;
@@ -66,6 +71,7 @@ export const Button = styled.div<IButtonProps>`
   width: calc(var(--carousel-padding) - var(--carousel-gap));
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius);
   transition: opacity 0.25s ease-in;
   svg {
     width: 1.7em;

@@ -7,3 +7,9 @@ export const getNowPlaying = () => {
     `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
+
+export const getPopular = () => {
+  return fetch(
+    `${BASE_PATH}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Button,
   Carousel,
-  CarouselSection,
   Container,
   Item,
   ItemContainer,
@@ -13,6 +12,8 @@ import { sliceArray } from "../../utils/sliceArray";
 import { IGetResult, IMovie } from "../../type";
 import { createBgImage } from "../../utils/createBgImgae";
 import { CarouselButton } from "./CarouselButton";
+import { useRecoilValue } from "recoil";
+import { screenState } from "../../atom";
 
 // const itemLength = 19;
 // const items = Array.from({ length: itemLength }, (_, index) => index + 1);
@@ -26,9 +27,7 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   const [isCarouselActive, setIsCarouselActive] = useState(false);
 
   // showItem = 넘어가는 스크롤 개수
-  const isMediumScreen = useMediaQuery({ query: "(max-width: 1400px)" });
-  const isSmallScreen = useMediaQuery({ query: "(max-width: 1100px)" });
-  const showItem = isSmallScreen ? 4 : isMediumScreen ? 5 : 6;
+  const showItem = useRecoilValue(screenState);
 
   const [cloneItems, setCloneItems] = useState<IMovie[]>([]);
 
@@ -98,38 +97,35 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   }, [showItem]);
 
   return (
-    <CarouselSection>
-      <Container
-        onMouseEnter={() => setIsMouseOver(true)}
-        onMouseLeave={() => setIsMouseOver(false)}
-      >
-        {isCarouselActive && (
-          <CarouselButton
-            handleCarousel={handleCarousel}
-            direction={"left"}
-            isMouseOver={isMouseOver}
-          />
-        )}
-
-        <Carousel
-          $translate={translate}
-          onTransitionEnd={transitionEnd}
-          className={isTransition ? "" : "no-transition"}
-        >
-          {cloneItems.map((item) => (
-            <ItemContainer key={item.id} $itemWidth={itemWidth}>
-              <ItemParent>
-                <Item $bgImage={createBgImage("w400", item.backdrop_path)} />
-              </ItemParent>
-            </ItemContainer>
-          ))}
-        </Carousel>
+    <Container
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
+    >
+      {isCarouselActive && (
         <CarouselButton
           handleCarousel={handleCarousel}
-          direction={"right"}
+          direction={"left"}
           isMouseOver={isMouseOver}
         />
-      </Container>
-    </CarouselSection>
+      )}
+      <Carousel
+        $translate={translate}
+        onTransitionEnd={transitionEnd}
+        className={isTransition ? "" : "no-transition"}
+      >
+        {cloneItems.map((item) => (
+          <ItemContainer key={item.id} $itemWidth={itemWidth}>
+            <ItemParent>
+              <Item $bgImage={createBgImage("w400", item.backdrop_path)} />
+            </ItemParent>
+          </ItemContainer>
+        ))}
+      </Carousel>
+      <CarouselButton
+        handleCarousel={handleCarousel}
+        direction={"right"}
+        isMouseOver={isMouseOver}
+      />
+    </Container>
   );
 };

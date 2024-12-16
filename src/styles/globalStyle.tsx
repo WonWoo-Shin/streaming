@@ -5,7 +5,8 @@ export const GlobalStyle = createGlobalStyle`
 		--padding-width : 3em;
 		--carousel-gap : 0.2vw;
 		--carousel-padding : 4%;
-		--arrow-color : rgba(255, 255, 255, 0.6)
+		--arrow-color : rgba(255, 255, 255, 0.6);
+		--border-radius : 4px
 	}
 
     html, body, div, span, applet, object, iframe,
