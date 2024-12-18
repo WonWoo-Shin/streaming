@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 0 var(--carousel-padding);
 `;
 
-export const LoadingContainer = styled.ol`
+export const Loading = styled.ol`
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
@@ -56,6 +56,14 @@ export const Item = styled(ItemDesign)<{ $bgImage: string }>`
   background-size: cover;
 `;
 
+export const Title = styled.div`
+  height: var(--title-height);
+  margin-top: var(--title-margin);
+  span {
+    font-size: 1em;
+  }
+`;
+
 interface IButtonProps {
   $position: "left" | "right";
 }
@@ -69,7 +77,7 @@ export const Button = styled.div<IButtonProps>`
   justify-content: center;
   align-items: center;
   width: calc(var(--carousel-padding) - var(--carousel-gap));
-  height: 100%;
+  height: calc(100% - var(--title-height) - var(--title-margin));
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: var(--border-radius);
   transition: opacity 0.25s ease-in;

@@ -3,7 +3,7 @@ import {
   Container,
   ItemContainer,
   ItemParent,
-  LoadingContainer,
+  Loading,
   LoadingItem,
 } from "../../styles/carouselStyle";
 import { screenState } from "../../atom";
@@ -13,19 +13,17 @@ export const CarouselLoading = () => {
   const renderCount = Array.from({ length: showItem + 1 }, (_, index) => index);
   const itemWidth = 100 / showItem;
 
-  console.log(renderCount);
-
   return (
     <Container>
-      <LoadingContainer>
+      <Loading>
         {renderCount.map((index) => (
-          <ItemContainer $itemWidth={itemWidth}>
+          <ItemContainer $itemWidth={itemWidth} key={index}>
             <ItemParent>
-              <LoadingItem key={index} />
+              <LoadingItem />
             </ItemParent>
           </ItemContainer>
         ))}
-      </LoadingContainer>
+      </Loading>
     </Container>
   );
 };

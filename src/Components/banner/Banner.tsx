@@ -8,7 +8,7 @@ import { SlideArrow } from "./SliderArrow";
 import { IGetResult } from "../../type";
 import { SliderItem } from "./SliderItem";
 import { useQuery } from "@tanstack/react-query";
-import { getNowPlaying } from "../../api";
+import { getPopular } from "../../api";
 
 export const Banner = () => {
   const settings: Settings = {
@@ -31,16 +31,16 @@ export const Banner = () => {
     nextArrow: <SlideArrow position={"right"} />,
   };
 
-  const { data: nowPlayingData } = useQuery<IGetResult>({
-    queryKey: ["nowPlaying"],
-    queryFn: getNowPlaying,
+  const { data: popularData } = useQuery<IGetResult>({
+    queryKey: ["popularData"],
+    queryFn: getPopular,
   });
 
   return (
     <SliderContainer>
       <BannerSlider>
         <Slider {...settings}>
-          {nowPlayingData?.results.slice(0, 5).map((result) => (
+          {popularData?.results.slice(0, 5).map((result) => (
             <SliderItem key={result.id} {...result} />
           ))}
         </Slider>

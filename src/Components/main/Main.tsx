@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { Category, MainContainer } from "../../styles/mainStyle";
-import { ListCarousel } from "./ListCarousel";
+import { MainContainer } from "../../styles/mainStyle";
 import { IGetResult } from "../../type";
-import { getNowPlaying } from "../../api";
-import { CarouselLoading } from "./CarouselLoading";
+import { getPopular, getTopRated, getUpComing } from "../../api";
 import { useSetRecoilState } from "recoil";
 import { screenState } from "../../atom";
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
+import { Category } from "./Category";
 
 export const Main = () => {
   const isMediumScreen = useMediaQuery({ query: "(max-width: 1400px)" });
@@ -19,23 +18,26 @@ export const Main = () => {
     });
   }, [isMediumScreen, isSmallScreen]);
 
-  const { data: nowPlayingData } = useQuery<IGetResult>({
-    queryKey: ["nowPlaying"],
-    queryFn: getNowPlaying,
+  const { data: popularData } = useQuery<IGetResult>({
+    queryKey: ["popularData"],
+    queryFn: getPopular,
+  });
+
+  const { data: upComingData } = useQuery<IGetResult>({
+    queryKey: ["upComing"],
+    queryFn: getUpComing,
+  });
+
+  const { data: topRatedData } = useQuery<IGetResult>({
+    queryKey: ["topRated"],
+    queryFn: getTopRated,
   });
 
   return (
     <MainContainer>
-      <Category>
-        <div>
-          <span>현재 상영중</span>
-        </div>
-        {nowPlayingData ? (
-          <ListCarousel data={nowPlayingData?.results} />
-        ) : (
-          <CarouselLoading />
-        )}
-      </Category>
+      <Category categoryData={popularData} categoryName="최근 관심작" />
+      <Category categoryData={upComingData} categoryName="공개 예정작" />
+      <Category categoryData={topRatedData} categoryName="역대 인기작" />
     </MainContainer>
   );
 };

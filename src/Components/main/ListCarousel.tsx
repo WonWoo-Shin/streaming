@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import {
-  Button,
   Carousel,
   Container,
   Item,
   ItemContainer,
   ItemParent,
+  Title,
 } from "../../styles/carouselStyle";
-import { useMediaQuery } from "react-responsive";
+
 import { sliceArray } from "../../utils/sliceArray";
-import { IGetResult, IMovie } from "../../type";
+import { IMovie } from "../../type";
 import { createBgImage } from "../../utils/createBgImgae";
 import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
-
-// const itemLength = 19;
-// const items = Array.from({ length: itemLength }, (_, index) => index + 1);
 
 export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -118,6 +115,9 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
             <ItemParent>
               <Item $bgImage={createBgImage("w400", item.backdrop_path)} />
             </ItemParent>
+            <Title>
+              <span>{item.title}</span>
+            </Title>
           </ItemContainer>
         ))}
       </Carousel>

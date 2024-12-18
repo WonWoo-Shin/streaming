@@ -6,7 +6,9 @@ export const GlobalStyle = createGlobalStyle`
 		--carousel-gap : 0.2vw;
 		--carousel-padding : 4%;
 		--arrow-color : rgba(255, 255, 255, 0.6);
-		--border-radius : 4px
+		--border-radius : 4px;
+		--title-height  : 2.8em;
+		--title-margin : 0.36em;
 	}
 
     html, body, div, span, applet, object, iframe,
