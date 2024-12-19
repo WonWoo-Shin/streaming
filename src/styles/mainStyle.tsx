@@ -7,12 +7,11 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 5%;
-  background-color: gray;
+  color: #e5e5e5;
 `;
 
 export const CategoryStyle = styled.div`
   width: 100%;
-  background-color: whitesmoke;
 `;
 
 export const CategoryName = styled.div`
@@ -22,6 +21,5 @@ export const CategoryName = styled.div`
     font-size: 1.46em;
     font-weight: bold;
     font-family: inherit;
-    color: #121212;
   }
 `;

@@ -48,7 +48,7 @@ export const ItemDesign = styled.div`
 `;
 
 export const LoadingItem = styled(ItemDesign)`
-  background-color: #e5e5e5;
+  background-color: var(--loading-color);
 `;
 
 export const Item = styled(ItemDesign)<{ $bgImage: string }>`
@@ -59,9 +59,17 @@ export const Item = styled(ItemDesign)<{ $bgImage: string }>`
 export const Title = styled.div`
   height: var(--title-height);
   margin-top: var(--title-margin);
-  span {
-    font-size: 1em;
-  }
+`;
+
+export const Text = styled.span`
+  font-size: 1em;
+`;
+
+export const TextLoading = styled.div`
+  width: 4em;
+  height: 1em;
+  border-radius: var(--border-radius);
+  background-color: var(--loading-color);
 `;
 
 interface IButtonProps {

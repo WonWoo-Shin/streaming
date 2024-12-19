@@ -3,7 +3,7 @@ import { TDirection } from "../type";
 
 export const Wrapper = styled.div`
   height: 200vh;
-  font-size: 1vw;
+  background-color: #141517;
 `;
 
 export const SliderContainer = styled.div`
@@ -49,23 +49,26 @@ export const BannerTitleSection = styled.div`
   height: 100%;
   padding-left: var(--padding-width);
   color: #ffffff;
-  background-color: #141517;
+  background-color: #1e2022;
 `;
 
 export const BannerTitle = styled.h1`
-  font-size: 2vw;
+  font-size: 2.6em;
 `;
 
 export const BannerButton = styled.button`
   position: absolute;
   bottom: 30%;
-  width: 30%;
-  height: 7%;
+  width: 7.8em;
+  height: 3.13em;
   border: none;
   border-radius: 0.3em;
-  background-color: white;
-  font-size: 100%;
-  font-weight: 600;
+  background-color: #04d087;
+  font-size: inherit;
+  span {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
 `;
 
 export const BannerImage = styled.div<{ $bgImage: string }>`

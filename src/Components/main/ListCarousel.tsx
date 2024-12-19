@@ -5,6 +5,7 @@ import {
   Item,
   ItemContainer,
   ItemParent,
+  Text,
   Title,
 } from "../../styles/carouselStyle";
 
@@ -116,7 +117,7 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
               <Item $bgImage={createBgImage("w400", item.backdrop_path)} />
             </ItemParent>
             <Title>
-              <span>{item.title}</span>
+              <Text>{item.title}</Text>
             </Title>
           </ItemContainer>
         ))}

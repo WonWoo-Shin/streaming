@@ -5,10 +5,15 @@ import { ListCarousel } from "./ListCarousel";
 
 interface ICategoryProps {
   categoryData: IGetResult | undefined;
+  isSuccess?: boolean;
   categoryName: string;
 }
 
-export const Category = ({ categoryData, categoryName }: ICategoryProps) => {
+export const Category = ({
+  categoryData,
+  isSuccess,
+  categoryName,
+}: ICategoryProps) => {
   return (
     <CategoryStyle>
       <CategoryName>

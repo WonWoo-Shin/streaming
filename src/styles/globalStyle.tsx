@@ -4,11 +4,15 @@ export const GlobalStyle = createGlobalStyle`
 	:root{
 		--padding-width : 3em;
 		--carousel-gap : 0.2vw;
-		--carousel-padding : 4%;
+		--carousel-padding : 60px;
 		--arrow-color : rgba(255, 255, 255, 0.6);
 		--border-radius : 4px;
 		--title-height  : 2.8em;
 		--title-margin : 0.36em;
+		@media (max-width : 1500px){
+			--carousel-padding : 4%;
+		}
+		--loading-color : #e5e5e5
 	}
 
     html, body, div, span, applet, object, iframe,
@@ -40,18 +44,25 @@ body {
 	line-height: 1;
 	background-color: #141517;
 	overflow-x: hidden;
+	font-size: 1vw;
+  @media (max-width: 1400px) {
+    font-size: 1.2vw;
+  }
+  @media (max-width: 1100px) {
+    font-size: 1.4vw;
+  }
 	&::-webkit-scrollbar {
     width: 16px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #686868;
     border-radius: 20px;
     background-clip: padding-box;
     border: 4px solid rgba(0, 0, 0, 0);
   }
   &::-webkit-scrollbar-track {
     padding: 5px;
-    background-color: #ffffff;
+    background-color: #424242
   }
 }
 ol, ul {

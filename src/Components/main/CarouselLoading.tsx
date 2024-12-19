@@ -5,6 +5,8 @@ import {
   ItemParent,
   Loading,
   LoadingItem,
+  TextLoading,
+  Title,
 } from "../../styles/carouselStyle";
 import { screenState } from "../../atom";
 
@@ -21,6 +23,9 @@ export const CarouselLoading = () => {
             <ItemParent>
               <LoadingItem />
             </ItemParent>
+            <Title>
+              <TextLoading />
+            </Title>
           </ItemContainer>
         ))}
       </Loading>

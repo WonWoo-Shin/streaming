@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { MainContainer } from "../../styles/mainStyle";
 import { IGetResult } from "../../type";
 import { getPopular, getTopRated, getUpComing } from "../../api";
@@ -18,6 +18,23 @@ export const Main = () => {
     });
   }, [isMediumScreen, isSmallScreen]);
 
+  // const result = useQueries({
+  //   queries: [
+  //     {
+  //       queryKey: ["popularData"],
+  //       queryFn: getPopular,
+  //     },
+  //     {
+  //       queryKey: ["popularData"],
+  //       queryFn: getPopular,
+  //     },
+  //     {
+  //       queryKey: ["popularData"],
+  //       queryFn: getPopular,
+  //     },
+  //   ],
+  // });
+
   const { data: popularData } = useQuery<IGetResult>({
     queryKey: ["popularData"],
     queryFn: getPopular,
@@ -28,7 +45,7 @@ export const Main = () => {
     queryFn: getUpComing,
   });
 
-  const { data: topRatedData } = useQuery<IGetResult>({
+  const { data: topRatedData, isSuccess } = useQuery<IGetResult>({
     queryKey: ["topRated"],
     queryFn: getTopRated,
   });
@@ -37,7 +54,11 @@ export const Main = () => {
     <MainContainer>
       <Category categoryData={popularData} categoryName="최근 관심작" />
       <Category categoryData={upComingData} categoryName="공개 예정작" />
-      <Category categoryData={topRatedData} categoryName="역대 인기작" />
+      <Category
+        categoryData={topRatedData}
+        isSuccess={isSuccess}
+        categoryName="역대 인기작"
+      />
     </MainContainer>
   );
 };
