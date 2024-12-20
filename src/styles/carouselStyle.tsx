@@ -72,23 +72,27 @@ export const TextLoading = styled.div`
   background-color: var(--loading-color);
 `;
 
-interface IButtonProps {
-  $position: "left" | "right";
-}
+interface IButtonProps {}
 
 export const Button = styled.div<IButtonProps>`
   position: absolute;
-  left: ${(props) => (props.$position === "left" ? 0 : "none")};
-  right: ${(props) => (props.$position === "right" ? 0 : "none")};
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(var(--carousel-padding) - var(--carousel-gap));
+  width: var(--carousel-padding);
   height: calc(100% - var(--title-height) - var(--title-margin));
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: var(--border-radius);
-  transition: opacity 0.25s ease-in;
+  &.left {
+    left: 0;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+  &.right {
+    right: 0;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+  }
   svg {
     width: 1.7em;
     height: 1.7em;

@@ -18,7 +18,10 @@ export const CarouselButton = ({
   isMouseOver,
 }: ICarouselBtnProps) => {
   return (
-    <Button onClick={() => handleCarousel(direction)} $position={direction}>
+    <Button
+      onClick={() => handleCarousel(direction)}
+      className={direction === "left" ? "left" : "right"}
+    >
       {isMouseOver && (
         <svg
           width="24"
