@@ -31,4 +31,6 @@ export type TDirection = "left" | "right";
 export interface ICarouselItemProps extends IMovie {
   itemWidth: number;
   isTransition: boolean;
+  index: number;
+  isCarouselActive: boolean;
 }

@@ -1,4 +1,4 @@
-import { Button } from "../../styles/carouselStyle";
+import { Button, ButtonContainer } from "../../styles/carouselStyle";
 import { TDirection } from "../../type";
 
 interface ICarouselBtnProps {
@@ -18,24 +18,23 @@ export const CarouselButton = ({
   isMouseOver,
 }: ICarouselBtnProps) => {
   return (
-    <Button
-      onClick={() => handleCarousel(direction)}
-      className={direction === "left" ? "left" : "right"}
-    >
-      {isMouseOver && (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d={direction === "left" ? leftPath : rightPath}
-            fill="currentColor"
-          ></path>
-        </svg>
-      )}
-    </Button>
+    <ButtonContainer className={direction === "left" ? "left" : "right"}>
+      <Button onClick={() => handleCarousel(direction)}>
+        {isMouseOver && (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d={direction === "left" ? leftPath : rightPath}
+              fill="currentColor"
+            ></path>
+          </svg>
+        )}
+      </Button>
+    </ButtonContainer>
   );
 };

@@ -14,6 +14,8 @@ import { createBgImage } from "../../utils/createBgImgae";
 
 import { useQuery } from "@tanstack/react-query";
 import { getDetail } from "../../api";
+import { useRecoilValue } from "recoil";
+import { screenState } from "../../atom";
 
 export const ItemImage = ({ image }: { image: IMovie["backdrop_path"] }) => {
   return (
@@ -29,11 +31,15 @@ export const CarouselItem = ({
   title,
   itemWidth,
   isTransition,
+  index,
+  isCarouselActive,
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["movieDetail", id],
     queryFn: () => getDetail(id),
   });
+
+  const showItem = useRecoilValue(screenState);
 
   const [showPreview, setShowPreview] = useState(false);
   const [delay, setDelay] = useState<number>();
@@ -47,6 +53,11 @@ export const CarouselItem = ({
     clearTimeout(delay);
   };
 
+  const isLeftEnd = isCarouselActive ? index === showItem + 1 : index === 0;
+  const isRightEnd = isCarouselActive
+    ? index === showItem * 2
+    : index === showItem - 1;
+
   return (
     <ItemContainer $itemWidth={itemWidth}>
       <ItemArea onMouseEnter={itemEnter} onMouseLeave={itemLeave}>
@@ -55,13 +66,17 @@ export const CarouselItem = ({
           <Text>{title}</Text>
         </Title>
         {showPreview && !isTransition && (
-          <ItemPreview $itemWidth={itemWidth}>
+          <ItemPreview
+            className={
+              isLeftEnd ? "leftEnd" : isRightEnd ? "rightEnd" : "center"
+            }
+          >
             <ItemImage image={backdrop_path} />
             <PreviewText>
               <span>{title}</span>
               <span>
                 {detailData?.genres.map((genre) => (
-                  <p>{genre.name}</p>
+                  <p key={genre.id}>{genre.name}</p>
                 ))}
               </span>
             </PreviewText>

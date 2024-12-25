@@ -69,16 +69,26 @@ export const Text = styled.span`
   font-size: 1em;
 `;
 
-export const ItemPreview = styled.div<{ $itemWidth: number }>`
+interface IPreviewProps {}
+
+export const ItemPreview = styled.div<IPreviewProps>`
   position: absolute;
   top: calc(((100% - var(--preview-scale)) / 2));
-  left: calc(((100% - var(--preview-scale)) / 2));
   z-index: 1;
   width: var(--preview-scale);
   height: var(--preview-scale);
   background-color: #141517;
   border-radius: var(--border-radius);
   box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 15px;
+  &.leftEnd {
+    left: 0;
+  }
+  &.rightEnd {
+    right: 0;
+  }
+  &.center {
+    left: calc(((100% - var(--preview-scale)) / 2));
+  }
 `;
 
 export const PreviewText = styled.div`
@@ -113,18 +123,11 @@ export const TextLoading = styled.div`
   background-color: var(--loading-color);
 `;
 
-interface IButtonProps {}
-
-export const Button = styled.div<IButtonProps>`
+export const ButtonContainer = styled.div`
   position: absolute;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: var(--carousel-padding);
-  height: calc(100% - var(--title-height) - var(--title-margin));
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  height: 100%;
+  z-index: 1;
   &.left {
     left: 0;
     border-top-right-radius: var(--border-radius);
@@ -135,6 +138,16 @@ export const Button = styled.div<IButtonProps>`
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
   }
+`;
+
+export const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - var(--title-height) - var(--title-margin));
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   svg {
     width: 1.7em;
     height: 1.7em;

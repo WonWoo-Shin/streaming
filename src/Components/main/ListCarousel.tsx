@@ -104,12 +104,14 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
         onTransitionEnd={transitionEnd}
         className={isTransition ? "" : "no-transition"}
       >
-        {cloneItems.map((item) => (
+        {cloneItems.map((item, index) => (
           <CarouselItem
             key={item.id}
+            index={index}
             {...item}
             itemWidth={itemWidth}
             isTransition={isTransition}
+            isCarouselActive={isCarouselActive}
           />
         ))}
       </Carousel>
