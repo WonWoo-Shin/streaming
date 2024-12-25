@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -71,7 +72,7 @@ export const Text = styled.span`
 
 interface IPreviewProps {}
 
-export const ItemPreview = styled.div<IPreviewProps>`
+export const ItemPreview = styled(motion.div)<IPreviewProps>`
   position: absolute;
   top: calc(((100% - var(--preview-scale)) / 2));
   z-index: 1;
@@ -82,9 +83,11 @@ export const ItemPreview = styled.div<IPreviewProps>`
   box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 15px;
   &.leftEnd {
     left: 0;
+    transform-origin: left center;
   }
   &.rightEnd {
     right: 0;
+    transform-origin: right center;
   }
   &.center {
     left: calc(((100% - var(--preview-scale)) / 2));
