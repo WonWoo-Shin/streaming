@@ -17,4 +17,18 @@ export interface IGetResult {
   total_results: number;
 }
 
+export interface IGenre {
+  id: number;
+  name: string;
+}
+
+export interface IGetDetail {
+  genres: IGenre[];
+}
+
 export type TDirection = "left" | "right";
+
+export interface ICarouselItemProps extends IMovie {
+  itemWidth: number;
+  isTransition: boolean;
+}

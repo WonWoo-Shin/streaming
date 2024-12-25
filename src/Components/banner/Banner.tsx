@@ -34,6 +34,7 @@ export const Banner = () => {
   const { data: popularData } = useQuery<IGetResult>({
     queryKey: ["popularData"],
     queryFn: getPopular,
+    staleTime: 60 * 60 * 1000,
   });
 
   return (

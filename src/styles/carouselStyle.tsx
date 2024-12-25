@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  overflow: hidden;
   position: relative;
   width: 100%;
   padding: 0 var(--carousel-padding);
@@ -32,6 +31,11 @@ export const Carousel = styled.ol<ICarouselProps>`
 export const ItemContainer = styled.li<{ $itemWidth: number }>`
   flex: 0 0 ${(props) => props.$itemWidth}%;
   padding: 0 var(--carousel-gap);
+`;
+
+export const ItemArea = styled.div`
+  position: relative;
+  cursor: pointer;
 `;
 
 export const ItemParent = styled.div`
@@ -65,6 +69,43 @@ export const Text = styled.span`
   font-size: 1em;
 `;
 
+export const ItemPreview = styled.div<{ $itemWidth: number }>`
+  position: absolute;
+  top: calc(((100% - var(--preview-scale)) / 2));
+  left: calc(((100% - var(--preview-scale)) / 2));
+  z-index: 1;
+  width: var(--preview-scale);
+  height: var(--preview-scale);
+  background-color: #141517;
+  border-radius: var(--border-radius);
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 15px;
+`;
+
+export const PreviewText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em;
+  line-height: 1.5;
+  span {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 600;
+    p {
+      font-weight: 500;
+      display: inline-block;
+      font-size: 0.8em;
+      color: #8a8a8a;
+      white-space: pre;
+      &:not(:first-child) {
+        &::before {
+          content: " · ";
+        }
+      }
+    }
+  }
+`;
+
 export const TextLoading = styled.div`
   width: 4em;
   height: 1em;
@@ -83,6 +124,7 @@ export const Button = styled.div<IButtonProps>`
   width: var(--carousel-padding);
   height: calc(100% - var(--title-height) - var(--title-margin));
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   &.left {
     left: 0;
     border-top-right-radius: var(--border-radius);

@@ -12,7 +12,8 @@ export const GlobalStyle = createGlobalStyle`
 		@media (max-width : 1500px){
 			--carousel-padding : 4%;
 		}
-		--loading-color : #e5e5e5
+		--loading-color : #373A3F;
+		--preview-scale : 150%;
 	}
 
     html, body, div, span, applet, object, iframe,

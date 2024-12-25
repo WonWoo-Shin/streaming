@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react";
-import {
-  Carousel,
-  Container,
-  Item,
-  ItemContainer,
-  ItemParent,
-  Text,
-  Title,
-} from "../../styles/carouselStyle";
+import { Carousel, Container } from "../../styles/carouselStyle";
 
 import { sliceArray } from "../../utils/sliceArray";
 import { IMovie } from "../../type";
-import { createBgImage } from "../../utils/createBgImgae";
+
 import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
+import { CarouselItem } from "./CarouselItem";
 
 export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -112,14 +105,12 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
         className={isTransition ? "" : "no-transition"}
       >
         {cloneItems.map((item) => (
-          <ItemContainer key={item.id} $itemWidth={itemWidth}>
-            <ItemParent>
-              <Item $bgImage={createBgImage("w400", item.backdrop_path)} />
-            </ItemParent>
-            <Title>
-              <Text>{item.title}</Text>
-            </Title>
-          </ItemContainer>
+          <CarouselItem
+            key={item.id}
+            {...item}
+            itemWidth={itemWidth}
+            isTransition={isTransition}
+          />
         ))}
       </Carousel>
       <CarouselButton

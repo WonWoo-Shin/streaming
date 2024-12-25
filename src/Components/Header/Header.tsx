@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HeaderContainer, HeaderLogo, Nav } from "../../styles/headerStyle";
 
 export const Header = () => {
-  const [isLimpid, setIsLimpid] = useState(false);
+  const [isLimpid, setIsLimpid] = useState(true);
 
   window.addEventListener("scroll", () => {
     const { scrollY } = window;

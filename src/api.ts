@@ -19,3 +19,9 @@ export const getTopRated = () => {
     `${BASE_PATH}/movie/top_rated?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
+
+export const getDetail = (movieId: number) => {
+  return fetch(
+    `${BASE_PATH}/movie/${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};

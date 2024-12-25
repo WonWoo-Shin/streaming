@@ -38,16 +38,19 @@ export const Main = () => {
   const { data: popularData } = useQuery<IGetResult>({
     queryKey: ["popularData"],
     queryFn: getPopular,
+    staleTime: 60 * 60 * 1000,
   });
 
   const { data: upComingData } = useQuery<IGetResult>({
     queryKey: ["upComing"],
     queryFn: getUpComing,
+    staleTime: 60 * 60 * 1000,
   });
 
   const { data: topRatedData, isSuccess } = useQuery<IGetResult>({
     queryKey: ["topRated"],
     queryFn: getTopRated,
+    staleTime: 60 * 60 * 1000,
   });
 
   return (
