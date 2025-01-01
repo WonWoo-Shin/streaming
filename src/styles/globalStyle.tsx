@@ -8,12 +8,12 @@ export const GlobalStyle = createGlobalStyle`
 		--arrow-color : rgba(255, 255, 255, 0.6);
 		--border-radius : 4px;
 		--title-height  : 2.8em;
-		--title-margin : 0.36em;
+		--title-margin : 0.5em;
 		@media (max-width : 1500px){
 			--carousel-padding : 4%;
 		}
 		--loading-color : #373A3F;
-		--preview-scale : 150%;
+		--preview-scale : 140%;
 	}
 
     html, body, div, span, applet, object, iframe,

@@ -17,6 +17,7 @@ import { getDetail } from "../../api";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { animate, AnimatePresence, Variants } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
 export const ItemImage = ({ image }: { image: IMovie["backdrop_path"] }) => {
   return (
@@ -26,9 +27,18 @@ export const ItemImage = ({ image }: { image: IMovie["backdrop_path"] }) => {
   );
 };
 
+const transitionVariant: Variants = {
+  default: {
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.25,
+    },
+  },
+};
+
 const previewVariant: Variants = {
   initial: {
-    scale: 0.67,
+    scale: 0.72,
   },
   animate: {
     scale: 1,
@@ -38,7 +48,7 @@ const previewVariant: Variants = {
     },
   },
   exit: {
-    scale: 0.67,
+    scale: 0.72,
     transition: {
       ease: [0.25, 0.1, 0.25, 1],
       duration: 0.25,
@@ -65,6 +75,8 @@ export const CarouselItem = ({
   const [showPreview, setShowPreview] = useState(false);
   const [delay, setDelay] = useState<number>();
 
+  const history = useHistory();
+
   const itemEnter = () => {
     setDelay(setTimeout(() => setShowPreview(true), 500));
   };
@@ -74,6 +86,10 @@ export const CarouselItem = ({
     clearTimeout(delay);
   };
 
+  const itemClick = () => {
+    history.push(`/modal=${id}`);
+  };
+
   const isLeftEnd = isCarouselActive ? index === showItem + 1 : index === 0;
   const isRightEnd = isCarouselActive
     ? index === showItem * 2
@@ -81,7 +97,11 @@ export const CarouselItem = ({
 
   return (
     <ItemContainer $itemWidth={itemWidth}>
-      <ItemArea onMouseEnter={itemEnter} onMouseLeave={itemLeave}>
+      <ItemArea
+        onMouseEnter={itemEnter}
+        onMouseLeave={itemLeave}
+        onClick={itemClick}
+      >
         <ItemImage image={backdrop_path} />
         <Title>
           <Text>{title}</Text>

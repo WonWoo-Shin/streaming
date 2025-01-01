@@ -70,9 +70,7 @@ export const Text = styled.span`
   font-size: 1em;
 `;
 
-interface IPreviewProps {}
-
-export const ItemPreview = styled(motion.div)<IPreviewProps>`
+export const ItemPreview = styled(motion.div)`
   position: absolute;
   top: calc(((100% - var(--preview-scale)) / 2));
   z-index: 1;
@@ -98,7 +96,7 @@ export const PreviewText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 1em;
+  padding: 0.8em;
   line-height: 1.5;
   span {
     display: block;

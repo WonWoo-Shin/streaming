@@ -17,7 +17,7 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   const [isTransition, setIsTransition] = useState(false);
   const [isCarouselActive, setIsCarouselActive] = useState(false);
 
-  // showItem = 넘어가는 스크롤 개수
+  // showItem = 넘어가는 스크롤 개수 / 화면에 표시하는 개수
   const showItem = useRecoilValue(screenState);
 
   const [cloneItems, setCloneItems] = useState<IMovie[]>([]);

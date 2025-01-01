@@ -7,6 +7,7 @@ import { screenState } from "../../atom";
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
 import { Category } from "./Category";
+import ReactModal from "react-modal";
 
 export const Main = () => {
   const isMediumScreen = useMediaQuery({ query: "(max-width: 1400px)" });
