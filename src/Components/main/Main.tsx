@@ -57,12 +57,8 @@ export const Main = () => {
   return (
     <MainContainer>
       <Category categoryData={popularData} categoryName="최근 관심작" />
-      <Category categoryData={upComingData} categoryName="공개 예정작" />
-      <Category
-        categoryData={topRatedData}
-        isSuccess={isSuccess}
-        categoryName="역대 인기작"
-      />
+
+      <Category categoryData={topRatedData} categoryName="역대 인기작" />
     </MainContainer>
   );
 };

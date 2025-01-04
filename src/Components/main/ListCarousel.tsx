@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Carousel, Container } from "../../styles/carouselStyle";
 
 import { sliceArray } from "../../utils/sliceArray";
-import { IMovie } from "../../type";
+import { IItem } from "../../type";
 
 import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { CarouselItem } from "./CarouselItem";
 
-export const ListCarousel = ({ data }: { data: IMovie[] }) => {
+export const ListCarousel = ({ data }: { data: IItem[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const [carouselLocation, setCarouselLocation] = useState(0);
@@ -20,7 +20,7 @@ export const ListCarousel = ({ data }: { data: IMovie[] }) => {
   // showItem = 넘어가는 스크롤 개수 / 화면에 표시하는 개수
   const showItem = useRecoilValue(screenState);
 
-  const [cloneItems, setCloneItems] = useState<IMovie[]>([]);
+  const [cloneItems, setCloneItems] = useState<IItem[]>([]);
 
   const itemWidth = 100 / showItem;
 

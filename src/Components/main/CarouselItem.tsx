@@ -9,7 +9,7 @@ import {
   Text,
   Title,
 } from "../../styles/carouselStyle";
-import { ICarouselItemProps, IGetDetail, IMovie } from "../../type";
+import { ICarouselItemProps, IGetDetail, IItem } from "../../type";
 import { createBgImage } from "../../utils/createBgImgae";
 
 import { useQuery } from "@tanstack/react-query";
@@ -19,21 +19,12 @@ import { screenState } from "../../atom";
 import { animate, AnimatePresence, Variants } from "framer-motion";
 import { useHistory } from "react-router-dom";
 
-export const ItemImage = ({ image }: { image: IMovie["backdrop_path"] }) => {
+export const ItemImage = ({ image }: { image: IItem["backdrop_path"] }) => {
   return (
     <ItemParent>
       <Item $bgImage={createBgImage("w500", image)} />
     </ItemParent>
   );
-};
-
-const transitionVariant: Variants = {
-  default: {
-    transition: {
-      ease: [0.25, 0.1, 0.25, 1],
-      duration: 0.25,
-    },
-  },
 };
 
 const previewVariant: Variants = {
@@ -67,7 +58,7 @@ export const CarouselItem = ({
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["movieDetail", id],
-    queryFn: () => getDetail(id),
+    queryFn: () => getDetail(id, "movie"),
   });
 
   const showItem = useRecoilValue(screenState);

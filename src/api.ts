@@ -1,3 +1,5 @@
+import { TMediaType } from "./type";
+
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
 const LANGUAGE = "ko-KR";
@@ -20,8 +22,14 @@ export const getTopRated = () => {
   ).then((response) => response.json());
 };
 
-export const getDetail = (movieId: number) => {
+export const getDetail = (ItemId: number, mediaType: TMediaType) => {
   return fetch(
-    `${BASE_PATH}/movie/${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/${mediaType}/${ItemId}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getTrending = (mediaType: "all" | "movie" | "tv") => {
+  return fetch(
+    `${BASE_PATH}/trending/${mediaType}/day?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };

@@ -53,12 +53,20 @@ export const BannerTitleSection = styled.div`
 `;
 
 export const BannerTitle = styled.h1`
-  font-size: 2.6em;
+  font-size: 2.4em;
+`;
+
+export const BannerDescription = styled.div`
+  position: absolute;
+  bottom: 25%;
+`;
+
+export const BannerTagline = styled.p`
+  margin-bottom: 1.5em;
+  font-size: 1.2em;
 `;
 
 export const BannerButton = styled.button`
-  position: absolute;
-  bottom: 30%;
   width: 7.8em;
   height: 3.13em;
   border: none;

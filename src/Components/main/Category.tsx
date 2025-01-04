@@ -11,7 +11,7 @@ interface ICategoryProps {
 
 export const Category = ({
   categoryData,
-  isSuccess,
+
   categoryName,
 }: ICategoryProps) => {
   return (
