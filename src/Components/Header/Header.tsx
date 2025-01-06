@@ -16,9 +16,12 @@ export const Header = () => {
         <Link to="/">스스슥</Link>
       </HeaderLogo>
       <Nav>
-        <li>태그검색</li>
-        <li>요일별 신작</li>
-        <li>테마추천</li>
+        <li>
+          <Link to="/movie"> 영화</Link>
+        </li>
+        <li>
+          <Link to="/series">시리즈</Link>
+        </li>
       </Nav>
     </HeaderContainer>
   );

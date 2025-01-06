@@ -1,4 +1,4 @@
-import { TMediaType } from "./type";
+import { TMediaType, TTime } from "./type";
 
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
@@ -28,8 +28,8 @@ export const getDetail = (ItemId: number, mediaType: TMediaType) => {
   ).then((response) => response.json());
 };
 
-export const getTrending = (mediaType: "all" | "movie" | "tv") => {
+export const getTrending = (mediaType: TMediaType, time: TTime) => {
   return fetch(
-    `${BASE_PATH}/trending/${mediaType}/day?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/trending/${mediaType}/${time}?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };

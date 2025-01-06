@@ -51,14 +51,16 @@ export const CarouselItem = ({
   id,
   backdrop_path,
   title,
+  name,
   itemWidth,
   isTransition,
   index,
   isCarouselActive,
+  media_type,
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["movieDetail", id],
-    queryFn: () => getDetail(id, "movie"),
+    queryFn: () => getDetail(id, media_type ?? "movie"),
   });
 
   const showItem = useRecoilValue(screenState);
@@ -95,7 +97,7 @@ export const CarouselItem = ({
       >
         <ItemImage image={backdrop_path} />
         <Title>
-          <Text>{title}</Text>
+          <Text>{title ?? name}</Text>
         </Title>
         <AnimatePresence>
           {showPreview && !isTransition && (
@@ -110,7 +112,7 @@ export const CarouselItem = ({
             >
               <ItemImage image={backdrop_path} />
               <PreviewText>
-                <span>{title}</span>
+                <span>{title ?? name}</span>
                 <span>
                   {detailData?.genres.map((genre) => (
                     <p key={genre.id}>{genre.name}</p>

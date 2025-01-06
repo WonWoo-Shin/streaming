@@ -100,8 +100,12 @@ export const PreviewText = styled.div`
   line-height: 1.5;
   span {
     display: block;
+    overflow: hidden;
+    width: 15em;
+    white-space: nowrap;
     font-size: 1.1em;
     font-weight: 600;
+    text-overflow: ellipsis;
     p {
       font-weight: 500;
       display: inline-block;

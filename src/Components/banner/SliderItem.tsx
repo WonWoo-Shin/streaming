@@ -19,6 +19,8 @@ export const SliderItem = ({
   backdrop_path,
   media_type,
 }: IItem) => {
+  if (!media_type) return;
+
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["trendingDetail", id],
     queryFn: () => getDetail(id, media_type),
