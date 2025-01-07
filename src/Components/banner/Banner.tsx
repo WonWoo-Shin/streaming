@@ -32,7 +32,7 @@ export const Banner = () => {
   };
 
   const { data: trendingData } = useQuery<IGetResult>({
-    queryKey: ["trendingData"],
+    queryKey: ["요즘 대세"],
     queryFn: () => getTrending("all", "day"),
     staleTime: 60 * 60 * 1000,
   });

@@ -1,11 +1,10 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
 import { MainContainer } from "../../styles/mainStyle";
-import { IGetResult } from "../../type";
-import { getPopular, getTopRated, getTrending, getUpComing } from "../../api";
-import { useSetRecoilState } from "recoil";
-import { screenState } from "../../atom";
+
+import { getPopular, getTopRated, getTrending } from "../../api";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { screenState, trendingTimeState } from "../../atom";
 import { useMediaQuery } from "react-responsive";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Category } from "./Category";
 
 export const Main = () => {
@@ -18,33 +17,18 @@ export const Main = () => {
     });
   }, [isMediumScreen, isSmallScreen]);
 
-  const { data: trendingData } = useQuery<IGetResult>({
-    queryKey: ["trendingData"],
-    queryFn: () => getTrending("all", "day"),
-    staleTime: 60 * 60 * 1000,
-  });
-
-  const { data: popularData } = useQuery<IGetResult>({
-    queryKey: ["popularData"],
-    queryFn: getPopular,
-    staleTime: 60 * 60 * 1000,
-  });
-
-  const { data: topRatedData } = useQuery<IGetResult>({
-    queryKey: ["topRated"],
-    queryFn: getTopRated,
-    staleTime: 60 * 60 * 1000,
-  });
+  const trendingTime = useRecoilValue(trendingTimeState);
 
   return (
     <MainContainer>
       <Category
-        categoryData={trendingData}
         categoryName="요즘 대세"
+        getFn={() => getTrending("all", trendingTime)}
         tabButton
+        time={trendingTime}
       />
-      <Category categoryData={popularData} categoryName="최근 관심작" />
-      <Category categoryData={topRatedData} categoryName="역대 인기작" />
+      <Category categoryName="최근 관심작" getFn={getPopular} />
+      <Category categoryName="역대 인기작" getFn={getTopRated} />
     </MainContainer>
   );
 };

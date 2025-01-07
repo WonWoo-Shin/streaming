@@ -23,3 +23,29 @@ export const CategoryName = styled.div`
     font-family: inherit;
   }
 `;
+
+export const TimeTabContainer = styled.div`
+  display: flex;
+  padding-left: var(--carousel-padding);
+  margin-bottom: 1.04em;
+`;
+
+export const TimeTabBtn = styled.button<{ $isActive: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.95em;
+  height: 2.34em;
+  border: 1px solid var(--loading-color);
+  border-radius: 9999px;
+  background-color: ${(props) =>
+    props.$isActive ? "var(--point-green)" : "inherit"};
+  color: ${(props) => (props.$isActive ? "#000000" : "inherit")};
+  font-size: inherit;
+  &:not(:first-child) {
+    margin-left: 1em;
+  }
+  span {
+    font-weight: bold;
+  }
+`;

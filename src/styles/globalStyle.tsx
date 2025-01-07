@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 		}
 		--loading-color : #373A3F;
 		--preview-scale : 140%;
+		--point-green : #04d087
 	}
 
     html, body, div, span, applet, object, iframe,

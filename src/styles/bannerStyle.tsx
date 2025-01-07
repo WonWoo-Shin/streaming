@@ -71,7 +71,7 @@ export const BannerButton = styled.button`
   height: 3.13em;
   border: none;
   border-radius: 0.3em;
-  background-color: #04d087;
+  background-color: var(--point-green);
   font-size: inherit;
   span {
     font-size: 1.2em;
