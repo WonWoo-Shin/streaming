@@ -42,6 +42,7 @@ export const TimeTabBtn = styled.button<{ $isActive: boolean }>`
     props.$isActive ? "var(--point-green)" : "inherit"};
   color: ${(props) => (props.$isActive ? "#000000" : "inherit")};
   font-size: inherit;
+  cursor: pointer;
   &:not(:first-child) {
     margin-left: 1em;
   }

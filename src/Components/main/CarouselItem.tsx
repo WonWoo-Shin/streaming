@@ -17,7 +17,6 @@ import { getDetail } from "../../api";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { animate, AnimatePresence, Variants } from "framer-motion";
-import { useHistory } from "react-router-dom";
 
 export const ItemImage = ({ image }: { image: IItem["backdrop_path"] }) => {
   return (
@@ -68,8 +67,6 @@ export const CarouselItem = ({
   const [showPreview, setShowPreview] = useState(false);
   const [delay, setDelay] = useState<number>();
 
-  const history = useHistory();
-
   const itemEnter = () => {
     setDelay(setTimeout(() => setShowPreview(true), 500));
   };
@@ -79,9 +76,7 @@ export const CarouselItem = ({
     clearTimeout(delay);
   };
 
-  const itemClick = () => {
-    history.push(`/modal=${id}`);
-  };
+  const itemClick = () => {};
 
   const isLeftEnd = isCarouselActive ? index === showItem + 1 : index === 0;
   const isRightEnd = isCarouselActive

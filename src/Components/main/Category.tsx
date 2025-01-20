@@ -4,7 +4,6 @@ import { IGetResult, TMediaType, TTime } from "../../type";
 import { CarouselLoading } from "./CarouselLoading";
 import { ListCarousel } from "./ListCarousel";
 import { TimeTab } from "./TimeTab";
-import { Suspense, useEffect, useState } from "react";
 
 interface ICategoryProps {
   // categoryData: IGetResult | undefined;
