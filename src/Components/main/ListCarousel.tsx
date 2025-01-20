@@ -19,8 +19,12 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
 
   // showItem = 넘어가는 스크롤 개수 / 화면에 표시하는 개수
   const showItem = useRecoilValue(screenState);
+  const itemCount = data.length;
 
   const [cloneItems, setCloneItems] = useState<IItem[]>([]);
+
+  //아이템 개수가 화면에 표시하는 개수보다 많은 경우
+  const [isScreenOver, setIsScreenOver] = useState(itemCount > showItem);
 
   const itemWidth = 100 / showItem;
 
@@ -78,11 +82,29 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
     adjustItem();
   };
 
+  //showItem값이 변경된 경우 처리 내용
   useEffect(() => {
+    if (showItem >= itemCount) {
+      setCloneItems([...data]);
+      setTranslate(0);
+      setIsCarouselActive(false);
+      setIsScreenOver(false);
+      return;
+    }
+
+    setIsScreenOver(itemCount > showItem);
+
     if (isCarouselActive) {
       adjustItem();
     } else {
-      setCloneItems(sliceArray(data, 0, 13));
+      const renderCount = showItem * 2 + 1;
+      const sliceEndIndex =
+        itemCount > renderCount
+          ? renderCount
+          : itemCount > showItem
+          ? itemCount + 1
+          : itemCount;
+      setCloneItems(sliceArray(data, 0, sliceEndIndex));
       setTranslate(0);
     }
   }, [showItem]);
@@ -92,7 +114,7 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
     >
-      {isCarouselActive && (
+      {isCarouselActive && isScreenOver && (
         <CarouselButton
           handleCarousel={handleCarousel}
           direction={"left"}
@@ -115,11 +137,13 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
           />
         ))}
       </Carousel>
-      <CarouselButton
-        handleCarousel={handleCarousel}
-        direction={"right"}
-        isMouseOver={isMouseOver}
-      />
+      {isScreenOver && (
+        <CarouselButton
+          handleCarousel={handleCarousel}
+          direction={"right"}
+          isMouseOver={isMouseOver}
+        />
+      )}
     </Container>
   );
 };
