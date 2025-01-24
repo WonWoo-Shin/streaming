@@ -25,7 +25,6 @@ export const Category = ({
     queryKey: [categoryName, time],
     queryFn: () => getFn(),
     staleTime: 60 * 60 * 1000,
-    gcTime: 1,
   });
 
   return (

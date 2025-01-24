@@ -24,7 +24,7 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
   const [cloneItems, setCloneItems] = useState<IItem[]>([]);
 
   //아이템 개수가 화면에 표시하는 개수보다 많은 경우
-  const [isScreenOver, setIsScreenOver] = useState(itemCount > showItem);
+  const isScreenOver = itemCount > showItem;
 
   const itemWidth = 100 / showItem;
 
@@ -82,32 +82,33 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
     adjustItem();
   };
 
+  const resetCarousel = () => {
+    const renderCount = showItem * 2 + 1;
+    const sliceEndIndex =
+      itemCount > renderCount
+        ? renderCount
+        : itemCount > showItem
+        ? itemCount + 1
+        : itemCount;
+    setCloneItems(sliceArray(data, 0, sliceEndIndex));
+    setTranslate(0);
+    setCarouselLocation(0);
+    setIsCarouselActive(false);
+  };
+
   //showItem값이 변경된 경우 처리 내용
   useEffect(() => {
-    if (showItem >= itemCount) {
-      setCloneItems([...data]);
-      setTranslate(0);
-      setIsCarouselActive(false);
-      setIsScreenOver(false);
-      return;
-    }
-
-    setIsScreenOver(itemCount > showItem);
-
     if (isCarouselActive) {
       adjustItem();
     } else {
-      const renderCount = showItem * 2 + 1;
-      const sliceEndIndex =
-        itemCount > renderCount
-          ? renderCount
-          : itemCount > showItem
-          ? itemCount + 1
-          : itemCount;
-      setCloneItems(sliceArray(data, 0, sliceEndIndex));
-      setTranslate(0);
+      resetCarousel();
     }
   }, [showItem]);
+
+  //data가 변경된 경우 캐러셀 초기화
+  useEffect(() => {
+    resetCarousel();
+  }, [data]);
 
   return (
     <Container
