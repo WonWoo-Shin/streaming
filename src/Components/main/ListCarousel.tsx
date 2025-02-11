@@ -45,10 +45,8 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
 
     setIsTransition(true);
 
-    // 한번에 이동하는 translate 값
-    const distanceToScroll = showItem * itemWidth;
-
     // 남은 거리 계산
+    // 전체 개수 - 현재 위치 - 화면에 보이는 개수(제외)
     const remainLocatoin =
       direction === "right"
         ? data.length - carouselLocation - showItem
@@ -60,14 +58,14 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
         ? Math.min(remainLocatoin, showItem)
         : Math.max(remainLocatoin, -showItem);
 
-    // 스크롤 끝에서 무한 스크롤 적용
+    // 스크롤 끝이면 무한 스크롤 적용
     if (remainLocatoin === 0) {
       if (direction === "right") {
         setCarouselLocation(0);
-        setTranslate((prev) => prev + distanceToScroll);
+        setTranslate((prev) => prev + 100);
       } else {
         setCarouselLocation(data.length - showItem);
-        setTranslate((prev) => prev - distanceToScroll);
+        setTranslate((prev) => prev - 100);
       }
       return;
     }
@@ -98,6 +96,10 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
 
   //showItem값이 변경된 경우 처리 내용
   useEffect(() => {
+    if (!isScreenOver) {
+      resetCarousel();
+      return;
+    }
     if (isCarouselActive) {
       adjustItem();
     } else {
