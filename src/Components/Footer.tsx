@@ -1,13 +1,8 @@
-import {
-  FooterContainer,
-  FooterTitle,
-  LinkButton,
-} from "../styles/footerStyle";
+import { FooterContainer, LinkButton } from "../styles/footerStyle";
 
 export const Footer = () => {
   return (
     <FooterContainer>
-      <FooterTitle>스스슥</FooterTitle>
       <LinkButton
         href="https://github.com/WonWoo-Shin/streaming"
         target="_blank"
