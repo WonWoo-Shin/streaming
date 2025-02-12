@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { TDirection } from "../type";
 
-export const Wrapper = styled.div`
-  height: 200vh;
-  background-color: #141517;
-`;
-
 export const SliderContainer = styled.div`
   position: relative;
   width: 100%;
