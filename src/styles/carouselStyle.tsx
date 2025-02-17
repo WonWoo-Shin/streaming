@@ -32,12 +32,13 @@ export const Carousel = styled.ol<ICarouselProps>`
 export const ItemContainer = styled.li<{ $itemWidth: number }>`
   flex: 0 0 ${(props) => props.$itemWidth}%;
   padding: 0 var(--carousel-gap);
+  a {
+    position: relative;
+    cursor: pointer;
+  }
 `;
 
-export const ItemArea = styled.div`
-  position: relative;
-  cursor: pointer;
-`;
+export const ItemArea = styled.a``;
 
 export const ItemParent = styled.div`
   position: relative;

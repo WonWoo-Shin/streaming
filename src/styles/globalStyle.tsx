@@ -46,6 +46,7 @@ body {
 	line-height: 1;
 	background-color: #141517;
 	overflow-x: hidden;
+	/* overflow-y: hidden; */
 	font-size: 1vw;
   @media (max-width: 1400px) {
     font-size: 1.2vw;

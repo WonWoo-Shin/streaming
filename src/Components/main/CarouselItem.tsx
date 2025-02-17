@@ -17,6 +17,7 @@ import { getDetail } from "../../api";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { animate, AnimatePresence, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const ItemImage = ({ image }: { image: IItem["backdrop_path"] }) => {
   return (
@@ -85,10 +86,10 @@ export const CarouselItem = ({
 
   return (
     <ItemContainer $itemWidth={itemWidth}>
-      <ItemArea
+      <Link
         onMouseEnter={itemEnter}
         onMouseLeave={itemLeave}
-        onClick={itemClick}
+        to={`/modal/${id}`}
       >
         <ItemImage image={backdrop_path} />
         <Title>
@@ -117,7 +118,7 @@ export const CarouselItem = ({
             </ItemPreview>
           )}
         </AnimatePresence>
-      </ItemArea>
+      </Link>
     </ItemContainer>
   );
 };

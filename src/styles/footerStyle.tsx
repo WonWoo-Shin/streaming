@@ -7,7 +7,6 @@ export const FooterContainer = styled.footer`
   width: 100%;
   height: 220px;
   margin-top: 4em;
-  border-top: 1px solid #202224;
   color: #e5e5e5;
 `;
 
