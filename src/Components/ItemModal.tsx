@@ -1,12 +1,24 @@
 import { createPortal } from "react-dom";
-import { ModalContainer } from "../styles/modalStyle";
+import {
+  ModalBackground,
+  ModalContainer,
+  ModalWindow,
+} from "../styles/modalStyle";
+import { useNavigate } from "react-router-dom";
 
 interface IModalProps {
   itemId: string | undefined;
 }
 
 const Modal = () => {
-  return <ModalContainer></ModalContainer>;
+  const navigate = useNavigate();
+
+  return (
+    <ModalContainer>
+      <ModalBackground onClick={() => navigate("/")}></ModalBackground>
+      <ModalWindow></ModalWindow>
+    </ModalContainer>
+  );
 };
 
 export const ItemModal = ({ itemId }: IModalProps) => {

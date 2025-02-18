@@ -9,12 +9,11 @@ import { Main } from "./main/Main";
 export const Home = () => {
   const { itemId } = useParams();
 
-  console.log(itemId);
-  if (itemId) {
-    document.body.style.overflowY = "hidden";
-  } else {
-    document.body.style.overflowY = "visible";
-  }
+  // if (itemId) {
+  //   document.body.style.overflowY = "hidden";
+  // } else {
+  //   document.body.style.overflowY = "visible";
+  // }
 
   return (
     <>
