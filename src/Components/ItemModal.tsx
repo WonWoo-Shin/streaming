@@ -4,28 +4,69 @@ import {
   ModalContainer,
   ModalWindow,
 } from "../styles/modalStyle";
-import { useNavigate } from "react-router-dom";
+import { AnimatePresence, Variants } from "framer-motion";
 
 interface IModalProps {
   itemId: string | undefined;
 }
 
-const Modal = () => {
-  const navigate = useNavigate();
+const modalVariant: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
-  return (
-    <ModalContainer>
-      <ModalBackground onClick={() => navigate("/")}></ModalBackground>
-      <ModalWindow></ModalWindow>
-    </ModalContainer>
-  );
+const modalWindowVariant: Variants = {
+  initial: {
+    translateY: 200,
+  },
+  animate: {
+    translateY: 0,
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+  exit: {
+    translateY: 200,
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
 };
 
 export const ItemModal = ({ itemId }: IModalProps) => {
-  if (!itemId) return null;
+  const root = document.getElementById("root");
+  if (!root) return null;
 
-  const rootModal = document.getElementById("root-modal");
-  if (!rootModal) return null;
-
-  return <>{createPortal(<Modal />, rootModal)}</>;
+  return (
+    <>
+      {createPortal(
+        <AnimatePresence>
+          {itemId && (
+            <ModalContainer
+              variants={modalVariant}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <ModalBackground onClick={() => history.back()} />
+              <ModalWindow
+                variants={modalWindowVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              ></ModalWindow>
+            </ModalContainer>
+          )}
+        </AnimatePresence>,
+        root
+      )}
+    </>
+  );
 };

@@ -1,10 +1,11 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const RootModal = styled.div`
   display: flex;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +17,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBackground = styled.div`
+  z-index: -1;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -23,9 +25,10 @@ export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalWindow = styled.div`
-  z-index: 0;
+export const ModalWindow = styled(motion.div)`
+  z-index: 1;
   width: 1080px;
   height: 95%;
+  border-radius: 5px;
   background-color: white;
 `;
