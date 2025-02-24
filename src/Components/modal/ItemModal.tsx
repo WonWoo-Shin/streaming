@@ -45,23 +45,34 @@ export const ItemModal = ({ itemId }: IModalProps) => {
   const root = document.getElementById("root");
   if (!root) return null;
 
+  const body = document.body;
+  if (itemId) {
+    body.classList.add("modal-open");
+  }
+
   return (
     <>
       {createPortal(
         <AnimatePresence>
           {itemId && (
             <ModalContainer
-            // variants={modalVariant}
-            // initial="initial"
-            // animate="animate"
-            // exit="exit"
+              variants={modalVariant}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  body.classList.remove("modal-open");
+                }
+              }}
             >
               <ModalBackground onClick={() => history.back()} />
-              <ModalWindow>
-                <Test style={{ backgroundColor: "tomato" }} />
-                <Test style={{ backgroundColor: "teal" }} />
-                <Test style={{ backgroundColor: "black" }} />
-              </ModalWindow>
+              <ModalWindow
+                variants={modalWindowVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              ></ModalWindow>
             </ModalContainer>
           )}
         </AnimatePresence>,

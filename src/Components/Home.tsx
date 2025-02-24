@@ -9,11 +9,9 @@ import { Main } from "./main/Main";
 export const Home = () => {
   const { itemId } = useParams();
 
-  const scrollY = window.scrollY;
-
   return (
     <>
-      <Wrapper className={itemId && "modal-open"}>
+      <Wrapper>
         <Header />
         <Banner />
         <Main />

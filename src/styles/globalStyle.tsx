@@ -68,6 +68,10 @@ body {
     padding: 5px;
     background-color: #424242
   }
+  &.modal-open {
+    overflow: hidden;
+	padding-right: var(--scroll-width);
+  }
 }
 ol, ul {
 	list-style: none;
