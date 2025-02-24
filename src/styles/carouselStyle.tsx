@@ -167,6 +167,7 @@ export const Button = styled.div`
   }
   &.right {
     width: calc(100% + var(--scroll-width));
+    padding-right: var(--scroll-width);
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
   }

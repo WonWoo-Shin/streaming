@@ -6,6 +6,7 @@ import {
   Test,
 } from "../../styles/modalStyle";
 import { AnimatePresence, Variants } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface IModalProps {
   itemId: string | undefined;
@@ -50,6 +51,8 @@ export const ItemModal = ({ itemId }: IModalProps) => {
     body.classList.add("modal-open");
   }
 
+  const navigate = useNavigate();
+
   return (
     <>
       {createPortal(
@@ -66,13 +69,15 @@ export const ItemModal = ({ itemId }: IModalProps) => {
                 }
               }}
             >
-              <ModalBackground onClick={() => history.back()} />
+              <ModalBackground onClick={() => navigate("/")} />
               <ModalWindow
                 variants={modalWindowVariant}
                 initial="initial"
                 animate="animate"
                 exit="exit"
-              ></ModalWindow>
+              >
+                {itemId}
+              </ModalWindow>
             </ModalContainer>
           )}
         </AnimatePresence>,
