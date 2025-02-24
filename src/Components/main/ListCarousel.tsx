@@ -131,7 +131,7 @@ export const ListCarousel = ({ data }: { data: IItem[] }) => {
       >
         {cloneItems.map((item, index) => (
           <CarouselItem
-            key={item.id}
+            key={index}
             index={index}
             {...item}
             itemWidth={itemWidth}

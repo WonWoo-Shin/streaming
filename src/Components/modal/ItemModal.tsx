@@ -3,7 +3,8 @@ import {
   ModalBackground,
   ModalContainer,
   ModalWindow,
-} from "../styles/modalStyle";
+  Test,
+} from "../../styles/modalStyle";
 import { AnimatePresence, Variants } from "framer-motion";
 
 interface IModalProps {
@@ -50,18 +51,17 @@ export const ItemModal = ({ itemId }: IModalProps) => {
         <AnimatePresence>
           {itemId && (
             <ModalContainer
-              variants={modalVariant}
-              initial="initial"
-              animate="animate"
-              exit="exit"
+            // variants={modalVariant}
+            // initial="initial"
+            // animate="animate"
+            // exit="exit"
             >
               <ModalBackground onClick={() => history.back()} />
-              <ModalWindow
-                variants={modalWindowVariant}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              ></ModalWindow>
+              <ModalWindow>
+                <Test style={{ backgroundColor: "tomato" }} />
+                <Test style={{ backgroundColor: "teal" }} />
+                <Test style={{ backgroundColor: "black" }} />
+              </ModalWindow>
             </ModalContainer>
           )}
         </AnimatePresence>,

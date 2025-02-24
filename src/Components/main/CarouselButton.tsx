@@ -19,7 +19,10 @@ export const CarouselButton = ({
 }: ICarouselBtnProps) => {
   return (
     <ButtonContainer className={direction === "left" ? "left" : "right"}>
-      <Button onClick={() => handleCarousel(direction)}>
+      <Button
+        onClick={() => handleCarousel(direction)}
+        className={direction === "left" ? "left" : "right"}
+      >
         {isMouseOver && (
           <svg
             width="24"

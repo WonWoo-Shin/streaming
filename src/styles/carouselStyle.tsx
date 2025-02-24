@@ -29,7 +29,7 @@ export const Carousel = styled.ol<ICarouselProps>`
   }
 `;
 
-export const ItemContainer = styled.li<{ $itemWidth: number }>`
+export const ItemContainer = styled(motion.li)<{ $itemWidth: number }>`
   flex: 0 0 ${(props) => props.$itemWidth}%;
   padding: 0 var(--carousel-gap);
   a {
@@ -37,8 +37,6 @@ export const ItemContainer = styled.li<{ $itemWidth: number }>`
     cursor: pointer;
   }
 `;
-
-export const ItemArea = styled.a``;
 
 export const ItemParent = styled.div`
   position: relative;
@@ -136,8 +134,6 @@ export const ButtonContainer = styled.div`
   z-index: 1;
   &.left {
     left: 0;
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
   }
   &.right {
     right: 0;
@@ -164,5 +160,13 @@ export const Button = styled.div`
     svg {
       color: #fff;
     }
+  }
+  &.left {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+  &.right {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
   }
 `;

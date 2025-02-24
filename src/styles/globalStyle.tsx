@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 		--border-radius : 4px;
 		--title-height  : 2.8em;
 		--title-margin : 0.5em;
+		--scroll-width : 16px;
 		@media (max-width : 1500px){
 			--carousel-padding : 4%;
 		}
@@ -55,7 +56,7 @@ body {
     font-size: 1.4vw;
   }
 	&::-webkit-scrollbar {
-    width: 16px;
+    width: var(--scroll-width);
   }
   &::-webkit-scrollbar-thumb {
     background-color: #686868;

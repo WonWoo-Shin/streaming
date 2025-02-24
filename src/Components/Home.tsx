@@ -3,26 +3,22 @@ import { Wrapper } from "../styles/HomeStyle";
 import { Banner } from "./banner/Banner";
 import { Footer } from "./Footer";
 import { Header } from "./Header/Header";
-import { ItemModal } from "./ItemModal";
+import { ItemModal } from "./modal/ItemModal";
 import { Main } from "./main/Main";
 
 export const Home = () => {
   const { itemId } = useParams();
 
-  // if (itemId) {
-  //   document.body.style.overflowY = "hidden";
-  // } else {
-  //   document.body.style.overflowY = "visible";
-  // }
+  const scrollY = window.scrollY;
 
   return (
     <>
-      <Wrapper>
+      <Wrapper className={itemId && "modal-open"}>
         <Header />
         <Banner />
         <Main />
         <Footer />
-        <ItemModal itemId={itemId}></ItemModal>
+        <ItemModal itemId={itemId} />
       </Wrapper>
     </>
   );
