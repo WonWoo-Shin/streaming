@@ -12,26 +12,12 @@ import {
 import { IGetDetail, IItem } from "../../type";
 import { createBgImage } from "../../utils/createBgImgae";
 
-export const SliderItem = ({
-  id,
-  title,
-  name,
-  backdrop_path,
-  media_type,
-}: IItem) => {
-  if (!media_type) return;
-
-  const { data: detailData } = useQuery<IGetDetail>({
-    queryKey: ["trendingDetail", id],
-    queryFn: () => getDetail(id, media_type),
-  });
-
+export const SliderItem = ({ title, name, backdrop_path }: IItem) => {
   return (
     <ItemContainer>
       <BannerTitleSection>
         <BannerTitle>{title ?? name}</BannerTitle>
         <BannerDescription>
-          <BannerTagline>{detailData?.tagline}</BannerTagline>
           <BannerButton>
             <span>확인하기</span>
           </BannerButton>

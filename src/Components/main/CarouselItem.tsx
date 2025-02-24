@@ -58,7 +58,7 @@ export const CarouselItem = ({
   media_type,
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
-    queryKey: ["movieDetail", id],
+    queryKey: ["itemDetail", id],
     queryFn: () => getDetail(id, media_type ?? "movie"),
   });
 
@@ -76,8 +76,6 @@ export const CarouselItem = ({
     clearTimeout(delay);
   };
 
-  const itemClick = () => {};
-
   const isLeftEnd = isCarouselActive ? index === showItem + 1 : index === 0;
   const isRightEnd = isCarouselActive
     ? index === showItem * 2
@@ -88,7 +86,7 @@ export const CarouselItem = ({
       <Link
         onMouseEnter={itemEnter}
         onMouseLeave={itemLeave}
-        to={`/modal/${id}`}
+        to={`/${media_type ?? "movie"}/${id}`}
       >
         <ItemImage image={backdrop_path} />
         <Title>

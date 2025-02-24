@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")!).render(
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <App />
-        {/* <ReactQueryDevtools initialIsOpen={false} buttonPosition="top-right" /> */}
+        <ReactQueryDevtools initialIsOpen={false} buttonPosition="top-right" />
       </QueryClientProvider>
     </RecoilRoot>
   </ThemeProvider>
