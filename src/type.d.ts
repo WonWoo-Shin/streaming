@@ -31,6 +31,7 @@ export interface IGetDetail {
   poster_path: string;
   genres: IGenre[];
   overview: string;
+  vote_average: number;
   tagline: string;
 }
 
