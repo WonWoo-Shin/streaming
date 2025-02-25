@@ -3,10 +3,13 @@ import {
   ModalBackground,
   ModalContainer,
   ModalWindow,
-  Test,
 } from "../../styles/modalStyle";
 import { AnimatePresence, Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { IGetDetail } from "../../type";
+import { getDetail } from "../../api";
+import { ModalDetail } from "./ModalDetail";
 
 interface IModalProps {
   itemId: string | undefined;
@@ -76,7 +79,7 @@ export const ItemModal = ({ itemId }: IModalProps) => {
                 animate="animate"
                 exit="exit"
               >
-                {itemId}
+                <ModalDetail itemId={+itemId}></ModalDetail>
               </ModalWindow>
             </ModalContainer>
           )}

@@ -9,7 +9,7 @@ import {
   Title,
 } from "../../styles/carouselStyle";
 import { ICarouselItemProps, IGetDetail, IItem } from "../../type";
-import { createBgImage } from "../../utils/createBgImgae";
+import { createImage } from "../../utils/createImgae";
 
 import { useQuery } from "@tanstack/react-query";
 import { getDetail } from "../../api";
@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 export const ItemImage = ({ image }: { image: IItem["backdrop_path"] }) => {
   return (
     <ItemParent>
-      <Item $bgImage={createBgImage("w500", image)} />
+      <Item $bgImage={createImage("w500", image)} />
     </ItemParent>
   );
 };

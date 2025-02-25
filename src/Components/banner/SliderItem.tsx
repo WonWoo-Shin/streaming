@@ -10,7 +10,7 @@ import {
   ItemContainer,
 } from "../../styles/bannerStyle";
 import { IGetDetail, IItem } from "../../type";
-import { createBgImage } from "../../utils/createBgImgae";
+import { createImage } from "../../utils/createImgae";
 
 export const SliderItem = ({ title, name, backdrop_path }: IItem) => {
   return (
@@ -23,7 +23,7 @@ export const SliderItem = ({ title, name, backdrop_path }: IItem) => {
           </BannerButton>
         </BannerDescription>
       </BannerTitleSection>
-      <BannerImage $bgImage={createBgImage("original", backdrop_path ?? "")} />
+      <BannerImage $bgImage={createImage("original", backdrop_path ?? "")} />
     </ItemContainer>
   );
 };

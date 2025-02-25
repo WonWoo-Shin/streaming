@@ -25,7 +25,12 @@ export interface IGenre {
 }
 
 export interface IGetDetail {
+  title: string;
+  name: string;
+  backdrop_path: string;
+  poster_path: string;
   genres: IGenre[];
+  overview: string;
   tagline: string;
 }
 

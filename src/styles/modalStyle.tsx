@@ -29,7 +29,26 @@ export const ModalWindow = styled(motion.div)`
   }
 `;
 
-export const Test = styled.div`
-  width: 50%;
-  height: 500px;
+export const ModalOverview = styled.div`
+  padding: 30px;
+`;
+
+export const ModalNav = styled.nav`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const ExitBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+export const Poster = styled.img`
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
 `;
