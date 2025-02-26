@@ -80,7 +80,7 @@ export const ModalDetail = ({ itemId }: IModalProps) => {
             <Title>{detailData?.title ?? detailData?.name}</Title>
             <Genre>
               {detailData?.genres.map((genre) => (
-                <span>{genre.name}</span>
+                <span key={genre.id}>{genre.name}</span>
               ))}
             </Genre>
           </div>

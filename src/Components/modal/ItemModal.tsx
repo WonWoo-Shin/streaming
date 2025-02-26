@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IGetDetail } from "../../type";
 import { getDetail } from "../../api";
 import { ModalDetail } from "./ModalDetail";
+import { useEffect, useState } from "react";
 
 interface IModalProps {
   itemId: string | undefined;
@@ -49,10 +50,16 @@ export const ItemModal = ({ itemId }: IModalProps) => {
   const root = document.getElementById("root");
   if (!root) return null;
 
+  if (!itemId) return;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const body = document.body;
-  if (itemId) {
-    body.classList.add("modal-open");
-  }
+  useEffect(() => {
+    if (itemId) {
+      body.classList.add("modal-open");
+      setIsModalOpen(true);
+    }
+  }, []);
 
   const navigate = useNavigate();
 
@@ -60,7 +67,7 @@ export const ItemModal = ({ itemId }: IModalProps) => {
     <>
       {createPortal(
         <AnimatePresence>
-          {itemId && (
+          {isModalOpen && (
             <ModalContainer
               variants={modalVariant}
               initial="initial"
@@ -69,10 +76,11 @@ export const ItemModal = ({ itemId }: IModalProps) => {
               onAnimationComplete={(definition) => {
                 if (definition === "exit") {
                   body.classList.remove("modal-open");
+                  navigate("/");
                 }
               }}
             >
-              <ModalBackground onClick={() => navigate("/")} />
+              <ModalBackground onClick={() => setIsModalOpen(false)} />
               <ModalWindow
                 variants={modalWindowVariant}
                 initial="initial"
