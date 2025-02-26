@@ -47,3 +47,5 @@ export interface ICarouselItemProps extends IItem {
 export type TMediaType = "all" | "movie" | "tv";
 
 export type TTime = "day" | "week";
+
+export type TCurrentTab = "video" | "episode" | "similar";

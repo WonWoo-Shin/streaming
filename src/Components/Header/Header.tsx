@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HeaderContainer, HeaderLogo, Nav } from "../../styles/headerStyle";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isLimpid, setIsLimpid] = useState(true);
@@ -12,16 +13,9 @@ export const Header = () => {
   return (
     <HeaderContainer $isLimpid={isLimpid}>
       <HeaderLogo>
-        <a>스스슥</a>
+        <Link to="/">스스슥</Link>
       </HeaderLogo>
-      <Nav>
-        <li>
-          <a> 영화</a>
-        </li>
-        <li>
-          <a>시리즈</a>
-        </li>
-      </Nav>
+      <Nav></Nav>
     </HeaderContainer>
   );
 };

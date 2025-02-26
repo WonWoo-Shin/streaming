@@ -20,6 +20,7 @@ export const HeaderLogo = styled.div`
   width: 72px;
   height: 100%;
   font-size: 20px;
+  font-weight: 600;
 `;
 
 export const Nav = styled.ol`

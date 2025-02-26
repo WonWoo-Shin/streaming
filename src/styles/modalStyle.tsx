@@ -157,3 +157,32 @@ export const Overview = styled.div`
   font-size: 16px;
   line-height: 22px;
 `;
+
+export const ModalContent = styled.div`
+  height: 100%;
+  padding: 40px 50px;
+  background-color: white;
+`;
+
+export const ContentNav = styled.nav`
+  width: 100%;
+  height: 40px;
+`;
+
+export const NavItems = styled.ul`
+  display: flex;
+  gap: 35px;
+`;
+
+export const NavItem = styled.li<{ $current: boolean }>`
+  color: ${(props) => (props.$current ? "var(--point-green)" : "inherit")};
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+export const CurrentBar = styled(motion.div)`
+  width: 100%;
+  height: 5px;
+  margin-top: 12px;
+  background-color: var(--point-green);
+`;
