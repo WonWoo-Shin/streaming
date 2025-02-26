@@ -64,6 +64,8 @@ export const ExitBtn = styled.button`
   height: 40px;
   border: none;
   border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
   cursor: pointer;
 `;
 
@@ -73,7 +75,11 @@ export const Header = styled.header`
   padding: 50px;
 `;
 
-export const MainInfo = styled.div``;
+export const TitleArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 export const Vote = styled.label`
   display: flex;
@@ -111,13 +117,25 @@ export const Genre = styled.p`
   }
 `;
 
-export const Overview = styled.div`
-  max-width: 650px;
-  padding-left: 50px;
-  padding-bottom: 30px;
+export const BadgeArea = styled.div`
+  display: flex;
+`;
+
+export const Badge = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #d0d0d0;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 15px;
+  cursor: pointer;
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+  }
+  &:not(:first-child) {
+    margin-left: 30px;
+  }
 `;
 
 export const Poster = styled.img`
@@ -125,4 +143,13 @@ export const Poster = styled.img`
   height: 280px;
   border-radius: 5px;
   object-fit: cover;
+`;
+
+export const Overview = styled.div`
+  max-width: 650px;
+  padding-left: 50px;
+  padding-bottom: 30px;
+  color: #d0d0d0;
+  font-size: 16px;
+  line-height: 22px;
 `;
