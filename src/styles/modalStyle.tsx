@@ -23,14 +23,33 @@ export const ModalWindow = styled(motion.div)`
   width: 1080px;
   height: 95%;
   border-radius: 5px;
-  background-color: white;
+  background-color: #1e2022;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 export const ModalOverview = styled.div`
-  background-color: #1e2022;
+  position: relative;
+`;
+
+export const BgImage = styled.div<{ $bgImg: string }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  width: 800px;
+  height: 480px;
+  opacity: 0.4;
+  background-image: url(${(props) => props.$bgImg});
+  background-size: cover;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(to top, #1e2022 0px, #1e202200 200px),
+      linear-gradient(to right, #1e2022 0px, #1e202200 300px);
+  }
 `;
 
 export const ModalNav = styled.nav`
@@ -54,11 +73,7 @@ export const Header = styled.header`
   padding: 50px;
 `;
 
-export const MainInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+export const MainInfo = styled.div``;
 
 export const Vote = styled.label`
   display: flex;
@@ -98,6 +113,8 @@ export const Genre = styled.p`
 
 export const Overview = styled.div`
   max-width: 650px;
+  padding-left: 50px;
+  padding-bottom: 30px;
   color: #d0d0d0;
   font-size: 16px;
   line-height: 22px;
