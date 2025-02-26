@@ -33,8 +33,6 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     queryFn: () => getDetail(itemId, (mediaType as any) ?? "movie"),
   });
 
-  const navigate = useNavigate();
-
   return (
     <ModalOverview>
       <BgImage

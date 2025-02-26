@@ -20,12 +20,16 @@ export const ModalBackground = styled.div`
 export const ModalWindow = styled(motion.div)`
   overflow: auto;
   z-index: 1;
-  width: 1080px;
-  height: 95%;
+  width: 100%;
+  max-width: 1080px;
+  height: calc(100vh - 50px);
   border-radius: 5px;
   background-color: #1e2022;
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 1080px) {
+    height: 100%;
   }
 `;
 
@@ -147,8 +151,8 @@ export const Poster = styled.img`
 
 export const Overview = styled.div`
   max-width: 650px;
-  padding-left: 50px;
-  padding-bottom: 30px;
+  padding: 30px 50px;
+  padding-top: 0px;
   color: #d0d0d0;
   font-size: 16px;
   line-height: 22px;
