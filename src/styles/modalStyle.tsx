@@ -174,15 +174,17 @@ export const NavItems = styled.ul`
   gap: 35px;
 `;
 
-export const NavItem = styled.li<{ $current: boolean }>`
-  color: ${(props) => (props.$current ? "var(--point-green)" : "inherit")};
+export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
+  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "inherit")};
   font-weight: 600;
   cursor: pointer;
 `;
 
 export const CurrentBar = styled(motion.div)`
   width: 100%;
-  height: 5px;
+  height: 4px;
   margin-top: 12px;
   background-color: var(--point-green);
 `;
+
+export const Videos = styled.div``;

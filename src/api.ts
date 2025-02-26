@@ -22,14 +22,20 @@ export const getTopRated = () => {
   ).then((response) => response.json());
 };
 
-export const getDetail = (ItemId: number, mediaType: TMediaType) => {
+export const getDetail = (itemId: number, mediaType: TMediaType) => {
   return fetch(
-    `${BASE_PATH}/${mediaType}/${ItemId}?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/${mediaType}/${itemId}?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
 
 export const getTrending = (mediaType: TMediaType, time: TTime) => {
   return fetch(
     `${BASE_PATH}/trending/${mediaType}/${time}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getVideos = (itemId: number, mediaType: TMediaType) => {
+  return fetch(
+    `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };

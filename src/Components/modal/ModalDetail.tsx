@@ -14,7 +14,6 @@ import {
   ModalContent,
   ModalNav,
   ModalOverview,
-  NavItem,
   NavItems,
   Overview,
   Poster,
@@ -24,6 +23,7 @@ import {
 } from "../../styles/modalStyle";
 import { createImage } from "../../utils/createImgae";
 import { useState } from "react";
+import { NavItem } from "./NavItem";
 
 interface IModalProps {
   itemId: number;
@@ -132,32 +132,25 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
         <ContentNav>
           <NavItems>
             <NavItem
-              onClick={() => setCurrentTab("video")}
-              $current={currentTab === "video"}
-            >
-              <span>동영상</span>
-              {currentTab === "video" && (
-                <CurrentBar layoutId="currentBar" style={{ originY: "0px" }} />
-              )}
-            </NavItem>
+              tab="video"
+              tabName="동영상"
+              tabMatch={currentTab === "video"}
+              setCurrentTab={setCurrentTab}
+            />
             {mediaType === "tv" && (
               <NavItem
-                onClick={() => setCurrentTab("episode")}
-                $current={currentTab === "episode"}
-              >
-                <span>에피소드</span>
-                {currentTab === "episode" && (
-                  <CurrentBar layoutId="currentBar" />
-                )}
-              </NavItem>
+                tab="episode"
+                tabName="에피소드"
+                tabMatch={currentTab === "episode"}
+                setCurrentTab={setCurrentTab}
+              />
             )}
             <NavItem
-              onClick={() => setCurrentTab("similar")}
-              $current={currentTab === "similar"}
-            >
-              <span>비슷한 작품</span>
-              {currentTab === "similar" && <CurrentBar layoutId="currentBar" />}
-            </NavItem>
+              tab="similar"
+              tabName="비슷한 작품"
+              tabMatch={currentTab === "similar"}
+              setCurrentTab={setCurrentTab}
+            />
           </NavItems>
         </ContentNav>
       </ModalContent>
