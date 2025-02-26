@@ -21,9 +21,10 @@ import { createImage } from "../../utils/createImgae";
 
 interface IModalProps {
   itemId: number;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ModalDetail = ({ itemId }: IModalProps) => {
+export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
   if (!mediaType) return;
 
@@ -40,7 +41,7 @@ export const ModalDetail = ({ itemId }: IModalProps) => {
         $bgImg={createImage("w500", detailData?.backdrop_path ?? "")}
       ></BgImage>
       <ModalNav>
-        <ExitBtn onClick={() => navigate("/")}>
+        <ExitBtn onClick={() => setIsModalOpen(false)}>
           {" "}
           <svg
             width="24"

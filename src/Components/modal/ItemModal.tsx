@@ -6,9 +6,6 @@ import {
 } from "../../styles/modalStyle";
 import { AnimatePresence, Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { IGetDetail } from "../../type";
-import { getDetail } from "../../api";
 import { ModalDetail } from "./ModalDetail";
 import { useEffect, useState } from "react";
 
@@ -87,7 +84,7 @@ export const ItemModal = ({ itemId }: IModalProps) => {
                 animate="animate"
                 exit="exit"
               >
-                <ModalDetail itemId={+itemId}></ModalDetail>
+                <ModalDetail itemId={+itemId} setIsModalOpen={setIsModalOpen} />
               </ModalWindow>
             </ModalContainer>
           )}
