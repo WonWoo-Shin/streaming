@@ -45,6 +45,7 @@ export interface IGetVideos {
     key: string;
     name: string;
     published_at: string;
+    site: string;
   }[];
 }
 

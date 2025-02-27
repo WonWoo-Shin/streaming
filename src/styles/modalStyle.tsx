@@ -165,7 +165,7 @@ export const ModalContent = styled.div`
 export const ContentNav = styled.ul`
   display: flex;
   gap: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
@@ -181,8 +181,6 @@ export const CurrentBar = styled(motion.div)`
   margin-top: 12px;
   background-color: var(--point-green);
 `;
-
-export const Videos = styled.ul``;
 
 export const VideoContainer = styled.li`
   width: 100%;

@@ -34,8 +34,14 @@ export const getTrending = (mediaType: TMediaType, time: TTime) => {
   ).then((response) => response.json());
 };
 
-export const getVideos = (itemId: number, mediaType: TMediaType) => {
+export const getVideos = (
+  itemId: number,
+  mediaType: TMediaType,
+  english?: boolean
+) => {
   return fetch(
-    `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${
+      english ? "en-US" : LANGUAGE
+    }`
   ).then((response) => response.json());
 };
