@@ -44,8 +44,8 @@ const modalWindowVariant: Variants = {
 };
 
 export const ItemModal = ({ itemId }: IModalProps) => {
-  const root = document.getElementById("root");
-  if (!root) return null;
+  const rootModal = document.getElementById("root-modal");
+  if (!rootModal) return null;
 
   if (!itemId) return null;
 
@@ -89,7 +89,7 @@ export const ItemModal = ({ itemId }: IModalProps) => {
             </ModalContainer>
           )}
         </AnimatePresence>,
-        root
+        rootModal
       )}
     </>
   );

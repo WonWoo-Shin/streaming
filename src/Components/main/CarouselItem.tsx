@@ -8,17 +8,21 @@ import {
   Text,
   Title,
 } from "../../styles/carouselStyle";
-import { ICarouselItemProps, IGetDetail, IItem } from "../../type";
+import { IGetDetail, IItemList } from "../../type";
 import { createImage } from "../../utils/createImgae";
 
 import { useQuery } from "@tanstack/react-query";
 import { getDetail } from "../../api";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
-import { animate, AnimatePresence, Variants } from "framer-motion";
+import { AnimatePresence, Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export const ItemImage = ({ image }: { image: IItem["backdrop_path"] }) => {
+export const ItemImage = ({
+  image,
+}: {
+  image: TItemResults["backdrop_path"];
+}) => {
   return (
     <ItemParent>
       <Item $bgImage={createImage("w500", image)} />
@@ -45,6 +49,15 @@ const previewVariant: Variants = {
     },
   },
 };
+
+type TItemResults = IItemList["results"][number];
+
+interface ICarouselItemProps extends TItemResults {
+  itemWidth: number;
+  isTransition: boolean;
+  index: number;
+  isCarouselActive: boolean;
+}
 
 export const CarouselItem = ({
   id,

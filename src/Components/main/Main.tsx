@@ -4,7 +4,7 @@ import { getPopular, getTopRated, getTrending } from "../../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { screenState, trendingTimeState } from "../../atom";
 import { useMediaQuery } from "react-responsive";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Category } from "./Category";
 
 export const Main = () => {

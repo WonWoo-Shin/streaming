@@ -1,22 +1,13 @@
-interface IItem {
-  id: number;
-  backdrop_path: string;
-  poster_path: string;
-  title?: string;
-  name?: string;
-  media_type?: TMediaType;
-  overview: string;
-}
-
-export interface IGetResult {
-  dates: {
-    maximum: string;
-    minimum: string;
-  };
-  page: number;
-  results: IItem[];
-  total_pages: number;
-  total_results: number;
+export interface IItemList {
+  results: {
+    id: number;
+    backdrop_path: string;
+    poster_path: string;
+    title?: string;
+    name?: string;
+    media_type?: TMediaType;
+    overview: string;
+  }[];
 }
 
 export interface IGenre {
@@ -33,10 +24,7 @@ export interface IGetDetail {
   overview: string;
   vote_average: number;
   tagline: string;
-}
-
-export interface IGetVideosResults {
-  results: IVideos[];
+  release_date: string;
 }
 
 export interface IGetVideos {
@@ -50,13 +38,6 @@ export interface IGetVideos {
 }
 
 export type TDirection = "left" | "right";
-
-export interface ICarouselItemProps extends IItem {
-  itemWidth: number;
-  isTransition: boolean;
-  index: number;
-  isCarouselActive: boolean;
-}
 
 export type TMediaType = "all" | "movie" | "tv";
 

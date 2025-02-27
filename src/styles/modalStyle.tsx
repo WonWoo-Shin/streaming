@@ -110,8 +110,9 @@ export const Title = styled.h1`
 `;
 
 export const Genre = styled.p`
-  color: #d0d0d0;
+  margin-bottom: 20px;
   font-size: 16px;
+  color: #d0d0d0;
   span {
     &:not(:first-child) {
       &::before {
@@ -119,6 +120,11 @@ export const Genre = styled.p`
       }
     }
   }
+`;
+
+export const ReleaseDate = styled.div`
+  font-size: 16px;
+  color: #8a8a8a;
 `;
 
 export const BadgeArea = styled.div`

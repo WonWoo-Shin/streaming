@@ -51,17 +51,12 @@ export const BannerTitle = styled.h1`
   font-size: 2.4em;
 `;
 
-export const BannerDescription = styled.div`
+export const BannerButton = styled.div`
   position: absolute;
   bottom: 25%;
 `;
 
-export const BannerTagline = styled.p`
-  margin-bottom: 1.5em;
-  font-size: 1.2em;
-`;
-
-export const BannerButton = styled.button`
+export const Button = styled.button`
   width: 7.8em;
   height: 3.13em;
   border: none;

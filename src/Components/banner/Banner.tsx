@@ -5,7 +5,7 @@ import {
   SliderDots,
 } from "../../styles/bannerStyle";
 import { SlideArrow } from "./SliderArrow";
-import { IGetResult } from "../../type";
+import { IItemList } from "../../type";
 import { SliderItem } from "./SliderItem";
 import { useQuery } from "@tanstack/react-query";
 import { getTrending } from "../../api";
@@ -31,8 +31,8 @@ export const Banner = () => {
     nextArrow: <SlideArrow position={"right"} />,
   };
 
-  const { data: trendingData } = useQuery<IGetResult>({
-    queryKey: ["요즘 대세"],
+  const { data: trendingData } = useQuery<IItemList>({
+    queryKey: ["요즘 대세", "day"],
     queryFn: () => getTrending("all", "day"),
     staleTime: 60 * 60 * 1000,
   });

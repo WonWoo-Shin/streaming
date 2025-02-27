@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { CategoryName, CategoryStyle } from "../../styles/mainStyle";
-import { IGetResult, TMediaType, TTime } from "../../type";
+import { IItemList, TMediaType, TTime } from "../../type";
 import { CarouselLoading } from "./CarouselLoading";
 import { ListCarousel } from "./ListCarousel";
 import { TimeTab } from "./TimeTab";
@@ -21,7 +21,7 @@ export const Category = ({
   tabButton,
   time,
 }: ICategoryProps) => {
-  const { data: categoryData } = useQuery<IGetResult>({
+  const { data: categoryData } = useQuery<IItemList>({
     queryKey: [categoryName, time],
     queryFn: () => getFn(),
     staleTime: 60 * 60 * 1000,

@@ -9,6 +9,7 @@ import {
 } from "../../styles/modalStyle";
 import { getVideos } from "../../api";
 import { IGetVideos, TMediaType } from "../../type";
+import { convertDate } from "../../utils/convertDate";
 
 interface IModalVideosProps {
   itemId: number;
@@ -32,13 +33,6 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
     ...(videosPreData?.results || []),
   ];
 
-  const convertDate = (date: string) => {
-    const newDate = new Date(date);
-    return `${newDate.getFullYear()}.${
-      newDate.getMonth() + 1
-    }.${newDate.getDate()}`;
-  };
-
   return (
     <ul>
       {videos.map(
@@ -50,7 +44,6 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
                   <img
                     src={`https://img.youtube.com/vi/${video.key}/maxresdefault.jpg`}
                     alt={video.name}
-                    onError={() => console.log("asd")}
                   />
                 </VideoThumbnail>
                 <VideoInfo>

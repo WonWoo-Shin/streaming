@@ -15,6 +15,7 @@ import {
   ModalOverview,
   Overview,
   Poster,
+  ReleaseDate,
   Title,
   TitleArea,
   Vote,
@@ -23,6 +24,7 @@ import { createImage } from "../../utils/createImgae";
 import { useState } from "react";
 import { NavItem } from "./NavItem";
 import { ModalVideos } from "./ModalVideos";
+import { convertDate } from "../../utils/convertDate";
 
 interface IModalProps {
   itemId: number;
@@ -90,6 +92,13 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                   <span key={genre.id}>{genre.name}</span>
                 ))}
               </Genre>
+              <ReleaseDate>
+                <span>
+                  {detailData?.release_date
+                    ? convertDate(detailData?.release_date)
+                    : ""}
+                </span>
+              </ReleaseDate>
             </div>
             <BadgeArea>
               <Badge>

@@ -1,29 +1,35 @@
-import { useQuery } from "@tanstack/react-query";
-import { getDetail } from "../../api";
+import { Link } from "react-router-dom";
 import {
+  Button,
   BannerButton,
-  BannerDescription,
   BannerImage,
-  BannerTagline,
   BannerTitle,
   BannerTitleSection,
   ItemContainer,
 } from "../../styles/bannerStyle";
-import { IGetDetail, IItem } from "../../type";
+import { IItemList } from "../../type";
 import { createImage } from "../../utils/createImgae";
 
-export const SliderItem = ({ title, name, backdrop_path }: IItem) => {
+export const SliderItem = ({
+  id,
+  title,
+  name,
+  backdrop_path,
+  media_type,
+}: IItemList["results"][number]) => {
   return (
     <ItemContainer>
+      {/* <Link to={`/${media_type ?? "movie"}/${id}`}> */}
       <BannerTitleSection>
         <BannerTitle>{title ?? name}</BannerTitle>
-        <BannerDescription>
-          <BannerButton>
+        <BannerButton>
+          <Button>
             <span>확인하기</span>
-          </BannerButton>
-        </BannerDescription>
+          </Button>
+        </BannerButton>
       </BannerTitleSection>
       <BannerImage $bgImage={createImage("original", backdrop_path ?? "")} />
+      {/* </Link> */}
     </ItemContainer>
   );
 };
