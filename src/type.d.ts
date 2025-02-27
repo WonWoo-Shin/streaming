@@ -35,6 +35,19 @@ export interface IGetDetail {
   tagline: string;
 }
 
+export interface IGetVideosResults {
+  results: IVideos[];
+}
+
+export interface IGetVideos {
+  results: {
+    id: string;
+    key: string;
+    name: string;
+    published_at: string;
+  }[];
+}
+
 export type TDirection = "left" | "right";
 
 export interface ICarouselItemProps extends IItem {

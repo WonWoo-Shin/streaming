@@ -16,7 +16,7 @@ export const Home = () => {
         <Banner />
         <Main />
         <Footer />
-        <ItemModal itemId={itemId} />
+        {itemId && <ItemModal itemId={itemId} />}
       </Wrapper>
     </>
   );

@@ -47,14 +47,14 @@ export const ItemModal = ({ itemId }: IModalProps) => {
   const root = document.getElementById("root");
   if (!root) return null;
 
-  if (!itemId) return;
+  if (!itemId) return null;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
   const body = document.body;
   useEffect(() => {
     if (itemId) {
       body.classList.add("modal-open");
-      setIsModalOpen(true);
     }
   }, []);
 

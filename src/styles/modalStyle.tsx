@@ -159,32 +159,76 @@ export const Overview = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  height: 100%;
   padding: 40px 50px;
-  background-color: white;
 `;
 
-export const ContentNav = styled.nav`
-  width: 100%;
-  height: 40px;
-`;
-
-export const NavItems = styled.ul`
+export const ContentNav = styled.ul`
   display: flex;
   gap: 35px;
+  margin-bottom: 10px;
 `;
 
 export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
-  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "inherit")};
+  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "#8a8a8a;")};
   font-weight: 600;
   cursor: pointer;
 `;
 
 export const CurrentBar = styled(motion.div)`
   width: 100%;
-  height: 4px;
+  height: 3px;
   margin-top: 12px;
   background-color: var(--point-green);
 `;
 
-export const Videos = styled.div``;
+export const Videos = styled.ul``;
+
+export const VideoContainer = styled.li`
+  width: 100%;
+  padding: 20px 0;
+  &:not(:last-child) {
+    border-bottom: 2px solid #26282a;
+  }
+`;
+
+export const Video = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
+
+export const VideoThumbnail = styled.div`
+  position: relative;
+  width: 320px;
+  aspect-ratio: 16 / 9;
+  margin-right: 30px;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+`;
+
+export const VideoInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: 10px 0;
+`;
+
+export const VideoName = styled.span`
+  font-size: 20px;
+  color: #d0d0d0;
+`;
+
+export const VideoDate = styled.span`
+  font-size: 17px;
+  color: #8a8a8a;
+`;

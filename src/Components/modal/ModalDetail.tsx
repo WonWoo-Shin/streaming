@@ -1,20 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDetail } from "../../api";
-import { IGetDetail, TCurrentTab } from "../../type";
-import { useNavigate, useParams } from "react-router-dom";
+import { IGetDetail, TCurrentTab, TMediaType } from "../../type";
+import { useParams } from "react-router-dom";
 import {
   Badge,
   BadgeArea,
   BgImage,
   ContentNav,
-  CurrentBar,
   ExitBtn,
   Genre,
   Header,
   ModalContent,
   ModalNav,
   ModalOverview,
-  NavItems,
   Overview,
   Poster,
   Title,
@@ -24,6 +22,7 @@ import {
 import { createImage } from "../../utils/createImgae";
 import { useState } from "react";
 import { NavItem } from "./NavItem";
+import { ModalVideos } from "./ModalVideos";
 
 interface IModalProps {
   itemId: number;
@@ -32,7 +31,7 @@ interface IModalProps {
 
 export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
-  if (!mediaType) return;
+  if (!mediaType) return null;
 
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["itemDetail", itemId],
@@ -130,29 +129,30 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
       </ModalOverview>
       <ModalContent>
         <ContentNav>
-          <NavItems>
+          <NavItem
+            tab="video"
+            tabName="동영상"
+            tabMatch={currentTab === "video"}
+            setCurrentTab={setCurrentTab}
+          />
+          {mediaType === "tv" && (
             <NavItem
-              tab="video"
-              tabName="동영상"
-              tabMatch={currentTab === "video"}
+              tab="episode"
+              tabName="에피소드"
+              tabMatch={currentTab === "episode"}
               setCurrentTab={setCurrentTab}
             />
-            {mediaType === "tv" && (
-              <NavItem
-                tab="episode"
-                tabName="에피소드"
-                tabMatch={currentTab === "episode"}
-                setCurrentTab={setCurrentTab}
-              />
-            )}
-            <NavItem
-              tab="similar"
-              tabName="비슷한 작품"
-              tabMatch={currentTab === "similar"}
-              setCurrentTab={setCurrentTab}
-            />
-          </NavItems>
+          )}
+          <NavItem
+            tab="similar"
+            tabName="비슷한 작품"
+            tabMatch={currentTab === "similar"}
+            setCurrentTab={setCurrentTab}
+          />
         </ContentNav>
+        {currentTab === "video" && (
+          <ModalVideos itemId={itemId} mediaType={mediaType as TMediaType} />
+        )}
       </ModalContent>
     </>
   );
