@@ -24,7 +24,6 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
 
   const convertDate = (date: string) => {
     const newDate = new Date(date);
-    console.log(newDate);
     return `${newDate.getFullYear()}.${
       newDate.getMonth() + 1
     }.${newDate.getDate()}`;
@@ -38,7 +37,7 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
             <VideoThumbnail>
               <img
                 src={`https://img.youtube.com/vi/${video.key}/maxresdefault.jpg`}
-                alt=""
+                alt={video.name}
               />
             </VideoThumbnail>
             <VideoInfo>

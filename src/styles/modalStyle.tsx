@@ -169,8 +169,9 @@ export const ContentNav = styled.ul`
 `;
 
 export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
-  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "#8a8a8a;")};
+  font-size: 20px;
   font-weight: 600;
+  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "#8a8a8a;")};
   cursor: pointer;
 `;
 
@@ -198,19 +199,18 @@ export const Video = styled.div`
 
 export const VideoThumbnail = styled.div`
   position: relative;
-  width: 320px;
-  aspect-ratio: 16 / 9;
   margin-right: 30px;
   img {
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 280px;
+    aspect-ratio: 16 / 9;
     border-radius: 5px;
   }
   &::before {
     content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.15);
   }
 `;
@@ -224,11 +224,11 @@ export const VideoInfo = styled.div`
 `;
 
 export const VideoName = styled.span`
-  font-size: 20px;
+  font-size: 19px;
   color: #d0d0d0;
 `;
 
 export const VideoDate = styled.span`
-  font-size: 17px;
+  font-size: 16px;
   color: #8a8a8a;
 `;
