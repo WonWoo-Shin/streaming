@@ -52,9 +52,25 @@ export const VideoDate = styled.span`
 export const VideoModalWindow = styled.div`
   z-index: 1;
   width: 1400px;
-  aspect-ratio: 16 / 9;
+
   background-color: #000000;
   iframe {
     display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+`;
+
+export const VideoModalNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #ffffff;
+  span {
+    font-size: 18px;
+  }
+  div {
+    cursor: pointer;
   }
 `;
