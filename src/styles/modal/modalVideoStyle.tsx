@@ -11,6 +11,9 @@ export const VideoContainer = styled.li`
 export const Video = styled.div`
   display: flex;
   cursor: pointer;
+  &:hover .play-icon {
+    opacity: 1;
+  }
 `;
 
 export const VideoThumbnail = styled.div`
@@ -28,6 +31,20 @@ export const VideoThumbnail = styled.div`
     inset: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.15);
+  }
+`;
+
+export const PlayIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity ease 0.2s;
+  svg {
+    color: #ffffff;
   }
 `;
 
@@ -51,8 +68,7 @@ export const VideoDate = styled.span`
 
 export const VideoModalWindow = styled.div`
   z-index: 1;
-  width: 1400px;
-
+  width: 1300px;
   background-color: #000000;
   iframe {
     display: block;
