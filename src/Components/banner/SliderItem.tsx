@@ -16,10 +16,10 @@ export const SliderItem = ({
   name,
   backdrop_path,
   media_type,
-}: IItemList["results"][number]) => {
+}: IItemList) => {
   return (
     <ItemContainer>
-      {/* <Link to={`/${media_type ?? "movie"}/${id}`}> */}
+      {/* <Link to={`/${media_type ?? "movie"}/${id}`} /> */}
       <BannerTitleSection>
         <BannerTitle>{title ?? name}</BannerTitle>
         <BannerButton>
@@ -29,7 +29,6 @@ export const SliderItem = ({
         </BannerButton>
       </BannerTitleSection>
       <BannerImage $bgImage={createImage("original", backdrop_path ?? "")} />
-      {/* </Link> */}
     </ItemContainer>
   );
 };

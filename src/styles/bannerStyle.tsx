@@ -33,6 +33,11 @@ export const ItemContainer = styled.div`
   grid-template-columns: 1fr 3fr;
   width: 100%;
   height: 100%;
+  a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const BannerTitleSection = styled.div`

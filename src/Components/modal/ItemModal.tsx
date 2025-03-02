@@ -3,11 +3,14 @@ import {
   ModalBackground,
   ModalContainer,
   ModalWindow,
-} from "../../styles/modalStyle";
+} from "../../styles/modal/modalStyle";
 import { AnimatePresence, Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { videoModalState } from "../../atom";
+import { WatchVideo } from "./WatchVIdeo";
 
 interface IModalProps {
   itemId: string | undefined;
@@ -60,12 +63,15 @@ export const ItemModal = ({ itemId }: IModalProps) => {
 
   const navigate = useNavigate();
 
+  const [videoModal, setVideoModal] = useRecoilState(videoModalState);
+
   return (
     <>
       {createPortal(
         <AnimatePresence>
           {isModalOpen && (
             <ModalContainer
+              id="modal-container"
               variants={modalVariant}
               initial="initial"
               animate="animate"
@@ -86,6 +92,9 @@ export const ItemModal = ({ itemId }: IModalProps) => {
               >
                 <ModalDetail itemId={+itemId} setIsModalOpen={setIsModalOpen} />
               </ModalWindow>
+              <AnimatePresence>
+                {videoModal.isOpen && <WatchVideo />}
+              </AnimatePresence>
             </ModalContainer>
           )}
         </AnimatePresence>,

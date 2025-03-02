@@ -1,4 +1,4 @@
-import { CurrentBar, NavItemStyle } from "../../styles/modalStyle";
+import { CurrentBar, NavItemStyle } from "../../styles/modal/modalStyle";
 import { TCurrentTab } from "../../type";
 
 interface INavItemProps {

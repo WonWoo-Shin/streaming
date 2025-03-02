@@ -9,7 +9,7 @@ import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { CarouselItem } from "./CarouselItem";
 
-export const ListCarousel = ({ data }: { data: IItemList["results"] }) => {
+export const ListCarousel = ({ data }: { data: IItemList[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const [carouselLocation, setCarouselLocation] = useState(0);
@@ -21,7 +21,7 @@ export const ListCarousel = ({ data }: { data: IItemList["results"] }) => {
   const showItem = useRecoilValue(screenState);
   const itemCount = data.length;
 
-  const [cloneItems, setCloneItems] = useState<IItemList["results"]>([]);
+  const [cloneItems, setCloneItems] = useState<IItemList[]>([]);
 
   //아이템 개수가 화면에 표시하는 개수보다 많은 경우
   const isScreenOver = itemCount > showItem;

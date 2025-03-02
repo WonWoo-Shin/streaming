@@ -19,7 +19,7 @@ import {
   Title,
   TitleArea,
   Vote,
-} from "../../styles/modalStyle";
+} from "../../styles/modal/modalStyle";
 import { createImage } from "../../utils/createImgae";
 import { useState } from "react";
 import { NavItem } from "./NavItem";

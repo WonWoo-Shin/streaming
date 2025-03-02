@@ -1,4 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { NoContents } from "../../styles/modal/modalStyle";
+import { getVideos } from "../../api";
+import { IGetVideos, IGetVideosResults, TMediaType } from "../../type";
+import { convertDate } from "../../utils/convertDate";
 import {
   Video,
   VideoContainer,
@@ -6,10 +10,11 @@ import {
   VideoInfo,
   VideoName,
   VideoThumbnail,
-} from "../../styles/modalStyle";
-import { getVideos } from "../../api";
-import { IGetVideos, TMediaType } from "../../type";
-import { convertDate } from "../../utils/convertDate";
+} from "../../styles/modal/modalVideoStyle";
+import { useRecoilState } from "recoil";
+import { videoModalState } from "../../atom";
+import { createPortal } from "react-dom";
+import { WatchVideo } from "./WatchVIdeo";
 
 interface IModalVideosProps {
   itemId: number;
@@ -17,12 +22,14 @@ interface IModalVideosProps {
 }
 
 export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
-  const { data: videosData } = useQuery<IGetVideos>({
+  const [videoModal, setVideoModal] = useRecoilState(videoModalState);
+
+  const { data: videosData } = useQuery<IGetVideosResults>({
     queryKey: ["video", itemId],
     queryFn: () => getVideos(itemId, mediaType),
   });
 
-  const { data: videosPreData } = useQuery<IGetVideos>({
+  const { data: videosPreData } = useQuery<IGetVideosResults>({
     queryKey: ["videoPre", itemId],
     queryFn: () => getVideos(itemId, mediaType, true),
     enabled: videosData?.results.length === 0,
@@ -33,13 +40,25 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
     ...(videosPreData?.results || []),
   ];
 
+  if (videos.length === 0) {
+    return (
+      <NoContents>
+        <span>컨텐츠가 없습니다.</span>
+      </NoContents>
+    );
+  }
+
   return (
     <ul>
       {videos.map(
         (video) =>
           video.site === "YouTube" && (
             <VideoContainer key={video.id}>
-              <Video>
+              <Video
+                onClick={() => {
+                  setVideoModal({ isOpen: true, key: video.key });
+                }}
+              >
                 <VideoThumbnail>
                   <img
                     src={`https://img.youtube.com/vi/${video.key}/maxresdefault.jpg`}

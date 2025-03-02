@@ -18,7 +18,7 @@ interface ICarouselProps {
   $translate: number;
 }
 
-export const Carousel = styled.ol<ICarouselProps>`
+export const Carousel = styled.ul<ICarouselProps>`
   display: flex;
   flex-wrap: nowrap;
   width: 100%;

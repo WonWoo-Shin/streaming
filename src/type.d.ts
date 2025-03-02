@@ -1,13 +1,15 @@
-export interface IItemList {
-  results: {
-    id: number;
-    backdrop_path: string;
-    poster_path: string;
-    title?: string;
-    name?: string;
-    media_type?: TMediaType;
-    overview: string;
-  }[];
+interface IItemList {
+  id: number;
+  backdrop_path: string;
+  poster_path: string;
+  title?: string;
+  name?: string;
+  media_type?: TMediaType;
+  overview: string;
+}
+
+export interface IItemListResults {
+  results: IItemList[];
 }
 
 export interface IGenre {
@@ -28,13 +30,15 @@ export interface IGetDetail {
 }
 
 export interface IGetVideos {
-  results: {
-    id: string;
-    key: string;
-    name: string;
-    published_at: string;
-    site: string;
-  }[];
+  id: string;
+  key: string;
+  name: string;
+  published_at: string;
+  site: string;
+}
+
+export interface IGetVideosResults {
+  results: IGetVideos[];
 }
 
 export type TDirection = "left" | "right";
