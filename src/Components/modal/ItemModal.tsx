@@ -8,7 +8,7 @@ import { AnimatePresence, Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { videoModalState } from "../../atom";
 import { WatchVideo } from "./WatchVIdeo";
 
@@ -63,7 +63,7 @@ export const ItemModal = ({ itemId }: IModalProps) => {
 
   const navigate = useNavigate();
 
-  const [videoModal, setVideoModal] = useRecoilState(videoModalState);
+  const videoModal = useRecoilValue(videoModalState);
 
   return (
     <>

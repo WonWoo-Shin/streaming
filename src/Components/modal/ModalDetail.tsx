@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getDetail } from "../../api";
-import { IGetDetail, TCurrentTab, TMediaType } from "../../type";
+import { getDetail, getVideos } from "../../api";
+import {
+  IGetDetail,
+  IGetVideosResults,
+  TCurrentTab,
+  TMediaType,
+} from "../../type";
 import { useParams } from "react-router-dom";
 import {
   Badge,
@@ -25,6 +30,8 @@ import { useState } from "react";
 import { NavItem } from "./NavItem";
 import { ModalVideos } from "./ModalVideos";
 import { convertDate } from "../../utils/convertDate";
+import { useSetRecoilState } from "recoil";
+import { videoModalState } from "../../atom";
 
 interface IModalProps {
   itemId: number;
@@ -35,10 +42,28 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
   if (!mediaType) return null;
 
-  const { data: detailData } = useQuery<IGetDetail>({
+  const { data: detailData, error } = useQuery<IGetDetail>({
     queryKey: ["itemDetail", itemId],
-    queryFn: () => getDetail(itemId, (mediaType as any) ?? "movie"),
+    queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
   });
+
+  const { data: videosData } = useQuery<IGetVideosResults>({
+    queryKey: ["video", itemId],
+    queryFn: () => getVideos(itemId, mediaType as TMediaType),
+  });
+
+  const { data: videosPreData } = useQuery<IGetVideosResults>({
+    queryKey: ["videoPre", itemId],
+    queryFn: () => getVideos(itemId, mediaType as TMediaType, true),
+    enabled: videosData?.results.length === 0,
+  });
+
+  const setVideoModal = useSetRecoilState(videoModalState);
+  const videos = [
+    ...(videosData?.results || []),
+    ...(videosPreData?.results || []),
+  ];
+  const mainTraier = videos[videos.length - 1];
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
@@ -101,7 +126,15 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
               </ReleaseDate>
             </div>
             <BadgeArea>
-              <Badge>
+              <Badge
+                onClick={() =>
+                  setVideoModal({
+                    isOpen: true,
+                    key: mainTraier.key,
+                    name: "트레일러 재생",
+                  })
+                }
+              >
                 <svg
                   width="24"
                   height="24"
@@ -159,9 +192,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             setCurrentTab={setCurrentTab}
           />
         </ContentNav>
-        {currentTab === "video" && (
-          <ModalVideos itemId={itemId} mediaType={mediaType as TMediaType} />
-        )}
+        {currentTab === "video" && <ModalVideos videos={videos} />}
       </ModalContent>
     </>
   );

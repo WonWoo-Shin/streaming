@@ -14,9 +14,10 @@ export const trendingTimeState = atom<TTime>({
 interface IVideoModal {
   isOpen: boolean;
   key: IGetVideos["key"];
+  name: string;
 }
 
 export const videoModalState = atom<IVideoModal>({
   key: "videoModalState",
-  default: { isOpen: false, key: "" },
+  default: { isOpen: false, key: "", name: "" },
 });

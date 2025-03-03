@@ -12,34 +12,16 @@ import {
   VideoName,
   VideoThumbnail,
 } from "../../styles/modal/modalVideoStyle";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
-import { createPortal } from "react-dom";
-import { WatchVideo } from "./WatchVIdeo";
 
 interface IModalVideosProps {
   itemId: number;
   mediaType: TMediaType;
 }
 
-export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
-  const [videoModal, setVideoModal] = useRecoilState(videoModalState);
-
-  const { data: videosData } = useQuery<IGetVideosResults>({
-    queryKey: ["video", itemId],
-    queryFn: () => getVideos(itemId, mediaType),
-  });
-
-  const { data: videosPreData } = useQuery<IGetVideosResults>({
-    queryKey: ["videoPre", itemId],
-    queryFn: () => getVideos(itemId, mediaType, true),
-    enabled: videosData?.results.length === 0,
-  });
-
-  const videos = [
-    ...(videosData?.results || []),
-    ...(videosPreData?.results || []),
-  ];
+export const ModalVideos = ({ videos }: { videos: IGetVideos[] }) => {
+  const setVideoModal = useSetRecoilState(videoModalState);
 
   if (videos.length === 0) {
     return (
@@ -57,7 +39,11 @@ export const ModalVideos = ({ itemId, mediaType }: IModalVideosProps) => {
             <VideoContainer key={video.id}>
               <Video
                 onClick={() => {
-                  setVideoModal({ isOpen: true, key: video.key });
+                  setVideoModal({
+                    isOpen: true,
+                    key: video.key,
+                    name: video.name,
+                  });
                 }}
               >
                 <VideoThumbnail>

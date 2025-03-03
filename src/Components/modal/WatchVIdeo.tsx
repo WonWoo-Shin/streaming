@@ -1,12 +1,11 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { ModalContainer } from "../../styles/modal/modalStyle";
 import { videoModalState } from "../../atom";
 import {
   VideoModalNav,
   VideoModalWindow,
 } from "../../styles/modal/modalVideoStyle";
 import { Variants } from "framer-motion";
-import { IGetVideos } from "../../type";
 
 const modalVariant: Variants = {
   initial: {
@@ -21,11 +20,8 @@ const modalVariant: Variants = {
 };
 
 export const WatchVideo = () => {
-  const [videoModal, setVideoModal] = useRecoilState(videoModalState);
-
-  const closeVideo = () => {
-    setVideoModal({ isOpen: false, key: "" });
-  };
+  const videoModal = useRecoilValue(videoModalState);
+  const resetVideoModal = useResetRecoilState(videoModalState);
 
   return (
     <ModalContainer
@@ -33,12 +29,12 @@ export const WatchVideo = () => {
       initial="initial"
       animate="animate"
       exit="exit"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
     >
-      <ModalBackground onClick={closeVideo} />
       <VideoModalWindow>
         <VideoModalNav>
-          <span>트레일러 재생</span>
-          <div onClick={closeVideo}>
+          <span>{videoModal.name}</span>
+          <div onClick={resetVideoModal}>
             {" "}
             <svg
               width="18"
