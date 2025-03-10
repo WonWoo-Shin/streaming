@@ -35,6 +35,7 @@ export interface IGetVideos {
   name: string;
   published_at: string;
   site: string;
+  type: string;
 }
 
 export interface IGetVideosResults {

@@ -64,6 +64,8 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
 
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
+  console.log(mainTraier);
+
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
   return (
@@ -129,7 +131,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                 onClick={() =>
                   setVideoModal({
                     isOpen: true,
-                    key: mainTraier.key,
+                    key: mainTraier?.key ?? "",
                     name: "트레일러 보기",
                   })
                 }

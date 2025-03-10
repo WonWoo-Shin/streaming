@@ -90,3 +90,18 @@ export const VideoModalNav = styled.nav`
     cursor: pointer;
   }
 `;
+
+export const NoTrailer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 16 / 9;
+  color: #ffffff;
+  font-size: 25px;
+  svg {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 40px;
+  }
+`;
