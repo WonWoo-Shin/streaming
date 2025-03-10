@@ -1,7 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import { NoContents } from "../../styles/modal/modalStyle";
-import { getVideos } from "../../api";
-import { IGetVideos, IGetVideosResults, TMediaType } from "../../type";
+import { IGetVideos } from "../../type";
 import { convertDate } from "../../utils/convertDate";
 import {
   PlayIcon,
@@ -14,11 +12,6 @@ import {
 } from "../../styles/modal/modalVideoStyle";
 import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
-
-interface IModalVideosProps {
-  itemId: number;
-  mediaType: TMediaType;
-}
 
 export const ModalVideos = ({ videos }: { videos: IGetVideos[] }) => {
   const setVideoModal = useSetRecoilState(videoModalState);

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getDetail, getVideos } from "../../api";
 import {
   IGetDetail,
+  IGetVideos,
   IGetVideosResults,
   TCurrentTab,
   TMediaType,
@@ -26,7 +27,7 @@ import {
   Vote,
 } from "../../styles/modal/modalStyle";
 import { createImage } from "../../utils/createImgae";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavItem } from "./NavItem";
 import { ModalVideos } from "./ModalVideos";
 import { convertDate } from "../../utils/convertDate";
@@ -42,28 +43,26 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
   if (!mediaType) return null;
 
-  const { data: detailData, error } = useQuery<IGetDetail>({
+  const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["itemDetail", itemId],
     queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
   });
 
-  const { data: videosData } = useQuery<IGetVideosResults>({
+  const { data: videosData } = useQuery<IGetVideos[]>({
     queryKey: ["video", itemId],
     queryFn: () => getVideos(itemId, mediaType as TMediaType),
   });
 
-  const { data: videosPreData } = useQuery<IGetVideosResults>({
+  const { data: videosPreData } = useQuery<IGetVideos[]>({
     queryKey: ["videoPre", itemId],
     queryFn: () => getVideos(itemId, mediaType as TMediaType, true),
-    enabled: videosData?.results.length === 0,
+    enabled: videosData?.length === 0,
   });
 
   const setVideoModal = useSetRecoilState(videoModalState);
-  const videos = [
-    ...(videosData?.results || []),
-    ...(videosPreData?.results || []),
-  ];
-  const mainTraier = videos[videos.length - 1];
+  const videos = [...(videosData || []), ...(videosPreData || [])];
+
+  const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
@@ -131,7 +130,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                   setVideoModal({
                     isOpen: true,
                     key: mainTraier.key,
-                    name: "트레일러 재생",
+                    name: "트레일러 보기",
                   })
                 }
               >
