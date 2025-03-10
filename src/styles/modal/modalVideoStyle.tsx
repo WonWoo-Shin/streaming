@@ -98,10 +98,10 @@ export const NoTrailer = styled.div`
   align-items: center;
   aspect-ratio: 16 / 9;
   color: #ffffff;
-  font-size: 25px;
+  font-size: 19px;
   svg {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 40px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 30px;
   }
 `;
