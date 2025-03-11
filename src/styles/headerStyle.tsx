@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header<{ $isLimpid: boolean }>`
   padding: 0 50px;
   background-color: ${(props) =>
     props.$isLimpid ? "rgba(20, 21, 23, 0)" : "rgba(20, 21, 23, 1)"};
-  color: white;
+  color: #ffffff;
   transition: background-color 0.4s;
 `;
 
@@ -20,7 +20,7 @@ export const HeaderLogo = styled.div`
   width: 72px;
   height: 100%;
   font-size: 20px;
-  font-weight: 600;
+  font-family: "Gasoek One", sans-serif;
 `;
 
 export const Nav = styled.ol`
