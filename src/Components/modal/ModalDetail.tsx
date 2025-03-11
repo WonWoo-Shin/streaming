@@ -19,6 +19,7 @@ import {
   ModalContent,
   ModalNav,
   ModalOverview,
+  More,
   Overview,
   Poster,
   ReleaseDate,
@@ -48,12 +49,16 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
   });
 
-  const { data: videosData } = useQuery<IGetVideos[]>({
+  const { data: videosData, isLoading: isVideoLoading } = useQuery<
+    IGetVideos[]
+  >({
     queryKey: ["video", itemId],
     queryFn: () => getVideos(itemId, mediaType as TMediaType),
   });
 
-  const { data: videosPreData } = useQuery<IGetVideos[]>({
+  const { data: videosPreData, isLoading: isPreVideoLoading } = useQuery<
+    IGetVideos[]
+  >({
     queryKey: ["videoPre", itemId],
     queryFn: () => getVideos(itemId, mediaType as TMediaType, true),
     enabled: videosData?.length === 0,
@@ -61,10 +66,13 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
 
   const setVideoModal = useSetRecoilState(videoModalState);
   const videos = [...(videosData || []), ...(videosPreData || [])];
-
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
-  console.log(mainTraier);
+  const checkOverview = () => {
+    const overview = document.getElementById("overview");
+    if (!overview) return false;
+    return overview.scrollHeight > overview.clientHeight;
+  };
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
@@ -166,8 +174,9 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             alt=""
           />
         </Header>
-        <Overview>
+        <Overview id="overview">
           <span>{detailData?.overview}</span>
+          {true && <More onClick={() => {}}>...더보기</More>}
         </Overview>
       </ModalOverview>
       <ModalContent>
@@ -193,7 +202,12 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             setCurrentTab={setCurrentTab}
           />
         </ContentNav>
-        {currentTab === "video" && <ModalVideos videos={videos} />}
+        {currentTab === "video" && (
+          <ModalVideos
+            videos={videos}
+            isLoading={isVideoLoading || isPreVideoLoading}
+          />
+        )}
       </ModalContent>
     </>
   );

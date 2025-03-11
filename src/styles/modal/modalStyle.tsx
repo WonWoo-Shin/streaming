@@ -156,12 +156,26 @@ export const Poster = styled.img`
 `;
 
 export const Overview = styled.div`
+  position: relative;
+  overflow-y: hidden;
   max-width: 650px;
-  padding: 30px 50px;
+  height: 2.75em;
+  padding-left: 50px;
   padding-top: 0px;
   color: #d0d0d0;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.38em;
+`;
+
+export const More = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-left: 20px;
+  background: linear-gradient(270deg, #1e2022 65%, RGB(30, 32, 34, 0) 100%);
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
 `;
 
 export const ModalContent = styled.div`
@@ -188,7 +202,7 @@ export const CurrentBar = styled(motion.div)`
   background-color: var(--point-green);
 `;
 
-export const NoContents = styled.div`
+export const ContentsMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

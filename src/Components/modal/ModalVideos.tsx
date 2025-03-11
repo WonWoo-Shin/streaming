@@ -1,4 +1,4 @@
-import { NoContents } from "../../styles/modal/modalStyle";
+import { ContentsMessage } from "../../styles/modal/modalStyle";
 import { IGetVideos } from "../../type";
 import { convertDate } from "../../utils/convertDate";
 import {
@@ -13,14 +13,26 @@ import {
 import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
 
-export const ModalVideos = ({ videos }: { videos: IGetVideos[] }) => {
+interface IModalVideosProps {
+  videos: IGetVideos[];
+  isLoading: boolean;
+}
+
+export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
   const setVideoModal = useSetRecoilState(videoModalState);
 
+  if (isLoading) {
+    return (
+      <ContentsMessage>
+        <span>로드 중..</span>
+      </ContentsMessage>
+    );
+  }
   if (videos.length === 0) {
     return (
-      <NoContents>
+      <ContentsMessage>
         <span>컨텐츠가 없습니다.</span>
-      </NoContents>
+      </ContentsMessage>
     );
   }
 
