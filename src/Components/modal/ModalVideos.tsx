@@ -48,8 +48,9 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
                   >
                     <VideoThumbnail>
                       <img
-                        src={`https://img.youtube.com/vi/${video.key}/maxresdefault.jpg`}
+                        src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                         alt={video.name}
+                        onError={() => console.log("error")}
                       />
                       <PlayIcon className="play-icon">
                         {" "}

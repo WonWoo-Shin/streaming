@@ -53,15 +53,7 @@ export const WatchVideo = () => {
             </svg>
           </div>
         </VideoModalNav>
-        {videoModal.key ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${videoModal.key}?autoplay=1&mute=0`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        ) : (
+        {videoModal.key === "noVideo" ? (
           <NoTrailer>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
               <path
@@ -71,6 +63,14 @@ export const WatchVideo = () => {
             </svg>
             트레일러가 없습니다.
           </NoTrailer>
+        ) : (
+          <iframe
+            src={`https://www.youtube.com/embed/${videoModal.key}?autoplay=1&mute=0`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         )}
       </VideoModalWindow>
     </ModalContainer>

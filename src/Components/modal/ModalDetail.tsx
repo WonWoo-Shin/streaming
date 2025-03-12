@@ -81,7 +81,6 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     if (overViewCurrrent) {
       const scrollHeight = overViewCurrrent.scrollHeight;
       const offsetHeight = overViewCurrrent.offsetHeight;
-      console.log(scrollHeight, offsetHeight);
       setIsOverviewOverFlow(scrollHeight > offsetHeight);
     }
   }, []);
@@ -151,7 +150,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                 onClick={() =>
                   setVideoModal({
                     isOpen: true,
-                    key: mainTraier?.key ?? "",
+                    key: mainTraier?.key ?? "noVideo",
                     name: "트레일러 보기",
                   })
                 }
