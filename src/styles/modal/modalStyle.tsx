@@ -157,14 +157,18 @@ export const Poster = styled.img`
 
 export const Overview = styled.div`
   position: relative;
-  overflow-y: hidden;
   max-width: 650px;
-  height: 2.75em;
   padding-left: 50px;
   padding-top: 0px;
   color: #d0d0d0;
   font-size: 16px;
   line-height: 1.38em;
+  &.overflow {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 `;
 
 export const More = styled.div`

@@ -28,7 +28,7 @@ import {
   Vote,
 } from "../../styles/modal/modalStyle";
 import { createImage } from "../../utils/createImgae";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavItem } from "./NavItem";
 import { ModalVideos } from "./ModalVideos";
 import { convertDate } from "../../utils/convertDate";
@@ -40,14 +40,18 @@ interface IModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const overviewHeiht = 2.75;
+
 export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
   if (!mediaType) return null;
 
-  const { data: detailData } = useQuery<IGetDetail>({
-    queryKey: ["itemDetail", itemId],
-    queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
-  });
+  const { data: detailData, isFetched: isDetailFetched } = useQuery<IGetDetail>(
+    {
+      queryKey: ["itemDetail", itemId],
+      queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
+    }
+  );
 
   const { data: videosData, isLoading: isVideoLoading } = useQuery<
     IGetVideos[]
@@ -68,11 +72,19 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const videos = [...(videosData || []), ...(videosPreData || [])];
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
-  const checkOverview = () => {
-    const overview = document.getElementById("overview");
-    if (!overview) return false;
-    return overview.scrollHeight > overview.clientHeight;
-  };
+  const [isOverviewOverFlow, setIsOverviewOverFlow] = useState(true);
+  const overviewRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!isDetailFetched) return;
+
+    const overViewCurrrent = overviewRef.current;
+    if (overViewCurrrent) {
+      const scrollHeight = overViewCurrrent.scrollHeight;
+      const offsetHeight = overViewCurrrent.offsetHeight;
+      console.log(scrollHeight, offsetHeight);
+      setIsOverviewOverFlow(scrollHeight > offsetHeight);
+    }
+  }, []);
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
@@ -174,9 +186,20 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             alt=""
           />
         </Header>
-        <Overview id="overview">
+        <Overview
+          ref={overviewRef}
+          className={isOverviewOverFlow ? "overflow" : ""}
+        >
           <span>{detailData?.overview}</span>
-          {true && <More onClick={() => {}}>...더보기</More>}
+          {isOverviewOverFlow && (
+            <More
+              onClick={() => {
+                setIsOverviewOverFlow(false);
+              }}
+            >
+              ...더보기
+            </More>
+          )}
         </Overview>
       </ModalOverview>
       <ModalContent>
