@@ -52,7 +52,7 @@ export const ItemDesign = styled.div`
 `;
 
 export const LoadingItem = styled(ItemDesign)`
-  background-color: var(--loading-color);
+  background-color: ${(props) => props.theme.background.loading};
 `;
 
 export const Item = styled(ItemDesign)<{ $bgImage: string }>`
@@ -75,7 +75,7 @@ export const ItemPreview = styled(motion.div)`
   z-index: 1;
   width: var(--preview-scale);
   height: var(--preview-scale);
-  background-color: #141517;
+  background-color: ${(props) => props.theme.background.primary};
   border-radius: var(--border-radius);
   box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 15px;
   &.leftEnd {
@@ -109,7 +109,7 @@ export const PreviewText = styled.div`
       font-weight: 500;
       display: inline-block;
       font-size: 0.8em;
-      color: #8a8a8a;
+      color: ${(props) => props.theme.font.muted};
       white-space: pre;
       &:not(:first-child) {
         &::before {
@@ -124,7 +124,7 @@ export const TextLoading = styled.div`
   width: 4em;
   height: 1em;
   border-radius: var(--border-radius);
-  background-color: var(--loading-color);
+  background-color: ${(props) => props.theme.background.loading};
 `;
 
 export const ButtonContainer = styled.div`
@@ -158,7 +158,7 @@ export const Button = styled.div`
   &:hover {
     background-color: rgba(0, 0, 0, 0.7);
     svg {
-      color: #fff;
+      color: #ffffff;
     }
   }
   &.left {

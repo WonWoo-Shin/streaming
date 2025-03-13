@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 5%;
-  color: #e5e5e5;
+  color: ${(props) => props.theme.font.secondary};
 `;
 
 export const CategoryStyle = styled.div`
@@ -36,7 +36,7 @@ export const TimeTabBtn = styled.button<{ $isActive: boolean }>`
   align-items: center;
   width: 4.95em;
   height: 2.34em;
-  border: 1px solid var(--loading-color);
+  border: 1px solid ${(props) => props.theme.background.loading};
   border-radius: 9999px;
   background-color: ${(props) =>
     props.$isActive ? "var(--point-green)" : "inherit"};

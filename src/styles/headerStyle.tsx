@@ -8,8 +8,8 @@ export const HeaderContainer = styled.header<{ $isLimpid: boolean }>`
   height: 65px;
   padding: 0 50px;
   background-color: ${(props) =>
-    props.$isLimpid ? "rgba(20, 21, 23, 0)" : "rgba(20, 21, 23, 1)"};
-  color: #ffffff;
+    props.$isLimpid ? "rgba(0, 0, 0, 0)" : props.theme.background.primary};
+  color: ${(props) => props.theme.font.primary};
   transition: background-color 0.4s;
 `;
 

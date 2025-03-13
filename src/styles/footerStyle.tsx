@@ -7,7 +7,6 @@ export const FooterContainer = styled.footer`
   width: 100%;
   height: 220px;
   margin-top: 4em;
-  color: #e5e5e5;
 `;
 
 export const LinkButton = styled.a`
@@ -17,9 +16,9 @@ export const LinkButton = styled.a`
   width: 120px;
   height: 40px;
   padding: 0 12px;
-  background-color: #04d087;
+  background-color: var(--point-green);
   border-radius: 4px;
-  color: black;
+  color: #000000;
   font-size: 18px;
   font-weight: 600;
   font-family: BlinkMacSystemFont, sans-serif;

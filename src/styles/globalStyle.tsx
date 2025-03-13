@@ -15,7 +15,6 @@ export const GlobalStyle = styled.createGlobalStyle`
     @media (max-width: 1500px) {
       --carousel-padding: 4%;
     }
-    --loading-color: #373a3f;
     --preview-scale: 140%;
     --point-green: #04d087;
   }
@@ -123,9 +122,7 @@ export const GlobalStyle = styled.createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color: #141517;
     overflow-x: hidden;
-    /* overflow-y: hidden; */
     font-size: 1vw;
     @media (max-width: 1400px) {
       font-size: 1.2vw;
@@ -137,14 +134,14 @@ export const GlobalStyle = styled.createGlobalStyle`
       width: var(--scroll-width);
     }
     &::-webkit-scrollbar-thumb {
-      background-color: #686868;
+      background-color: ${(props) => props.theme.scrollBar.scrollThumb};
       border-radius: 20px;
       background-clip: padding-box;
       border: 4px solid rgba(0, 0, 0, 0);
     }
     &::-webkit-scrollbar-track {
       padding: 5px;
-      background-color: #424242;
+      background-color: ${(props) => props.theme.scrollBar.scrollTrack};
     }
     &.modal-open {
       overflow: hidden;

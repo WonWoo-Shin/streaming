@@ -25,7 +25,7 @@ export const ModalWindow = styled(motion.div)`
   max-width: 1080px;
   height: calc(100vh - 50px);
   border-radius: 5px;
-  background-color: #1e2022;
+  background-color: ${(props) => props.theme.background.secondary};
   &::-webkit-scrollbar {
     display: none;
   }
@@ -48,10 +48,10 @@ export const ScrollUpBtn = styled(motion.button)`
   border: none;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-  background-color: #1e2022;
+  background-color: ${(props) => props.theme.background.secondary};
   cursor: pointer;
   svg {
-    color: #d0d0d0;
+    color: ${(props) => props.theme.font.paragraph};
   }
 `;
 
@@ -73,7 +73,11 @@ export const BgImage = styled.div<{ $bgImg: string }>`
     content: "";
     position: absolute;
     inset: 0px;
-    background: linear-gradient(to top, #1e2022 0px, #1e202200 200px),
+    background: linear-gradient(
+        to top,
+        ${(props) => props.theme.background.secondary} 0px,
+        rgba(0, 0, 0, 0) 200px
+      ),
       linear-gradient(to right, #1e2022 0px, #1e202200 300px);
   }
 `;
@@ -91,7 +95,7 @@ export const ExitBtn = styled.button`
   border: none;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);
-  color: #ffffff;
+  color: ${(props) => props.theme.font.primary};
   cursor: pointer;
 `;
 
@@ -115,8 +119,8 @@ export const Vote = styled.label`
   width: 55px;
   height: 30px;
   border-radius: 3px;
-  background-color: #3d4145;
-  color: #ffffff;
+  background-color: ${(props) => props.theme.background.tertiary};
+  color: ${(props) => props.theme.font.primary};
   font-size: 15px;
   svg {
     margin-right: 3px;
@@ -126,7 +130,7 @@ export const Vote = styled.label`
 
 export const Title = styled.h1`
   margin-bottom: 20px;
-  color: #ffffff;
+  color: ${(props) => props.theme.font.primary};
   font-size: 40px;
   font-weight: 600;
 `;
@@ -134,7 +138,7 @@ export const Title = styled.h1`
 export const Genre = styled.p`
   margin-bottom: 20px;
   font-size: 16px;
-  color: #d0d0d0;
+  color: ${(props) => props.theme.font.paragraph};
   span {
     &:not(:first-child) {
       &::before {
@@ -146,7 +150,7 @@ export const Genre = styled.p`
 
 export const ReleaseDate = styled.div`
   font-size: 16px;
-  color: #8a8a8a;
+  color: ${(props) => props.theme.font.muted};
 `;
 
 export const BadgeArea = styled.div`
@@ -157,13 +161,16 @@ export const Badge = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #d0d0d0;
   font-size: 15px;
   cursor: pointer;
   svg {
     width: 24px;
     height: 24px;
     margin-bottom: 10px;
+    color: ${(props) => props.theme.font.primary};
+  }
+  span {
+    color: ${(props) => props.theme.font.paragraph};
   }
   &:not(:first-child) {
     margin-left: 30px;
@@ -182,7 +189,7 @@ export const Overview = styled.div`
   max-width: 650px;
   padding-left: 50px;
   padding-top: 0px;
-  color: #d0d0d0;
+  color: ${(props) => props.theme.font.paragraph};
   font-size: 16px;
   line-height: 1.38em;
   &.overflow {
@@ -198,7 +205,11 @@ export const More = styled.div`
   bottom: 0;
   right: 0;
   padding-left: 20px;
-  background: linear-gradient(270deg, #1e2022 65%, RGB(30, 32, 34, 0) 100%);
+  background: linear-gradient(
+    270deg,
+    ${(props) => props.theme.background.secondary} 65%,
+    rgba(0, 0, 0, 0) 100%
+  );
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
@@ -217,7 +228,8 @@ export const ContentNav = styled.ul`
 export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
   font-size: 20px;
   font-weight: 600;
-  color: ${(props) => (props.$tabMatch ? "var(--point-green)" : "#8a8a8a;")};
+  color: ${(props) =>
+    props.$tabMatch ? "var(--point-green)" : props.theme.font.muted};
   cursor: pointer;
 `;
 
@@ -234,5 +246,5 @@ export const ContentsMessage = styled.div`
   align-items: center;
   height: 180px;
   font-size: 17px;
-  color: #8a8a8a;
+  color: ${(props) => props.theme.font.muted};
 `;

@@ -48,8 +48,9 @@ export const BannerTitleSection = styled.div`
   position: relative;
   height: 100%;
   padding-left: var(--padding-width);
-  color: #ffffff;
-  background-color: #1e2022;
+  background-color: ${(props) => props.theme.background.secondary};
+  font-weight: bold;
+  color: ${(props) => props.theme.font.primary};
 `;
 
 export const BannerTitle = styled.h1`
@@ -125,7 +126,7 @@ export const SlideArrowStyle = styled.div<{ $position: TDirection }>`
   color: var(--arrow-color);
   cursor: pointer;
   &:hover {
-    color: #fff;
+    color: #ffffff;
   }
   svg {
     width: 1.5em;

@@ -58,12 +58,12 @@ export const VideoInfo = styled.div`
 
 export const VideoName = styled.span`
   font-size: 19px;
-  color: #d0d0d0;
+  color: ${(props) => props.theme.font.paragraph};
 `;
 
 export const VideoDate = styled.span`
   font-size: 16px;
-  color: #8a8a8a;
+  color: ${(props) => props.theme.font.muted};
 `;
 
 export const VideoModalWindow = styled.div`
