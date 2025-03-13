@@ -2,12 +2,20 @@ import { createPortal } from "react-dom";
 import {
   ModalBackground,
   ModalContainer,
+  ModalScrollUp,
   ModalWindow,
+  ScrollUpBtn,
 } from "../../styles/modal/modalStyle";
-import { AnimatePresence, Variants } from "framer-motion";
+import {
+  AnimatePresence,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  Variants,
+} from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { videoModalState } from "../../atom";
 import { WatchVideo } from "./WatchVIdeo";
@@ -65,6 +73,18 @@ export const ItemModal = ({ itemId }: IModalProps) => {
 
   const videoModal = useRecoilValue(videoModalState);
 
+  const modalWindowRef = useRef<HTMLDivElement>(null);
+  const [showScrollUp, setShowScrollUp] = useState(false);
+  const { scrollY } = useScroll({ container: modalWindowRef });
+  useMotionValueEvent(scrollY, "change", (current) => {
+    setShowScrollUp(current >= 200);
+  });
+  const moveScrollTop = () => {
+    if (modalWindowRef.current) {
+      modalWindowRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       {createPortal(
@@ -85,12 +105,40 @@ export const ItemModal = ({ itemId }: IModalProps) => {
             >
               <ModalBackground onClick={() => setIsModalOpen(false)} />
               <ModalWindow
+                ref={modalWindowRef}
                 variants={modalWindowVariant}
                 initial="initial"
                 animate="animate"
                 exit="exit"
               >
                 <ModalDetail itemId={+itemId} setIsModalOpen={setIsModalOpen} />
+                <AnimatePresence>
+                  {showScrollUp && (
+                    <ModalScrollUp>
+                      <ScrollUpBtn
+                        onClick={moveScrollTop}
+                        variants={modalVariant}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={{ duration: 0.15 }}
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M17.293 11.707a1 1 0 0 0 1.414-1.414l-6-6a1 1 0 0 0-1.414 0l-6 6a1 1 0 1 0 1.414 1.414L11 7.414V19a1 1 0 1 0 2 0V7.414l4.293 4.293Z"
+                            fill="currentcolor"
+                          ></path>
+                        </svg>
+                      </ScrollUpBtn>
+                    </ModalScrollUp>
+                  )}
+                </AnimatePresence>
               </ModalWindow>
               <AnimatePresence>
                 {videoModal.isOpen && <WatchVideo />}

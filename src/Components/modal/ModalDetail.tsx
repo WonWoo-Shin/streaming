@@ -40,8 +40,6 @@ interface IModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const overviewHeiht = 2.75;
-
 export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { mediaType } = useParams();
   if (!mediaType) return null;

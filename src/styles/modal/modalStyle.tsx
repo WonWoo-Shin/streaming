@@ -18,6 +18,7 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalWindow = styled(motion.div)`
+  position: relative;
   overflow: auto;
   z-index: 1;
   width: 100%;
@@ -30,6 +31,27 @@ export const ModalWindow = styled(motion.div)`
   }
   @media (max-width: 1080px) {
     height: 100%;
+  }
+`;
+
+export const ModalScrollUp = styled.div`
+  position: sticky;
+  bottom: 0;
+`;
+
+export const ScrollUpBtn = styled(motion.button)`
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+  background-color: #1e2022;
+  cursor: pointer;
+  svg {
+    color: #d0d0d0;
   }
 `;
 

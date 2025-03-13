@@ -6,7 +6,6 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 export const Header = () => {
   const [isLimpid, setIsLimpid] = useState(true);
   const { scrollY } = useScroll();
-
   useMotionValueEvent(scrollY, "change", (current) => {
     setIsLimpid(current < 50);
   });
