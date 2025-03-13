@@ -172,6 +172,7 @@ export const GlobalStyle = styled.createGlobalStyle`
   }
   * {
     box-sizing: border-box;
+    user-select: none;
   }
   a {
     text-decoration: none;
