@@ -4,7 +4,7 @@ export const VideoContainer = styled.li`
   width: 100%;
   padding: 20px 0;
   &:not(:last-child) {
-    border-bottom: 2px solid #26282a;
+    border-bottom: 2px solid ${(props) => props.theme.etc.divider};
   }
 `;
 

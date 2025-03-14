@@ -47,7 +47,7 @@ export const ScrollUpBtn = styled(motion.button)`
   height: 40px;
   border: none;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+  box-shadow: ${(props) => props.theme.etc.boxShadow} 0px 3px 8px;
   background-color: ${(props) => props.theme.background.secondary};
   cursor: pointer;
   svg {
@@ -66,7 +66,6 @@ export const BgImage = styled.div<{ $bgImg: string }>`
   z-index: -1;
   width: 800px;
   height: 480px;
-  opacity: 0.4;
   background-image: url(${(props) => props.$bgImg});
   background-size: cover;
   &::after {
@@ -76,9 +75,14 @@ export const BgImage = styled.div<{ $bgImg: string }>`
     background: linear-gradient(
         to top,
         ${(props) => props.theme.background.secondary} 0px,
-        rgba(0, 0, 0, 0) 200px
+        ${(props) => props.theme.background.secondary}00 200px
       ),
-      linear-gradient(to right, #1e2022 0px, #1e202200 300px);
+      linear-gradient(
+        to right,
+        ${(props) => props.theme.background.secondary} 0px,
+        ${(props) => props.theme.background.secondary}00 300px
+      );
+    background-color: ${(props) => props.theme.etc.imageBgColor};
   }
 `;
 
@@ -95,7 +99,7 @@ export const ExitBtn = styled.button`
   border: none;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);
-  color: ${(props) => props.theme.font.primary};
+  color: #ffffff;
   cursor: pointer;
 `;
 
@@ -167,7 +171,7 @@ export const Badge = styled.div`
     width: 24px;
     height: 24px;
     margin-bottom: 10px;
-    color: ${(props) => props.theme.font.primary};
+    color: ${(props) => props.theme.font.secondary};
   }
   span {
     color: ${(props) => props.theme.font.paragraph};

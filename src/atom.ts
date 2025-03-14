@@ -1,6 +1,11 @@
 import { atom } from "recoil";
 import { IGetVideos, TTime } from "./type";
 
+export const isDarkState = atom({
+  key: "isDarkState",
+  default: true,
+});
+
 export const screenState = atom({
   key: "screenState",
   default: 6,

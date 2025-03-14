@@ -18,5 +18,10 @@ declare module "styled-components" {
       scrollTrack: string;
       scrollThumb: string;
     };
+    etc: {
+      imageBgColor: string;
+      divider: string;
+      boxShadow: string;
+    };
   }
 }

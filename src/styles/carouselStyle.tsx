@@ -77,7 +77,7 @@ export const ItemPreview = styled(motion.div)`
   height: var(--preview-scale);
   background-color: ${(props) => props.theme.background.primary};
   border-radius: var(--border-radius);
-  box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 15px;
+  box-shadow: ${(props) => props.theme.etc.boxShadow} 0px 3px 15px;
   &.leftEnd {
     left: 0;
     transform-origin: left center;

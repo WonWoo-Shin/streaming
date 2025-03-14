@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header<{ $isLimpid: boolean }>`
   display: flex;
+  justify-content: space-between;
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -11,6 +12,9 @@ export const HeaderContainer = styled.header<{ $isLimpid: boolean }>`
     props.$isLimpid ? "rgba(0, 0, 0, 0)" : props.theme.background.primary};
   color: ${(props) => props.theme.font.primary};
   transition: background-color 0.4s;
+  body.modal-open & {
+    padding-right: calc(50px + var(--scroll-width));
+  }
 `;
 
 export const HeaderLogo = styled.div`
@@ -21,6 +25,7 @@ export const HeaderLogo = styled.div`
   height: 100%;
   font-size: 20px;
   font-family: "Gasoek One", sans-serif;
+  font-style: oblique;
 `;
 
 export const Nav = styled.ol`

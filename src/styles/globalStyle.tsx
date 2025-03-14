@@ -121,6 +121,7 @@ export const GlobalStyle = styled.createGlobalStyle`
     display: block;
   }
   body {
+    background-color: ${(props) => props.theme.background.primary};
     line-height: 1;
     overflow-x: hidden;
     font-size: 1vw;
