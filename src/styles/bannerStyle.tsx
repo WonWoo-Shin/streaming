@@ -79,7 +79,11 @@ export const BannerImage = styled.div<{ $bgImage: string }>`
   height: 100%;
   padding-right: var(--padding-width);
   background-size: cover;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(
+      rgba(18, 18, 18, 0.5) 0%,
+      rgba(18, 18, 18, 0) 25%
+    ),
+    linear-gradient(rgba(18, 18, 18, 0) 75%, rgba(18, 18, 18, 0.5) 100%),
     url(${(props) => props.$bgImage});
 `;
 

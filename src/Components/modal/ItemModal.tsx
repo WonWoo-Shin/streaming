@@ -80,8 +80,9 @@ export const ItemModal = ({ itemId }: IModalProps) => {
     setShowScrollUp(current >= 200);
   });
   const moveScrollTop = () => {
-    if (modalWindowRef.current) {
-      modalWindowRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    const windowRefCurrent = modalWindowRef.current;
+    if (windowRefCurrent) {
+      windowRefCurrent.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

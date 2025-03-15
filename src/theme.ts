@@ -39,7 +39,7 @@ export const lightTheme: DefaultTheme = {
   },
   scrollBar: {
     scrollTrack: "#F5F5F5",
-    scrollThumb: "#686868",
+    scrollThumb: "rgba(0,0,0,0.3)",
   },
   etc: {
     imageBgColor: "rgba(245, 245, 245,0.4)",

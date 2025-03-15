@@ -40,6 +40,7 @@ export const PlayIcon = styled.div`
   align-items: center;
   position: absolute;
   inset: 0;
+  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
   transition: opacity ease 0.2s;
