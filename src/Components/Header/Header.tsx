@@ -5,12 +5,19 @@ import {
   Nav,
   ThemeBtn,
 } from "../../styles/headerStyle";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRecoilState } from "recoil";
 import { isDarkState } from "../../atom";
 
 export const Header = () => {
+  const location = useLocation();
+  const logoClick = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0 });
+    }
+  };
+
   const headerRef = useRef<HTMLHeadElement>(null);
 
   const [isLimpid, setIsLimpid] = useState(true);
@@ -38,10 +45,12 @@ export const Header = () => {
       $isThemeToggle={isThemeToggle}
     >
       <HeaderLogo>
-        <Link to="/">스스슥</Link>
+        <Link to="/" onClick={logoClick}>
+          스스슥
+        </Link>
       </HeaderLogo>
-      <Nav>
-        <ThemeBtn onClick={toggleTheme}>
+      <Nav $isLimpid={isLimpid} $isThemeToggle={isThemeToggle}>
+        <ThemeBtn onClick={toggleTheme} $isLimpid={isLimpid}>
           {isDark ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -21,6 +21,7 @@ export const darkTheme: DefaultTheme = {
     imageBgColor: "rgba(30, 32, 34, 0.6)",
     divider: "#26282a",
     boxShadow: "rgba(0, 0, 0, 0.75)",
+    buttonHover: "rgba(255, 255, 255, 0.2)",
   },
 };
 
@@ -45,5 +46,6 @@ export const lightTheme: DefaultTheme = {
     imageBgColor: "rgba(245, 245, 245,0.4)",
     divider: "#EEEEEE",
     boxShadow: "rgba(0, 0, 0, 0.25)",
+    buttonHover: "rgba(0, 0, 0, 0.2)",
   },
 };

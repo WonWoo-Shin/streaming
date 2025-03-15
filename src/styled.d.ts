@@ -22,6 +22,7 @@ declare module "styled-components" {
       imageBgColor: string;
       divider: string;
       boxShadow: string;
+      buttonHover: string;
     };
   }
 }

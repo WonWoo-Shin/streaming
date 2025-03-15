@@ -16,11 +16,7 @@ export const HeaderContainer = styled.header<IHeaderProps>`
   background-color: ${(props) =>
     props.$isLimpid ? "rgba(0, 0, 0, 0)" : props.theme.background.primary};
   color: ${(props) => props.theme.font.primary};
-  transition: ${(props) =>
-    props.$isThemeToggle ? "none" : "background-color 0.4s"};
-  &.no-transition {
-    transition: none;
-  }
+  transition: ${(props) => (props.$isThemeToggle ? "none" : "background 0.4s")};
   body.modal-open & {
     padding-right: calc(50px + var(--scroll-width));
   }
@@ -37,7 +33,7 @@ export const HeaderLogo = styled.div`
   font-style: oblique;
 `;
 
-export const Nav = styled.ol`
+export const Nav = styled.ol<IHeaderProps>`
   display: flex;
   align-items: center;
   margin-left: 40px;
@@ -48,9 +44,14 @@ export const Nav = styled.ol`
       margin: 0;
     }
   }
+  svg {
+    color: ${(props) =>
+      props.$isLimpid ? "#ffffff" : props.theme.font.primary};
+    transition: ${(props) => (props.$isThemeToggle ? "none" : "color 0.4s")};
+  }
 `;
 
-export const ThemeBtn = styled.button`
+export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,8 +60,10 @@ export const ThemeBtn = styled.button`
   border: none;
   border-radius: 5px;
   background: none;
-  color: #ffffff;
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: ${(props) =>
+      props.$isLimpid
+        ? "rgba(255, 255, 255, 0.2)"
+        : props.theme.etc.buttonHover};
   }
 `;
