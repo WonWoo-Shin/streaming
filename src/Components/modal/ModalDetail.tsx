@@ -1,12 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDetail, getVideos } from "../../api";
-import {
-  IGetDetail,
-  IGetVideos,
-  IGetVideosResults,
-  TCurrentTab,
-  TMediaType,
-} from "../../type";
+import { IGetDetail, IGetVideos, TCurrentTab, TMediaType } from "../../type";
 import { useParams } from "react-router-dom";
 import {
   Badge,
@@ -79,9 +73,10 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     if (overViewCurrrent) {
       const scrollHeight = overViewCurrrent.scrollHeight;
       const offsetHeight = overViewCurrrent.offsetHeight;
+      console.log(scrollHeight, offsetHeight);
       setIsOverviewOverFlow(scrollHeight > offsetHeight);
     }
-  }, []);
+  }, [detailData]);
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
 
