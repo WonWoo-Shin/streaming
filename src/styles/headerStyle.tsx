@@ -55,6 +55,7 @@ export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 40px;
   height: 40px;
   border: none;
@@ -65,5 +66,21 @@ export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
       props.$isLimpid
         ? "rgba(255, 255, 255, 0.2)"
         : props.theme.etc.buttonHover};
+    .button-tag {
+      display: block;
+    }
   }
+`;
+
+export const BtnTag = styled.span`
+  display: none;
+  position: absolute;
+  bottom: -26px;
+  padding: 5px 7px;
+  border-radius: 4px;
+  background-color: #424549;
+  font-size: 13px;
+  line-height: 13px;
+  color: white;
+  white-space: nowrap;
 `;
