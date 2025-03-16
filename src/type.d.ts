@@ -1,6 +1,6 @@
 interface IItemList {
   id: number;
-  backdrop_path: string;
+  backdrop_path?: string;
   poster_path: string;
   title?: string;
   name?: string;

@@ -73,7 +73,6 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     if (overViewCurrrent) {
       const scrollHeight = overViewCurrrent.scrollHeight;
       const offsetHeight = overViewCurrrent.offsetHeight;
-      console.log(scrollHeight, offsetHeight);
       setIsOverviewOverFlow(scrollHeight > offsetHeight);
     }
   }, [detailData]);

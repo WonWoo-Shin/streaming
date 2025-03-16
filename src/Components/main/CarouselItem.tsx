@@ -18,10 +18,19 @@ import { screenState } from "../../atom";
 import { AnimatePresence, Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export const ItemImage = ({ image }: { image: IItemList["backdrop_path"] }) => {
+interface IItemImageProps {
+  backdrop: IItemList["backdrop_path"];
+  poster: IItemList["poster_path"];
+}
+
+export const ItemImage = ({ backdrop, poster }: IItemImageProps) => {
+  const itemImage = backdrop
+    ? createImage("w500", backdrop)
+    : createImage("w500", poster);
+
   return (
     <ItemParent>
-      <Item $bgImage={createImage("w500", image)} />
+      <Item as="img" src={itemImage} />
     </ItemParent>
   );
 };
@@ -56,6 +65,7 @@ interface ICarouselItemProps extends IItemList {
 export const CarouselItem = ({
   id,
   backdrop_path,
+  poster_path,
   title,
   name,
   itemWidth,
@@ -95,7 +105,7 @@ export const CarouselItem = ({
         onMouseLeave={itemLeave}
         to={`/${media_type ?? "movie"}/${id}`}
       >
-        <ItemImage image={backdrop_path} />
+        <ItemImage backdrop={backdrop_path} poster={poster_path} />
         <Title>
           <Text>{title ?? name}</Text>
         </Title>
@@ -110,7 +120,7 @@ export const CarouselItem = ({
               animate="animate"
               exit="exit"
             >
-              <ItemImage image={backdrop_path} />
+              <ItemImage backdrop={backdrop_path} poster={poster_path} />
               <PreviewText>
                 <span>{title ?? name}</span>
                 <span>

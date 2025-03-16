@@ -55,9 +55,8 @@ export const LoadingItem = styled(ItemDesign)`
   background-color: ${(props) => props.theme.background.loading};
 `;
 
-export const Item = styled(ItemDesign)<{ $bgImage: string }>`
-  background-image: url(${(props) => props.$bgImage});
-  background-size: cover;
+export const Item = styled(ItemDesign)`
+  object-fit: cover;
 `;
 
 export const Title = styled.div`
