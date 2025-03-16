@@ -25,13 +25,13 @@ interface IItemImageProps {
 }
 
 export const ItemImage = ({ backdrop, poster, preview }: IItemImageProps) => {
-  const itemImage = backdrop
-    ? createImage("w500", backdrop)
-    : createImage("w500", poster);
-
   return (
     <ItemParent>
-      <Item as="img" src={itemImage} className={preview ? "preview" : ""} />
+      <Item
+        as="img"
+        src={createImage("w500", backdrop ?? poster)}
+        className={preview ? "preview" : ""}
+      />
     </ItemParent>
   );
 };

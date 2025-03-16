@@ -83,7 +83,10 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     <>
       <ModalOverview>
         <BgImage
-          $bgImg={createImage("w780", detailData?.backdrop_path ?? "")}
+          $bgImg={createImage(
+            "w780",
+            detailData?.backdrop_path ?? detailData?.poster_path ?? ""
+          )}
         ></BgImage>
         <ModalNav>
           <ExitBtn onClick={() => setIsModalOpen(false)}>

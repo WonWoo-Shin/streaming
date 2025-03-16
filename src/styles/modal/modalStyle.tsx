@@ -19,7 +19,7 @@ export const ModalBackground = styled.div`
 
 export const ModalWindow = styled(motion.div)`
   position: relative;
-  overflow: auto;
+  overflow-y: auto;
   z-index: 1;
   width: 100%;
   max-width: 1080px;
@@ -68,6 +68,7 @@ export const BgImage = styled.div<{ $bgImg: string }>`
   height: 480px;
   background-image: url(${(props) => props.$bgImg});
   background-size: cover;
+  background-position: center center;
   &::after {
     content: "";
     position: absolute;
@@ -248,7 +249,7 @@ export const ContentsMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 180px;
+  height: 200px;
   font-size: 17px;
   color: ${(props) => props.theme.font.muted};
 `;

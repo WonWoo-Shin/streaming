@@ -24,7 +24,7 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
   return (
     <>
       {isLoading ? (
-        <ContentsMessage>
+        <ContentsMessage className="exactScroll">
           <span>로드 중..</span>
         </ContentsMessage>
       ) : videos.length === 0 ? (
