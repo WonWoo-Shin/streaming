@@ -57,6 +57,10 @@ export const LoadingItem = styled(ItemDesign)`
 
 export const Item = styled(ItemDesign)`
   object-fit: cover;
+  &.preview {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 `;
 
 export const Title = styled.div`

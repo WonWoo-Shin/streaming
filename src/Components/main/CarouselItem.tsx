@@ -21,16 +21,17 @@ import { Link } from "react-router-dom";
 interface IItemImageProps {
   backdrop: IItemList["backdrop_path"];
   poster: IItemList["poster_path"];
+  preview?: boolean;
 }
 
-export const ItemImage = ({ backdrop, poster }: IItemImageProps) => {
+export const ItemImage = ({ backdrop, poster, preview }: IItemImageProps) => {
   const itemImage = backdrop
     ? createImage("w500", backdrop)
     : createImage("w500", poster);
 
   return (
     <ItemParent>
-      <Item as="img" src={itemImage} />
+      <Item as="img" src={itemImage} className={preview ? "preview" : ""} />
     </ItemParent>
   );
 };
@@ -120,7 +121,11 @@ export const CarouselItem = ({
               animate="animate"
               exit="exit"
             >
-              <ItemImage backdrop={backdrop_path} poster={poster_path} />
+              <ItemImage
+                backdrop={backdrop_path}
+                poster={poster_path}
+                preview
+              />
               <PreviewText>
                 <span>{title ?? name}</span>
                 <span>
