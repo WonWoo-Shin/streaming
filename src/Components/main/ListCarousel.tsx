@@ -92,6 +92,7 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
     setTranslate(0);
     setCarouselLocation(0);
     setIsCarouselActive(false);
+    setIsTransition(false);
   };
 
   //showItem값이 변경된 경우 처리 내용

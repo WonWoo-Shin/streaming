@@ -54,7 +54,9 @@ export const BannerTitleSection = styled.div`
 `;
 
 export const BannerTitle = styled.h1`
+  padding-right: 1.5rem;
   font-size: 2.4em;
+  line-height: 1.2em;
 `;
 
 export const BannerButton = styled.div`
@@ -81,9 +83,10 @@ export const BannerImage = styled.div<{ $bgImage: string }>`
   background-size: cover;
   background-image: linear-gradient(
       rgba(18, 18, 18, 0.5) 0%,
-      rgba(18, 18, 18, 0) 25%
+      rgba(18, 18, 18, 0) 20%
     ),
     linear-gradient(rgba(18, 18, 18, 0) 75%, rgba(18, 18, 18, 0.5) 100%),
+    linear-gradient(90deg, rgba(18, 18, 18, 0) 90%, rgba(18, 18, 18, 0.2) 100%),
     url(${(props) => props.$bgImage});
 `;
 
