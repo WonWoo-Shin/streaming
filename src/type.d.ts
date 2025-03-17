@@ -25,6 +25,7 @@ export interface IGetDetail {
   genres: IGenre[];
   overview: string;
   vote_average: number;
+  vote_count: number;
   tagline: string;
   release_date: string;
 }

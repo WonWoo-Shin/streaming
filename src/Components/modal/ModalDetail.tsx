@@ -123,7 +123,11 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                     fill="currentColor"
                   ></path>
                 </svg>
-                <span>{detailData?.vote_average.toFixed(1)}</span>
+                <span>
+                  {detailData?.vote_count
+                    ? detailData?.vote_average.toFixed(1)
+                    : "--"}
+                </span>
               </Vote>
               <Title>{detailData?.title ?? detailData?.name}</Title>
               <Genre>

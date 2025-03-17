@@ -1,6 +1,6 @@
 import { MainContainer } from "../../styles/mainStyle";
 
-import { getPopular, getTopRated, getTrending } from "../../api";
+import { getNowShowing, getTopRated, getTrending } from "../../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { screenState, trendingTimeState } from "../../atom";
 import { useMediaQuery } from "react-responsive";
@@ -27,7 +27,7 @@ export const Main = () => {
         tabButton
         time={trendingTime}
       />
-      <Category categoryName="최근 관심작" getFn={getPopular} />
+      <Category categoryName="현재 상영 중" getFn={getNowShowing} />
       <Category categoryName="역대 인기작" getFn={getTopRated} />
     </MainContainer>
   );

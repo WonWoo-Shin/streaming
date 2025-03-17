@@ -1,13 +1,13 @@
-import { IGetVideos, IGetVideosResults, TMediaType, TTime } from "./type";
+import { IGetVideosResults, TMediaType, TTime } from "./type";
 
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
 const LANGUAGE = "ko-KR";
 const YOUTUBE_API_KEY = "AIzaSyAeoFkxAxrpXBk09xXdue0GZ79e9DGOh8w";
 
-export const getPopular = () => {
+export const getNowShowing = () => {
   return fetch(
-    `${BASE_PATH}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&region=KR`
   ).then((response) => response.json());
 };
 
