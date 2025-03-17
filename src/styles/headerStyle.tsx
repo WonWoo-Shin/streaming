@@ -78,9 +78,9 @@ export const BtnTag = styled.span`
   bottom: -26px;
   padding: 5px 7px;
   border-radius: 4px;
-  background-color: #424549;
+  background-color: ${(props) => props.theme.background.tertiary};
   font-size: 13px;
   line-height: 13px;
-  color: white;
+  color: ${(props) => props.theme.font.primary};
   white-space: nowrap;
 `;
