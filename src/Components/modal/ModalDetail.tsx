@@ -49,14 +49,15 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     IGetVideos[]
   >({
     queryKey: ["video", itemId],
-    queryFn: () => getVideos(itemId, mediaType as TMediaType),
+    queryFn: () => getVideos(itemId, mediaType as TMediaType, "ko"),
   });
 
   const { data: videosPreData, isLoading: isPreVideoLoading } = useQuery<
     IGetVideos[]
   >({
     queryKey: ["videoPre", itemId],
-    queryFn: () => getVideos(itemId, mediaType as TMediaType, true),
+    queryFn: () =>
+      getVideos(itemId, mediaType as TMediaType, detailData?.original_language),
     enabled: videosData?.length === 0,
   });
 

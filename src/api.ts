@@ -1,4 +1,4 @@
-import { IGetVideosResults, TMediaType, TTime } from "./type";
+import { IGetDetail, IGetVideosResults, TMediaType, TTime } from "./type";
 
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
@@ -32,12 +32,15 @@ export const getTrending = (mediaType: TMediaType, time: TTime) => {
 export const getVideos = async (
   itemId: number,
   mediaType: TMediaType,
-  english?: boolean
+  language?: IGetDetail["original_language"]
 ) => {
+  const allowLanguage =
+    language !== "en" && language !== "ja" && language !== "ko"
+      ? "en"
+      : language;
+
   const { results: videos }: IGetVideosResults = await fetch(
-    `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${
-      english ? "en-US" : LANGUAGE
-    }`
+    `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${allowLanguage}`
   ).then((response) => response.json());
 
   //이용 불가 영상 필터링

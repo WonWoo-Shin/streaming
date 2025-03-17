@@ -28,6 +28,7 @@ export interface IGetDetail {
   vote_count: number;
   tagline: string;
   release_date: string;
+  original_language: "en" | "ko" | "ja";
 }
 
 export interface IGetVideos {
