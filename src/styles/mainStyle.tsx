@@ -24,13 +24,13 @@ export const CategoryName = styled.div`
   }
 `;
 
-export const TimeTabContainer = styled.div`
+export const TabContainer = styled.div`
   display: flex;
   padding-left: var(--carousel-padding);
   margin-bottom: 1.04em;
 `;
 
-export const TimeTabBtn = styled.button<{ $isActive: boolean }>`
+export const TabBtn = styled.button<{ $isActive: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;

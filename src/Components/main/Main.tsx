@@ -2,7 +2,11 @@ import { MainContainer } from "../../styles/mainStyle";
 
 import { getNowShowing, getTopRated, getTrending } from "../../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { screenState, trendingTimeState } from "../../atom";
+import {
+  screenState,
+  topRatedMediaTypeState,
+  trendingTimeState,
+} from "../../atom";
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
 import { Category } from "./Category";
@@ -18,17 +22,27 @@ export const Main = () => {
   }, [isMediumScreen, isSmallScreen]);
 
   const trendingTime = useRecoilValue(trendingTimeState);
+  const topRatedMediaType = useRecoilValue(topRatedMediaTypeState);
 
   return (
     <MainContainer>
       <Category
         categoryName="요즘 대세"
         getFn={() => getTrending("all", trendingTime)}
-        tabButton
+        tabButton="time"
         time={trendingTime}
       />
-      <Category categoryName="현재 상영 중" getFn={getNowShowing} />
-      <Category categoryName="역대 인기작" getFn={getTopRated} />
+      <Category
+        categoryName="최근 관심작"
+        getFn={getNowShowing}
+        mediaType="movie"
+      />
+      <Category
+        categoryName="역대 인기작"
+        getFn={() => getTopRated(topRatedMediaType)}
+        mediaType={topRatedMediaType}
+        tabButton="mediaType"
+      />
     </MainContainer>
   );
 };

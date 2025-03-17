@@ -11,15 +11,9 @@ export const getNowShowing = () => {
   ).then((response) => response.json());
 };
 
-export const getUpComing = () => {
+export const getTopRated = (mediaType: TMediaType) => {
   return fetch(
-    `${BASE_PATH}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
-};
-
-export const getTopRated = () => {
-  return fetch(
-    `${BASE_PATH}/movie/top_rated?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/${mediaType}/top_rated?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
 

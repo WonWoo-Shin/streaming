@@ -41,7 +41,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
   const { data: detailData, isFetched: isDetailFetched } = useQuery<IGetDetail>(
     {
       queryKey: ["itemDetail", itemId],
-      queryFn: () => getDetail(itemId, (mediaType as TMediaType) ?? "movie"),
+      queryFn: () => getDetail(itemId, mediaType as TMediaType),
     }
   );
 

@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IGetVideos, TTime } from "./type";
+import { IGetVideos, TMediaType, TTime } from "./type";
 
 export const isDarkState = atom({
   key: "isDarkState",
@@ -14,6 +14,11 @@ export const screenState = atom({
 export const trendingTimeState = atom<TTime>({
   key: "trendingTimeState",
   default: "day",
+});
+
+export const topRatedMediaTypeState = atom<TMediaType>({
+  key: "topRatedMediaTypeState",
+  default: "movie",
 });
 
 interface IVideoModal {

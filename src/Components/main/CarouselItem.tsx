@@ -77,7 +77,7 @@ export const CarouselItem = ({
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["itemDetail", id],
-    queryFn: () => getDetail(id, media_type ?? "movie"),
+    queryFn: () => getDetail(id, media_type),
   });
 
   const showItem = useRecoilValue(screenState);
@@ -104,7 +104,7 @@ export const CarouselItem = ({
       <Link
         onMouseEnter={itemEnter}
         onMouseLeave={itemLeave}
-        to={`/${media_type ?? "movie"}/${id}`}
+        to={`/${media_type}/${id}`}
       >
         <ItemImage backdrop={backdrop_path} poster={poster_path} />
         <Title>

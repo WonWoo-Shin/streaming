@@ -4,7 +4,7 @@ interface IItemList {
   poster_path: string;
   title?: string;
   name?: string;
-  media_type?: TMediaType;
+  media_type: TMediaType;
   overview: string;
 }
 
