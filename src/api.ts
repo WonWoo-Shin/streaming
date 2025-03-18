@@ -34,10 +34,9 @@ export const getVideos = async (
   mediaType: TMediaType,
   language?: IGetDetail["original_language"]
 ) => {
+  const alowedLanguage: IGetDetail["original_language"][] = ["en", "ko", "ja"];
   const allowLanguage =
-    language !== "en" && language !== "ja" && language !== "ko"
-      ? "en"
-      : language;
+    language && alowedLanguage.includes(language) ? language : "en";
 
   const { results: videos }: IGetVideosResults = await fetch(
     `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${allowLanguage}`
