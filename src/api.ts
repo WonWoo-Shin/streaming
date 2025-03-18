@@ -1,4 +1,10 @@
-import { IGetDetail, IGetVideosResults, TMediaType, TTime } from "./type";
+import {
+  IGetDetail,
+  IGetVideosResults,
+  IItemList,
+  TMediaType,
+  TTime,
+} from "./type";
 
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
@@ -17,7 +23,7 @@ export const getTopRated = (mediaType: TMediaType) => {
   ).then((response) => response.json());
 };
 
-export const getDetail = (itemId: number, mediaType: TMediaType) => {
+export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
   return fetch(
     `${BASE_PATH}/${mediaType}/${itemId}?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
@@ -59,4 +65,13 @@ export const getVideos = async (
   //이용 불가 영상 필터링
 
   return filteredVideos;
+};
+
+export const getRecommend = (
+  mediaType: TMediaType,
+  itemId: IItemList["id"]
+) => {
+  return fetch(
+    `${BASE_PATH}/${mediaType}/${itemId}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
 };

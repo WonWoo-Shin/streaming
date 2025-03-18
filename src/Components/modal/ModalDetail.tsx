@@ -28,20 +28,25 @@ import { ModalVideos } from "./ModalVideos";
 import { convertDate } from "../../utils/convertDate";
 import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
+import { ModalRecommend } from "./ModalRecommend";
 
 interface IModalProps {
   itemId: number;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface IParams {
+  mediaType: TMediaType;
+}
+
 export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
-  const { mediaType } = useParams();
+  const { mediaType } = useParams() as unknown as IParams;
   if (!mediaType) return null;
 
   const { data: detailData, isFetched: isDetailFetched } = useQuery<IGetDetail>(
     {
       queryKey: ["itemDetail", itemId],
-      queryFn: () => getDetail(itemId, mediaType as TMediaType),
+      queryFn: () => getDetail(mediaType, itemId),
     }
   );
 
@@ -49,7 +54,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     IGetVideos[]
   >({
     queryKey: ["video", itemId],
-    queryFn: () => getVideos(itemId, mediaType as TMediaType, "ko"),
+    queryFn: () => getVideos(itemId, mediaType, "ko"),
   });
 
   const { data: videosPreData, isLoading: isPreVideoLoading } = useQuery<
@@ -217,9 +222,9 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             />
           )}
           <NavItem
-            tab="similar"
-            tabName="비슷한 작품"
-            tabMatch={currentTab === "similar"}
+            tab="recommend"
+            tabName="추천 작품"
+            tabMatch={currentTab === "recommend"}
             setCurrentTab={setCurrentTab}
           />
         </ContentNav>
@@ -228,6 +233,9 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             videos={videos}
             isLoading={isVideoLoading || isPreVideoLoading}
           />
+        )}
+        {currentTab === "recommend" && (
+          <ModalRecommend itemId={itemId} mediaType={mediaType} />
         )}
       </ModalContent>
     </>

@@ -77,7 +77,7 @@ export const CarouselItem = ({
 }: ICarouselItemProps) => {
   const { data: detailData } = useQuery<IGetDetail>({
     queryKey: ["itemDetail", id],
-    queryFn: () => getDetail(id, media_type),
+    queryFn: () => getDetail(media_type, id),
   });
 
   const showItem = useRecoilValue(screenState);

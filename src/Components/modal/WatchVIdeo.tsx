@@ -48,7 +48,7 @@ export const WatchVideo = () => {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M6.052 4.352a1.202 1.202 0 0 0-1.7 1.7L10.3 12l-5.948 5.948a1.202 1.202 0 0 0 1.7 1.7L12 13.7l5.948 5.948a1.202 1.202 0 0 0 1.7-1.7L13.7 12l5.948-5.948a1.202 1.202 0 0 0-1.7-1.7L12 10.3 6.052 4.352Z"
-                fill="#ffffff"
+                fill="currentcolor"
               ></path>
             </svg>
           </div>

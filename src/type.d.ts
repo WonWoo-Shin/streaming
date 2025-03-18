@@ -1,34 +1,28 @@
-interface IItemList {
+export interface IItemListResults {
+  results: IItemList[];
+}
+
+export interface IItemList {
   id: number;
-  backdrop_path?: string;
+  backdrop_path: string;
   poster_path: string;
   title?: string;
   name?: string;
-  media_type: TMediaType;
-  overview: string;
+  media_type: TMediaType; // 없을경우 임의적으로 추가 함. (Category.tsx)
 }
 
-export interface IItemListResults {
-  results: IItemList[];
+export interface IGetDetail extends IItemList {
+  genres: IGenre[];
+  overview: string;
+  vote_average: number;
+  vote_count: number;
+  release_date: string;
+  original_language: "en" | "ko" | "ja";
 }
 
 export interface IGenre {
   id: number;
   name: string;
-}
-
-export interface IGetDetail {
-  title: string;
-  name: string;
-  backdrop_path: string;
-  poster_path: string;
-  genres: IGenre[];
-  overview: string;
-  vote_average: number;
-  vote_count: number;
-  tagline: string;
-  release_date: string;
-  original_language: "en" | "ko" | "ja";
 }
 
 export interface IGetVideos {
@@ -50,4 +44,4 @@ export type TMediaType = "all" | "movie" | "tv";
 
 export type TTime = "day" | "week";
 
-export type TCurrentTab = "video" | "episode" | "similar";
+export type TCurrentTab = "video" | "episode" | "recommend";

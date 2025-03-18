@@ -89,6 +89,10 @@ export const VideoModalNav = styled.nav`
   }
   div {
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    &:hover {
+      color: inherit;
+    }
   }
 `;
 
