@@ -137,6 +137,7 @@ export const Title = styled.h1`
   margin-bottom: 20px;
   color: ${(props) => props.theme.font.primary};
   font-size: 40px;
+  line-height: 1.2;
   font-weight: 600;
 `;
 

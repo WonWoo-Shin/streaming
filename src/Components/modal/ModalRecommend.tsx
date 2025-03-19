@@ -3,6 +3,7 @@ import { IItemList, IItemListResults, TMediaType } from "../../type";
 import { getRecommend } from "../../api";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
 import {
+  ItemContainer,
   ItemImage,
   ItemTitle,
   RecommendContainer,
@@ -28,14 +29,19 @@ export const ModalRecommend = ({ itemId, mediaType }: IRecommendProps) => {
       ) : (
         <RecommendContainer>
           {recommendData?.results.map((result) => (
-            <li key={result.id}>
+            <ItemContainer key={result.id}>
               <Link to={`/${result.media_type}/${result.id}`}>
-                <ItemImage>
-                  <img src={createImage("w300", result.backdrop_path)} />
+                <ItemImage className="item-image">
+                  <img
+                    src={createImage(
+                      "w500",
+                      result.backdrop_path ?? result.poster_path
+                    )}
+                  />
                 </ItemImage>
                 <ItemTitle>{result.title ?? result.name}</ItemTitle>
               </Link>
-            </li>
+            </ItemContainer>
           ))}
         </RecommendContainer>
       )}

@@ -7,6 +7,12 @@ export const RecommendContainer = styled.ul`
   padding-top: 20px;
 `;
 
+export const ItemContainer = styled.li`
+  &:hover .item-image::before {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+`;
+
 export const ItemImage = styled.div`
   position: relative;
   img {
@@ -23,6 +29,7 @@ export const ItemImage = styled.div`
     inset: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color ease 0.2s;
   }
 `;
 

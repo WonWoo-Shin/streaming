@@ -112,7 +112,11 @@ export const ItemModal = ({ itemId }: IModalProps) => {
                 animate="animate"
                 exit="exit"
               >
-                <ModalDetail itemId={+itemId} setIsModalOpen={setIsModalOpen} />
+                <ModalDetail
+                  key={itemId} // Link로 인한 itemId 변경시 재랜더링
+                  itemId={+itemId}
+                  setIsModalOpen={setIsModalOpen}
+                />
                 <AnimatePresence>
                   {showScrollUp && (
                     <ModalScrollUp>
