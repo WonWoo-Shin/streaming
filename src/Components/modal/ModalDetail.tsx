@@ -63,7 +63,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     queryKey: ["videoPre", itemId],
     queryFn: () =>
       getVideos(itemId, mediaType as TMediaType, detailData?.original_language),
-    enabled: videosData?.length === 0,
+    enabled: videosData?.length === 0 && !!detailData,
   });
 
   const setVideoModal = useSetRecoilState(videoModalState);
