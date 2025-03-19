@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RecommendContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 70px 20px;
   padding-top: 20px;
 `;
@@ -29,7 +29,7 @@ export const ItemImage = styled.div`
 export const ItemTitle = styled.span`
   display: block;
   padding-right: 5px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   color: ${(props) => props.theme.font.paragraph};
 `;

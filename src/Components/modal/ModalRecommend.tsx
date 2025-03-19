@@ -8,6 +8,7 @@ import {
   RecommendContainer,
 } from "../../styles/modal/modalRecommendStyle";
 import { createImage } from "../../utils/createImgae";
+import { Link } from "react-router-dom";
 
 interface IRecommendProps {
   itemId: IItemList["id"];
@@ -28,10 +29,12 @@ export const ModalRecommend = ({ itemId, mediaType }: IRecommendProps) => {
         <RecommendContainer>
           {recommendData?.results.map((result) => (
             <li key={result.id}>
-              <ItemImage>
-                <img src={createImage("w500", result.backdrop_path)} />
-              </ItemImage>
-              <ItemTitle>{result.title ?? result.name}</ItemTitle>
+              <Link to={`/${result.media_type}/${result.id}`}>
+                <ItemImage>
+                  <img src={createImage("w300", result.backdrop_path)} />
+                </ItemImage>
+                <ItemTitle>{result.title ?? result.name}</ItemTitle>
+              </Link>
             </li>
           ))}
         </RecommendContainer>
