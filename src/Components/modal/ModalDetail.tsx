@@ -29,6 +29,7 @@ import { convertDate } from "../../utils/convertDate";
 import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
 import { ModalRecommend } from "./ModalRecommend";
+import { ModalEpisode } from "./ModalEpisode";
 
 interface IModalProps {
   itemId: number;
@@ -83,7 +84,9 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
     }
   }, [detailData]);
 
-  const [currentTab, setCurrentTab] = useState<TCurrentTab>("video");
+  const [currentTab, setCurrentTab] = useState<TCurrentTab>(
+    mediaType === "tv" ? "episode" : "video"
+  );
 
   return (
     <>
@@ -207,12 +210,6 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
       </ModalOverview>
       <ModalContent>
         <ContentNav>
-          <NavItem
-            tab="video"
-            tabName="동영상"
-            tabMatch={currentTab === "video"}
-            setCurrentTab={setCurrentTab}
-          />
           {mediaType === "tv" && (
             <NavItem
               tab="episode"
@@ -222,12 +219,19 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             />
           )}
           <NavItem
+            tab="video"
+            tabName="동영상"
+            tabMatch={currentTab === "video"}
+            setCurrentTab={setCurrentTab}
+          />
+          <NavItem
             tab="recommend"
             tabName="추천 작품"
             tabMatch={currentTab === "recommend"}
             setCurrentTab={setCurrentTab}
           />
         </ContentNav>
+        {currentTab === "episode" && <ModalEpisode itemId={itemId} />}
         {currentTab === "video" && (
           <ModalVideos
             videos={videos}

@@ -50,7 +50,6 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
                       <img
                         src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                         alt={video.name}
-                        onError={() => console.log("error")}
                       />
                       <PlayIcon className="play-icon">
                         {" "}

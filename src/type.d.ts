@@ -38,6 +38,19 @@ export interface IGetVideosResults {
   results: IGetVideos[];
 }
 
+export interface IGetEpisodes {
+  id: number;
+  air_date: string;
+  episode_number: number;
+  name: string;
+  overview: string;
+  still_path: string;
+}
+
+export interface IGetEpisodesResults {
+  episodes: IGetEpisodes[];
+}
+
 export type TDirection = "left" | "right";
 
 export type TMediaType = "all" | "movie" | "tv";

@@ -67,6 +67,12 @@ export const getVideos = async (
   return filteredVideos;
 };
 
+export const getEpisode = (itemId: IItemList["id"], seasonNumber: number) => {
+  return fetch(
+    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
 export const getRecommend = (
   mediaType: TMediaType,
   itemId: IItemList["id"]

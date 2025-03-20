@@ -37,6 +37,6 @@ export const ItemTitle = styled.span`
   display: block;
   padding-right: 5px;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.2;
   color: ${(props) => props.theme.font.paragraph};
 `;
