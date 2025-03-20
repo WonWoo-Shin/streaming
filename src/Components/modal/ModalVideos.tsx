@@ -2,14 +2,14 @@ import { ContentsMessage } from "../../styles/modal/modalStyle";
 import { IGetVideos } from "../../type";
 import { convertDate } from "../../utils/convertDate";
 import {
-  PlayIcon,
-  Video,
-  VideoContainer,
-  VideoDate,
+  ColumnListContainer,
+  ColumnList,
+  ListThumbnail,
   VideoInfo,
-  VideoName,
-  VideoThumbnail,
-} from "../../styles/modal/modalVideoStyle";
+  ListName,
+  ListDate,
+  PlayIcon,
+} from "../../styles/modal/modalColumnListStyle";
 import { useSetRecoilState } from "recoil";
 import { videoModalState } from "../../atom";
 
@@ -36,8 +36,8 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
           {videos.map(
             (video) =>
               video.site === "YouTube" && (
-                <VideoContainer key={video.id}>
-                  <Video
+                <ColumnListContainer key={video.id}>
+                  <ColumnList
                     onClick={() => {
                       setVideoModal({
                         isOpen: true,
@@ -46,7 +46,7 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
                       });
                     }}
                   >
-                    <VideoThumbnail>
+                    <ListThumbnail>
                       <img
                         src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                         alt={video.name}
@@ -66,13 +66,13 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
                           ></path>
                         </svg>
                       </PlayIcon>
-                    </VideoThumbnail>
+                    </ListThumbnail>
                     <VideoInfo>
-                      <VideoName>{video.name}</VideoName>
-                      <VideoDate>{convertDate(video.published_at)}</VideoDate>
+                      <ListName>{video.name}</ListName>
+                      <ListDate>{convertDate(video.published_at)}</ListDate>
                     </VideoInfo>
-                  </Video>
-                </VideoContainer>
+                  </ColumnList>
+                </ColumnListContainer>
               )
           )}
         </ul>

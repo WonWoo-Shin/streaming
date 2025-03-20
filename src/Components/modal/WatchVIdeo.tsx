@@ -5,7 +5,7 @@ import {
   NoTrailer,
   VideoModalNav,
   VideoModalWindow,
-} from "../../styles/modal/modalVideoStyle";
+} from "../../styles/modal/modalColumnListStyle";
 import { Variants } from "framer-motion";
 
 const modalVariant: Variants = {

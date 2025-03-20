@@ -3,13 +3,13 @@ import { IGetEpisodesResults, IItemList } from "../../type";
 import { getEpisode } from "../../api";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
 import {
-  Video,
-  VideoContainer,
-  VideoDate,
+  ColumnListContainer,
+  ColumnList,
+  ListThumbnail,
   VideoInfo,
-  VideoName,
-  VideoThumbnail,
-} from "../../styles/modal/modalVideoStyle";
+  ListName,
+  ListDate,
+} from "../../styles/modal/modalColumnListStyle";
 import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
 
@@ -32,17 +32,17 @@ export const ModalEpisode = ({ itemId }: IEpisodeProps) => {
       ) : (
         <ul>
           {episodeData?.episodes.map((episode) => (
-            <VideoContainer key={episode.id}>
-              <Video>
-                <VideoThumbnail>
+            <ColumnListContainer key={episode.id}>
+              <ColumnList>
+                <ListThumbnail>
                   <img src={createImage("w400", episode.still_path)} alt="" />
-                </VideoThumbnail>
+                </ListThumbnail>
                 <VideoInfo>
-                  <VideoName>{episode.name}</VideoName>
-                  <VideoDate>{convertDate(episode.air_date)}</VideoDate>
+                  <ListName>{episode.name}</ListName>
+                  <ListDate>{convertDate(episode.air_date)}</ListDate>
                 </VideoInfo>
-              </Video>
-            </VideoContainer>
+              </ColumnList>
+            </ColumnListContainer>
           ))}
         </ul>
       )}

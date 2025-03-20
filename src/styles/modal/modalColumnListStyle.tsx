@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const VideoContainer = styled.li`
+export const ColumnListContainer = styled.li`
   width: 100%;
   padding: 20px 0;
   &:not(:last-child) {
@@ -8,7 +8,7 @@ export const VideoContainer = styled.li`
   }
 `;
 
-export const Video = styled.div`
+export const ColumnList = styled.div`
   display: flex;
   cursor: pointer;
   &:hover .play-icon {
@@ -16,7 +16,7 @@ export const Video = styled.div`
   }
 `;
 
-export const VideoThumbnail = styled.div`
+export const ListThumbnail = styled.div`
   position: relative;
   margin-right: 30px;
   img {
@@ -57,12 +57,12 @@ export const VideoInfo = styled.div`
   padding: 10px 0;
 `;
 
-export const VideoName = styled.span`
+export const ListName = styled.span`
   font-size: 19px;
   color: ${(props) => props.theme.font.paragraph};
 `;
 
-export const VideoDate = styled.span`
+export const ListDate = styled.span`
   font-size: 16px;
   color: ${(props) => props.theme.font.muted};
 `;
