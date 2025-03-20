@@ -29,7 +29,7 @@ export const ItemImage = styled.div`
     inset: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.1);
-    transition: background-color ease 0.2s;
+    transition: background-color 0.2s;
   }
 `;
 

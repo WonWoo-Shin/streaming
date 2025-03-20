@@ -26,6 +26,8 @@ export const ModalRecommend = ({ itemId, mediaType }: IRecommendProps) => {
     <>
       {isLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>
+      ) : recommendData?.results.length === 0 ? (
+        <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>
       ) : (
         <RecommendContainer>
           {recommendData?.results.map((result) => (

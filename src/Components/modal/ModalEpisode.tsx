@@ -6,9 +6,12 @@ import {
   ColumnListContainer,
   ColumnList,
   ListThumbnail,
-  VideoInfo,
   ListName,
   ListDate,
+  EpisodeInfo,
+  EpisodeNumber,
+  EpisodeMainInfo,
+  EpisodeOverview,
 } from "../../styles/modal/modalColumnListStyle";
 import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
@@ -34,13 +37,19 @@ export const ModalEpisode = ({ itemId }: IEpisodeProps) => {
           {episodeData?.episodes.map((episode) => (
             <ColumnListContainer key={episode.id}>
               <ColumnList>
-                <ListThumbnail>
+                <ListThumbnail className="thumbnail">
                   <img src={createImage("w400", episode.still_path)} alt="" />
                 </ListThumbnail>
-                <VideoInfo>
-                  <ListName>{episode.name}</ListName>
-                  <ListDate>{convertDate(episode.air_date)}</ListDate>
-                </VideoInfo>
+                <EpisodeInfo>
+                  <EpisodeMainInfo>
+                    <div>
+                      <EpisodeNumber>{episode.episode_number}화</EpisodeNumber>
+                      <ListName>{episode.name}</ListName>
+                    </div>
+                    <ListDate>{convertDate(episode.air_date)}</ListDate>
+                  </EpisodeMainInfo>
+                  <EpisodeOverview>{episode.overview}</EpisodeOverview>
+                </EpisodeInfo>
               </ColumnList>
             </ColumnListContainer>
           ))}

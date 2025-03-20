@@ -14,6 +14,9 @@ export const ColumnList = styled.div`
   &:hover .play-icon {
     opacity: 1;
   }
+  &:hover .thumbnail::before {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const ListThumbnail = styled.div`
@@ -31,6 +34,7 @@ export const ListThumbnail = styled.div`
     inset: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
   }
 `;
 
@@ -49,12 +53,23 @@ export const PlayIcon = styled.div`
   }
 `;
 
-export const VideoInfo = styled.div`
+const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const VideoInfo = styled(FlexColumn)`
   justify-content: center;
   gap: 40px;
+`;
+
+export const EpisodeInfo = styled(FlexColumn)`
+  justify-content: space-between;
   padding: 10px 0;
+`;
+
+export const EpisodeMainInfo = styled(FlexColumn)`
+  gap: 10px;
 `;
 
 export const ListName = styled.span`
@@ -62,9 +77,22 @@ export const ListName = styled.span`
   color: ${(props) => props.theme.font.paragraph};
 `;
 
+export const EpisodeNumber = styled(ListName)`
+  margin-right: 10px;
+`;
+
 export const ListDate = styled.span`
   font-size: 16px;
   color: ${(props) => props.theme.font.muted};
+`;
+
+export const EpisodeOverview = styled(ListDate)`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
 `;
 
 export const VideoModalWindow = styled.div`
