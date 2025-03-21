@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { IGetEpisodesResults, IItemList } from "../../type";
+import { IGetDetail, IGetEpisodesResults, IItemList } from "../../type";
 import { getEpisode } from "../../api";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
 import {
@@ -12,22 +12,54 @@ import {
   EpisodeNumber,
   EpisodeMainInfo,
   EpisodeOverview,
+  Season,
+  SeasonSelect,
+  SeasonName,
+  SelectList,
+  SelectItem,
 } from "../../styles/modal/modalColumnListStyle";
 import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
+import { useState } from "react";
 
 interface IEpisodeProps {
   itemId: IItemList["id"];
+  numberOfSeasons: IGetDetail["number_of_seasons"];
 }
 
-export const ModalEpisode = ({ itemId }: IEpisodeProps) => {
+export const ModalEpisode = ({ itemId, numberOfSeasons }: IEpisodeProps) => {
+  const [season, setSeason] = useState(1);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+
   const { data: episodeData, isLoading } = useQuery<IGetEpisodesResults>({
-    queryKey: ["episode", itemId],
-    queryFn: () => getEpisode(itemId, 1),
+    queryKey: ["episode", itemId, season],
+    queryFn: () => getEpisode(itemId, season),
   });
 
   return (
     <>
+      {numberOfSeasons && numberOfSeasons > 1 && (
+        <Season>
+          <SeasonName>{episodeData?.name}</SeasonName>
+          <SeasonSelect
+            onClick={() => setIsSelectOpen((prev) => !prev)}
+            $isSelectOpen={isSelectOpen}
+          >
+            <span>{`시즌 ${season}`}</span>
+            {isSelectOpen && (
+              <SelectList>
+                {Array.from({ length: numberOfSeasons }, (_, i) => i + 1).map(
+                  (season) => (
+                    <SelectItem key={season} onClick={() => setSeason(season)}>
+                      시즌 {season}
+                    </SelectItem>
+                  )
+                )}
+              </SelectList>
+            )}
+          </SeasonSelect>
+        </Season>
+      )}
       {isLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>
       ) : episodeData?.episodes.length === 0 ? (

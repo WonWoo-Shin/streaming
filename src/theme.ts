@@ -4,7 +4,7 @@ export const darkTheme: DefaultTheme = {
   background: {
     primary: "#141517",
     secondary: "#1E2022",
-    tertiary: "#3D4145",
+    tertiary: "#323539",
     loading: "#373a3f",
   },
   font: {

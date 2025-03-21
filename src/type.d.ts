@@ -16,7 +16,9 @@ export interface IGetDetail extends IItemList {
   overview: string;
   vote_average: number;
   vote_count: number;
-  release_date: string;
+  release_date?: string;
+  first_air_date?: string;
+  number_of_seasons?: number;
   original_language: "en" | "ko" | "ja";
 }
 
@@ -48,6 +50,7 @@ export interface IGetEpisodes {
 }
 
 export interface IGetEpisodesResults {
+  name: string;
   episodes: IGetEpisodes[];
 }
 

@@ -36,7 +36,8 @@ export const TabBtn = styled.button<{ $isActive: boolean }>`
   align-items: center;
   width: 4.95em;
   height: 2.34em;
-  border: 1px solid ${(props) => props.theme.background.loading};
+  border: ${(props) =>
+    props.$isActive ? "none" : `2px solid ${props.theme.etc.divider}`};
   border-radius: 9999px;
   background-color: ${(props) =>
     props.$isActive ? "var(--point-green)" : "inherit"};

@@ -1,5 +1,65 @@
 import styled from "styled-components";
 
+export const Season = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const SeasonName = styled.h1`
+  font-size: 17px;
+  font-weight: 500;
+  color: ${(props) => props.theme.font.secondary};
+`;
+
+const selectValue = {
+  height: "40px",
+  padding: "15px",
+};
+
+export const SeasonSelect = styled.div<{ $isSelectOpen: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100px;
+  height: ${selectValue.height};
+  padding: 0 ${selectValue.padding};
+  border-radius: ${(props) => (props.$isSelectOpen ? "3px 3px 0 0 " : "3px")};
+  background-color: ${(props) => props.theme.background.tertiary};
+  font-size: 17px;
+  color: ${(props) => props.theme.font.secondary};
+  cursor: pointer;
+  &::after {
+    content: "▼";
+    font-size: 8px;
+    transform: ${(props) => (props.$isSelectOpen ? "rotate(180deg)" : "")};
+    transition: all linear 0.2s;
+  }
+`;
+
+export const SelectList = styled.ul`
+  position: absolute;
+  right: 0;
+  top: ${selectValue.height};
+  width: 100%;
+  border-radius: 0 0 3px 3px;
+  background-color: ${(props) => props.theme.background.tertiary};
+`;
+
+export const SelectItem = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 0 ${selectValue.padding};
+  width: 100%;
+  height: ${selectValue.height};
+  border-top: 2px solid ${(props) => props.theme.etc.divider};
+  &:hover {
+    background-color: ${(props) => props.theme.font.primary}10;
+  }
+`;
+
 export const ColumnListContainer = styled.li`
   width: 100%;
   padding: 20px 0;

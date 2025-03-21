@@ -149,6 +149,9 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
                   {detailData?.release_date
                     ? convertDate(detailData?.release_date)
                     : ""}
+                  {detailData?.first_air_date
+                    ? convertDate(detailData?.first_air_date)
+                    : ""}
                 </span>
               </ReleaseDate>
             </div>
@@ -231,7 +234,12 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
             setCurrentTab={setCurrentTab}
           />
         </ContentNav>
-        {currentTab === "episode" && <ModalEpisode itemId={itemId} />}
+        {currentTab === "episode" && (
+          <ModalEpisode
+            itemId={itemId}
+            numberOfSeasons={detailData?.number_of_seasons}
+          />
+        )}
         {currentTab === "video" && (
           <ModalVideos
             videos={videos}
