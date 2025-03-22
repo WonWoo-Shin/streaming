@@ -8,10 +8,11 @@ export interface IItemList {
   poster_path: string;
   title?: string;
   name?: string;
+  genre_ids: IGenre["id"][];
   media_type: TMediaType; // 없을경우 임의적으로 추가 함. (Category.tsx)
 }
 
-export interface IGetDetail extends IItemList {
+export interface IGetDetail extends Omit<IItemList, "genre_ids"> {
   genres: IGenre[];
   overview: string;
   vote_average: number;
@@ -20,6 +21,10 @@ export interface IGetDetail extends IItemList {
   first_air_date?: string;
   number_of_seasons?: number;
   original_language: "en" | "ko" | "ja";
+}
+
+export interface IGetGenre {
+  genres: IGenre[];
 }
 
 export interface IGenre {

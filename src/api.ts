@@ -23,15 +23,21 @@ export const getTopRated = (mediaType: TMediaType) => {
   ).then((response) => response.json());
 };
 
-export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
-  return fetch(
-    `${BASE_PATH}/${mediaType}/${itemId}?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
-};
-
 export const getTrending = (mediaType: TMediaType, time: TTime) => {
   return fetch(
     `${BASE_PATH}/trending/${mediaType}/${time}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
+  return fetch(
+    `${BASE_PATH}/${mediaType}/${itemId}?append_to_response=seasons&api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getGenre = (mediaType: TMediaType) => {
+  return fetch(
+    `${BASE_PATH}/genre/${mediaType}/list?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
 

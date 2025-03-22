@@ -8,11 +8,11 @@ import {
   Text,
   Title,
 } from "../../styles/carouselStyle";
-import { IGetDetail, IItemList } from "../../type";
+import { IGetGenre, IItemList } from "../../type";
 import { createImage } from "../../utils/createImgae";
 
 import { useQuery } from "@tanstack/react-query";
-import { getDetail } from "../../api";
+import { getGenre } from "../../api";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { AnimatePresence, Variants } from "framer-motion";
@@ -69,15 +69,16 @@ export const CarouselItem = ({
   poster_path,
   title,
   name,
+  genre_ids,
   itemWidth,
   isTransition,
   index,
   isCarouselActive,
   media_type,
 }: ICarouselItemProps) => {
-  const { data: detailData } = useQuery<IGetDetail>({
-    queryKey: ["itemDetail", id],
-    queryFn: () => getDetail(media_type, id),
+  const { data: genreList } = useQuery<IGetGenre>({
+    queryKey: ["genre", media_type],
+    queryFn: () => getGenre(media_type),
   });
 
   const showItem = useRecoilValue(screenState);
@@ -128,11 +129,18 @@ export const CarouselItem = ({
               />
               <PreviewText>
                 <span>{title ?? name}</span>
-                <span>
-                  {detailData?.genres.map((genre) => (
-                    <p key={genre.id}>{genre.name}</p>
-                  ))}
-                </span>
+                {genreList && (
+                  <span>
+                    {genre_ids.map((genreId) => (
+                      <p key={genreId}>
+                        {
+                          genreList.genres.find((genre) => genre.id === genreId)
+                            ?.name
+                        }
+                      </p>
+                    ))}
+                  </span>
+                )}
               </PreviewText>
             </ItemPreview>
           )}
