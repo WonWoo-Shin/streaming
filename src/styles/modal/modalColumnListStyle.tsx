@@ -2,15 +2,9 @@ import styled from "styled-components";
 
 export const Season = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
-`;
-
-export const SeasonName = styled.h1`
-  font-size: 17px;
-  font-weight: 500;
-  color: ${(props) => props.theme.font.secondary};
 `;
 
 const selectValue = {

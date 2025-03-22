@@ -19,7 +19,7 @@ export interface IGetDetail extends Omit<IItemList, "genre_ids"> {
   vote_count: number;
   release_date?: string;
   first_air_date?: string;
-  number_of_seasons?: number;
+  seasons?: ISeasons[];
   original_language: "en" | "ko" | "ja";
 }
 
@@ -30,6 +30,12 @@ export interface IGetGenre {
 export interface IGenre {
   id: number;
   name: string;
+}
+
+export interface ISeasons {
+  id: number;
+  name: string;
+  season_number: number;
 }
 
 export interface IGetVideos {

@@ -235,10 +235,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
           />
         </ContentNav>
         {currentTab === "episode" && (
-          <ModalEpisode
-            itemId={itemId}
-            numberOfSeasons={detailData?.number_of_seasons}
-          />
+          <ModalEpisode itemId={itemId} seasons={detailData?.seasons} />
         )}
         {currentTab === "video" && (
           <ModalVideos

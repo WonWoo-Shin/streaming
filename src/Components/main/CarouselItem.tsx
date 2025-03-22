@@ -8,7 +8,7 @@ import {
   Text,
   Title,
 } from "../../styles/carouselStyle";
-import { IGetGenre, IItemList } from "../../type";
+import { IGenre, IGetGenre, IItemList } from "../../type";
 import { createImage } from "../../utils/createImgae";
 
 import { useQuery } from "@tanstack/react-query";
@@ -100,6 +100,10 @@ export const CarouselItem = ({
     ? index === showItem * 2
     : index === showItem - 1;
 
+  const findGenre = (genreId: IGenre["id"]) => {
+    return genreList?.genres.find((genre) => genre.id == genreId)?.name;
+  };
+
   return (
     <ItemContainer $itemWidth={itemWidth}>
       <Link
@@ -132,12 +136,7 @@ export const CarouselItem = ({
                 {genreList && (
                   <span>
                     {genre_ids.map((genreId) => (
-                      <p key={genreId}>
-                        {
-                          genreList.genres.find((genre) => genre.id === genreId)
-                            ?.name
-                        }
-                      </p>
+                      <p key={genreId}>{findGenre(genreId)}</p>
                     ))}
                   </span>
                 )}

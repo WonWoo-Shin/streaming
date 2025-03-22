@@ -14,7 +14,6 @@ import {
   EpisodeOverview,
   Season,
   SeasonSelect,
-  SeasonName,
   SelectList,
   SelectItem,
 } from "../../styles/modal/modalColumnListStyle";
@@ -24,37 +23,45 @@ import { useState } from "react";
 
 interface IEpisodeProps {
   itemId: IItemList["id"];
-  numberOfSeasons: IGetDetail["number_of_seasons"];
+  seasons: IGetDetail["seasons"];
 }
 
-export const ModalEpisode = ({ itemId, numberOfSeasons }: IEpisodeProps) => {
-  const [season, setSeason] = useState(1);
+export const ModalEpisode = ({ itemId, seasons }: IEpisodeProps) => {
+  const [currentSeason, setCurrentSeason] = useState(1);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
   const { data: episodeData, isLoading } = useQuery<IGetEpisodesResults>({
-    queryKey: ["episode", itemId, season],
-    queryFn: () => getEpisode(itemId, season),
+    queryKey: ["episode", itemId, currentSeason],
+    queryFn: () => getEpisode(itemId, currentSeason),
   });
 
   return (
     <>
-      {numberOfSeasons && numberOfSeasons > 1 && (
+      {seasons && seasons.length > 1 && (
         <Season>
-          <SeasonName>{episodeData?.name}</SeasonName>
           <SeasonSelect
             onClick={() => setIsSelectOpen((prev) => !prev)}
             $isSelectOpen={isSelectOpen}
           >
-            <span>{`시즌 ${season}`}</span>
+            <span>
+              {
+                seasons[
+                  seasons.findIndex(
+                    (season) => season.season_number === currentSeason
+                  )
+                ].name
+              }
+            </span>
             {isSelectOpen && (
               <SelectList>
-                {Array.from({ length: numberOfSeasons }, (_, i) => i + 1).map(
-                  (season) => (
-                    <SelectItem key={season} onClick={() => setSeason(season)}>
-                      시즌 {season}
-                    </SelectItem>
-                  )
-                )}
+                {seasons.map((season) => (
+                  <SelectItem
+                    key={season.id}
+                    onClick={() => setCurrentSeason(season.season_number)}
+                  >
+                    {season.name}
+                  </SelectItem>
+                ))}
               </SelectList>
             )}
           </SeasonSelect>
