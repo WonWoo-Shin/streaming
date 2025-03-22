@@ -197,7 +197,7 @@ export const Overview = styled.div`
   padding-top: 0px;
   color: ${(props) => props.theme.font.paragraph};
   font-size: 16px;
-  line-height: 1.38em;
+  line-height: 1.5;
   &.overflow {
     display: -webkit-box;
     -webkit-line-clamp: 2;

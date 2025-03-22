@@ -12,14 +12,11 @@ import {
   EpisodeNumber,
   EpisodeMainInfo,
   EpisodeOverview,
-  Season,
-  SeasonSelect,
-  SelectList,
-  SelectItem,
 } from "../../styles/modal/modalColumnListStyle";
 import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
 import { useState } from "react";
+import { SeasonNav } from "./SeasonNav";
 
 interface IEpisodeProps {
   itemId: IItemList["id"];
@@ -27,45 +24,21 @@ interface IEpisodeProps {
 }
 
 export const ModalEpisode = ({ itemId, seasons }: IEpisodeProps) => {
-  const [currentSeason, setCurrentSeason] = useState(1);
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [selectSeason, setSelectSeason] = useState(1);
 
   const { data: episodeData, isLoading } = useQuery<IGetEpisodesResults>({
-    queryKey: ["episode", itemId, currentSeason],
-    queryFn: () => getEpisode(itemId, currentSeason),
+    queryKey: ["episode", itemId, selectSeason],
+    queryFn: () => getEpisode(itemId, selectSeason),
   });
 
   return (
     <>
       {seasons && seasons.length > 1 && (
-        <Season>
-          <SeasonSelect
-            onClick={() => setIsSelectOpen((prev) => !prev)}
-            $isSelectOpen={isSelectOpen}
-          >
-            <span>
-              {
-                seasons[
-                  seasons.findIndex(
-                    (season) => season.season_number === currentSeason
-                  )
-                ].name
-              }
-            </span>
-            {isSelectOpen && (
-              <SelectList>
-                {seasons.map((season) => (
-                  <SelectItem
-                    key={season.id}
-                    onClick={() => setCurrentSeason(season.season_number)}
-                  >
-                    {season.name}
-                  </SelectItem>
-                ))}
-              </SelectList>
-            )}
-          </SeasonSelect>
-        </Season>
+        <SeasonNav
+          seasons={seasons}
+          selectSeason={selectSeason}
+          setSelectSeason={setSelectSeason}
+        />
       )}
       {isLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>

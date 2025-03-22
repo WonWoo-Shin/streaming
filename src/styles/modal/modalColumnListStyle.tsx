@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 export const Season = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 `;
 
+export const EpisodeCount = styled.span`
+  font-size: 18px;
+  color: ${(props) => props.theme.font.secondary};
+`;
+
 const selectValue = {
-  height: "40px",
   padding: "10px 20px",
 };
 

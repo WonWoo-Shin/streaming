@@ -36,6 +36,7 @@ export interface ISeasons {
   id: number;
   name: string;
   season_number: number;
+  episode_count: number;
 }
 
 export interface IGetVideos {

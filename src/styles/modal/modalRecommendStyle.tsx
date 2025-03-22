@@ -15,11 +15,11 @@ export const ItemContainer = styled.li`
 
 export const ItemImage = styled.div`
   position: relative;
+  margin-bottom: 7px;
   img {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
-    margin-bottom: 10px;
     border-radius: 5px;
     object-fit: cover;
   }
@@ -37,6 +37,7 @@ export const ItemTitle = styled.span`
   display: block;
   padding-right: 5px;
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.5;
+  word-break: keep-all;
   color: ${(props) => props.theme.font.paragraph};
 `;
