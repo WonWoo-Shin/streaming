@@ -131,19 +131,6 @@ export const GlobalStyle = styled.createGlobalStyle`
     @media (max-width: 1100px) {
       font-size: 1.4vw;
     }
-    &::-webkit-scrollbar {
-      width: var(--scroll-width);
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.scrollBar.scrollThumb};
-      border-radius: 20px;
-      background-clip: padding-box;
-      border: 4px solid rgba(0, 0, 0, 0);
-    }
-    &::-webkit-scrollbar-track {
-      padding: 5px;
-      background-color: ${(props) => props.theme.scrollBar.scrollTrack};
-    }
     &.modal-open {
       overflow: hidden;
       padding-right: var(--scroll-width);
@@ -171,6 +158,19 @@ export const GlobalStyle = styled.createGlobalStyle`
   * {
     box-sizing: border-box;
     user-select: none;
+    &::-webkit-scrollbar {
+      width: var(--scroll-width);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.scrollBar.scrollThumb};
+      border-radius: 20px;
+      background-clip: padding-box;
+      border: 4px solid rgba(0, 0, 0, 0);
+    }
+    &::-webkit-scrollbar-track {
+      padding: 5px;
+      background-color: ${(props) => props.theme.scrollBar.scrollTrack};
+    }
   }
   a {
     text-decoration: none;

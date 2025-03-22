@@ -9,7 +9,7 @@ export const Season = styled.div`
 
 const selectValue = {
   height: "40px",
-  padding: "15px",
+  padding: "10px 20px",
 };
 
 export const SeasonSelect = styled.div<{ $isSelectOpen: boolean }>`
@@ -17,14 +17,18 @@ export const SeasonSelect = styled.div<{ $isSelectOpen: boolean }>`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 100px;
-  height: ${selectValue.height};
-  padding: 0 ${selectValue.padding};
-  border-radius: ${(props) => (props.$isSelectOpen ? "3px 3px 0 0 " : "3px")};
+  max-width: 250px;
+  padding: ${selectValue.padding};
+  border-radius: 3px;
   background-color: ${(props) => props.theme.background.tertiary};
   font-size: 17px;
+  line-height: 1.5;
   color: ${(props) => props.theme.font.secondary};
   cursor: pointer;
+  span {
+    margin-right: 15px;
+    word-break: keep-all;
+  }
   &::after {
     content: "▼";
     font-size: 8px;
@@ -34,21 +38,26 @@ export const SeasonSelect = styled.div<{ $isSelectOpen: boolean }>`
 `;
 
 export const SelectList = styled.ul`
+  overflow-y: auto;
   position: absolute;
+  top: 100%;
   right: 0;
-  top: ${selectValue.height};
-  width: 100%;
-  border-radius: 0 0 3px 3px;
+  max-height: 300px;
+  margin-top: 2px;
+  white-space: nowrap;
+  border-radius: 3px;
   background-color: ${(props) => props.theme.background.tertiary};
+  &::-webkit-scrollbar-track {
+    padding: 5px;
+    background-color: inherit;
+  }
 `;
 
 export const SelectItem = styled.li`
   display: flex;
   align-items: center;
-  padding: 0 ${selectValue.padding};
-  width: 100%;
-  height: ${selectValue.height};
-  border-top: 2px solid ${(props) => props.theme.etc.divider};
+  min-width: 130px;
+  padding: ${selectValue.padding};
   &:hover {
     background-color: ${(props) => props.theme.font.primary}10;
   }
