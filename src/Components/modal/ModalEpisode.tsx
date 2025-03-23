@@ -33,7 +33,7 @@ export const ModalEpisode = ({ itemId, seasons }: IEpisodeProps) => {
 
   return (
     <>
-      {seasons && seasons.length > 1 && (
+      {seasons && (
         <SeasonNav
           seasons={seasons}
           selectSeason={selectSeason}

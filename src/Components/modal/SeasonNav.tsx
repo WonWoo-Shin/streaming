@@ -29,24 +29,26 @@ export const SeasonNav = ({
   return (
     <Season>
       <EpisodeCount>{`${currentSeason.episode_count}개 에피소드`}</EpisodeCount>
-      <SeasonSelect
-        onClick={() => setIsSelectOpen((prev) => !prev)}
-        $isSelectOpen={isSelectOpen}
-      >
-        <span>{currentSeason.name}</span>
-        {isSelectOpen && (
-          <SelectList>
-            {seasons.map((season) => (
-              <SelectItem
-                key={season.id}
-                onClick={() => setSelectSeason(season.season_number)}
-              >
-                {season.name}
-              </SelectItem>
-            ))}
-          </SelectList>
-        )}
-      </SeasonSelect>
+      {seasons.length > 1 && (
+        <SeasonSelect
+          onClick={() => setIsSelectOpen((prev) => !prev)}
+          $isSelectOpen={isSelectOpen}
+        >
+          <span>{currentSeason.name}</span>
+          {isSelectOpen && (
+            <SelectList>
+              {seasons.map((season) => (
+                <SelectItem
+                  key={season.id}
+                  onClick={() => setSelectSeason(season.season_number)}
+                >
+                  {season.name}
+                </SelectItem>
+              ))}
+            </SelectList>
+          )}
+        </SeasonSelect>
+      )}
     </Season>
   );
 };
