@@ -60,8 +60,9 @@ export const SelectList = styled.ul`
 export const SelectItem = styled.li`
   display: flex;
   align-items: center;
-  min-width: 130px;
+  /* min-width: 130px; */
   padding: ${selectValue.padding};
+  padding-right: 50px;
   &:hover {
     background-color: ${(props) => props.theme.font.primary}10;
   }
@@ -123,15 +124,14 @@ export const PlayIcon = styled.div`
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const VideoInfo = styled(FlexColumn)`
-  justify-content: center;
-  gap: 40px;
+  padding: 40px 0;
 `;
 
 export const EpisodeInfo = styled(FlexColumn)`
-  justify-content: space-between;
   padding: 10px 0;
 `;
 
@@ -141,6 +141,7 @@ export const EpisodeMainInfo = styled(FlexColumn)`
 
 export const ListName = styled.span`
   font-size: 19px;
+  line-height: 1.5;
   color: ${(props) => props.theme.font.paragraph};
 `;
 

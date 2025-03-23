@@ -139,6 +139,7 @@ export const Title = styled.h1`
   font-size: 40px;
   line-height: 1.2;
   font-weight: 600;
+  word-break: keep-all;
 `;
 
 export const Genre = styled.p`

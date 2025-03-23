@@ -71,6 +71,7 @@ export const Title = styled.div`
 export const Text = styled.span`
   font-size: 1em;
   line-height: 1.2;
+  word-break: keep-all;
 `;
 
 export const ItemPreview = styled(motion.div)`
