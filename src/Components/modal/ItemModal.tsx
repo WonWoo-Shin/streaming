@@ -8,14 +8,13 @@ import {
 } from "../../styles/modal/modalStyle";
 import {
   AnimatePresence,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
   Variants,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { videoModalState } from "../../atom";
 import { WatchVideo } from "./WatchVIdeo";
@@ -60,16 +59,12 @@ export const ItemModal = ({ itemId }: IModalProps) => {
 
   if (!itemId) return null;
 
+  const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const body = document.body;
-  useEffect(() => {
-    if (itemId) {
-      body.classList.add("modal-open");
-    }
-  }, []);
-
-  const navigate = useNavigate();
+  body.classList.add("modal-open"); // body css에서 scroll 없애기
 
   const videoModal = useRecoilValue(videoModalState);
 
@@ -99,7 +94,6 @@ export const ItemModal = ({ itemId }: IModalProps) => {
               exit="exit"
               onAnimationComplete={(definition) => {
                 if (definition === "exit") {
-                  body.classList.remove("modal-open");
                   navigate("/");
                 }
               }}

@@ -9,6 +9,11 @@ import { Main } from "./main/Main";
 export const Home = () => {
   const { itemId } = useParams();
 
+  const body = document.body;
+  if (!itemId) {
+    body.classList.remove("modal-open");
+  }
+
   return (
     <>
       <Wrapper>
