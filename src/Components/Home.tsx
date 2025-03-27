@@ -6,13 +6,10 @@ import { Header } from "./Header/Header";
 import { ItemModal } from "./modal/ItemModal";
 import { Main } from "./main/Main";
 
+import { AnimatePresence } from "framer-motion";
+
 export const Home = () => {
   const { itemId } = useParams();
-
-  const body = document.body;
-  if (!itemId) {
-    body.classList.remove("modal-open");
-  }
 
   return (
     <>
@@ -21,7 +18,15 @@ export const Home = () => {
         <Banner />
         <Main />
         <Footer />
-        {itemId && <ItemModal itemId={itemId} />}
+        <AnimatePresence
+          onExitComplete={() => {
+            const body = document.body;
+            body.classList.remove("modal-open");
+          }}
+        >
+          {" "}
+          {itemId && <ItemModal itemId={itemId} />}
+        </AnimatePresence>
       </Wrapper>
     </>
   );

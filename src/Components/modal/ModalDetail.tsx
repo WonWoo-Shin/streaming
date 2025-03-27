@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDetail, getVideos } from "../../api";
 import { IGetDetail, IGetVideos, TCurrentTab, TMediaType } from "../../type";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Badge,
   BadgeArea,
@@ -31,18 +31,25 @@ import { videoModalState } from "../../atom";
 import { ModalRecommend } from "./ModalRecommend";
 import { ModalEpisode } from "./ModalEpisode";
 
-interface IModalProps {
+interface IProps {
   itemId: number;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IParams {
   mediaType: TMediaType;
 }
 
-export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
+export const ModalDetail = ({ itemId }: IProps) => {
   const { mediaType } = useParams() as unknown as IParams;
-  if (!mediaType) return null;
+
+  const [preMediaType, setPreMediaType] = useState(mediaType);
+  useEffect(() => {
+    if (mediaType) {
+      setPreMediaType(mediaType);
+    }
+  }, [mediaType]); // 모달창이 닫힐 때 자연스러운 애니메이션을 위해 preState에 저장
+
+  const navigate = useNavigate();
 
   const { data: detailData, isFetched: isDetailFetched } = useQuery<IGetDetail>(
     {
@@ -98,7 +105,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
           )}
         ></BgImage>
         <ModalNav>
-          <ExitBtn onClick={() => setIsModalOpen(false)}>
+          <ExitBtn onClick={() => navigate("/")}>
             {" "}
             <svg
               width="24"
@@ -213,7 +220,7 @@ export const ModalDetail = ({ itemId, setIsModalOpen }: IModalProps) => {
       </ModalOverview>
       <ModalContent>
         <ContentNav>
-          {mediaType === "tv" && (
+          {preMediaType === "tv" && (
             <NavItem
               tab="episode"
               tabName="에피소드"

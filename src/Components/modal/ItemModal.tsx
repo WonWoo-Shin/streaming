@@ -19,10 +19,6 @@ import { useRecoilValue } from "recoil";
 import { videoModalState } from "../../atom";
 import { WatchVideo } from "./WatchVIdeo";
 
-interface IModalProps {
-  itemId: string | undefined;
-}
-
 const modalVariant: Variants = {
   initial: {
     opacity: 0,
@@ -53,15 +49,15 @@ const modalWindowVariant: Variants = {
   },
 };
 
-export const ItemModal = ({ itemId }: IModalProps) => {
+interface IProps {
+  itemId: string;
+}
+
+export const ItemModal = ({ itemId }: IProps) => {
   const rootModal = document.getElementById("root-modal");
   if (!rootModal) return null;
 
-  if (!itemId) return null;
-
   const navigate = useNavigate();
-
-  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const body = document.body;
   body.classList.add("modal-open"); // body css에서 scroll 없애기
@@ -84,67 +80,57 @@ export const ItemModal = ({ itemId }: IModalProps) => {
   return (
     <>
       {createPortal(
-        <AnimatePresence>
-          {isModalOpen && (
-            <ModalContainer
-              id="modal-container"
-              variants={modalVariant}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              onAnimationComplete={(definition) => {
-                if (definition === "exit") {
-                  navigate("/");
-                }
-              }}
-            >
-              <ModalBackground onClick={() => setIsModalOpen(false)} />
-              <ModalWindow
-                ref={modalWindowRef}
-                variants={modalWindowVariant}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <ModalDetail
-                  key={itemId} // Link로 인한 itemId 변경시 재랜더링
-                  itemId={+itemId}
-                  setIsModalOpen={setIsModalOpen}
-                />
-                <AnimatePresence>
-                  {showScrollUp && (
-                    <ModalScrollUp>
-                      <ScrollUpBtn
-                        onClick={moveScrollTop}
-                        variants={modalVariant}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        transition={{ duration: 0.15 }}
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M17.293 11.707a1 1 0 0 0 1.414-1.414l-6-6a1 1 0 0 0-1.414 0l-6 6a1 1 0 1 0 1.414 1.414L11 7.414V19a1 1 0 1 0 2 0V7.414l4.293 4.293Z"
-                            fill="currentcolor"
-                          ></path>
-                        </svg>
-                      </ScrollUpBtn>
-                    </ModalScrollUp>
-                  )}
-                </AnimatePresence>
-              </ModalWindow>
-              <AnimatePresence>
-                {videoModal.isOpen && <WatchVideo />}
-              </AnimatePresence>
-            </ModalContainer>
-          )}
-        </AnimatePresence>,
+        <ModalContainer
+          id="modal-container"
+          variants={modalVariant}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <ModalBackground onClick={() => navigate("/")} />
+          <ModalWindow
+            ref={modalWindowRef}
+            variants={modalWindowVariant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <ModalDetail
+              key={itemId} // Link로 인한 itemId 변경시 재랜더링
+              itemId={+itemId}
+            />
+            <AnimatePresence>
+              {showScrollUp && (
+                <ModalScrollUp>
+                  <ScrollUpBtn
+                    onClick={moveScrollTop}
+                    variants={modalVariant}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={{ duration: 0.15 }}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.293 11.707a1 1 0 0 0 1.414-1.414l-6-6a1 1 0 0 0-1.414 0l-6 6a1 1 0 1 0 1.414 1.414L11 7.414V19a1 1 0 1 0 2 0V7.414l4.293 4.293Z"
+                        fill="currentcolor"
+                      ></path>
+                    </svg>
+                  </ScrollUpBtn>
+                </ModalScrollUp>
+              )}
+            </AnimatePresence>
+          </ModalWindow>
+          <AnimatePresence>
+            {videoModal.isOpen && <WatchVideo />}
+          </AnimatePresence>
+        </ModalContainer>,
         rootModal
       )}
     </>
