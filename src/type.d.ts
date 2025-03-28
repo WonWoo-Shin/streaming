@@ -52,6 +52,12 @@ export interface IGetVideosResults {
   results: IGetVideos[];
 }
 
+export interface IWatchVideo {
+  isOpen: boolean;
+  videoKey: IGetVideos["key"];
+  videoName: string;
+}
+
 export interface IGetEpisodes {
   id: number;
   air_date: string;

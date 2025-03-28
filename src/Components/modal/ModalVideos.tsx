@@ -1,5 +1,5 @@
 import { ContentsMessage } from "../../styles/modal/modalStyle";
-import { IGetVideos } from "../../type";
+import { IGetVideos, IWatchVideo } from "../../type";
 import { convertDate } from "../../utils/convertDate";
 import {
   ColumnListContainer,
@@ -10,17 +10,18 @@ import {
   ListDate,
   PlayIcon,
 } from "../../styles/modal/modalColumnListStyle";
-import { useSetRecoilState } from "recoil";
-import { videoModalState } from "../../atom";
 
 interface IModalVideosProps {
   videos: IGetVideos[];
   isLoading: boolean;
+  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
 }
 
-export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
-  const setVideoModal = useSetRecoilState(videoModalState);
-
+export const ModalVideos = ({
+  videos,
+  isLoading,
+  setWatchVideo,
+}: IModalVideosProps) => {
   return (
     <>
       {isLoading ? (
@@ -38,13 +39,13 @@ export const ModalVideos = ({ videos, isLoading }: IModalVideosProps) => {
               video.site === "YouTube" && (
                 <ColumnListContainer key={video.id}>
                   <ColumnList
-                    onClick={() => {
-                      setVideoModal({
+                    onClick={() =>
+                      setWatchVideo({
                         isOpen: true,
-                        key: video.key,
-                        name: video.name,
-                      });
-                    }}
+                        videoKey: video.key,
+                        videoName: video.name,
+                      })
+                    }
                   >
                     <ListThumbnail>
                       <img

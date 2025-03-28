@@ -15,9 +15,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { videoModalState } from "../../atom";
-import { WatchVideo } from "./WatchVIdeo";
 
 const modalVariant: Variants = {
   initial: {
@@ -62,8 +59,6 @@ export const ItemModal = ({ itemId }: IProps) => {
   const body = document.body;
   body.classList.add("modal-open"); // body css에서 scroll 없애기
 
-  const videoModal = useRecoilValue(videoModalState);
-
   const modalWindowRef = useRef<HTMLDivElement>(null);
   const [showScrollUp, setShowScrollUp] = useState(false);
   const { scrollY } = useScroll({ container: modalWindowRef });
@@ -81,7 +76,6 @@ export const ItemModal = ({ itemId }: IProps) => {
     <>
       {createPortal(
         <ModalContainer
-          id="modal-container"
           variants={modalVariant}
           initial="initial"
           animate="animate"
@@ -127,9 +121,6 @@ export const ItemModal = ({ itemId }: IProps) => {
               )}
             </AnimatePresence>
           </ModalWindow>
-          <AnimatePresence>
-            {videoModal.isOpen && <WatchVideo />}
-          </AnimatePresence>
         </ModalContainer>,
         rootModal
       )}

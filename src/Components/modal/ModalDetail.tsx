@@ -1,6 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDetail, getVideos } from "../../api";
-import { IGetDetail, IGetVideos, TCurrentTab, TMediaType } from "../../type";
+import {
+  IGetDetail,
+  IGetVideos,
+  IWatchVideo,
+  TCurrentTab,
+  TMediaType,
+} from "../../type";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Badge,
@@ -26,10 +32,10 @@ import { useEffect, useRef, useState } from "react";
 import { NavItem } from "./NavItem";
 import { ModalVideos } from "./ModalVideos";
 import { convertDate } from "../../utils/convertDate";
-import { useSetRecoilState } from "recoil";
-import { videoModalState } from "../../atom";
 import { ModalRecommend } from "./ModalRecommend";
 import { ModalEpisode } from "./ModalEpisode";
+import { WatchVideo } from "./WatchVIdeo";
+import { AnimatePresence } from "framer-motion";
 
 interface IProps {
   itemId: number;
@@ -74,7 +80,6 @@ export const ModalDetail = ({ itemId }: IProps) => {
     enabled: videosData?.length === 0 && !!detailData,
   });
 
-  const setVideoModal = useSetRecoilState(videoModalState);
   const videos = [...(videosData || []), ...(videosPreData || [])];
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
@@ -94,6 +99,12 @@ export const ModalDetail = ({ itemId }: IProps) => {
   const [currentTab, setCurrentTab] = useState<TCurrentTab>(
     mediaType === "tv" ? "episode" : "video"
   );
+
+  const [watchVideo, setWatchVideo] = useState<IWatchVideo>({
+    isOpen: false,
+    videoKey: "",
+    videoName: "",
+  });
 
   return (
     <>
@@ -165,10 +176,10 @@ export const ModalDetail = ({ itemId }: IProps) => {
             <BadgeArea>
               <Badge
                 onClick={() =>
-                  setVideoModal({
+                  setWatchVideo({
                     isOpen: true,
-                    key: mainTraier?.key ?? "noVideo",
-                    name: "트레일러 보기",
+                    videoKey: mainTraier?.key ?? "noVideo",
+                    videoName: "트레일러 재생",
                   })
                 }
               >
@@ -248,12 +259,18 @@ export const ModalDetail = ({ itemId }: IProps) => {
           <ModalVideos
             videos={videos}
             isLoading={isVideoLoading || isPreVideoLoading}
+            setWatchVideo={setWatchVideo}
           />
         )}
         {currentTab === "recommend" && (
           <ModalRecommend itemId={itemId} mediaType={mediaType} />
         )}
       </ModalContent>
+      <AnimatePresence>
+        {watchVideo.isOpen && (
+          <WatchVideo {...watchVideo} setWatchVideo={setWatchVideo} />
+        )}
+      </AnimatePresence>
     </>
   );
 };
