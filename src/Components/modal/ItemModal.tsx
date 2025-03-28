@@ -76,6 +76,7 @@ export const ItemModal = ({ itemId }: IProps) => {
     <>
       {createPortal(
         <ModalContainer
+          id="modal-container"
           variants={modalVariant}
           initial="initial"
           animate="animate"

@@ -25,8 +25,8 @@ interface IProps extends IWatchVideo {
 }
 
 export const WatchVideo = ({ videoKey, videoName, setWatchVideo }: IProps) => {
-  const rootModal = document.getElementById("root-modal");
-  if (!rootModal) return null;
+  const modalContainer = document.getElementById("modal-container");
+  if (!modalContainer) return null;
 
   return (
     <>
@@ -84,7 +84,7 @@ export const WatchVideo = ({ videoKey, videoName, setWatchVideo }: IProps) => {
             )}
           </VideoModalWindow>
         </ModalContainer>,
-        rootModal
+        modalContainer
       )}
     </>
   );
