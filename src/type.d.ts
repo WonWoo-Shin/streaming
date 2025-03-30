@@ -72,6 +72,11 @@ export interface IGetEpisodesResults {
   episodes: IGetEpisodes[];
 }
 
+export interface IEpisodeModal {
+  isOpen: boolean;
+  episodeId: IGetEpisodes["id"];
+}
+
 export type TDirection = "left" | "right";
 
 export type TMediaType = "all" | "movie" | "tv";

@@ -1,5 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { IGetDetail, IGetEpisodesResults, IItemList } from "../../type";
+import {
+  IEpisodeModal,
+  IGetDetail,
+  IGetEpisodesResults,
+  IItemList,
+} from "../../type";
 import { getEpisode } from "../../api";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
 import {
@@ -17,6 +22,8 @@ import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
 import { useState } from "react";
 import { SeasonNav } from "./SeasonNav";
+import { EpisodeModal } from "./EpisodeModal";
+import { AnimatePresence } from "framer-motion";
 
 interface IEpisodeProps {
   itemId: IItemList["id"];
@@ -36,6 +43,11 @@ export const ModalEpisode = ({
     queryFn: () => getEpisode(itemId, selectSeason),
   });
 
+  const [episodeModal, setEpisodeModal] = useState<IEpisodeModal>({
+    isOpen: false,
+    episodeId: 0,
+  });
+
   return (
     <>
       {seasons && (
@@ -53,7 +65,11 @@ export const ModalEpisode = ({
         <ul>
           {episodeData?.episodes.map((episode) => (
             <ColumnListContainer key={episode.id}>
-              <ColumnList>
+              <ColumnList
+                onClick={() =>
+                  setEpisodeModal({ isOpen: true, episodeId: episode.id })
+                }
+              >
                 <ListThumbnail className="thumbnail">
                   <img
                     src={createImage(
@@ -78,6 +94,11 @@ export const ModalEpisode = ({
           ))}
         </ul>
       )}
+      <AnimatePresence>
+        {episodeModal.isOpen && (
+          <EpisodeModal {...episodeModal} setEpisodeModal={setEpisodeModal} />
+        )}
+      </AnimatePresence>
     </>
   );
 };
