@@ -21,9 +21,14 @@ import { SeasonNav } from "./SeasonNav";
 interface IEpisodeProps {
   itemId: IItemList["id"];
   seasons: IGetDetail["seasons"];
+  backDropPath: string;
 }
 
-export const ModalEpisode = ({ itemId, seasons }: IEpisodeProps) => {
+export const ModalEpisode = ({
+  itemId,
+  seasons,
+  backDropPath,
+}: IEpisodeProps) => {
   const [selectSeason, setSelectSeason] = useState(1);
 
   const { data: episodeData, isLoading } = useQuery<IGetEpisodesResults>({
@@ -50,7 +55,13 @@ export const ModalEpisode = ({ itemId, seasons }: IEpisodeProps) => {
             <ColumnListContainer key={episode.id}>
               <ColumnList>
                 <ListThumbnail className="thumbnail">
-                  <img src={createImage("w400", episode.still_path)} alt="" />
+                  <img
+                    src={createImage(
+                      "w400",
+                      episode.still_path ?? backDropPath
+                    )}
+                    alt=""
+                  />
                 </ListThumbnail>
                 <EpisodeInfo>
                   <EpisodeMainInfo>

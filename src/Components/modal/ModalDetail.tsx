@@ -253,7 +253,11 @@ export const ModalDetail = ({ itemId }: IProps) => {
           />
         </ContentNav>
         {currentTab === "episode" && (
-          <ModalEpisode itemId={itemId} seasons={detailData?.seasons} />
+          <ModalEpisode
+            itemId={itemId}
+            seasons={detailData?.seasons}
+            backDropPath={detailData?.backdrop_path ?? ""}
+          />
         )}
         {currentTab === "video" && (
           <ModalVideos

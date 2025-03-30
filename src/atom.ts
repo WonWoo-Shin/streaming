@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IGetVideos, TMediaType, TTime } from "./type";
+import { TMediaType, TTime } from "./type";
 
 export const isDarkState = atom({
   key: "isDarkState",
