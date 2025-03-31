@@ -61,7 +61,6 @@ export const SelectList = styled.ul`
 export const SelectItem = styled.li`
   display: flex;
   align-items: center;
-  /* min-width: 130px; */
   padding: ${selectValue.padding};
   padding-right: 50px;
   &:hover {
@@ -160,7 +159,6 @@ export const EpisodeOverview = styled(ListDate)`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow-y: hidden;
-  text-overflow: ellipsis;
   line-height: 1.5;
 `;
 

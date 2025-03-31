@@ -2,7 +2,10 @@ import { createPortal } from "react-dom";
 import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
 import { IEpisodeModal } from "../../type";
-import { EpisodeModalWindow } from "../../styles/modal/episodeModalStyle";
+import {
+  EpisodeModalWindow,
+  ModalHeader,
+} from "../../styles/modal/episodeModalStyle";
 
 const modalVariant: Variants = {
   initial: {
@@ -59,7 +62,11 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
             initial="initial"
             animate="animate"
             exit="exit"
-          ></EpisodeModalWindow>
+          >
+            <ModalHeader>
+              <h1>에피소드 정보</h1>
+            </ModalHeader>
+          </EpisodeModalWindow>
         </ModalContainer>,
         modalContainer
       )}

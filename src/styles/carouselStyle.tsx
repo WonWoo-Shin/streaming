@@ -71,7 +71,10 @@ export const Title = styled.div`
 export const Text = styled.span`
   font-size: 1em;
   line-height: 1.2;
-  word-break: keep-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
 `;
 
 export const ItemPreview = styled(motion.div)`

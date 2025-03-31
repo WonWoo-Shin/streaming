@@ -139,7 +139,10 @@ export const Title = styled.h1`
   font-size: 40px;
   line-height: 1.2;
   font-weight: 600;
-  word-break: keep-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
 `;
 
 export const Genre = styled.p`
@@ -186,7 +189,7 @@ export const Badge = styled.div`
 
 export const Poster = styled.img`
   width: 200px;
-  height: 280px;
+  aspect-ratio: 2 / 3;
   border-radius: 5px;
   object-fit: cover;
 `;
@@ -203,7 +206,7 @@ export const Overview = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow-y: hidden;
   }
 `;
 
