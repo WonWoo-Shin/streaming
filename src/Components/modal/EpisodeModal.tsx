@@ -45,6 +45,10 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
 
+  const closeModal = () => {
+    setEpisodeModal({ isOpen: false, episodeId: 0 });
+  };
+
   return (
     <>
       {createPortal(
@@ -54,9 +58,7 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
           animate="animate"
           exit="exit"
         >
-          <ModalBackground
-            onClick={() => setEpisodeModal({ isOpen: false, episodeId: 0 })}
-          />
+          <ModalBackground onClick={closeModal} />
           <EpisodeModalWindow
             variants={modalWindowVariant}
             initial="initial"
@@ -65,6 +67,21 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
           >
             <ModalHeader>
               <h1>에피소드 정보</h1>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={closeModal}
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M6.052 4.352a1.202 1.202 0 0 0-1.7 1.7L10.3 12l-5.948 5.948a1.202 1.202 0 0 0 1.7 1.7L12 13.7l5.948 5.948a1.202 1.202 0 0 0 1.7-1.7L13.7 12l5.948-5.948a1.202 1.202 0 0 0-1.7-1.7L12 10.3 6.052 4.352Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
             </ModalHeader>
           </EpisodeModalWindow>
         </ModalContainer>,

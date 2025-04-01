@@ -9,8 +9,14 @@ export const EpisodeModalWindow = styled(ModalWindow)`
 `;
 
 export const ModalHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: ${(props) => props.theme.font.primary};
   h1 {
     font-size: 20px;
-    color: ${(props) => props.theme.font.primary};
+  }
+  svg {
+    cursor: pointer;
   }
 `;
