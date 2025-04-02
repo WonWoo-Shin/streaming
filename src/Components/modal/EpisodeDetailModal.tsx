@@ -1,14 +1,22 @@
 import { createPortal } from "react-dom";
 import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
-import { IEpisodeModal } from "../../type";
+import {
+  IEpisodeModal,
+  IGetDetail,
+  IGetEpisodeVideosResults,
+} from "../../type";
 import {
   EpisodeModalWindow,
   ModalHeader,
   Overview,
+  Section,
   StillImage,
+  SubHead,
 } from "../../styles/modal/episodeModalStyle";
 import { createImage } from "../../utils/createImgae";
+import { useQuery } from "@tanstack/react-query";
+import { getEpisodeVideo } from "../../api";
 
 const modalVariant: Variants = {
   initial: {
@@ -41,18 +49,27 @@ const modalWindowVariant: Variants = {
 };
 
 interface IProps extends IEpisodeModal {
+  itemId: IGetDetail["id"];
   setEpisodeModal: React.Dispatch<React.SetStateAction<IEpisodeModal>>;
 }
 
-export const EpisodeDetailModal = ({ episode, setEpisodeModal }: IProps) => {
+export const EpisodeDetailModal = ({
+  itemId,
+  episode,
+  setEpisodeModal,
+}: IProps) => {
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
+
+  const { data: episodeVideoData } = useQuery<IGetEpisodeVideosResults>({
+    queryKey: ["episodeVideo", episode.id],
+    queryFn: () =>
+      getEpisodeVideo(itemId, episode.season_number, episode.episode_number),
+  });
 
   const closeModal = () => {
     setEpisodeModal((prev) => ({ ...prev, isOpen: false }));
   };
-
-  console.log(episode.still_path);
 
   return (
     <>
@@ -93,10 +110,15 @@ export const EpisodeDetailModal = ({ episode, setEpisodeModal }: IProps) => {
             <StillImage>
               <img src={createImage("w780", episode.still_path)} alt="" />
             </StillImage>
-            <Overview>
-              <span>줄거리</span>
-              <p>{episode.overview}</p>
-            </Overview>
+            <Section>
+              <SubHead>줄거리</SubHead>
+              <Overview>{episode.overview}</Overview>
+            </Section>
+            {episodeVideoData?.results.length !== 0 && (
+              <Section>
+                <SubHead>동영상</SubHead>
+              </Section>
+            )}
           </EpisodeModalWindow>
         </ModalContainer>,
         modalContainer

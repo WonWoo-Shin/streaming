@@ -33,18 +33,20 @@ export const StillImage = styled.div`
   }
 `;
 
-export const Overview = styled.div`
+export const Section = styled.section`
   margin-bottom: 30px;
-  span {
-    display: block;
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    color: ${(props) => props.theme.font.secondary};
-  }
-  p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: ${(props) => props.theme.font.paragraph};
-  }
+`;
+
+export const SubHead = styled.span`
+  display: block;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${(props) => props.theme.font.secondary};
+`;
+
+export const Overview = styled.p`
+  font-size: 16px;
+  line-height: 1.5;
+  color: ${(props) => props.theme.font.paragraph};
 `;

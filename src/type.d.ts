@@ -62,6 +62,7 @@ export interface IGetEpisodes {
   id: number;
   air_date: string;
   episode_number: number;
+  season_number: number;
   name: string;
   overview: string;
   still_path: string;
@@ -75,6 +76,15 @@ export interface IGetEpisodesResults {
 export interface IEpisodeModal {
   isOpen: boolean;
   episode: IGetEpisodes;
+}
+
+export interface IGetEpisodeVideos {
+  name: string;
+  key: string;
+}
+
+export interface IGetEpisodeVideosResults {
+  results: IGetEpisodeVideos[];
 }
 
 export type TDirection = "left" | "right";

@@ -101,6 +101,7 @@ export const ModalEpisode = ({
         {episodeModal.isOpen && (
           <EpisodeDetailModal
             {...episodeModal}
+            itemId={itemId}
             setEpisodeModal={setEpisodeModal}
           />
         )}

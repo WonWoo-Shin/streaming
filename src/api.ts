@@ -1,5 +1,6 @@
 import {
   IGetDetail,
+  IGetEpisodes,
   IGetVideosResults,
   IItemList,
   TMediaType,
@@ -73,9 +74,22 @@ export const getVideos = async (
   return filteredVideos;
 };
 
-export const getEpisode = (itemId: IItemList["id"], seasonNumber: number) => {
+export const getEpisode = (
+  itemId: IItemList["id"],
+  seasonNumber: IGetEpisodes["season_number"]
+) => {
   return fetch(
     `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getEpisodeVideo = (
+  itemId: IItemList["id"],
+  seasonNumber: IGetEpisodes["season_number"],
+  episodeNumber: IGetEpisodes["episode_number"]
+) => {
+  return fetch(
+    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/videos?api_key=${API_KEY}&include_video_language=ja&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
 
