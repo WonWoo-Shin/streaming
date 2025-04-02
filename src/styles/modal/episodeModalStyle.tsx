@@ -12,11 +12,39 @@ export const ModalHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
   color: ${(props) => props.theme.font.primary};
   h1 {
     font-size: 20px;
+    font-weight: 600;
   }
   svg {
     cursor: pointer;
+  }
+`;
+
+export const StillImage = styled.div`
+  margin-bottom: 30px;
+  padding: 0 50px;
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+  }
+`;
+
+export const Overview = styled.div`
+  margin-bottom: 30px;
+  span {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: ${(props) => props.theme.font.secondary};
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: ${(props) => props.theme.font.paragraph};
   }
 `;

@@ -74,7 +74,7 @@ export interface IGetEpisodesResults {
 
 export interface IEpisodeModal {
   isOpen: boolean;
-  episodeId: IGetEpisodes["id"];
+  episode: IGetEpisodes;
 }
 
 export type TDirection = "left" | "right";

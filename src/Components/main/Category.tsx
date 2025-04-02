@@ -26,12 +26,17 @@ export const Category = ({
     queryKey: [categoryName, time, mediaType].filter(Boolean),
     queryFn: () => getFn(),
     select: (data) => {
+      const addMediaTypeResults = data.results.map((result) => ({
+        ...result,
+        media_type: result.media_type || mediaType, // media_type이 있다면 그대로 두고, 없다면 추가
+      }));
+      const allowMediaType: TMediaType[] = ["movie", "tv"];
+      const filterdMediaTypeResults = addMediaTypeResults.filter(
+        (result) => allowMediaType.includes(result.media_type) // media type movie, tv외의 것은 제외
+      );
       return {
         ...data,
-        results: data.results.map((result) => ({
-          ...result,
-          media_type: result.media_type || mediaType, // media_type이 있다면 그대로 두고, 없다면 추가
-        })),
+        results: filterdMediaTypeResults,
       };
     },
     staleTime: 60 * 60 * 1000,

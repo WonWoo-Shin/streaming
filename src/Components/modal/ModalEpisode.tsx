@@ -22,7 +22,7 @@ import { createImage } from "../../utils/createImgae";
 import { convertDate } from "../../utils/convertDate";
 import { useState } from "react";
 import { SeasonNav } from "./SeasonNav";
-import { EpisodeModal } from "./EpisodeModal";
+import { EpisodeDetailModal } from "./EpisodeDetailModal";
 import { AnimatePresence } from "framer-motion";
 
 interface IEpisodeProps {
@@ -45,7 +45,7 @@ export const ModalEpisode = ({
 
   const [episodeModal, setEpisodeModal] = useState<IEpisodeModal>({
     isOpen: false,
-    episodeId: 0,
+    episode: {} as any,
   });
 
   return (
@@ -67,7 +67,10 @@ export const ModalEpisode = ({
             <ColumnListContainer key={episode.id}>
               <ColumnList
                 onClick={() =>
-                  setEpisodeModal({ isOpen: true, episodeId: episode.id })
+                  setEpisodeModal({
+                    isOpen: true,
+                    episode,
+                  })
                 }
               >
                 <ListThumbnail className="thumbnail">
@@ -96,7 +99,10 @@ export const ModalEpisode = ({
       )}
       <AnimatePresence>
         {episodeModal.isOpen && (
-          <EpisodeModal {...episodeModal} setEpisodeModal={setEpisodeModal} />
+          <EpisodeDetailModal
+            {...episodeModal}
+            setEpisodeModal={setEpisodeModal}
+          />
         )}
       </AnimatePresence>
     </>

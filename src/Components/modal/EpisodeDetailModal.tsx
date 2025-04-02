@@ -5,7 +5,10 @@ import { IEpisodeModal } from "../../type";
 import {
   EpisodeModalWindow,
   ModalHeader,
+  Overview,
+  StillImage,
 } from "../../styles/modal/episodeModalStyle";
+import { createImage } from "../../utils/createImgae";
 
 const modalVariant: Variants = {
   initial: {
@@ -41,13 +44,15 @@ interface IProps extends IEpisodeModal {
   setEpisodeModal: React.Dispatch<React.SetStateAction<IEpisodeModal>>;
 }
 
-export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
+export const EpisodeDetailModal = ({ episode, setEpisodeModal }: IProps) => {
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
 
   const closeModal = () => {
-    setEpisodeModal({ isOpen: false, episodeId: 0 });
+    setEpisodeModal((prev) => ({ ...prev, isOpen: false }));
   };
+
+  console.log(episode.still_path);
 
   return (
     <>
@@ -66,7 +71,9 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
             exit="exit"
           >
             <ModalHeader>
-              <h1>에피소드 정보</h1>
+              <h1>
+                {episode.episode_number}화 {episode.name}
+              </h1>
               <svg
                 width="24"
                 height="24"
@@ -83,6 +90,13 @@ export const EpisodeModal = ({ episodeId, setEpisodeModal }: IProps) => {
                 ></path>
               </svg>
             </ModalHeader>
+            <StillImage>
+              <img src={createImage("w780", episode.still_path)} alt="" />
+            </StillImage>
+            <Overview>
+              <span>줄거리</span>
+              <p>{episode.overview}</p>
+            </Overview>
           </EpisodeModalWindow>
         </ModalContainer>,
         modalContainer
