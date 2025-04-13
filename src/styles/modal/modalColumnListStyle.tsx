@@ -128,7 +128,8 @@ const FlexColumn = styled.div`
 `;
 
 export const VideoInfo = styled(FlexColumn)`
-  padding: 40px 0;
+  justify-content: center;
+  gap: 25%;
 `;
 
 export const EpisodeInfo = styled(FlexColumn)`
