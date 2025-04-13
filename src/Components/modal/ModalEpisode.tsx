@@ -4,6 +4,7 @@ import {
   IGetDetail,
   IGetEpisodesResults,
   IItemList,
+  IWatchVideo,
 } from "../../type";
 import { getEpisode } from "../../api";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
@@ -29,12 +30,14 @@ interface IEpisodeProps {
   itemId: IItemList["id"];
   seasons: IGetDetail["seasons"];
   backDropPath: string;
+  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
 }
 
 export const ModalEpisode = ({
   itemId,
   seasons,
   backDropPath,
+  setWatchVideo,
 }: IEpisodeProps) => {
   const [selectSeason, setSelectSeason] = useState(1);
 
@@ -103,6 +106,7 @@ export const ModalEpisode = ({
             {...episodeModal}
             itemId={itemId}
             setEpisodeModal={setEpisodeModal}
+            setWatchVideo={setWatchVideo}
           />
         )}
       </AnimatePresence>

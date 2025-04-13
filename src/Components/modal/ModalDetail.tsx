@@ -209,7 +209,7 @@ export const ModalDetail = ({ itemId }: IProps) => {
             </BadgeArea>
           </TitleArea>
           <Poster
-            src={createImage("w400", detailData?.poster_path ?? "")}
+            src={createImage("w342", detailData?.poster_path ?? "")}
             alt=""
           />
         </Header>
@@ -257,6 +257,7 @@ export const ModalDetail = ({ itemId }: IProps) => {
             itemId={itemId}
             seasons={detailData?.seasons}
             backDropPath={detailData?.backdrop_path ?? ""}
+            setWatchVideo={setWatchVideo}
           />
         )}
         {currentTab === "video" && (

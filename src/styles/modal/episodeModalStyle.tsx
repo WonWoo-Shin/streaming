@@ -35,6 +35,9 @@ export const StillImage = styled.div`
 
 export const Section = styled.section`
   margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 export const SubHead = styled.span`

@@ -78,15 +78,6 @@ export interface IEpisodeModal {
   episode: IGetEpisodes;
 }
 
-export interface IGetEpisodeVideos {
-  name: string;
-  key: string;
-}
-
-export interface IGetEpisodeVideosResults {
-  results: IGetEpisodeVideos[];
-}
-
 export type TDirection = "left" | "right";
 
 export type TMediaType = "all" | "movie" | "tv";

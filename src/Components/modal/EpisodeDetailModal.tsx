@@ -4,7 +4,8 @@ import { Variants } from "framer-motion";
 import {
   IEpisodeModal,
   IGetDetail,
-  IGetEpisodeVideosResults,
+  IGetVideosResults,
+  IWatchVideo,
 } from "../../type";
 import {
   EpisodeModalWindow,
@@ -17,6 +18,7 @@ import {
 import { createImage } from "../../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getEpisodeVideo } from "../../api";
+import { VideoListItem } from "./VideoListItem";
 
 const modalVariant: Variants = {
   initial: {
@@ -51,17 +53,19 @@ const modalWindowVariant: Variants = {
 interface IProps extends IEpisodeModal {
   itemId: IGetDetail["id"];
   setEpisodeModal: React.Dispatch<React.SetStateAction<IEpisodeModal>>;
+  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
 }
 
 export const EpisodeDetailModal = ({
   itemId,
   episode,
   setEpisodeModal,
+  setWatchVideo,
 }: IProps) => {
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
 
-  const { data: episodeVideoData } = useQuery<IGetEpisodeVideosResults>({
+  const { data: episodeVideoData } = useQuery<IGetVideosResults>({
     queryKey: ["episodeVideo", episode.id],
     queryFn: () =>
       getEpisodeVideo(itemId, episode.season_number, episode.episode_number),
@@ -114,9 +118,19 @@ export const EpisodeDetailModal = ({
               <SubHead>줄거리</SubHead>
               <Overview>{episode.overview}</Overview>
             </Section>
-            {episodeVideoData?.results.length !== 0 && (
+            {!!episodeVideoData?.results.length && (
               <Section>
                 <SubHead>동영상</SubHead>
+                <ul>
+                  {episodeVideoData?.results.map((video) => (
+                    <VideoListItem
+                      key={video.id}
+                      video={video}
+                      setWatchVideo={setWatchVideo}
+                      thumbnailWidth="220px"
+                    />
+                  ))}
+                </ul>
               </Section>
             )}
           </EpisodeModalWindow>

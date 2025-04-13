@@ -87,12 +87,12 @@ export const ColumnList = styled.div`
   }
 `;
 
-export const ListThumbnail = styled.div`
+export const ListThumbnail = styled.div<{ $thumbnailWidth?: string }>`
   position: relative;
   margin-right: 30px;
   img {
     display: block;
-    width: 280px;
+    width: ${(props) => props.$thumbnailWidth ?? "280px"};
     aspect-ratio: 16 / 9;
     border-radius: 5px;
   }
