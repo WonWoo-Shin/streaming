@@ -20,3 +20,12 @@ export const topRatedMediaTypeState = atom<TMediaType>({
   key: "topRatedMediaTypeState",
   default: "movie",
 });
+
+export const watchVideoStateFamily = atomFamily<IWatchVideo, number>({
+  key: "watchVideo",
+  default: {
+    isOpen: false,
+    videoKey: "",
+    videoName: "",
+  },
+});

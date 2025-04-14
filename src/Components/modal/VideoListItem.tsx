@@ -1,3 +1,4 @@
+import { useSetRecoilState } from "recoil";
 import {
   ColumnList,
   ColumnListContainer,
@@ -7,21 +8,20 @@ import {
   PlayIcon,
   VideoInfo,
 } from "../../styles/modal/modalColumnListStyle";
-import { IGetVideos, IWatchVideo } from "../../type";
+import { IGetVideos, IItemList } from "../../type";
 import { convertDate } from "../../utils/convertDate";
+import { watchVideoStateFamily } from "../../atom";
 
 interface IProps {
   video: IGetVideos;
-  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
+  itemId: IItemList["id"];
   thumbnailWidth?: string;
 }
 
-export const VideoListItem = ({
-  video,
-  setWatchVideo,
-  thumbnailWidth,
-}: IProps) => {
+export const VideoListItem = ({ video, thumbnailWidth, itemId }: IProps) => {
   if (video.site !== "YouTube") return;
+
+  const setWatchVideo = useSetRecoilState(watchVideoStateFamily(itemId));
 
   return (
     <ColumnListContainer>

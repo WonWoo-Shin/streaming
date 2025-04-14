@@ -1,15 +1,15 @@
 import { ContentsMessage } from "../../styles/modal/modalStyle";
-import { IGetVideos, IWatchVideo } from "../../type";
+import { IGetVideos, IItemList } from "../../type";
 
 import { VideoListItem } from "./VideoListItem";
 
 interface IProps {
+  itemId: IItemList["id"];
   videos: IGetVideos[];
   isLoading: boolean;
-  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
 }
 
-export const ModalVideos = ({ videos, isLoading, setWatchVideo }: IProps) => {
+export const ModalVideos = ({ itemId, videos, isLoading }: IProps) => {
   return (
     <>
       {isLoading ? (
@@ -23,11 +23,7 @@ export const ModalVideos = ({ videos, isLoading, setWatchVideo }: IProps) => {
       ) : (
         <ul>
           {videos.map((video) => (
-            <VideoListItem
-              key={video.id}
-              video={video}
-              setWatchVideo={setWatchVideo}
-            />
+            <VideoListItem key={video.id} itemId={itemId} video={video} />
           ))}
         </ul>
       )}

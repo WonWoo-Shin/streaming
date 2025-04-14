@@ -3,7 +3,7 @@ import { getDetail, getVideos } from "../../api";
 import {
   IGetDetail,
   IGetVideos,
-  IWatchVideo,
+  IItemList,
   TCurrentTab,
   TMediaType,
 } from "../../type";
@@ -36,9 +36,11 @@ import { ModalRecommend } from "./ModalRecommend";
 import { ModalEpisode } from "./ModalEpisode";
 import { WatchVideo } from "./WatchVIdeo";
 import { AnimatePresence } from "framer-motion";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { watchVideoStateFamily } from "../../atom";
 
 interface IProps {
-  itemId: number;
+  itemId: IItemList["id"];
 }
 
 interface IParams {
@@ -100,11 +102,15 @@ export const ModalDetail = ({ itemId }: IProps) => {
     mediaType === "tv" ? "episode" : "video"
   );
 
-  const [watchVideo, setWatchVideo] = useState<IWatchVideo>({
-    isOpen: false,
-    videoKey: "",
-    videoName: "",
-  });
+  // 모달창 별로 동영상 재생 유무 state 관리
+  const [watchVideo, setWatchVideo] = useRecoilState(
+    watchVideoStateFamily(itemId)
+  );
+  const resetWatchVideo = useResetRecoilState(watchVideoStateFamily(itemId));
+  useEffect(() => {
+    resetWatchVideo();
+  }, []);
+  // 모달찰 재랜더링 시 state 초기화
 
   return (
     <>
@@ -257,14 +263,13 @@ export const ModalDetail = ({ itemId }: IProps) => {
             itemId={itemId}
             seasons={detailData?.seasons}
             backDropPath={detailData?.backdrop_path ?? ""}
-            setWatchVideo={setWatchVideo}
           />
         )}
         {currentTab === "video" && (
           <ModalVideos
+            itemId={itemId}
             videos={videos}
             isLoading={isVideoLoading || isPreVideoLoading}
-            setWatchVideo={setWatchVideo}
           />
         )}
         {currentTab === "recommend" && (

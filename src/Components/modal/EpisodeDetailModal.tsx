@@ -1,12 +1,7 @@
 import { createPortal } from "react-dom";
 import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
-import {
-  IEpisodeModal,
-  IGetDetail,
-  IGetVideosResults,
-  IWatchVideo,
-} from "../../type";
+import { IEpisodeModal, IGetDetail, IGetVideosResults } from "../../type";
 import {
   EpisodeModalWindow,
   ModalHeader,
@@ -53,14 +48,12 @@ const modalWindowVariant: Variants = {
 interface IProps extends IEpisodeModal {
   itemId: IGetDetail["id"];
   setEpisodeModal: React.Dispatch<React.SetStateAction<IEpisodeModal>>;
-  setWatchVideo: React.Dispatch<React.SetStateAction<IWatchVideo>>;
 }
 
 export const EpisodeDetailModal = ({
   itemId,
   episode,
   setEpisodeModal,
-  setWatchVideo,
 }: IProps) => {
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
@@ -125,8 +118,8 @@ export const EpisodeDetailModal = ({
                   {episodeVideoData?.results.map((video) => (
                     <VideoListItem
                       key={video.id}
+                      itemId={itemId}
                       video={video}
-                      setWatchVideo={setWatchVideo}
                       thumbnailWidth="220px"
                     />
                   ))}
