@@ -86,10 +86,11 @@ export const getEpisode = (
 export const getEpisodeVideo = (
   itemId: IItemList["id"],
   seasonNumber: IGetEpisodes["season_number"],
-  episodeNumber: IGetEpisodes["episode_number"]
+  episodeNumber: IGetEpisodes["episode_number"],
+  language: IGetDetail["original_language"]
 ) => {
   return fetch(
-    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/videos?api_key=${API_KEY}&include_video_language=ja&language=${LANGUAGE}`
+    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/videos?api_key=${API_KEY}&include_video_language=${language}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
 

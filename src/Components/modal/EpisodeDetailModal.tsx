@@ -47,12 +47,14 @@ const modalWindowVariant: Variants = {
 
 interface IProps extends IEpisodeModal {
   itemId: IGetDetail["id"];
+  language: IGetDetail["original_language"];
   setEpisodeModal: React.Dispatch<React.SetStateAction<IEpisodeModal>>;
 }
 
 export const EpisodeDetailModal = ({
   itemId,
   episode,
+  language,
   setEpisodeModal,
 }: IProps) => {
   const modalContainer = document.getElementById("modal-container");
@@ -61,7 +63,12 @@ export const EpisodeDetailModal = ({
   const { data: episodeVideoData } = useQuery<IGetVideosResults>({
     queryKey: ["episodeVideo", episode.id],
     queryFn: () =>
-      getEpisodeVideo(itemId, episode.season_number, episode.episode_number),
+      getEpisodeVideo(
+        itemId,
+        episode.season_number,
+        episode.episode_number,
+        language
+      ),
   });
 
   const closeModal = () => {
@@ -107,10 +114,12 @@ export const EpisodeDetailModal = ({
             <StillImage>
               <img src={createImage("w780", episode.still_path)} alt="" />
             </StillImage>
-            <Section>
-              <SubHead>줄거리</SubHead>
-              <Overview>{episode.overview}</Overview>
-            </Section>
+            {!!episode.overview && (
+              <Section>
+                <SubHead>줄거리</SubHead>
+                <Overview>{episode.overview}</Overview>
+              </Section>
+            )}
             {!!episodeVideoData?.results.length && (
               <Section>
                 <SubHead>동영상</SubHead>

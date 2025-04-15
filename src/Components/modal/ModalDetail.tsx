@@ -261,6 +261,7 @@ export const ModalDetail = ({ itemId }: IProps) => {
         {currentTab === "episode" && (
           <ModalEpisode
             itemId={itemId}
+            language={detailData?.original_language ?? "ko"}
             seasons={detailData?.seasons}
             backDropPath={detailData?.backdrop_path ?? ""}
           />

@@ -28,12 +28,14 @@ import { AnimatePresence } from "framer-motion";
 interface IEpisodeProps {
   itemId: IItemList["id"];
   seasons: IGetDetail["seasons"];
+  language: IGetDetail["original_language"];
   backDropPath: string;
 }
 
 export const ModalEpisode = ({
   itemId,
   seasons,
+  language,
   backDropPath,
 }: IEpisodeProps) => {
   const [selectSeason, setSelectSeason] = useState(1);
@@ -102,6 +104,7 @@ export const ModalEpisode = ({
           <EpisodeDetailModal
             {...episodeModal}
             itemId={itemId}
+            language={language}
             setEpisodeModal={setEpisodeModal}
           />
         )}
