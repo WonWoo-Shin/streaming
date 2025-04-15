@@ -1,7 +1,12 @@
 import { createPortal } from "react-dom";
 import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
-import { IEpisodeModal, IGetDetail, IGetVideosResults } from "../../type";
+import {
+  IEpisodeModal,
+  IGetDetail,
+  IGetEpisodeImages,
+  IGetVideosResults,
+} from "../../type";
 import {
   EpisodeModalWindow,
   ModalHeader,
@@ -12,8 +17,9 @@ import {
 } from "../../styles/modal/episodeModalStyle";
 import { createImage } from "../../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
-import { getEpisodeVideo } from "../../api";
+import { getEpisodeImages, getEpisodeVideos } from "../../api";
 import { VideoListItem } from "./VideoListItem";
+import Slider from "react-slick";
 
 const modalVariant: Variants = {
   initial: {
@@ -60,15 +66,21 @@ export const EpisodeDetailModal = ({
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
 
-  const { data: episodeVideoData } = useQuery<IGetVideosResults>({
-    queryKey: ["episodeVideo", episode.id],
+  const { data: episodeVideosData } = useQuery<IGetVideosResults>({
+    queryKey: ["episodeVideos", episode.id],
     queryFn: () =>
-      getEpisodeVideo(
+      getEpisodeVideos(
         itemId,
         episode.season_number,
         episode.episode_number,
         language
       ),
+  });
+
+  const { data: episodeImagesData } = useQuery<IGetEpisodeImages>({
+    queryKey: ["episodeImages", episode.id],
+    queryFn: () =>
+      getEpisodeImages(itemId, episode.season_number, episode.episode_number),
   });
 
   const closeModal = () => {
@@ -112,7 +124,11 @@ export const EpisodeDetailModal = ({
               </svg>
             </ModalHeader>
             <StillImage>
-              <img src={createImage("w780", episode.still_path)} alt="" />
+              <Slider>
+                {episodeImagesData?.stills.map((still) => (
+                  <img src={createImage("w780", still.file_path)} alt="" />
+                ))}
+              </Slider>
             </StillImage>
             {!!episode.overview && (
               <Section>
@@ -120,11 +136,11 @@ export const EpisodeDetailModal = ({
                 <Overview>{episode.overview}</Overview>
               </Section>
             )}
-            {!!episodeVideoData?.results.length && (
+            {!!episodeVideosData?.results.length && (
               <Section>
                 <SubHead>동영상</SubHead>
                 <ul>
-                  {episodeVideoData?.results.map((video) => (
+                  {episodeVideosData?.results.map((video) => (
                     <VideoListItem
                       key={video.id}
                       itemId={itemId}

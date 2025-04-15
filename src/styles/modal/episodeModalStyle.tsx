@@ -27,6 +27,7 @@ export const StillImage = styled.div`
   margin-bottom: 30px;
   padding: 0 50px;
   img {
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 4px;

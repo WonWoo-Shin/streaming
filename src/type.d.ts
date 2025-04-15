@@ -73,6 +73,12 @@ export interface IGetEpisodesResults {
   episodes: IGetEpisodes[];
 }
 
+export interface IGetEpisodeImages {
+  stills: {
+    file_path: string;
+  }[];
+}
+
 export interface IEpisodeModal {
   isOpen: boolean;
   episode: IGetEpisodes;

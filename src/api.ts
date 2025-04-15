@@ -83,7 +83,7 @@ export const getEpisode = (
   ).then((response) => response.json());
 };
 
-export const getEpisodeVideo = (
+export const getEpisodeVideos = (
   itemId: IItemList["id"],
   seasonNumber: IGetEpisodes["season_number"],
   episodeNumber: IGetEpisodes["episode_number"],
@@ -91,6 +91,16 @@ export const getEpisodeVideo = (
 ) => {
   return fetch(
     `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/videos?api_key=${API_KEY}&include_video_language=${language}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
+export const getEpisodeImages = (
+  itemId: IItemList["id"],
+  seasonNumber: IGetEpisodes["season_number"],
+  episodeNumber: IGetEpisodes["episode_number"]
+) => {
+  return fetch(
+    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/images?api_key=${API_KEY}`
   ).then((response) => response.json());
 };
 
