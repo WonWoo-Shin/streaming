@@ -123,13 +123,20 @@ export const EpisodeDetailModal = ({
                 ></path>
               </svg>
             </ModalHeader>
-            <StillImage>
-              <Slider>
-                {episodeImagesData?.stills.map((still) => (
-                  <img src={createImage("w780", still.file_path)} alt="" />
-                ))}
-              </Slider>
-            </StillImage>
+            {!!episodeImagesData?.stills.length && (
+              <StillImage>
+                <Slider {...{ infinite: episodeImagesData.stills.length > 1 }}>
+                  {episodeImagesData?.stills.map((still, index) => (
+                    <img
+                      key={index}
+                      src={createImage("w780", still.file_path)}
+                      alt=""
+                    />
+                  ))}
+                </Slider>
+              </StillImage>
+            )}
+
             {!!episode.overview && (
               <Section>
                 <SubHead>줄거리</SubHead>
