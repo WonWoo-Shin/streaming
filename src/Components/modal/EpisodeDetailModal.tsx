@@ -19,7 +19,8 @@ import { createImage } from "../../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getEpisodeImages, getEpisodeVideos } from "../../api";
 import { VideoListItem } from "./VideoListItem";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick";
+import { CustomArrow } from "../CustomArrow";
 
 const modalVariant: Variants = {
   initial: {
@@ -87,6 +88,12 @@ export const EpisodeDetailModal = ({
     setEpisodeModal((prev) => ({ ...prev, isOpen: false }));
   };
 
+  const slideSettings: Settings = {
+    infinite: episodeImagesData && episodeImagesData.stills.length > 1,
+    prevArrow: <CustomArrow position="left" />,
+    nextArrow: <CustomArrow position="right" />,
+  };
+
   return (
     <>
       {createPortal(
@@ -125,7 +132,7 @@ export const EpisodeDetailModal = ({
             </ModalHeader>
             {!!episodeImagesData?.stills.length && (
               <StillImage>
-                <Slider {...{ infinite: episodeImagesData.stills.length > 1 }}>
+                <Slider {...slideSettings}>
                   {episodeImagesData?.stills.map((still, index) => (
                     <img
                       key={index}

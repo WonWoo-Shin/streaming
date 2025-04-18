@@ -33,6 +33,27 @@ export const StillImage = styled.div`
   }
 `;
 
+export const SlideArrow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  color: rgba(255, 255, 255, 0.6);
+  &.slick-prev {
+    left: -50px;
+  }
+  &.slick-next {
+    right: -50px;
+  }
+  &::before {
+    content: "";
+  }
+  &:hover {
+    color: #ffffff;
+  }
+`;
+
 export const Section = styled.section`
   margin-bottom: 30px;
   &:last-child {
