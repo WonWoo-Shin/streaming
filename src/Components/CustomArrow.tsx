@@ -9,11 +9,21 @@ const RIGHT =
 
 interface IProps extends CustomArrowProps {
   position: TDirection;
+  isMultiImage?: boolean;
 }
 
-export const CustomArrow = ({ position, className, onClick }: IProps) => {
+export const CustomArrow = ({
+  position,
+  className,
+  onClick,
+  isMultiImage,
+}: IProps) => {
   return (
-    <SlideArrow className={className} onClick={onClick}>
+    <SlideArrow
+      className={className}
+      onClick={onClick}
+      $isMultiImage={isMultiImage}
+    >
       <svg
         width="24"
         height="24"

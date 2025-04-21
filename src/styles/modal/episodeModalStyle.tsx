@@ -33,8 +33,8 @@ export const StillImage = styled.div`
   }
 `;
 
-export const SlideArrow = styled.div`
-  display: flex;
+export const SlideArrow = styled.div<{ $isMultiImage?: boolean }>`
+  display: ${(props) => (props.$isMultiImage ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   width: auto;
@@ -51,6 +51,19 @@ export const SlideArrow = styled.div`
   }
   &:hover {
     color: #ffffff;
+  }
+`;
+
+export const SliderDots = styled.ul`
+  li {
+    button::before {
+      color: #ffffff;
+    }
+    &.slick-active {
+      button::before {
+        color: #ffffff;
+      }
+    }
   }
 `;
 

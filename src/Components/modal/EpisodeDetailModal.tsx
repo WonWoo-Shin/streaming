@@ -12,6 +12,7 @@ import {
   ModalHeader,
   Overview,
   Section,
+  SliderDots,
   StillImage,
   SubHead,
 } from "../../styles/modal/episodeModalStyle";
@@ -88,10 +89,14 @@ export const EpisodeDetailModal = ({
     setEpisodeModal((prev) => ({ ...prev, isOpen: false }));
   };
 
+  const isMultiImage = episodeImagesData && episodeImagesData.stills.length > 1;
+
   const slideSettings: Settings = {
-    infinite: episodeImagesData && episodeImagesData.stills.length > 1,
-    prevArrow: <CustomArrow position="left" />,
-    nextArrow: <CustomArrow position="right" />,
+    infinite: isMultiImage,
+    prevArrow: <CustomArrow position="left" isMultiImage={isMultiImage} />,
+    nextArrow: <CustomArrow position="right" isMultiImage={isMultiImage} />,
+    dots: isMultiImage,
+    appendDots: (dots) => <SliderDots>{dots}</SliderDots>,
   };
 
   return (
