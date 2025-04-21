@@ -23,8 +23,12 @@ export const ModalHeader = styled.header`
   }
 `;
 
-export const StillImage = styled.div`
-  margin-bottom: 30px;
+interface IStillProps {
+  $isMultiImage?: boolean;
+}
+
+export const StillImage = styled.div<IStillProps>`
+  margin-bottom: ${(props) => (props.$isMultiImage ? "50px" : "30px")};
   padding: 0 50px;
   img {
     width: 100%;
@@ -33,13 +37,13 @@ export const StillImage = styled.div`
   }
 `;
 
-export const SlideArrow = styled.div<{ $isMultiImage?: boolean }>`
+export const SlideArrow = styled.div<IStillProps>`
   display: ${(props) => (props.$isMultiImage ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   width: auto;
   height: auto;
-  color: rgba(255, 255, 255, 0.6);
+  color: ${(props) => props.theme.font.primary + "75"};
   &.slick-prev {
     left: -50px;
   }
@@ -50,18 +54,18 @@ export const SlideArrow = styled.div<{ $isMultiImage?: boolean }>`
     content: "";
   }
   &:hover {
-    color: #ffffff;
+    color: ${(props) => props.theme.font.primary};
   }
 `;
 
 export const SliderDots = styled.ul`
   li {
     button::before {
-      color: #ffffff;
+      color: ${(props) => props.theme.font.primary};
     }
     &.slick-active {
       button::before {
-        color: #ffffff;
+        color: ${(props) => props.theme.font.primary};
       }
     }
   }
