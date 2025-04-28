@@ -12,19 +12,14 @@ export const BannerSlider = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  .slick-slider,
-  .slick-list,
-  .slick-track,
-  .slick-slide {
-    height: 100%;
-    > div {
-      height: inherit;
-    }
-  }
   // 현재 index를 뒤에 배치하고 transition을 제거하여 이전의 index만 자연스럽게 사라지도록 설정
+  .slick-slide {
+    pointer-events: none;
+  }
   .slick-current {
     z-index: -1 !important;
     transition: none !important;
+    pointer-events: unset !important;
   }
 `;
 
@@ -33,11 +28,6 @@ export const ItemContainer = styled.div`
   grid-template-columns: 1fr 3fr;
   width: 100%;
   height: 100%;
-  a {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const BannerTitleSection = styled.div`
@@ -46,7 +36,6 @@ export const BannerTitleSection = styled.div`
   justify-content: center;
   gap: 10%;
   position: relative;
-  height: 100%;
   padding-left: var(--padding-width);
   background-color: ${(props) => props.theme.background.secondary};
   font-weight: bold;

@@ -19,7 +19,7 @@ export const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     waitForAnimate: false,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 7000,
     pauseOnHover: false,
     appendDots: (dots) => (

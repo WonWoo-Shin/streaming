@@ -7,3 +7,12 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
 }
+
+.slick-slider,
+.slick-track,
+.slick-slide {
+  height: 100%;
+  > div {
+    height: inherit;
+  }
+}

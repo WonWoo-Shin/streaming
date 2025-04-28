@@ -29,7 +29,6 @@ export const SliderItem = ({
         </BannerButton>
       </BannerTitleSection>
       <BannerImage $bgImage={createImage("original", backdrop_path ?? "")} />
-      {/* <BannerImage $bgImage={""} style={{ backgroundColor: "white" }} /> */}
     </ItemContainer>
   );
 };
