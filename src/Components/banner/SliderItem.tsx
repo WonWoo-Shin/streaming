@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   BannerButton,
@@ -17,13 +17,14 @@ export const SliderItem = ({
   backdrop_path,
   media_type,
 }: IItemList) => {
+  const navigate = useNavigate();
+
   return (
     <ItemContainer>
-      {/* <Link to={`/${media_type ?? "movie"}/${id}`} /> */}
       <BannerTitleSection>
         <BannerTitle>{title ?? name}</BannerTitle>
         <BannerButton>
-          <Button>
+          <Button onClick={() => navigate(`/${media_type ?? "movie"}/${id}`)}>
             <span>확인하기</span>
           </Button>
         </BannerButton>

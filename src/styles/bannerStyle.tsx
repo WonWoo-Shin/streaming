@@ -60,6 +60,10 @@ export const Button = styled.button`
   border-radius: 0.3em;
   background-color: var(--point-green);
   font-size: inherit;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
   span {
     font-size: 1.2em;
     font-weight: 600;
