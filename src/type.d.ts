@@ -21,6 +21,7 @@ export interface IGetDetail extends Omit<IItemList, "genre_ids"> {
   first_air_date?: string;
   seasons?: ISeasons[];
   original_language: "en" | "ko" | "ja";
+  success?: boolean;
 }
 
 export interface IGetGenre {

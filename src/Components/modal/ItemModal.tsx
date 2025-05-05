@@ -60,8 +60,9 @@ export const ItemModal = ({ itemId }: IProps) => {
   body.classList.add("modal-open"); // body css에서 scroll 없애기
 
   const modalWindowRef = useRef<HTMLDivElement>(null);
-  const [showScrollUp, setShowScrollUp] = useState(false);
   const { scrollY } = useScroll({ container: modalWindowRef });
+
+  const [showScrollUp, setShowScrollUp] = useState(false); // scroll 최상단 이동 버튼
   useMotionValueEvent(scrollY, "change", (current) => {
     setShowScrollUp(current >= 200);
   });

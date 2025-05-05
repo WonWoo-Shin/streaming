@@ -34,6 +34,15 @@ export const ModalWindow = styled(motion.div)`
   }
 `;
 
+export const ModalMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 25px;
+  color: ${(props) => props.theme.font.muted};
+`;
+
 export const ModalScrollUp = styled.div`
   position: sticky;
   bottom: 0;
