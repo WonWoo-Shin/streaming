@@ -136,7 +136,7 @@ export const EpisodeDetailModal = ({
               </svg>
             </ModalHeader>
             {!!episodeImagesData?.stills.length && (
-              <StillImage $isMultiImage={isMultiImage}>
+              <StillImage>
                 <Slider {...slideSettings}>
                   {episodeImagesData?.stills.map((still, index) => (
                     <img

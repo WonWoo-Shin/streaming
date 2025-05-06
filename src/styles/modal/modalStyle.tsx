@@ -41,6 +41,7 @@ export const ModalMessage = styled.div`
   height: 100%;
   font-size: 25px;
   color: ${(props) => props.theme.font.muted};
+  line-height: 1.5;
 `;
 
 export const ModalScrollUp = styled.div`

@@ -120,7 +120,11 @@ export const ModalDetail = ({ itemId }: IProps) => {
       {isLoading ? (
         <ModalMessage>로드 중...</ModalMessage>
       ) : detailData?.success === false ? (
-        <ModalMessage>컨텐츠를 찾을 수 없습니다.</ModalMessage>
+        <ModalMessage>
+          컨텐츠를 찾을 수 없습니다.
+          <br />
+          URL을 다시 확인해 주세요.
+        </ModalMessage>
       ) : (
         <>
           <ModalOverview>

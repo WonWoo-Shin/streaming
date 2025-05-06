@@ -23,12 +23,8 @@ export const ModalHeader = styled.header`
   }
 `;
 
-interface IStillProps {
-  $isMultiImage?: boolean;
-}
-
-export const StillImage = styled.div<IStillProps>`
-  margin-bottom: ${(props) => (props.$isMultiImage ? "50px" : "30px")};
+export const StillImage = styled.div`
+  margin-bottom: 30px;
   padding: 0 50px;
   img {
     width: 100%;
@@ -36,6 +32,10 @@ export const StillImage = styled.div<IStillProps>`
     border-radius: 4px;
   }
 `;
+
+interface IStillProps {
+  $isMultiImage?: boolean;
+}
 
 export const SlideArrow = styled.div<IStillProps>`
   display: ${(props) => (props.$isMultiImage ? "flex" : "none")};
@@ -59,6 +59,8 @@ export const SlideArrow = styled.div<IStillProps>`
 `;
 
 export const SliderDots = styled.ul`
+  position: relative; //
+  bottom: 0; // slick-dots 기본값 제거
   li {
     button::before {
       color: ${(props) => props.theme.font.primary};
