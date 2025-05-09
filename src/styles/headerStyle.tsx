@@ -36,7 +36,6 @@ export const HeaderLogo = styled.div`
 export const Nav = styled.ol<IHeaderProps>`
   display: flex;
   align-items: center;
-  margin-left: 40px;
   font-size: 15px;
   li {
     margin-left: 24px;
@@ -51,7 +50,7 @@ export const Nav = styled.ol<IHeaderProps>`
   }
 `;
 
-export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
+export const NavBtn = styled.button<{ $isLimpid: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,8 +58,8 @@ export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
   width: 40px;
   height: 40px;
   border: none;
-  border-radius: 5px;
   background: none;
+  border-radius: 5px;
   &:hover {
     background: ${(props) =>
       props.$isLimpid
@@ -69,6 +68,9 @@ export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
     .button-tag {
       display: block;
     }
+  }
+  &:not(:last-child) {
+    margin-right: 15px;
   }
 `;
 

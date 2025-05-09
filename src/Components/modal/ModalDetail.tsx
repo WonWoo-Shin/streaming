@@ -133,7 +133,7 @@ export const ModalDetail = ({ itemId }: IProps) => {
                 "w780",
                 detailData?.backdrop_path ?? detailData?.poster_path ?? ""
               )}
-            ></BgImage>
+            />
             <ModalNav>
               <ExitBtn onClick={() => navigate("/")}>
                 {" "}
