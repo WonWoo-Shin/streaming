@@ -123,6 +123,7 @@ export const SlideArrowStyle = styled.div<{ $position: TDirection }>`
   right: ${(props) => (props.$position === "right" ? 0 : "none")};
   z-index: 1;
   width: var(--padding-width);
+  height: 100%;
   color: var(--arrow-color);
   cursor: pointer;
   &:hover {
