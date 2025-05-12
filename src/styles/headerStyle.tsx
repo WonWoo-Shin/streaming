@@ -60,6 +60,7 @@ export const NavBtn = styled.button<{ $isLimpid: boolean }>`
   border: none;
   background: none;
   border-radius: 5px;
+  cursor: pointer;
   &:hover {
     background: ${(props) =>
       props.$isLimpid
@@ -85,4 +86,40 @@ export const BtnTag = styled.span`
   line-height: 13px;
   color: ${(props) => props.theme.font.primary};
   white-space: nowrap;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  width: 280px;
+  height: 40px;
+  margin-right: 15px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #ffffff;
+`;
+
+export const SearchIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  svg {
+    color: #121212;
+  }
+`;
+
+export const SearchInput = styled.input`
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: #121212;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #8e8e8e;
+  }
 `;
