@@ -94,8 +94,9 @@ export const InputWrapper = styled.div`
   height: 40px;
   margin-right: 15px;
   padding: 5px 10px;
+  border: 1px solid ${(props) => props.theme.font.muted};
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.background.primary};
 `;
 
 export const SearchIconWrapper = styled.div`
@@ -104,7 +105,7 @@ export const SearchIconWrapper = styled.div`
   align-items: center;
   margin-right: 5px;
   svg {
-    color: #121212;
+    color: ${(props) => props.theme.font.primary};
   }
 `;
 
@@ -112,8 +113,10 @@ export const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   border: none;
-  color: #121212;
-  font-size: 14px;
+  background-color: ${(props) => props.theme.background.primary};
+  color: ${(props) => props.theme.font.primary};
+  caret-color: ${(props) => props.theme.font.primary};
+  font-size: 15px;
   font-weight: 600;
   font-family: inherit;
   &:focus {

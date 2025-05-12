@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const Search = ({ toggleSearchOpen }: IProps) => {
-  const inputWrapperRef = useRef<HTMLDivElement>(null);
+  const inputWrapperRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const clickOutside = (event: MouseEvent) => {
@@ -29,11 +29,15 @@ export const Search = ({ toggleSearchOpen }: IProps) => {
   }, [toggleSearchOpen]);
 
   return (
-    <InputWrapper ref={inputWrapperRef}>
+    <InputWrapper>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <SearchInput placeholder="제목으로 검색" />
+      <SearchInput
+        ref={inputWrapperRef}
+        placeholder="제목으로 검색"
+        autoFocus
+      />
     </InputWrapper>
   );
 };
