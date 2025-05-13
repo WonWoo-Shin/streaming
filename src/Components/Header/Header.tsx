@@ -33,10 +33,6 @@ export const Header = () => {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const toggleSearchOpen = () => {
-    setIsSearchOpen((prev) => !prev);
-  };
-
   const [isDark, setIsDark] = useRecoilState(isDarkState);
   const [isThemeToggle, setIsThemeToggle] = useState(false);
 
@@ -61,10 +57,10 @@ export const Header = () => {
       </HeaderLogo>
       <Nav $isLimpid={isLimpid} $isThemeToggle={isThemeToggle}>
         <AnimatePresence>
-          {isSearchOpen && <Search toggleSearchOpen={toggleSearchOpen} />}
+          {isSearchOpen && <Search setIsSearchOpen={setIsSearchOpen} />}
         </AnimatePresence>
         {!isSearchOpen && (
-          <SearchBtn onClick={toggleSearchOpen} $isLimpid={isLimpid}>
+          <SearchBtn onClick={() => setIsSearchOpen(true)} $isLimpid={isLimpid}>
             <SearchIcon />
             <BtnTag className="button-tag">검색</BtnTag>
           </SearchBtn>

@@ -45,10 +45,10 @@ const searchIconVariants: Variants = {
 };
 
 interface IProps {
-  toggleSearchOpen: () => void;
+  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Search = ({ toggleSearchOpen }: IProps) => {
+export const Search = ({ setIsSearchOpen }: IProps) => {
   const inputWrapperRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -57,14 +57,14 @@ export const Search = ({ toggleSearchOpen }: IProps) => {
         inputWrapperRef.current &&
         !inputWrapperRef.current.contains(event.target as Node)
       ) {
-        toggleSearchOpen();
+        setIsSearchOpen(false);
       }
     };
     document.addEventListener("mousedown", clickOutside);
     return () => {
       document.removeEventListener("mousedown", clickOutside);
     };
-  }, [toggleSearchOpen]);
+  }, [setIsSearchOpen]);
 
   return (
     <SearchBar>
