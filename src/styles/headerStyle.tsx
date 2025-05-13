@@ -115,7 +115,7 @@ export const SearchIconWrapper = styled(motion.div)`
   }
 `;
 
-export const InputWrapper = styled(motion.div)`
+export const InputWrapper = styled(motion.form)`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
   InputWrapper,
   SearchBar,
@@ -66,6 +66,17 @@ export const Search = ({ setIsSearchOpen }: IProps) => {
     };
   }, [setIsSearchOpen]);
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!searchValue) return;
+  };
+
   return (
     <SearchBar>
       <SearchIconWrapper
@@ -77,12 +88,15 @@ export const Search = ({ setIsSearchOpen }: IProps) => {
         <SearchIcon />
       </SearchIconWrapper>
       <InputWrapper
+        onSubmit={handleSubmit}
         variants={searchVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
         <SearchInput
+          value={searchValue}
+          onChange={handleChange}
           ref={inputWrapperRef}
           placeholder="제목으로 검색"
           autoFocus
