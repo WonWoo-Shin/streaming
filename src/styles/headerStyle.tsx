@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 interface IHeaderProps {
@@ -36,6 +37,7 @@ export const HeaderLogo = styled.div`
 export const Nav = styled.ol<IHeaderProps>`
   display: flex;
   align-items: center;
+  position: relative;
   font-size: 15px;
   li {
     margin-left: 24px;
@@ -50,7 +52,7 @@ export const Nav = styled.ol<IHeaderProps>`
   }
 `;
 
-export const NavBtn = styled.button<{ $isLimpid: boolean }>`
+export const ThemeBtn = styled.button<{ $isLimpid: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,9 +72,11 @@ export const NavBtn = styled.button<{ $isLimpid: boolean }>`
       display: block;
     }
   }
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
+`;
+
+export const SearchBtn = styled(ThemeBtn)`
+  position: absolute;
+  right: 55px;
 `;
 
 export const BtnTag = styled.span`
@@ -88,37 +92,52 @@ export const BtnTag = styled.span`
   white-space: nowrap;
 `;
 
-export const InputWrapper = styled.div`
+export const SearchBar = styled.div`
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 1;
   width: 280px;
   height: 40px;
   margin-right: 15px;
-  padding: 5px 10px;
-  border: 1px solid ${(props) => props.theme.font.muted};
-  border-radius: 4px;
-  background-color: ${(props) => props.theme.background.primary};
 `;
 
-export const SearchIconWrapper = styled.div`
+export const SearchIconWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
+  position: absolute;
+  left: 10px;
+  z-index: 1;
   svg {
     color: ${(props) => props.theme.font.primary};
   }
+`;
+
+export const InputWrapper = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 100%;
+  padding: 5px 10px 5px 40px;
+  border: 1px solid ${(props) => props.theme.font.muted};
+  border-radius: 4px;
+  background-color: ${(props) => props.theme.background.primary};
 `;
 
 export const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   border: none;
-  background-color: ${(props) => props.theme.background.primary};
+  background-color: inherit;
   color: ${(props) => props.theme.font.primary};
   caret-color: ${(props) => props.theme.font.primary};
   font-size: 15px;
   font-weight: 600;
   font-family: inherit;
+  transform: none;
   &:focus {
     outline: none;
   }

@@ -1,10 +1,48 @@
 import { useEffect, useRef } from "react";
 import {
   InputWrapper,
+  SearchBar,
   SearchIconWrapper,
   SearchInput,
 } from "../../styles/headerStyle";
 import { SearchIcon } from "./SearchIcon";
+import { Transition, Variants } from "framer-motion";
+
+const defaultTransition: Transition = {
+  ease: [0.25, 0.1, 0.25, 1],
+  duration: 0.25,
+};
+
+const searchVariants: Variants = {
+  initial: {
+    width: "40px",
+    paddingRight: 0,
+  },
+  animate: {
+    width: "280px",
+    paddingRight: "10px",
+    transition: defaultTransition,
+  },
+  exit: {
+    width: "40px",
+    paddingRight: 0,
+    transition: defaultTransition,
+  },
+};
+
+const searchIconVariants: Variants = {
+  initial: {
+    translateX: 237,
+  },
+  animate: {
+    translateX: 0,
+    transition: defaultTransition,
+  },
+  exit: {
+    translateX: 237,
+    transition: defaultTransition,
+  },
+};
 
 interface IProps {
   toggleSearchOpen: () => void;
@@ -29,15 +67,27 @@ export const Search = ({ toggleSearchOpen }: IProps) => {
   }, [toggleSearchOpen]);
 
   return (
-    <InputWrapper>
-      <SearchIconWrapper>
+    <SearchBar>
+      <SearchIconWrapper
+        variants={searchIconVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <SearchIcon />
       </SearchIconWrapper>
-      <SearchInput
-        ref={inputWrapperRef}
-        placeholder="제목으로 검색"
-        autoFocus
-      />
-    </InputWrapper>
+      <InputWrapper
+        variants={searchVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <SearchInput
+          ref={inputWrapperRef}
+          placeholder="제목으로 검색"
+          autoFocus
+        />
+      </InputWrapper>
+    </SearchBar>
   );
 };

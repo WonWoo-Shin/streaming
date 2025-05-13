@@ -4,10 +4,11 @@ import {
   HeaderContainer,
   HeaderLogo,
   Nav,
-  NavBtn,
+  ThemeBtn,
+  SearchBtn,
 } from "../../styles/headerStyle";
 import { Link, useLocation } from "react-router-dom";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { useRecoilState } from "recoil";
 import { isDarkState } from "../../atom";
 import { SearchIcon } from "./SearchIcon";
@@ -59,15 +60,16 @@ export const Header = () => {
         </Link>
       </HeaderLogo>
       <Nav $isLimpid={isLimpid} $isThemeToggle={isThemeToggle}>
-        {isSearchOpen ? (
-          <Search toggleSearchOpen={toggleSearchOpen} />
-        ) : (
-          <NavBtn onClick={toggleSearchOpen} $isLimpid={isLimpid}>
+        <AnimatePresence>
+          {isSearchOpen && <Search toggleSearchOpen={toggleSearchOpen} />}
+        </AnimatePresence>
+        {!isSearchOpen && (
+          <SearchBtn onClick={toggleSearchOpen} $isLimpid={isLimpid}>
             <SearchIcon />
             <BtnTag className="button-tag">검색</BtnTag>
-          </NavBtn>
+          </SearchBtn>
         )}
-        <NavBtn onClick={toggleTheme} $isLimpid={isLimpid}>
+        <ThemeBtn onClick={toggleTheme} $isLimpid={isLimpid}>
           {isDark ? (
             <>
               {" "}
@@ -100,7 +102,7 @@ export const Header = () => {
               <BtnTag className="button-tag">어두운 테마</BtnTag>
             </>
           )}
-        </NavBtn>
+        </ThemeBtn>
       </Nav>
     </HeaderContainer>
   );
