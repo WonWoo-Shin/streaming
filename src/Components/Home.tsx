@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-import { Wrapper } from "../styles/HomeStyle";
+import { Wrapper } from "../styles/homeStyle";
 import { Banner } from "./banner/Banner";
 import { Footer } from "./Footer";
-import { Header } from "./Header/Header";
 import { ItemModal } from "./modal/ItemModal";
 import { Main } from "./main/Main";
 
@@ -14,7 +13,6 @@ export const Home = () => {
   return (
     <>
       <Wrapper>
-        <Header />
         <Banner />
         <Main />
         <Footer />

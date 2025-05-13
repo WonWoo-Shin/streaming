@@ -7,6 +7,7 @@ import {
 } from "../../styles/headerStyle";
 import { SearchIcon } from "./SearchIcon";
 import { Transition, Variants } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const defaultTransition: Transition = {
   ease: [0.25, 0.1, 0.25, 1],
@@ -67,14 +68,15 @@ export const Search = ({ setIsSearchOpen }: IProps) => {
   }, [setIsSearchOpen]);
 
   const [searchValue, setSearchValue] = useState("");
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!searchValue) return;
+    navigate(`/search/${searchValue}`);
   };
 
   return (
