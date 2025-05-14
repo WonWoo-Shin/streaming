@@ -10,7 +10,6 @@ import { darkTheme, lightTheme } from "./theme";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "./atom";
 import { SearchResults } from "./Components/SearchResults";
-import { Header } from "./Components/Header/Header";
 
 function App() {
   const isDark = useRecoilValue(isDarkState);
@@ -19,7 +18,6 @@ function App() {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:mediaType/:itemId" element={<Home />} />

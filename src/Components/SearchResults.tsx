@@ -1,8 +1,25 @@
 import { useParams } from "react-router-dom";
-import { ResultsWrapper } from "../styles/searchResultsStyle";
+import {
+  ResultsName,
+  ResultsWrapper,
+  SearchKeyword,
+  Wrapper,
+} from "../styles/searchResultsStyle";
+import { Header } from "./Header/Header";
 
 export const SearchResults = () => {
   const { keyword } = useParams();
 
-  return <ResultsWrapper>{keyword}</ResultsWrapper>;
+  return (
+    <>
+      <Header limpidFixed />
+      <Wrapper>
+        <ResultsWrapper>
+          <ResultsName>
+            <SearchKeyword>'{keyword}'</SearchKeyword> 검색결과
+          </ResultsName>
+        </ResultsWrapper>
+      </Wrapper>
+    </>
+  );
 };
