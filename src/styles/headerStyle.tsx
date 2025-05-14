@@ -17,7 +17,8 @@ export const HeaderContainer = styled.header<IHeaderProps>`
   background-color: ${(props) =>
     props.$isLimpid ? "rgba(0, 0, 0, 0)" : props.theme.background.primary};
   color: ${(props) => props.theme.font.primary};
-  transition: ${(props) => (props.$isThemeToggle ? "none" : "all 0.4s")};
+  transition: ${(props) =>
+    props.$isThemeToggle ? "none" : "background-color 0.4s"};
   body.modal-open & {
     padding-right: calc(50px + var(--scroll-width));
   }
@@ -39,6 +40,7 @@ export const Nav = styled.ol<IHeaderProps>`
   align-items: center;
   position: relative;
   font-size: 15px;
+
   li {
     margin-left: 24px;
     &:first-child {

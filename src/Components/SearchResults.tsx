@@ -5,14 +5,12 @@ import {
   SearchKeyword,
   Wrapper,
 } from "../styles/searchResultsStyle";
-import { Header } from "./Header/Header";
 
 export const SearchResults = () => {
   const { keyword } = useParams();
 
   return (
     <>
-      <Header limpidFixed />
       <Wrapper>
         <ResultsWrapper>
           <ResultsName>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BtnTag,
   HeaderContainer,
@@ -14,11 +14,7 @@ import { isDarkState } from "../../atom";
 import { SearchIcon } from "./SearchIcon";
 import { Search } from "./Search";
 
-interface IProps {
-  limpidFixed?: boolean;
-}
-
-export const Header = ({ limpidFixed }: IProps) => {
+export const Header = () => {
   const location = useLocation();
   const logoClick = () => {
     if (location.pathname === "/") {
@@ -28,10 +24,16 @@ export const Header = ({ limpidFixed }: IProps) => {
 
   const headerRef = useRef<HTMLHeadElement>(null);
 
-  const [isLimpid, setIsLimpid] = useState(!limpidFixed);
+  const isHome = location.pathname === "/";
+  const [isLimpid, setIsLimpid] = useState(isHome);
+
+  useEffect(() => {
+    setIsLimpid(isHome);
+  }, [location.pathname]);
+
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (current) => {
-    if (limpidFixed) return;
+    if (!isHome) return;
     setIsLimpid(current < 50);
   });
   //내부적으로 핸들러가 정리되기 때문에 useEffect 불필요
