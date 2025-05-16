@@ -112,3 +112,9 @@ export const getRecommend = (
     `${BASE_PATH}/${mediaType}/${itemId}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}`
   ).then((response) => response.json());
 };
+
+export const getSearch = (query: string) => {
+  return fetch(
+    `${BASE_PATH}/search/multi?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
+  ).then((response) => response.json());
+};

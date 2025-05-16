@@ -66,11 +66,9 @@ export const Item = styled(ItemDesign)`
 export const Title = styled.div`
   height: var(--title-height);
   margin-top: var(--title-margin);
-`;
-
-export const Text = styled.span`
   font-size: 1em;
   line-height: 1.2;
+  color: ${(props) => props.theme.font.secondary};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

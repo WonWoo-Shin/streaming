@@ -5,7 +5,6 @@ import {
   ItemParent,
   ItemPreview,
   PreviewText,
-  Text,
   Title,
 } from "../../styles/carouselStyle";
 import { IGenre, IGetGenre, IItemList } from "../../type";
@@ -112,9 +111,7 @@ export const CarouselItem = ({
         to={`/${media_type}/${id}`}
       >
         <ItemImage backdrop={backdrop_path} poster={poster_path} />
-        <Title>
-          <Text>{title ?? name}</Text>
-        </Title>
+        <Title>{title ?? name}</Title>
         <AnimatePresence>
           {showPreview && !isTransition && (
             <ItemPreview
