@@ -23,8 +23,6 @@ export const SearchResults = () => {
     queryFn: () => getSearch(keyword ?? ""),
   });
 
-  console.log(itemId);
-
   return (
     <Wrapper>
       <ResultsWrapper>
@@ -39,7 +37,7 @@ export const SearchResults = () => {
           <ResultsList>
             {searchData?.results.map((result) => (
               <li key={result.id}>
-                <Link to={`modal/${result.id}`}>
+                <Link to={`${result.media_type}/${result.id}`}>
                   <ItemImage
                     src={createImage(
                       "w400",
