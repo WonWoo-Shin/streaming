@@ -11,21 +11,19 @@ export const Home = () => {
   const { itemId } = useParams();
 
   return (
-    <>
-      <Wrapper>
-        <Banner />
-        <Main />
-        <Footer />
-        <AnimatePresence
-          onExitComplete={() => {
-            const body = document.body;
-            body.classList.remove("modal-open");
-          }}
-        >
-          {" "}
-          {itemId && <ItemModal itemId={itemId} />}
-        </AnimatePresence>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Banner />
+      <Main />
+      <Footer />
+      <AnimatePresence
+        onExitComplete={() => {
+          const body = document.body;
+          body.classList.remove("modal-open");
+        }}
+      >
+        {" "}
+        {itemId && <ItemModal itemId={itemId} />}
+      </AnimatePresence>
+    </Wrapper>
   );
 };

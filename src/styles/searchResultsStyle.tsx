@@ -31,4 +31,5 @@ export const ItemImage = styled.img`
   aspect-ratio: 16 / 9;
   margin-bottom: 4px;
   border-radius: 4px;
+  object-fit: cover;
 `;
