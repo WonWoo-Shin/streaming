@@ -37,7 +37,7 @@ export const SearchResults = () => {
           <ResultsList>
             {searchData?.results.map((result) => (
               <li key={result.id}>
-                <Link to={`${result.media_type}/${result.id}`}>
+                <Link to={`modal/${result.media_type}/${result.id}`}>
                   <ItemImage
                     src={createImage(
                       "w400",

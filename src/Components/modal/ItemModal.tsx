@@ -12,7 +12,7 @@ import {
   useScroll,
   Variants,
 } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
 
@@ -55,6 +55,14 @@ export const ItemModal = ({ itemId }: IProps) => {
   if (!rootModal) return null;
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const backPath = () => {
+    const { pathname } = location;
+    const startIndex = pathname.search("/modal");
+    const slicePath = pathname.slice(startIndex);
+    return pathname.split(slicePath).join("/");
+  };
 
   const body = document.body;
   body.classList.add("modal-open"); // body css에서 scroll 없애기
@@ -83,7 +91,7 @@ export const ItemModal = ({ itemId }: IProps) => {
           animate="animate"
           exit="exit"
         >
-          <ModalBackground onClick={() => navigate("/")} />
+          <ModalBackground onClick={() => navigate(backPath())} />
           <ModalWindow
             ref={modalWindowRef}
             variants={modalWindowVariant}
