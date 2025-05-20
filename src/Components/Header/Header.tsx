@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   BtnTag,
   HeaderContainer,
@@ -14,7 +14,11 @@ import { isDarkState } from "../../atom";
 import { SearchIcon } from "./SearchIcon";
 import { Search } from "./Search";
 
-export const Header = () => {
+interface IProps {
+  isHome: boolean;
+}
+
+export const Header = ({ isHome }: IProps) => {
   const location = useLocation();
   const logoClick = () => {
     if (location.pathname === "/") {
@@ -24,12 +28,7 @@ export const Header = () => {
 
   const headerRef = useRef<HTMLHeadElement>(null);
 
-  const isHome = location.pathname === "/";
   const [isLimpid, setIsLimpid] = useState(isHome);
-
-  useEffect(() => {
-    setIsLimpid(isHome);
-  }, [location.pathname]);
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (current) => {

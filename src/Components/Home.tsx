@@ -6,12 +6,14 @@ import { ItemModal } from "./modal/ItemModal";
 import { Main } from "./main/Main";
 
 import { AnimatePresence } from "framer-motion";
+import { Header } from "./Header/Header";
 
 export const Home = () => {
   const { itemId } = useParams();
 
   return (
     <Wrapper>
+      <Header isHome />
       <Banner />
       <Main />
       <Footer />

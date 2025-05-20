@@ -12,7 +12,7 @@ import {
   useScroll,
   Variants,
 } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
 
