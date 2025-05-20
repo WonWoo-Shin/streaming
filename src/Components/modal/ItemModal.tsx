@@ -48,21 +48,14 @@ const modalWindowVariant: Variants = {
 
 interface IProps {
   itemId: string;
+  basePath?: string;
 }
 
-export const ItemModal = ({ itemId }: IProps) => {
+export const ItemModal = ({ itemId, basePath }: IProps) => {
   const rootModal = document.getElementById("root-modal");
   if (!rootModal) return null;
 
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const backPath = () => {
-    const { pathname } = location;
-    const startIndex = pathname.search("/modal");
-    const slicePath = pathname.slice(startIndex);
-    return pathname.split(slicePath).join("/");
-  };
 
   const body = document.body;
   body.classList.add("modal-open"); // body css에서 scroll 없애기
@@ -91,7 +84,7 @@ export const ItemModal = ({ itemId }: IProps) => {
           animate="animate"
           exit="exit"
         >
-          <ModalBackground onClick={() => navigate(backPath())} />
+          <ModalBackground onClick={() => navigate(basePath ?? "/")} />
           <ModalWindow
             ref={modalWindowRef}
             variants={modalWindowVariant}
@@ -102,6 +95,7 @@ export const ItemModal = ({ itemId }: IProps) => {
             <ModalDetail
               key={itemId} // Link로 인한 itemId 변경시 재랜더링
               itemId={+itemId}
+              basePath={basePath}
             />
             <AnimatePresence>
               {showScrollUp && (

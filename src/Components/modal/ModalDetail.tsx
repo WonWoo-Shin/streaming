@@ -42,13 +42,14 @@ import { watchVideoStateFamily } from "../../atom";
 
 interface IProps {
   itemId: IItemList["id"];
+  basePath?: string;
 }
 
 interface IParams {
   mediaType: TMediaType;
 }
 
-export const ModalDetail = ({ itemId }: IProps) => {
+export const ModalDetail = ({ itemId, basePath }: IProps) => {
   const { mediaType } = useParams() as unknown as IParams;
 
   const [preMediaType, setPreMediaType] = useState(mediaType);
@@ -135,7 +136,7 @@ export const ModalDetail = ({ itemId }: IProps) => {
               )}
             />
             <ModalNav>
-              <ExitBtn onClick={() => navigate("/")}>
+              <ExitBtn onClick={() => navigate(basePath ?? "/")}>
                 {" "}
                 <svg
                   width="24"
@@ -287,7 +288,11 @@ export const ModalDetail = ({ itemId }: IProps) => {
               />
             )}
             {currentTab === "recommend" && (
-              <ModalRecommend itemId={itemId} mediaType={mediaType} />
+              <ModalRecommend
+                itemId={itemId}
+                mediaType={mediaType}
+                basePath={basePath}
+              />
             )}
           </ModalContent>
           <AnimatePresence>

@@ -11,12 +11,13 @@ import {
 import { createImage } from "../../utils/createImgae";
 import { Link } from "react-router-dom";
 
-interface IRecommendProps {
+interface IProps {
   itemId: IItemList["id"];
   mediaType: TMediaType;
+  basePath?: string;
 }
 
-export const ModalRecommend = ({ itemId, mediaType }: IRecommendProps) => {
+export const ModalRecommend = ({ itemId, mediaType, basePath }: IProps) => {
   const { data: recommendData, isLoading } = useQuery<IItemListResults>({
     queryKey: ["recommend", itemId],
     queryFn: () => getRecommend(mediaType, itemId),
@@ -32,7 +33,7 @@ export const ModalRecommend = ({ itemId, mediaType }: IRecommendProps) => {
         <RecommendContainer>
           {recommendData?.results.map((result) => (
             <ItemContainer key={result.id}>
-              <Link to={`/${result.media_type}/${result.id}`}>
+              <Link to={`${basePath ?? ""}/${result.media_type}/${result.id}`}>
                 <ItemImage className="item-image">
                   <img
                     src={createImage(

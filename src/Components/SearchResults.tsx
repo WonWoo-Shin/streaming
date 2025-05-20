@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   ItemImage,
   ResultsList,
@@ -14,6 +14,7 @@ import { createImage } from "../utils/createImgae";
 import { Title } from "../styles/carouselStyle";
 import { ItemModal } from "./modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -22,6 +23,12 @@ export const SearchResults = () => {
     queryKey: ["searchResults", keyword],
     queryFn: () => getSearch(keyword ?? ""),
   });
+
+  const { pathname } = useLocation();
+  const [basePath, setBasePath] = useState("");
+  useEffect(() => {
+    setBasePath(pathname);
+  }, [keyword]);
 
   return (
     <Wrapper>
@@ -37,7 +44,7 @@ export const SearchResults = () => {
           <ResultsList>
             {searchData?.results.map((result) => (
               <li key={result.id}>
-                <Link to={`modal/${result.media_type}/${result.id}`}>
+                <Link to={`${result.media_type}/${result.id}`}>
                   <ItemImage
                     src={createImage(
                       "w400",
@@ -52,7 +59,7 @@ export const SearchResults = () => {
         )}
       </ResultsWrapper>
       <AnimatePresence>
-        {itemId && <ItemModal itemId={itemId} />}
+        {itemId && <ItemModal itemId={itemId} basePath={basePath} />}
       </AnimatePresence>
     </Wrapper>
   );
