@@ -5,6 +5,7 @@ import {
   ResultsName,
   ResultsWrapper,
   SearchKeyword,
+  SearchMessage,
   Wrapper,
 } from "../styles/searchResultsStyle";
 import { useQuery } from "@tanstack/react-query";
@@ -40,9 +41,9 @@ export const SearchResults = () => {
             <SearchKeyword>'{keyword}'</SearchKeyword> 검색 결과
           </ResultsName>
           {isLoading ? (
-            <span>검색 중...</span>
+            <SearchMessage>검색 중...</SearchMessage>
           ) : searchData?.results.length === 0 ? (
-            <span>검색 결과가 없습니다.</span>
+            <SearchMessage>검색 결과가 없습니다.</SearchMessage>
           ) : (
             <ResultsList>
               {searchData?.results.map((result) => (

@@ -10,6 +10,7 @@ import { darkTheme, lightTheme } from "./theme";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "./atom";
 import { SearchResults } from "./Components/SearchResults";
+import { Footer } from "./Components/Footer";
 
 function App() {
   const isDark = useRecoilValue(isDarkState);
@@ -26,6 +27,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Footer />
     </ThemeProvider>
   );
 }

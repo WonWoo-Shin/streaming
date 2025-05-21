@@ -7,6 +7,7 @@ export const FooterContainer = styled.footer`
   width: 100%;
   height: 220px;
   margin-top: 4em;
+  border-top: 1px solid ${(props) => props.theme.etc.divider};
 `;
 
 export const LinkButton = styled.a`

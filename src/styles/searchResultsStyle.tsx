@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  min-height: 850px;
   padding-top: 65px;
 `;
 
@@ -17,6 +18,10 @@ export const ResultsName = styled.h1`
 
 export const SearchKeyword = styled.span`
   color: ${(props) => props.theme.font.primary};
+`;
+
+export const SearchMessage = styled.span`
+  color: ${(props) => props.theme.font.secondary};
 `;
 
 export const ResultsList = styled.ul`
