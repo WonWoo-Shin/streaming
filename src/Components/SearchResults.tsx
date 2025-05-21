@@ -62,7 +62,12 @@ export const SearchResults = () => {
             </ResultsList>
           )}
         </ResultsWrapper>
-        <AnimatePresence>
+        <AnimatePresence
+          onExitComplete={() => {
+            const body = document.body;
+            body.classList.remove("modal-open");
+          }}
+        >
           {itemId && <ItemModal itemId={itemId} basePath={basePath} />}
         </AnimatePresence>
       </Wrapper>
