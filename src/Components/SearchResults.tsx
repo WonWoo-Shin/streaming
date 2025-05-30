@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ItemImage,
   ResultsList,
@@ -26,10 +26,11 @@ export const SearchResults = () => {
     queryFn: () => getSearch(keyword ?? ""),
   });
 
-  const { pathname } = useLocation();
   const [basePath, setBasePath] = useState("");
   useEffect(() => {
-    setBasePath(pathname);
+    if (keyword) {
+      setBasePath(`/search/${keyword}`);
+    }
   }, [keyword]);
 
   return (
