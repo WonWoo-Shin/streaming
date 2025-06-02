@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import { isDarkState } from "./atom";
 import { SearchResults } from "./Components/SearchResults";
 import { Footer } from "./Components/Footer";
+import { ScrollToTop } from "./utils/ScrollToTop";
 
 function App() {
   const isDark = useRecoilValue(isDarkState);
@@ -19,6 +20,7 @@ function App() {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:mediaType/:itemId" element={<Home />} />
