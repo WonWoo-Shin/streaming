@@ -6,9 +6,14 @@ import { Main } from "./main/Main";
 
 import { AnimatePresence } from "framer-motion";
 import { Header } from "./Header/Header";
+import { useEffect } from "react";
 
 export const Home = () => {
   const { itemId } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Wrapper>

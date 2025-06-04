@@ -33,7 +33,9 @@ export const ModalRecommend = ({ itemId, mediaType, basePath }: IProps) => {
         <RecommendContainer>
           {recommendData?.results.map((result) => (
             <ItemContainer key={result.id}>
-              <Link to={`${basePath ?? ""}/${result.media_type}/${result.id}`}>
+              <Link
+                to={`${basePath ?? ""}/modal/${result.media_type}/${result.id}`}
+              >
                 <ItemImage className="item-image">
                   <img
                     src={createImage(

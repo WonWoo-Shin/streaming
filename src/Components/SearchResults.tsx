@@ -33,6 +33,10 @@ export const SearchResults = () => {
     }
   }, [keyword]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header isHome={false} />
@@ -49,7 +53,7 @@ export const SearchResults = () => {
             <ResultsList>
               {searchData?.results.map((result) => (
                 <li key={result.id}>
-                  <Link to={`${result.media_type}/${result.id}`}>
+                  <Link to={`modal/${result.media_type}/${result.id}`}>
                     <ItemImage
                       src={createImage(
                         "w400",

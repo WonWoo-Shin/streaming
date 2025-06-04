@@ -60,6 +60,10 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
   const body = document.body;
   body.classList.add("modal-open"); // body css에서 scroll 없애기
 
+  const closeModal = () => {
+    navigate(basePath ?? "/");
+  };
+
   const modalWindowRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ container: modalWindowRef });
 
@@ -84,7 +88,7 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
           animate="animate"
           exit="exit"
         >
-          <ModalBackground onClick={() => navigate(basePath ?? "/")} />
+          <ModalBackground onClick={closeModal} />
           <ModalWindow
             ref={modalWindowRef}
             variants={modalWindowVariant}
@@ -95,6 +99,7 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
             <ModalDetail
               key={itemId} // Link로 인한 itemId 변경시 재랜더링
               itemId={+itemId}
+              closeModal={closeModal}
               basePath={basePath}
             />
             <AnimatePresence>

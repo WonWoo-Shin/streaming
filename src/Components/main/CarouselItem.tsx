@@ -108,7 +108,7 @@ export const CarouselItem = ({
       <Link
         onMouseEnter={itemEnter}
         onMouseLeave={itemLeave}
-        to={`${media_type}/${id}`}
+        to={`modal/${media_type}/${id}`}
       >
         <ItemImage backdrop={backdrop_path} poster={poster_path} />
         <Title>{title ?? name}</Title>

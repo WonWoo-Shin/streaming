@@ -7,7 +7,7 @@ import {
   TCurrentTab,
   TMediaType,
 } from "../../type";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Badge,
   BadgeArea,
@@ -42,6 +42,7 @@ import { watchVideoStateFamily } from "../../atom";
 
 interface IProps {
   itemId: IItemList["id"];
+  closeModal: () => void;
   basePath?: string;
 }
 
@@ -49,7 +50,7 @@ interface IParams {
   mediaType: TMediaType;
 }
 
-export const ModalDetail = ({ itemId, basePath }: IProps) => {
+export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   const { mediaType } = useParams() as unknown as IParams;
 
   const [preMediaType, setPreMediaType] = useState(mediaType);
@@ -58,8 +59,6 @@ export const ModalDetail = ({ itemId, basePath }: IProps) => {
       setPreMediaType(mediaType);
     }
   }, [mediaType]); // 모달창이 닫힐 때 자연스러운 애니메이션을 위해 preState에 저장
-
-  const navigate = useNavigate();
 
   const {
     data: detailData,
@@ -136,7 +135,7 @@ export const ModalDetail = ({ itemId, basePath }: IProps) => {
               )}
             />
             <ModalNav>
-              <ExitBtn onClick={() => navigate(basePath ?? "/")}>
+              <ExitBtn onClick={closeModal}>
                 {" "}
                 <svg
                   width="24"

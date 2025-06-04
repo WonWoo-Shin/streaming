@@ -24,7 +24,9 @@ export const SliderItem = ({
       <BannerTitleSection>
         <BannerTitle>{title ?? name}</BannerTitle>
         <BannerButton>
-          <Button onClick={() => navigate(`${media_type ?? "movie"}/${id}`)}>
+          <Button
+            onClick={() => navigate(`modal/${media_type ?? "movie"}/${id}`)}
+          >
             <span>확인하기</span>
           </Button>
         </BannerButton>
