@@ -9,7 +9,7 @@ import { GlobalStyle } from "./styles/globalStyle";
 import { darkTheme, lightTheme } from "./theme";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "./atom";
-import { SearchResults } from "./Components/SearchResults";
+import { SearchResults } from "./Components/searchResult/SearchResults";
 import { Footer } from "./Components/Footer";
 
 function App() {

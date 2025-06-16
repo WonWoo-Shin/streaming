@@ -7,16 +7,16 @@ import {
   SearchKeyword,
   SearchMessage,
   Wrapper,
-} from "../styles/searchResultsStyle";
+} from "../../styles/searchResultsStyle";
 import { useQuery } from "@tanstack/react-query";
-import { getSearch } from "../api";
-import { IItemListResults } from "../type";
-import { createImage } from "../utils/createImgae";
-import { Title } from "../styles/carouselStyle";
-import { ItemModal } from "./modal/ItemModal";
+import { getSearch } from "../../api";
+import { IItemListResults } from "../../type";
+import { createImage } from "../../utils/createImgae";
+import { Title } from "../../styles/carouselStyle";
+import { ItemModal } from "../modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Header } from "./Header/Header";
+import { Header } from "../header/Header";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();

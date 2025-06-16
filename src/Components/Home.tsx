@@ -5,7 +5,7 @@ import { ItemModal } from "./modal/ItemModal";
 import { Main } from "./main/Main";
 
 import { AnimatePresence } from "framer-motion";
-import { Header } from "./Header/Header";
+import { Header } from "./header/Header";
 import { useEffect } from "react";
 
 export const Home = () => {
