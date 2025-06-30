@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { ItemImage } from "../../styles/searchResultsStyle";
+import {
+  ItemImage,
+  ResultsItemContainer,
+} from "../../styles/searchResultsStyle";
 import { createImage } from "../../utils/createImgae";
 import { IItemList } from "../../type";
 import { Title } from "../../styles/carouselStyle";
 
-export const SearchItem = ({
+export const ResultsItem = ({
   id,
   media_type,
   backdrop_path,
@@ -13,11 +16,11 @@ export const SearchItem = ({
   name,
 }: IItemList) => {
   return (
-    <li>
+    <ResultsItemContainer>
       <Link to={`modal/${media_type}/${id}`}>
         <ItemImage src={createImage("w400", backdrop_path ?? poster_path)} />
         <Title>{title ?? name}</Title>
       </Link>
-    </li>
+    </ResultsItemContainer>
   );
 };

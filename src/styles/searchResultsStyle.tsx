@@ -42,6 +42,10 @@ export const ResultsList = styled.ul`
   }
 `;
 
+export const ResultsItemContainer = styled.li`
+  background-color: white;
+`;
+
 export const ItemImage = styled.img`
   display: block;
   width: 100%;

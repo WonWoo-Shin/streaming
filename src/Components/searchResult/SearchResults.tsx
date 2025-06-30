@@ -1,6 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
-  ItemImage,
   ResultsList,
   ResultsName,
   ResultsWrapper,
@@ -11,13 +10,12 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { getSearch } from "../../api";
 import { IItemListResults } from "../../type";
-import { createImage } from "../../utils/createImgae";
-import { Title } from "../../styles/carouselStyle";
+
 import { ItemModal } from "../modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Header } from "../header/Header";
-import { SearchItem } from "./SearchItem";
+import { ResultsItem } from "./ResultsItem";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -53,7 +51,7 @@ export const SearchResults = () => {
           ) : (
             <ResultsList>
               {searchData?.results.map((result) => (
-                <SearchItem key={result.id} {...result} />
+                <ResultsItem key={result.id} {...result} />
               ))}
             </ResultsList>
           )}
