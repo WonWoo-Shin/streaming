@@ -17,6 +17,7 @@ import { ItemModal } from "../modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Header } from "../header/Header";
+import { SearchItem } from "./SearchItem";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -52,17 +53,7 @@ export const SearchResults = () => {
           ) : (
             <ResultsList>
               {searchData?.results.map((result) => (
-                <li key={result.id}>
-                  <Link to={`modal/${result.media_type}/${result.id}`}>
-                    <ItemImage
-                      src={createImage(
-                        "w400",
-                        result.backdrop_path ?? result.poster_path
-                      )}
-                    />
-                    <Title>{result.title ?? result.name}</Title>
-                  </Link>
-                </li>
+                <SearchItem key={result.id} {...result} />
               ))}
             </ResultsList>
           )}
