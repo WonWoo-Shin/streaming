@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
+  CarouselItemContainer,
   Item,
-  ItemContainer,
   ItemParent,
   ItemPreview,
   PreviewText,
@@ -104,7 +104,7 @@ export const CarouselItem = ({
   };
 
   return (
-    <ItemContainer $itemWidth={itemWidth}>
+    <CarouselItemContainer $itemWidth={itemWidth}>
       <Link
         onMouseEnter={itemEnter}
         onMouseLeave={itemLeave}
@@ -142,6 +142,6 @@ export const CarouselItem = ({
           )}
         </AnimatePresence>
       </Link>
-    </ItemContainer>
+    </CarouselItemContainer>
   );
 };

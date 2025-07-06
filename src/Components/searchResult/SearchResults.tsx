@@ -15,7 +15,7 @@ import { ItemModal } from "../modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Header } from "../header/Header";
-import { ResultsItem } from "./ResultsItem";
+import { ContentPannel } from "../ContentPannel";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -51,7 +51,7 @@ export const SearchResults = () => {
           ) : (
             <ResultsList>
               {searchData?.results.map((result) => (
-                <ResultsItem key={result.id} {...result} />
+                <ContentPannel key={result.id} {...result} />
               ))}
             </ResultsList>
           )}

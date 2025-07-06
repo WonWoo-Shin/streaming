@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -43,6 +44,7 @@ export const ResultsList = styled.ul`
 `;
 
 export const ResultsItemContainer = styled.li`
+  position: relative;
   background-color: white;
 `;
 
@@ -53,4 +55,26 @@ export const ItemImage = styled.img`
   margin-bottom: 4px;
   border-radius: 4px;
   object-fit: cover;
+`;
+
+export const ItemPreview = styled(motion.div)`
+  position: absolute;
+  top: calc(((100% - var(--preview-scale)) / 2));
+  z-index: 1;
+  width: var(--preview-scale);
+  height: var(--preview-scale);
+  background-color: ${(props) => props.theme.background.primary};
+  border-radius: var(--border-radius);
+  box-shadow: ${(props) => props.theme.etc.boxShadow} 0px 3px 15px;
+  &.leftEnd {
+    left: 0;
+    transform-origin: left center;
+  }
+  &.rightEnd {
+    right: 0;
+    transform-origin: right center;
+  }
+  &.center {
+    left: calc(((100% - var(--preview-scale)) / 2));
+  }
 `;

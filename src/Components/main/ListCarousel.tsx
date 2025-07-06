@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { Carousel, Container } from "../../styles/carouselStyle";
+import {
+  Carousel,
+  CarouselItemContainer,
+  Container,
+} from "../../styles/carouselStyle";
 
 import { sliceArray } from "../../utils/sliceArray";
 import { IItemList } from "../../type";
@@ -8,6 +12,7 @@ import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { CarouselItem } from "./CarouselItem";
+import { ContentPannel } from "../ContentPannel";
 
 export const ListCarousel = ({ data }: { data: IItemList[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -131,14 +136,17 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
         className={isTransition ? "" : "no-transition"}
       >
         {cloneItems.map((item, index) => (
-          <CarouselItem
-            key={index}
-            index={index}
-            {...item}
-            itemWidth={itemWidth}
-            isTransition={isTransition}
-            isCarouselActive={isCarouselActive}
-          />
+          // <CarouselItem
+          //   key={index}
+          //   index={index}
+          //   {...item}
+          //   itemWidth={itemWidth}
+          //   isTransition={isTransition}
+          //   isCarouselActive={isCarouselActive}
+          // />
+          <CarouselItemContainer key={index} $itemWidth={itemWidth}>
+            <ContentPannel {...item} />
+          </CarouselItemContainer>
         ))}
       </Carousel>
       {isScreenOver && (

@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import {
+  CarouselItemContainer,
   Container,
-  ItemContainer,
   ItemParent,
   Loading,
   LoadingItem,
@@ -19,14 +19,14 @@ export const CarouselLoading = () => {
     <Container>
       <Loading>
         {renderCount.map((index) => (
-          <ItemContainer $itemWidth={itemWidth} key={index}>
+          <CarouselItemContainer $itemWidth={itemWidth} key={index}>
             <ItemParent>
               <LoadingItem />
             </ItemParent>
             <Title>
               <TextLoading />
             </Title>
-          </ItemContainer>
+          </CarouselItemContainer>
         ))}
       </Loading>
     </Container>

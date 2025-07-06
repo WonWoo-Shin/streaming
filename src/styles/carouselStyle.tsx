@@ -29,7 +29,7 @@ export const Carousel = styled.ul<ICarouselProps>`
   }
 `;
 
-export const ItemContainer = styled(motion.li)<{ $itemWidth: number }>`
+export const CarouselItemContainer = styled(motion.li)<{ $itemWidth: number }>`
   flex: 0 0 ${(props) => props.$itemWidth}%;
   padding: 0 var(--carousel-gap);
   a {
