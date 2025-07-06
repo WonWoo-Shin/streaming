@@ -3,16 +3,21 @@ import {
   PannelContainer,
   PannelImage,
   PannelPreview,
+  PannelPreviewText,
   PannelTitle,
 } from "../styles/contentsPannelStyle";
-import { IItemList } from "../type";
+import { IGenre, IGetGenre, IItemList } from "../type";
 import { createImage } from "../utils/createImgae";
+import { useQuery } from "@tanstack/react-query";
+import { getGenre } from "../api";
 
 export const ContentPannel = ({
   backdrop_path,
   poster_path,
   title,
   name,
+  media_type,
+  genre_ids,
 }: IItemList) => {
   const [showPreview, setShowPreview] = useState(false);
 
@@ -22,6 +27,15 @@ export const ContentPannel = ({
 
   const pannelMouseLeave = () => {
     setShowPreview(false);
+  };
+
+  const { data: genreList } = useQuery<IGetGenre>({
+    queryKey: ["genre", media_type],
+    queryFn: () => getGenre(media_type),
+  });
+
+  const findGenre = (genreId: IGenre["id"]) => {
+    return genreList?.genres.find((genre) => genre.id == genreId)?.name;
   };
 
   return (
@@ -34,9 +48,19 @@ export const ContentPannel = ({
       {showPreview && (
         <PannelPreview>
           <PannelImage
+            className="preview"
             src={createImage("w500", backdrop_path ?? poster_path)}
           />
-          <PannelTitle>{title ?? name}</PannelTitle>
+          <PannelPreviewText>
+            <span>{title ?? name}</span>
+            {genreList && (
+              <span>
+                {genre_ids.map((genreId) => (
+                  <p key={genreId}>{findGenre(genreId)}</p>
+                ))}
+              </span>
+            )}
+          </PannelPreviewText>
         </PannelPreview>
       )}
     </PannelContainer>

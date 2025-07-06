@@ -13,6 +13,9 @@ export const PannelImage = styled.img`
   margin-bottom: 4px;
   border-radius: 4px;
   object-fit: cover;
+  &.preview {
+    margin-bottom: 0;
+  }
 `;
 
 export const PannelTitle = styled.h2`
@@ -46,5 +49,34 @@ export const PannelPreview = styled(motion.div)`
   }
   &.center {
     left: calc(((100% - var(--preview-scale)) / 2));
+  }
+`;
+
+export const PannelPreviewText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0.8em;
+  line-height: 1.5;
+  span {
+    display: block;
+    overflow: hidden;
+    width: 15em;
+    white-space: nowrap;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    p {
+      font-weight: 500;
+      display: inline-block;
+      font-size: 0.8em;
+      color: ${(props) => props.theme.font.muted};
+      white-space: pre;
+      &:not(:first-child) {
+        &::before {
+          content: " · ";
+        }
+      }
+    }
   }
 `;
