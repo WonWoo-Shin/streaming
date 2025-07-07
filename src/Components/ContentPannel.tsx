@@ -10,6 +10,14 @@ import { IGenre, IGetGenre, IItemList } from "../type";
 import { createImage } from "../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getGenre } from "../api";
+import { useRecoilValue } from "recoil";
+import { screenState } from "../atom";
+
+interface IProps extends IItemList {
+  index: number;
+  isLeftEnd: boolean;
+  isRightEnd: boolean;
+}
 
 export const ContentPannel = ({
   backdrop_path,
@@ -18,7 +26,10 @@ export const ContentPannel = ({
   name,
   media_type,
   genre_ids,
-}: IItemList) => {
+  index,
+  isLeftEnd,
+  isRightEnd,
+}: IProps) => {
   const [showPreview, setShowPreview] = useState(false);
 
   const pannelMouseEnter = () => {
@@ -46,7 +57,11 @@ export const ContentPannel = ({
       <PannelImage src={createImage("w500", backdrop_path ?? poster_path)} />
       <PannelTitle>{title ?? name}</PannelTitle>
       {showPreview && (
-        <PannelPreview>
+        <PannelPreview
+          className={
+            isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
+          }
+        >
           <PannelImage
             className="preview"
             src={createImage("w500", backdrop_path ?? poster_path)}

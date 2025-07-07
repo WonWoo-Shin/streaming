@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const PannelContainer = styled.div`
   position: relative;
-  background-color: grey;
 `;
 
 export const PannelImage = styled.img`
@@ -39,11 +38,11 @@ export const PannelPreview = styled(motion.div)`
   background-color: ${(props) => props.theme.background.primary};
   border-radius: var(--border-radius);
   box-shadow: ${(props) => props.theme.etc.boxShadow} 0px 3px 15px;
-  &.leftEnd {
+  &.left_end {
     left: 0;
     transform-origin: left center;
   }
-  &.rightEnd {
+  &.right_end {
     right: 0;
     transform-origin: right center;
   }
@@ -65,6 +64,7 @@ export const PannelPreviewText = styled.div`
     white-space: nowrap;
     font-size: 1.1em;
     font-weight: 600;
+    color: ${(props) => props.theme.font.secondary};
     text-overflow: ellipsis;
     p {
       font-weight: 500;

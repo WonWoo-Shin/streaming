@@ -135,19 +135,33 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
         onTransitionEnd={transitionEnd}
         className={isTransition ? "" : "no-transition"}
       >
-        {cloneItems.map((item, index) => (
-          // <CarouselItem
-          //   key={index}
-          //   index={index}
-          //   {...item}
-          //   itemWidth={itemWidth}
-          //   isTransition={isTransition}
-          //   isCarouselActive={isCarouselActive}
-          // />
-          <CarouselItemContainer key={index} $itemWidth={itemWidth}>
-            <ContentPannel {...item} />
-          </CarouselItemContainer>
-        ))}
+        {cloneItems.map((item, index) => {
+          const isLeftEnd = isCarouselActive
+            ? index === showItem + 1
+            : index === 0;
+          const isRightEnd = isCarouselActive
+            ? index === showItem * 2
+            : index === showItem - 1;
+
+          return (
+            // <CarouselItem
+            //   key={index}
+            //   index={index}
+            //   {...item}
+            //   itemWidth={itemWidth}
+            //   isTransition={isTransition}
+            //   isCarouselActive={isCarouselActive}
+            // />
+            <CarouselItemContainer key={index} $itemWidth={itemWidth}>
+              <ContentPannel
+                {...item}
+                index={index}
+                isLeftEnd={isLeftEnd}
+                isRightEnd={isRightEnd}
+              />
+            </CarouselItemContainer>
+          );
+        })}
       </Carousel>
       {isScreenOver && (
         <CarouselButton

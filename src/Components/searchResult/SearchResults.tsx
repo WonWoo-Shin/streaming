@@ -16,6 +16,8 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Header } from "../header/Header";
 import { ContentPannel } from "../ContentPannel";
+import { useRecoilValue } from "recoil";
+import { screenState } from "../../atom";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -36,6 +38,8 @@ export const SearchResults = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const showItem = useRecoilValue(screenState);
+
   return (
     <>
       <Header isHome={false} />
@@ -50,9 +54,20 @@ export const SearchResults = () => {
             <SearchMessage>검색 결과가 없습니다.</SearchMessage>
           ) : (
             <ResultsList>
-              {searchData?.results.map((result) => (
-                <ContentPannel key={result.id} {...result} />
-              ))}
+              {searchData?.results.map((result, index) => {
+                const isLeftEnd = index % showItem === 0;
+                const isRightEnd = (index + 1) % showItem === 0;
+
+                return (
+                  <ContentPannel
+                    key={index}
+                    {...result}
+                    index={index}
+                    isLeftEnd={isLeftEnd}
+                    isRightEnd={isRightEnd}
+                  />
+                );
+              })}
             </ResultsList>
           )}
         </ResultsWrapper>
