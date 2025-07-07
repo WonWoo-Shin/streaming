@@ -158,6 +158,7 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
                 index={index}
                 isLeftEnd={isLeftEnd}
                 isRightEnd={isRightEnd}
+                isTransition={isTransition}
               />
             </CarouselItemContainer>
           );

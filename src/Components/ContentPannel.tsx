@@ -10,11 +10,33 @@ import { IGenre, IGetGenre, IItemList } from "../type";
 import { createImage } from "../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getGenre } from "../api";
+import { AnimatePresence, Variants } from "framer-motion";
+
+const previewVariant: Variants = {
+  initial: {
+    scale: 0.72,
+  },
+  animate: {
+    scale: 1,
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.25,
+    },
+  },
+  exit: {
+    scale: 0.72,
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.25,
+    },
+  },
+};
 
 interface IProps extends IItemList {
   index: number;
   isLeftEnd: boolean;
   isRightEnd: boolean;
+  isTransition?: boolean;
 }
 
 export const ContentPannel = ({
@@ -26,15 +48,18 @@ export const ContentPannel = ({
   genre_ids,
   isLeftEnd,
   isRightEnd,
+  isTransition,
 }: IProps) => {
   const [showPreview, setShowPreview] = useState(false);
+  const [delay, setDelay] = useState<number>();
 
   const pannelMouseEnter = () => {
-    setShowPreview(true);
+    setDelay(setTimeout(() => setShowPreview(true), 500));
   };
 
   const pannelMouseLeave = () => {
     setShowPreview(false);
+    clearTimeout(delay);
   };
 
   const { data: genreList } = useQuery<IGetGenre>({
@@ -53,28 +78,34 @@ export const ContentPannel = ({
     >
       <PannelImage src={createImage("w500", backdrop_path ?? poster_path)} />
       <PannelTitle>{title ?? name}</PannelTitle>
-      {showPreview && (
-        <PannelPreview
-          className={
-            isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
-          }
-        >
-          <PannelImage
-            className="preview"
-            src={createImage("w500", backdrop_path ?? poster_path)}
-          />
-          <PannelPreviewText>
-            <span>{title ?? name}</span>
-            {genreList && (
-              <span>
-                {genre_ids.map((genreId) => (
-                  <p key={genreId}>{findGenre(genreId)}</p>
-                ))}
-              </span>
-            )}
-          </PannelPreviewText>
-        </PannelPreview>
-      )}
+      <AnimatePresence>
+        {showPreview && !isTransition && (
+          <PannelPreview
+            className={
+              isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
+            }
+            variants={previewVariant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <PannelImage
+              className="preview"
+              src={createImage("w500", backdrop_path ?? poster_path)}
+            />
+            <PannelPreviewText>
+              <span>{title ?? name}</span>
+              {genreList && (
+                <span>
+                  {genre_ids.map((genreId) => (
+                    <p key={genreId}>{findGenre(genreId)}</p>
+                  ))}
+                </span>
+              )}
+            </PannelPreviewText>
+          </PannelPreview>
+        )}
+      </AnimatePresence>
     </PannelContainer>
   );
 };

@@ -1,14 +1,7 @@
 import { MainContainer } from "../../styles/mainStyle";
-
 import { getNowShowing, getTopRated, getTrending } from "../../api";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  screenState,
-  topRatedMediaTypeState,
-  trendingTimeState,
-} from "../../atom";
-import { useMediaQuery } from "react-responsive";
-import { useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { topRatedMediaTypeState, trendingTimeState } from "../../atom";
 import { Category } from "./Category";
 import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 
