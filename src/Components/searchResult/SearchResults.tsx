@@ -18,6 +18,7 @@ import { Header } from "../header/Header";
 import { ContentPannel } from "../ContentPannel";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
+import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
@@ -38,6 +39,7 @@ export const SearchResults = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useAdjustShowItem();
   const showItem = useRecoilValue(screenState);
 
   return (
@@ -60,7 +62,7 @@ export const SearchResults = () => {
 
                 return (
                   <ContentPannel
-                    key={index}
+                    key={result.id}
                     {...result}
                     index={index}
                     isLeftEnd={isLeftEnd}

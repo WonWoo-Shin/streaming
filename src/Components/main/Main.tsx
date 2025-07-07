@@ -10,16 +10,10 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
 import { Category } from "./Category";
+import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 
 export const Main = () => {
-  const isMediumScreen = useMediaQuery({ query: "(max-width: 1400px)" });
-  const isSmallScreen = useMediaQuery({ query: "(max-width: 1100px)" });
-  const setShowItem = useSetRecoilState(screenState);
-  useEffect(() => {
-    setShowItem(() => {
-      return isSmallScreen ? 4 : isMediumScreen ? 5 : 6;
-    });
-  }, [isMediumScreen, isSmallScreen]);
+  useAdjustShowItem();
 
   const trendingTime = useRecoilValue(trendingTimeState);
   const topRatedMediaType = useRecoilValue(topRatedMediaTypeState);

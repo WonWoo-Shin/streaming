@@ -10,8 +10,6 @@ import { IGenre, IGetGenre, IItemList } from "../type";
 import { createImage } from "../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getGenre } from "../api";
-import { useRecoilValue } from "recoil";
-import { screenState } from "../atom";
 
 interface IProps extends IItemList {
   index: number;
@@ -26,7 +24,6 @@ export const ContentPannel = ({
   name,
   media_type,
   genre_ids,
-  index,
   isLeftEnd,
   isRightEnd,
 }: IProps) => {
