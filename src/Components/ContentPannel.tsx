@@ -11,6 +11,7 @@ import { createImage } from "../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
 import { getGenre } from "../api";
 import { AnimatePresence, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const previewVariant: Variants = {
   initial: {
@@ -40,6 +41,7 @@ interface IProps extends IItemList {
 }
 
 export const ContentPannel = ({
+  id,
   backdrop_path,
   poster_path,
   title,
@@ -76,36 +78,38 @@ export const ContentPannel = ({
       onMouseEnter={pannelMouseEnter}
       onMouseLeave={pannelMouseLeave}
     >
-      <PannelImage src={createImage("w500", backdrop_path ?? poster_path)} />
-      <PannelTitle>{title ?? name}</PannelTitle>
-      <AnimatePresence>
-        {showPreview && !isTransition && (
-          <PannelPreview
-            className={
-              isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
-            }
-            variants={previewVariant}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <PannelImage
-              className="preview"
-              src={createImage("w500", backdrop_path ?? poster_path)}
-            />
-            <PannelPreviewText>
-              <span>{title ?? name}</span>
-              {genreList && (
-                <span>
-                  {genre_ids.map((genreId) => (
-                    <p key={genreId}>{findGenre(genreId)}</p>
-                  ))}
-                </span>
-              )}
-            </PannelPreviewText>
-          </PannelPreview>
-        )}
-      </AnimatePresence>
+      <Link to={`modal/${media_type}/${id}`}>
+        <PannelImage src={createImage("w500", backdrop_path ?? poster_path)} />
+        <PannelTitle>{title ?? name}</PannelTitle>
+        <AnimatePresence>
+          {showPreview && !isTransition && (
+            <PannelPreview
+              className={
+                isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
+              }
+              variants={previewVariant}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PannelImage
+                className="preview"
+                src={createImage("w500", backdrop_path ?? poster_path)}
+              />
+              <PannelPreviewText>
+                <span>{title ?? name}</span>
+                {genreList && (
+                  <span>
+                    {genre_ids.map((genreId) => (
+                      <p key={genreId}>{findGenre(genreId)}</p>
+                    ))}
+                  </span>
+                )}
+              </PannelPreviewText>
+            </PannelPreview>
+          )}
+        </AnimatePresence>
+      </Link>
     </PannelContainer>
   );
 };

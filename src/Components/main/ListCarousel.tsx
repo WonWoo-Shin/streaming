@@ -11,7 +11,6 @@ import { IItemList } from "../../type";
 import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
-import { CarouselItem } from "./CarouselItem";
 import { ContentPannel } from "../ContentPannel";
 
 export const ListCarousel = ({ data }: { data: IItemList[] }) => {
@@ -144,15 +143,7 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
             : index === showItem - 1;
 
           return (
-            // <CarouselItem
-            //   key={index}
-            //   index={index}
-            //   {...item}
-            //   itemWidth={itemWidth}
-            //   isTransition={isTransition}
-            //   isCarouselActive={isCarouselActive}
-            // />
-            <CarouselItemContainer key={index} $itemWidth={itemWidth}>
+            <CarouselItemContainer key={item.id} $itemWidth={itemWidth}>
               <ContentPannel
                 {...item}
                 index={index}
