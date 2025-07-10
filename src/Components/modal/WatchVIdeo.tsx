@@ -80,7 +80,7 @@ export const WatchVideo = ({ videoKey, videoName, setWatchVideo }: IProps) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-              ></iframe>
+              />
             )}
           </VideoModalWindow>
         </ModalContainer>,

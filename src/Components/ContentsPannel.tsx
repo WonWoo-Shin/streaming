@@ -40,7 +40,7 @@ interface IProps extends IItemList {
   isTransition?: boolean;
 }
 
-export const ContentPannel = ({
+export const ContentsPannel = ({
   id,
   backdrop_path,
   poster_path,

@@ -1,5 +1,9 @@
 import { createPortal } from "react-dom";
-import { ModalBackground, ModalContainer } from "../../styles/modal/modalStyle";
+import {
+  ContentsMessage,
+  ModalBackground,
+  ModalContainer,
+} from "../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
 import {
   IEpisodeModal,
@@ -68,28 +72,30 @@ export const EpisodeDetailModal = ({
   const modalContainer = document.getElementById("modal-container");
   if (!modalContainer) return null;
 
-  const { data: episodeVideosData } = useQuery<IGetVideosResults>({
-    queryKey: ["episodeVideos", episode.id],
-    queryFn: () =>
-      getEpisodeVideos(
-        itemId,
-        episode.season_number,
-        episode.episode_number,
-        language
-      ),
-  });
-
-  const { data: episodeImagesData } = useQuery<IGetEpisodeImages>({
-    queryKey: ["episodeImages", episode.id],
-    queryFn: () =>
-      getEpisodeImages(itemId, episode.season_number, episode.episode_number),
-  });
-
   const closeModal = () => {
     setEpisodeModal((prev) => ({ ...prev, isOpen: false }));
   };
 
+  const { data: episodeImagesData, isLoading: isImagesLoading } =
+    useQuery<IGetEpisodeImages>({
+      queryKey: ["episodeImages", episode.id],
+      queryFn: () =>
+        getEpisodeImages(itemId, episode.season_number, episode.episode_number),
+    });
+
   const isMultiImage = episodeImagesData && episodeImagesData.stills.length > 1;
+
+  const { data: episodeVideosData, isLoading: isVideosLoading } =
+    useQuery<IGetVideosResults>({
+      queryKey: ["episodeVideos", episode.id],
+      queryFn: () =>
+        getEpisodeVideos(
+          itemId,
+          episode.season_number,
+          episode.episode_number,
+          language
+        ),
+    });
 
   const slideSettings: Settings = {
     infinite: isMultiImage,
@@ -98,6 +104,13 @@ export const EpisodeDetailModal = ({
     dots: isMultiImage,
     appendDots: (dots) => <SliderDots>{dots}</SliderDots>,
   };
+
+  const isLoading = isImagesLoading || isVideosLoading;
+
+  const noInfo =
+    !episodeImagesData?.stills.length &&
+    !episodeImagesData?.stills.length &&
+    !episodeVideosData?.results.length;
 
   return (
     <>
@@ -135,40 +148,47 @@ export const EpisodeDetailModal = ({
                 ></path>
               </svg>
             </ModalHeader>
-            {!!episodeImagesData?.stills.length && (
-              <StillImage>
-                <Slider {...slideSettings}>
-                  {episodeImagesData?.stills.map((still, index) => (
-                    <img
-                      key={index}
-                      src={createImage("w780", still.file_path)}
-                      alt=""
-                    />
-                  ))}
-                </Slider>
-              </StillImage>
-            )}
-
-            {!!episode.overview && (
-              <Section>
-                <SubHead>줄거리</SubHead>
-                <Overview>{episode.overview}</Overview>
-              </Section>
-            )}
-            {!!episodeVideosData?.results.length && (
-              <Section>
-                <SubHead>동영상</SubHead>
-                <ul>
-                  {episodeVideosData?.results.map((video) => (
-                    <VideoListItem
-                      key={video.id}
-                      itemId={itemId}
-                      video={video}
-                      thumbnailWidth="220px"
-                    />
-                  ))}
-                </ul>
-              </Section>
+            {isLoading ? (
+              <ContentsMessage>로딩 중...</ContentsMessage>
+            ) : noInfo ? (
+              <ContentsMessage>에피소드 정보가 없습니다.</ContentsMessage>
+            ) : (
+              <>
+                {!!episodeImagesData?.stills.length && (
+                  <StillImage>
+                    <Slider {...slideSettings}>
+                      {episodeImagesData?.stills.map((still, index) => (
+                        <img
+                          key={index}
+                          src={createImage("w780", still.file_path)}
+                          alt=""
+                        />
+                      ))}
+                    </Slider>
+                  </StillImage>
+                )}
+                {!!episode.overview && (
+                  <Section>
+                    <SubHead>줄거리</SubHead>
+                    <Overview>{episode.overview}</Overview>
+                  </Section>
+                )}
+                {!!episodeVideosData?.results.length && (
+                  <Section>
+                    <SubHead>동영상</SubHead>
+                    <ul>
+                      {episodeVideosData?.results.map((video) => (
+                        <VideoListItem
+                          key={video.id}
+                          itemId={itemId}
+                          video={video}
+                          thumbnailWidth="220px"
+                        />
+                      ))}
+                    </ul>
+                  </Section>
+                )}
+              </>
             )}
           </EpisodeModalWindow>
         </ModalContainer>,

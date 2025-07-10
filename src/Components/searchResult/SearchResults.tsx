@@ -15,7 +15,7 @@ import { ItemModal } from "../modal/ItemModal";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Header } from "../header/Header";
-import { ContentPannel } from "../ContentPannel";
+import { ContentsPannel } from "../ContentsPannel";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
@@ -61,7 +61,7 @@ export const SearchResults = () => {
                 const isRightEnd = (index + 1) % showItem === 0;
 
                 return (
-                  <ContentPannel
+                  <ContentsPannel
                     key={result.id}
                     {...result}
                     index={index}

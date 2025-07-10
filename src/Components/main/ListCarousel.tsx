@@ -11,7 +11,7 @@ import { IItemList } from "../../type";
 import { CarouselButton } from "./CarouselButton";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
-import { ContentPannel } from "../ContentPannel";
+import { ContentsPannel } from "../ContentsPannel";
 
 export const ListCarousel = ({ data }: { data: IItemList[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -144,7 +144,7 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
 
           return (
             <CarouselItemContainer key={item.id} $itemWidth={itemWidth}>
-              <ContentPannel
+              <ContentsPannel
                 {...item}
                 index={index}
                 isLeftEnd={isLeftEnd}
