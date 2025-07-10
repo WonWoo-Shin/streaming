@@ -18,6 +18,8 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalWindow = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow-y: auto;
   z-index: 1;
@@ -236,6 +238,9 @@ export const More = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 40px 50px;
 `;
 
@@ -264,7 +269,7 @@ export const ContentsMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  flex-grow: 1;
   font-size: 17px;
   color: ${(props) => props.theme.font.muted};
 `;
