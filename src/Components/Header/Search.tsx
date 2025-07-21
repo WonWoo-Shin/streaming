@@ -65,7 +65,7 @@ export const Search = ({ setIsSearchOpen }: IProps) => {
     return () => {
       document.removeEventListener("mousedown", clickOutside);
     };
-  }, [setIsSearchOpen]);
+  }, [inputWrapperRef]);
 
   const [searchValue, setSearchValue] = useState("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
