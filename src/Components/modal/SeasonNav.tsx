@@ -1,11 +1,12 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   EpisodeCount,
   Season,
   SeasonSelect,
+  SelectItem,
+  SelectList,
 } from "../../styles/modal/modalColumnListStyle";
 import { ISeasons } from "../../type";
-import { SeasonSelectOptions } from "./SeasonSelectOptions";
 
 interface IProps {
   seasons: ISeasons[];
@@ -27,6 +28,21 @@ export const SeasonNav = ({
       seasons.findIndex((season) => season.season_number === selectSeason)
     ];
 
+  useEffect(() => {
+    const clickOutside = (event: MouseEvent) => {
+      if (
+        seasonSelectRef.current &&
+        !seasonSelectRef.current.contains(event.target as Node)
+      ) {
+        setIsSelectOpen(false);
+      }
+    };
+    addEventListener("mousedown", clickOutside);
+    return () => {
+      removeEventListener("mousedown", clickOutside);
+    };
+  }, [seasonSelectRef]);
+
   return (
     <Season>
       <EpisodeCount>{`${currentSeason.episode_count}개 에피소드`}</EpisodeCount>
@@ -38,12 +54,16 @@ export const SeasonNav = ({
         >
           <span>{currentSeason.name}</span>
           {isSelectOpen && (
-            <SeasonSelectOptions
-              seasons={seasons}
-              seasonSelectRef={seasonSelectRef}
-              setIsSelectOpen={setIsSelectOpen}
-              setSelectSeason={setSelectSeason}
-            />
+            <SelectList>
+              {seasons.map((season) => (
+                <SelectItem
+                  key={season.id}
+                  onClick={() => setSelectSeason(season.season_number)}
+                >
+                  {season.name}
+                </SelectItem>
+              ))}
+            </SelectList>
           )}
         </SeasonSelect>
       )}
