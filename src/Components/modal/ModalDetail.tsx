@@ -265,6 +265,12 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
                 setCurrentTab={setCurrentTab}
               />
               <NavItem
+                tab="info"
+                tabName="작품 정보"
+                tabMatch={currentTab === "info"}
+                setCurrentTab={setCurrentTab}
+              />
+              <NavItem
                 tab="recommend"
                 tabName="추천 작품"
                 tabMatch={currentTab === "recommend"}

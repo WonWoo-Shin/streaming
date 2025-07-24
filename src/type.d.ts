@@ -91,4 +91,4 @@ export type TMediaType = "all" | "movie" | "tv";
 
 export type TTime = "day" | "week";
 
-export type TCurrentTab = "video" | "episode" | "recommend";
+export type TCurrentTab = "video" | "episode" | "info" | "recommend";
