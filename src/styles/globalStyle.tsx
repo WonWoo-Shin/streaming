@@ -16,7 +16,7 @@ export const GlobalStyle = styled.createGlobalStyle`
       --carousel-padding: 4%;
     }
     --preview-scale: 140%;
-    --point-green: #04d087;
+    --point-green: #00ffa3;
   }
   html,
   body,
