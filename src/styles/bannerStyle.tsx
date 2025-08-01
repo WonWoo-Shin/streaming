@@ -58,7 +58,7 @@ export const Button = styled.button`
   height: 3.13em;
   border: none;
   border-radius: 0.3em;
-  background-color: var(--point-green);
+  background-color: ${(props) => props.theme.etc.pointGreen};
   font-size: inherit;
   cursor: pointer;
   &:hover {

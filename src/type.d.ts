@@ -22,6 +22,7 @@ export interface IGetDetail extends Omit<IItemList, "genre_ids"> {
   seasons?: ISeasons[];
   original_language: "en" | "ko" | "ja";
   success?: boolean;
+  production_companies: IProductionCompanies[];
 }
 
 export interface IGetGenre {
@@ -38,6 +39,12 @@ export interface ISeasons {
   name: string;
   season_number: number;
   episode_count: number;
+}
+
+export interface IProductionCompanies {
+  id: number;
+  logo_path: string;
+  name: string;
 }
 
 export interface IGetVideos {

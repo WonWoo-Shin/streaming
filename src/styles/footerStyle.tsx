@@ -17,7 +17,7 @@ export const LinkButton = styled.a`
   width: 120px;
   height: 40px;
   padding: 0 12px;
-  background-color: var(--point-green);
+  background-color: ${(props) => props.theme.etc.pointGreen};
   border-radius: 4px;
   color: #000000;
   font-size: 18px;

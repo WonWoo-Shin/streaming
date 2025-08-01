@@ -22,6 +22,7 @@ export const darkTheme: DefaultTheme = {
     divider: "#26282a",
     boxShadow: "rgba(0, 0, 0, 0.75)",
     buttonHover: "rgba(255, 255, 255, 0.2)",
+    pointGreen: "#00FFA3",
   },
 };
 
@@ -47,5 +48,6 @@ export const lightTheme: DefaultTheme = {
     divider: "#EEEEEE",
     boxShadow: "rgba(0, 0, 0, 0.25)",
     buttonHover: "rgba(0, 0, 0, 0.2)",
+    pointGreen: "#1BB373",
   },
 };

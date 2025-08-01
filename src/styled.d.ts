@@ -23,6 +23,7 @@ declare module "styled-components" {
       divider: string;
       boxShadow: string;
       buttonHover: string;
+      pointGreen: string;
     };
   }
 }

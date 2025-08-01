@@ -40,7 +40,7 @@ export const TabBtn = styled.button<{ $isActive: boolean }>`
     props.$isActive ? "none" : `2px solid ${props.theme.etc.divider}`};
   border-radius: 9999px;
   background-color: ${(props) =>
-    props.$isActive ? "var(--point-green)" : "inherit"};
+    props.$isActive ? props.theme.etc.pointGreen : "inherit"};
   color: ${(props) => (props.$isActive ? "#000000" : "inherit")};
   font-size: inherit;
   cursor: pointer;

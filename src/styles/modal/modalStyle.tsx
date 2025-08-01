@@ -254,7 +254,7 @@ export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
   font-size: 20px;
   font-weight: 600;
   color: ${(props) =>
-    props.$tabMatch ? "var(--point-green)" : props.theme.font.muted};
+    props.$tabMatch ? props.theme.etc.pointGreen : props.theme.font.muted};
   cursor: pointer;
 `;
 
@@ -262,7 +262,7 @@ export const CurrentBar = styled(motion.div)`
   width: 100%;
   height: 3px;
   margin-top: 12px;
-  background-color: var(--point-green);
+  background-color: ${(props) => props.theme.etc.pointGreen};
 `;
 
 export const ContentsMessage = styled.div`

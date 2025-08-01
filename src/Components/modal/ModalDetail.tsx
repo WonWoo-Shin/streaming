@@ -39,6 +39,7 @@ import { WatchVideo } from "./WatchVIdeo";
 import { AnimatePresence } from "framer-motion";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { watchVideoStateFamily } from "../../atom";
+import { ModalInfo } from "./ModalInfo";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -290,6 +291,11 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
                 itemId={itemId}
                 videos={videos}
                 isLoading={isVideoLoading || isPreVideoLoading}
+              />
+            )}
+            {currentTab === "info" && (
+              <ModalInfo
+                production_companies={detailData?.production_companies}
               />
             )}
             {currentTab === "recommend" && (
