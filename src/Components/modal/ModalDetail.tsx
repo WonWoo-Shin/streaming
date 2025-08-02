@@ -295,6 +295,8 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             )}
             {currentTab === "info" && (
               <ModalInfo
+                itemId={itemId}
+                mediaType={mediaType}
                 production_companies={detailData?.production_companies}
               />
             )}

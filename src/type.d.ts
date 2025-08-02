@@ -92,6 +92,14 @@ export interface IEpisodeModal {
   episode: IGetEpisodes;
 }
 
+export interface ICredits {
+  cast: {
+    id: number;
+    character: string;
+    name: string;
+  }[];
+}
+
 export type TDirection = "left" | "right";
 
 export type TMediaType = "all" | "movie" | "tv";

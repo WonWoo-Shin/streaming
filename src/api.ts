@@ -104,6 +104,12 @@ export const getEpisodeImages = (
   ).then((response) => response.json());
 };
 
+export const getCredits = (mediaType: TMediaType, itemId: IItemList["id"]) => {
+  return fetch(
+    `${BASE_PATH}/${mediaType}/${itemId}/credits?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
+};
+
 export const getRecommend = (
   mediaType: TMediaType,
   itemId: IItemList["id"]
