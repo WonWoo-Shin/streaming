@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import {
+  CastContainer,
+  CastImage,
+  CastImageArea,
+  CastList,
+  CastName,
+  CastTextArea,
+  CharacterName,
   CompanyImage,
-  CompanyImageContainer,
-  CompanyName,
   InfoHead,
+  InfoSection,
 } from "../../styles/modal/modalInfoStyle";
 import {
   ICredits,
@@ -30,32 +36,40 @@ export const ModalInfo = ({
     queryFn: () => getCredits(mediaType, itemId),
   });
 
-  console.log(creditsData);
-
   return (
     <>
-      <InfoHead>제작</InfoHead>
       {production_companies && (
-        <>
-          <CompanyImageContainer>
+        <InfoSection>
+          <InfoHead>제작</InfoHead>
+          <div>
             <CompanyImage
-              src={createImage("w300", production_companies[0].logo_path)}
+              src={createImage("w200", production_companies[0].logo_path)}
+              title={production_companies[0].name}
             />
-          </CompanyImageContainer>
-          <CompanyName>{production_companies[0].name}</CompanyName>
-        </>
+          </div>
+        </InfoSection>
       )}
       {creditsData && (
-        <>
+        <InfoSection>
           <InfoHead>출연</InfoHead>
-          <ul>
-            {creditsData.cast.slice(0, 3).map((cast) => (
-              <li key={cast.id}>
-                {cast.character} 역 {cast.name}
-              </li>
+          <CastList>
+            {creditsData.cast.map((cast) => (
+              <CastContainer key={cast.id}>
+                <CastImageArea>
+                  {" "}
+                  <CastImage
+                    src={createImage("w200", cast.profile_path)}
+                    alt=""
+                  />
+                </CastImageArea>
+                <CastTextArea>
+                  <CastName>{cast.name}</CastName>
+                  <CharacterName>{cast.character}</CharacterName>
+                </CastTextArea>
+              </CastContainer>
             ))}
-          </ul>
-        </>
+          </CastList>
+        </InfoSection>
       )}
     </>
   );

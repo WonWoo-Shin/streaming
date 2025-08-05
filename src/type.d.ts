@@ -97,6 +97,7 @@ export interface ICredits {
     id: number;
     character: string;
     name: string;
+    profile_path: string;
   }[];
 }
 
