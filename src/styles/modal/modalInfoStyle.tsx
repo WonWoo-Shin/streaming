@@ -20,19 +20,31 @@ export const CompanyImage = styled.img`
   background-color: #ffffff;
 `;
 
+export const CastListContainer = styled.div`
+  margin-left: -10px;
+  overflow-x: scroll;
+`;
+
 export const CastList = styled.ul`
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
   gap: 15px;
+  overflow-x: scroll;
+  padding-bottom: 15px;
 `;
 
 export const CastContainer = styled.li`
   display: flex;
   flex-direction: column;
   flex: 0 0 140px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.background.tertiary};
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid ${(props) => props.theme.background.tertiary};
+    border-radius: 5px;
+  }
 `;
 
 export const CastImageArea = styled.div`
@@ -41,6 +53,7 @@ export const CastImageArea = styled.div`
     content: "";
     position: absolute;
     inset: 0;
+    border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.15);
   }
 `;

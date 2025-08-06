@@ -4,6 +4,7 @@ import {
   CastImage,
   CastImageArea,
   CastList,
+  CastListContainer,
   CastName,
   CastTextArea,
   CharacterName,
@@ -19,6 +20,7 @@ import {
 } from "../../type";
 import { createImage } from "../../utils/createImgae";
 import { getCredits } from "../../api";
+import { ContentsMessage } from "../../styles/modal/modalStyle";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -31,12 +33,14 @@ export const ModalInfo = ({
   mediaType,
   production_companies,
 }: IProps) => {
-  const { data: creditsData } = useQuery<ICredits>({
+  const { data: creditsData, isLoading } = useQuery<ICredits>({
     queryKey: ["credits", itemId],
     queryFn: () => getCredits(mediaType, itemId),
   });
 
-  return (
+  return isLoading ? (
+    <ContentsMessage>로드 중..</ContentsMessage>
+  ) : (
     <>
       {production_companies && (
         <InfoSection>
@@ -58,7 +62,11 @@ export const ModalInfo = ({
                 <CastImageArea>
                   {" "}
                   <CastImage
-                    src={createImage("w200", cast.profile_path)}
+                    src={
+                      cast.profile_path
+                        ? createImage("w200", cast.profile_path)
+                        : "https://ssl.pstatic.net/sstatic/keypage/outside/scui/cs_common_module/im/no_img_people_206x232_v2.png"
+                    }
                     alt=""
                   />
                 </CastImageArea>

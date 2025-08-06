@@ -115,7 +115,7 @@ export const getRecommend = (
   itemId: IItemList["id"]
 ) => {
   return fetch(
-    `${BASE_PATH}/${mediaType}/${itemId}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_PATH}/${mediaType}/${itemId}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
   ).then((response) => response.json());
 };
 
