@@ -1,5 +1,6 @@
 export interface IItemListResults {
   results: IItemList[];
+  success?: boolean;
 }
 
 export interface IItemList {

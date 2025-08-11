@@ -272,4 +272,5 @@ export const ContentsMessage = styled.div`
   flex-grow: 1;
   font-size: 17px;
   color: ${(props) => props.theme.font.muted};
+  line-height: 1.5;
 `;
