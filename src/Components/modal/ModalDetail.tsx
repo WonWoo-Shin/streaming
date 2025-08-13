@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getDetail, getVideos } from "../../api";
 import {
   IGetDetail,
-  IGetVideos,
   IGetVideosResults,
   IItemList,
   TCurrentTab,
@@ -86,16 +85,14 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
           mediaType as TMediaType,
           detailData?.original_language
         ),
-      enabled: videosData?.results?.length === 0 && !!detailData,
+      enabled: videosData?.results.length === 0 && !!detailData,
     });
-
-  const videosLoadFailed =
-    videosData?.success === false || videosPreData?.success === false;
 
   const videos = [
     ...(videosData?.results || []),
     ...(videosPreData?.results || []),
   ];
+
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
   const [isOverviewOverFlow, setIsOverviewOverFlow] = useState(true);
@@ -299,7 +296,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
               <ModalVideos
                 itemId={itemId}
                 videos={videos}
-                videosLoadFailed={videosLoadFailed}
+                videosLoadSuccess={videosData?.success}
                 isLoading={isVideoLoading || isPreVideoLoading}
               />
             )}

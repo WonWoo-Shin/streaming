@@ -6,21 +6,21 @@ import { VideoListItem } from "./VideoListItem";
 interface IProps {
   itemId: IItemList["id"];
   videos: IGetVideos[];
-  videosLoadFailed: boolean | undefined;
+  videosLoadSuccess: boolean | undefined;
   isLoading: boolean;
 }
 
 export const ModalVideos = ({
   itemId,
   videos,
-  videosLoadFailed,
+  videosLoadSuccess,
   isLoading,
 }: IProps) => {
   return (
     <>
       {isLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>
-      ) : videosLoadFailed ? (
+      ) : videosLoadSuccess === false ? (
         <ContentsMessage>
           데이터를 불러오지 못했습니다.
           <br /> 잠시 후 다시 시도해주세요.
