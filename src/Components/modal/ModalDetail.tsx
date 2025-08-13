@@ -3,6 +3,7 @@ import { getDetail, getVideos } from "../../api";
 import {
   IGetDetail,
   IGetVideos,
+  IGetVideosResults,
   IItemList,
   TCurrentTab,
   TMediaType,
@@ -70,23 +71,31 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
     queryFn: () => getDetail(mediaType, itemId),
   });
 
-  const { data: videosData, isLoading: isVideoLoading } = useQuery<
-    IGetVideos[]
-  >({
-    queryKey: ["video", itemId],
-    queryFn: () => getVideos(itemId, mediaType, "ko"),
-  });
+  const { data: videosData, isLoading: isVideoLoading } =
+    useQuery<IGetVideosResults>({
+      queryKey: ["video", itemId],
+      queryFn: () => getVideos(itemId, mediaType, "ko"),
+    });
 
-  const { data: videosPreData, isLoading: isPreVideoLoading } = useQuery<
-    IGetVideos[]
-  >({
-    queryKey: ["videoPre", itemId],
-    queryFn: () =>
-      getVideos(itemId, mediaType as TMediaType, detailData?.original_language),
-    enabled: videosData?.length === 0 && !!detailData,
-  });
+  const { data: videosPreData, isLoading: isPreVideoLoading } =
+    useQuery<IGetVideosResults>({
+      queryKey: ["videoPre", itemId],
+      queryFn: () =>
+        getVideos(
+          itemId,
+          mediaType as TMediaType,
+          detailData?.original_language
+        ),
+      enabled: videosData?.results?.length === 0 && !!detailData,
+    });
 
-  const videos = [...(videosData || []), ...(videosPreData || [])];
+  const videosLoadFailed =
+    videosData?.success === false || videosPreData?.success === false;
+
+  const videos = [
+    ...(videosData?.results || []),
+    ...(videosPreData?.results || []),
+  ];
   const mainTraier = videos.findLast((video) => video.type === "Trailer");
 
   const [isOverviewOverFlow, setIsOverviewOverFlow] = useState(true);
@@ -124,7 +133,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
         <ModalMessage>
           컨텐츠를 찾을 수 없습니다.
           <br />
-          URL을 다시 확인해 주세요.
+          잠시 후 다시 시도하거나 URL을 확인해 주세요.
         </ModalMessage>
       ) : (
         <>
@@ -290,6 +299,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
               <ModalVideos
                 itemId={itemId}
                 videos={videos}
+                videosLoadFailed={videosLoadFailed}
                 isLoading={isVideoLoading || isPreVideoLoading}
               />
             )}

@@ -61,6 +61,11 @@ export const ModalEpisode = ({
       )}
       {isLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>
+      ) : episodeData?.success === false ? (
+        <ContentsMessage>
+          데이터를 불러오지 못했습니다.
+          <br /> 잠시 후 다시 시도해주세요.
+        </ContentsMessage>
       ) : episodeData?.episodes.length === 0 ? (
         <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>
       ) : (

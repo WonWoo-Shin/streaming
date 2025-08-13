@@ -59,6 +59,7 @@ export interface IGetVideos {
 
 export interface IGetVideosResults {
   results: IGetVideos[];
+  success?: boolean;
 }
 
 export interface IWatchVideo {
@@ -80,6 +81,7 @@ export interface IGetEpisodes {
 export interface IGetEpisodesResults {
   name: string;
   episodes: IGetEpisodes[];
+  success?: boolean;
 }
 
 export interface IGetEpisodeImages {

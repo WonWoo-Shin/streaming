@@ -42,36 +42,18 @@ export const getGenre = (mediaType: TMediaType) => {
   ).then((response) => response.json());
 };
 
-export const getVideos = async (
+export const getVideos = (
   itemId: number,
   mediaType: TMediaType,
   language?: IGetDetail["original_language"]
 ) => {
-  const alowedLanguage: IGetDetail["original_language"][] = ["en", "ko", "ja"];
+  const alowedLanguage: IGetDetail["original_language"][] = ["en", "ko", "ja"]; //해당 국가 영상만 표시하도록 허용
   const allowLanguage =
-    language && alowedLanguage.includes(language) ? language : "en";
+    language && alowedLanguage.includes(language) ? language : "en"; //language가 위의 허용 국가에 포함돼 있다면 그대로, 아니라면 영어로 적용
 
-  const { results: videos }: IGetVideosResults = await fetch(
+  return fetch(
     `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${allowLanguage}`
   ).then((response) => response.json());
-
-  //이용 불가 영상 필터링
-  const filterPromise = videos.map(async (video) => {
-    const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=status&id=${video.key}&key=${YOUTUBE_API_KEY}`
-    );
-    const fetchData = await response.json();
-    return fetchData;
-  });
-
-  const fetchResults = await Promise.all(filterPromise);
-
-  const filteredVideos = videos.filter((_, index) => {
-    return fetchResults[index].items.length !== 0;
-  });
-  //이용 불가 영상 필터링
-
-  return filteredVideos;
 };
 
 export const getEpisode = (
