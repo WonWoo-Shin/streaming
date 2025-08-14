@@ -102,6 +102,7 @@ export interface ICredits {
     name: string;
     profile_path: string;
   }[];
+  success?: boolean;
 }
 
 export type TDirection = "left" | "right";

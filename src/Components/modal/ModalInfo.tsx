@@ -4,7 +4,6 @@ import {
   CastImage,
   CastImageArea,
   CastList,
-  CastListContainer,
   CastName,
   CastTextArea,
   CharacterName,
@@ -38,46 +37,55 @@ export const ModalInfo = ({
     queryFn: () => getCredits(mediaType, itemId),
   });
 
-  return isLoading ? (
-    <ContentsMessage>로드 중..</ContentsMessage>
-  ) : (
+  return (
     <>
-      {production_companies && (
-        <InfoSection>
-          <InfoHead>제작</InfoHead>
-          <div>
-            <CompanyImage
-              src={createImage("w200", production_companies[0].logo_path)}
-              title={production_companies[0].name}
-            />
-          </div>
-        </InfoSection>
-      )}
-      {creditsData && (
-        <InfoSection>
-          <InfoHead>출연</InfoHead>
-          <CastList>
-            {creditsData.cast.map((cast) => (
-              <CastContainer key={cast.id}>
-                <CastImageArea>
-                  {" "}
-                  <CastImage
-                    src={
-                      cast.profile_path
-                        ? createImage("w200", cast.profile_path)
-                        : "https://ssl.pstatic.net/sstatic/keypage/outside/scui/cs_common_module/im/no_img_people_206x232_v2.png"
-                    }
-                    alt=""
-                  />
-                </CastImageArea>
-                <CastTextArea>
-                  <CastName>{cast.name}</CastName>
-                  <CharacterName>{cast.character}</CharacterName>
-                </CastTextArea>
-              </CastContainer>
-            ))}
-          </CastList>
-        </InfoSection>
+      {isLoading ? (
+        <ContentsMessage>로드 중..</ContentsMessage>
+      ) : creditsData?.success === false ? (
+        <ContentsMessage>
+          데이터를 불러오지 못했습니다.
+          <br /> 잠시 후 다시 시도해주세요.
+        </ContentsMessage>
+      ) : (
+        <div>
+          {production_companies && (
+            <InfoSection>
+              <InfoHead>제작</InfoHead>
+              <div>
+                <CompanyImage
+                  src={createImage("w200", production_companies[0].logo_path)}
+                  title={production_companies[0].name}
+                />
+              </div>
+            </InfoSection>
+          )}
+          {creditsData && (
+            <InfoSection>
+              <InfoHead>출연</InfoHead>
+              <CastList>
+                {creditsData.cast.map((cast) => (
+                  <CastContainer key={cast.id}>
+                    <CastImageArea>
+                      {" "}
+                      <CastImage
+                        src={
+                          cast.profile_path
+                            ? createImage("w200", cast.profile_path)
+                            : "https://ssl.pstatic.net/sstatic/keypage/outside/scui/cs_common_module/im/no_img_people_206x232_v2.png"
+                        }
+                        alt=""
+                      />
+                    </CastImageArea>
+                    <CastTextArea>
+                      <CastName>{cast.name}</CastName>
+                      <CharacterName>{cast.character}</CharacterName>
+                    </CastTextArea>
+                  </CastContainer>
+                ))}
+              </CastList>
+            </InfoSection>
+          )}
+        </div>
       )}
     </>
   );

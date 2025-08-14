@@ -20,11 +20,6 @@ export const CompanyImage = styled.img`
   background-color: #ffffff;
 `;
 
-export const CastListContainer = styled.div`
-  margin-left: -10px;
-  overflow-x: scroll;
-`;
-
 export const CastList = styled.ul`
   display: flex;
   flex-wrap: nowrap;
