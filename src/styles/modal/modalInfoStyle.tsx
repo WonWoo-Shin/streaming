@@ -37,7 +37,7 @@ export const CastContainer = styled.li`
     content: "";
     position: absolute;
     inset: 0;
-    border: 1px solid ${(props) => props.theme.background.tertiary};
+    border: 1px solid ${(props) => props.theme.etc.modalDivider};
     border-radius: 5px;
   }
 `;

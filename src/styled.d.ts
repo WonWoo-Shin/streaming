@@ -21,6 +21,7 @@ declare module "styled-components" {
     etc: {
       imageBgColor: string;
       divider: string;
+      modalDivider: string;
       boxShadow: string;
       buttonHover: string;
       pointGreen: string;

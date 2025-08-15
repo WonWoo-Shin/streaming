@@ -163,6 +163,38 @@ export const EpisodeOverview = styled(ListDate)`
   line-height: 1.5;
 `;
 
+export const MoreList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid ${(props) => props.theme.etc.modalDivider};
+  }
+`;
+
+export const MoreButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  margin: 0 8px;
+  padding: 0 10px;
+  border: 1px solid ${(props) => props.theme.etc.modalDivider};
+  border-radius: 13px;
+  background-color: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: ${(props) => props.theme.font.muted};
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
 export const VideoModalWindow = styled.div`
   z-index: 1;
   width: 1300px;

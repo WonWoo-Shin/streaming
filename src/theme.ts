@@ -20,6 +20,7 @@ export const darkTheme: DefaultTheme = {
   etc: {
     imageBgColor: "rgba(30, 32, 34, 0.6)",
     divider: "#26282a",
+    modalDivider: "#353739",
     boxShadow: "rgba(0, 0, 0, 0.75)",
     buttonHover: "rgba(255, 255, 255, 0.2)",
     pointGreen: "#00FFA3",
@@ -46,6 +47,7 @@ export const lightTheme: DefaultTheme = {
   etc: {
     imageBgColor: "rgba(245, 245, 245,0.4)",
     divider: "#EEEEEE",
+    modalDivider: "rgba(0,0,0,0.1)",
     boxShadow: "rgba(0, 0, 0, 0.25)",
     buttonHover: "rgba(0, 0, 0, 0.2)",
     pointGreen: "#1BB373",
