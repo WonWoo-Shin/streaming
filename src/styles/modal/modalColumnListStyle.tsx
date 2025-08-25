@@ -193,6 +193,11 @@ export const MoreButton = styled.button`
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
+  &.rotate {
+    svg {
+      transform: rotateX(180deg);
+    }
+  }
 `;
 
 export const VideoModalWindow = styled.div`

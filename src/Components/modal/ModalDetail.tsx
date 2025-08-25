@@ -88,12 +88,11 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
       enabled: videosData?.results.length === 0 && !!detailData,
     });
 
-  const videos = [
-    ...(videosData?.results || []),
-    ...(videosPreData?.results || []),
-  ];
+  const videos = videosData?.results;
+  const preVideos = videosPreData?.results;
 
-  const mainTraier = videos.findLast((video) => video.type === "Trailer");
+  const mainVideos = videos?.length ? videos : preVideos;
+  const mainTraier = mainVideos?.findLast((video) => video.type === "Trailer");
 
   const [isOverviewOverFlow, setIsOverviewOverFlow] = useState(true);
   const overviewRef = useRef<HTMLDivElement>(null);
@@ -120,7 +119,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   useEffect(() => {
     resetWatchVideo();
   }, []);
-  // 모달찰 재랜더링 시 state 초기화
+  // 모달창 재랜더링 시 state 초기화
 
   return (
     <>
@@ -296,8 +295,10 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
               <ModalVideos
                 itemId={itemId}
                 videos={videos}
+                preVideos={preVideos}
                 videosLoadSuccess={videosData?.success}
-                isLoading={isVideoLoading || isPreVideoLoading}
+                isVideoLoading={isVideoLoading}
+                isPreVideoLoading={isPreVideoLoading}
               />
             )}
             {currentTab === "info" && (
