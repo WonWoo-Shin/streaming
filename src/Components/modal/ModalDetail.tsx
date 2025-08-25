@@ -299,6 +299,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
                 videosLoadSuccess={videosData?.success}
                 isVideoLoading={isVideoLoading}
                 isPreVideoLoading={isPreVideoLoading}
+                originalLanguage={detailData?.original_language}
               />
             )}
             {currentTab === "info" && (

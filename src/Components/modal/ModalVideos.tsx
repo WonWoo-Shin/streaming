@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { MoreButton, MoreList } from "../../styles/modal/modalColumnListStyle";
 import { ContentsMessage } from "../../styles/modal/modalStyle";
-import { IGetVideos, IGetVideosResults, IItemList } from "../../type";
+import { IGetDetail, IGetVideos, IItemList } from "../../type";
 import { VideoListItem } from "./VideoListItem";
 import { useEffect, useState } from "react";
 
@@ -12,6 +12,7 @@ interface IProps {
   videosLoadSuccess: boolean | undefined;
   isVideoLoading: boolean;
   isPreVideoLoading: boolean;
+  originalLanguage: IGetDetail["original_language"] | undefined;
 }
 
 export const ModalVideos = ({
@@ -21,12 +22,16 @@ export const ModalVideos = ({
   videosLoadSuccess,
   isVideoLoading,
   isPreVideoLoading,
+  originalLanguage,
 }: IProps) => {
-  const [showMoreVideos, setShowMoreVideos] = useState(!videos?.length);
+  const [showMoreVideos, setShowMoreVideos] = useState(videos?.length === 0); // videos가 없다면 더보기를 열어둔 상태로 시작
+  useEffect(() => {
+    setShowMoreVideos(videos?.length === 0);
+  }, [videos]);
 
   const queryClient = useQueryClient();
   useEffect(() => {
-    if (showMoreVideos) {
+    if (showMoreVideos && originalLanguage !== "ko") {
       queryClient.fetchQuery({
         queryKey: ["videoPre", itemId],
       });
@@ -36,9 +41,9 @@ export const ModalVideos = ({
   const [isMoreVideos, setIsMoreVideos] = useState(videos && !!videos.length);
   useEffect(() => {
     setIsMoreVideos(videos && !!videos.length);
-  });
+  }, [videos]);
 
-  const noVideos = !videos?.length && !preVideos?.length;
+  const noVideos = videos?.length === 0 && preVideos?.length === 0;
 
   return (
     <>
