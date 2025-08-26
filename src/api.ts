@@ -12,6 +12,16 @@ const API_KEY = "148c0ccf226283888461d198a48dce07";
 const LANGUAGE = "ko-KR";
 const YOUTUBE_API_KEY = "AIzaSyAeoFkxAxrpXBk09xXdue0GZ79e9DGOh8w";
 
+const apiClient = async (fetchUrl: string) => {
+  const response = await fetch(fetchUrl);
+
+  if (!response.ok) {
+    throw new Error(response.status + "");
+  }
+
+  return response.json();
+};
+
 export const getNowShowing = () => {
   return fetch(
     `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&region=KR`
@@ -121,8 +131,14 @@ export const getRecommend = (
   ).then((response) => response.json());
 };
 
-export const getSearch = (query: string) => {
-  return fetch(
-    `${BASE_PATH}/search/multi?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
-  ).then((response) => response.json());
+export const getTvSearch = (query: string) => {
+  return apiClient(
+    `${BASE_PATH}/search/tv?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
+  );
+};
+
+export const getMovieSearch = (query: string) => {
+  return apiClient(
+    `${BASE_PATH}/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
+  );
 };

@@ -8,7 +8,7 @@ import {
   Wrapper,
 } from "../../styles/searchResultsStyle";
 import { useQuery } from "@tanstack/react-query";
-import { getSearch } from "../../api";
+import { getMovieSearch, getTvSearch } from "../../api";
 import { IItemListResults } from "../../type";
 
 import { ItemModal } from "../modal/ItemModal";
@@ -19,14 +19,36 @@ import { ContentsPannel } from "../ContentsPannel";
 import { useRecoilValue } from "recoil";
 import { screenState } from "../../atom";
 import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
+import { addMediatype } from "../../utils/addMediaType";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();
 
-  const { data: searchData, isLoading } = useQuery<IItemListResults>({
-    queryKey: ["searchResults", keyword],
-    queryFn: () => getSearch(keyword ?? ""),
+  const {
+    data: searchTvData,
+    isLoading: isTvLoading,
+    isError: isTvError,
+  } = useQuery<IItemListResults>({
+    queryKey: ["searchTvResults", keyword],
+    queryFn: () => getTvSearch(keyword ?? ""),
+    select: (data) => addMediatype(data, "tv"),
   });
+
+  const {
+    data: searchMovieData,
+    isLoading: isMovieLoading,
+    isError: isMovieError,
+  } = useQuery<IItemListResults>({
+    queryKey: ["searchMovieResults", keyword],
+    queryFn: () => getMovieSearch(keyword ?? ""),
+    select: (data) => addMediatype(data, "movie"),
+  });
+
+  const searchData = [
+    ...(searchTvData?.results ?? []),
+    ...(searchMovieData?.results ?? []),
+  ];
+  const isLoading = isTvLoading || isMovieLoading;
 
   const [basePath, setBasePath] = useState("");
   useEffect(() => {
@@ -52,18 +74,23 @@ export const SearchResults = () => {
           </ResultsName>
           {isLoading ? (
             <SearchMessage>검색 중...</SearchMessage>
-          ) : searchData?.results.length === 0 ? (
+          ) : isTvError || isMovieError ? (
+            <SearchMessage>
+              데이터를 불러오지 못했습니다.
+              <br /> 잠시 후 다시 시도해주세요.
+            </SearchMessage>
+          ) : searchData?.length === 0 ? (
             <SearchMessage>검색 결과가 없습니다.</SearchMessage>
           ) : (
             <ResultsList>
-              {searchData?.results.map((result, index) => {
+              {searchData?.map((data, index) => {
                 const isLeftEnd = index % showItem === 0;
                 const isRightEnd = (index + 1) % showItem === 0;
 
                 return (
                   <ContentsPannel
-                    key={result.id}
-                    {...result}
+                    key={data.id}
+                    {...data}
                     index={index}
                     isLeftEnd={isLeftEnd}
                     isRightEnd={isRightEnd}

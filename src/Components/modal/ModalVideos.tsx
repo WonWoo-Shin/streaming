@@ -77,7 +77,7 @@ export const ModalVideos = ({
           )}
         </>
       )}
-      {isMoreVideos && (
+      {isMoreVideos && originalLanguage !== "ko" && (
         <MoreList>
           <MoreButton
             className={showMoreVideos ? "rotate" : ""}
