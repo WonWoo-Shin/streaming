@@ -41,9 +41,9 @@ export const getTrending = (mediaType: TMediaType, time: TTime) => {
 };
 
 export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
-  return fetch(
+  return apiClient(
     `${BASE_PATH}/${mediaType}/${itemId}?append_to_response=seasons&api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getGenre = (mediaType: TMediaType) => {
