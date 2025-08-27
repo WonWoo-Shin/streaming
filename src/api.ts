@@ -23,21 +23,21 @@ const apiClient = async (fetchUrl: string) => {
 };
 
 export const getNowShowing = () => {
-  return fetch(
+  return apiClient(
     `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&region=KR`
-  ).then((response) => response.json());
+  );
 };
 
 export const getTopRated = (mediaType: TMediaType) => {
-  return fetch(
+  return apiClient(
     `${BASE_PATH}/${mediaType}/top_rated?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getTrending = (mediaType: TMediaType, time: TTime) => {
-  return fetch(
+  return apiClient(
     `${BASE_PATH}/trending/${mediaType}/${time}?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {

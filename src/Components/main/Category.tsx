@@ -23,12 +23,29 @@ export const Category = ({
   tabButton,
   time,
 }: ICategoryProps) => {
-  const { data: categoryData } = useQuery<IItemListResults>({
+  const {
+    data: categoryData,
+    isLoading,
+    isError,
+  } = useQuery<IItemListResults>({
     queryKey: [categoryName, time, mediaType].filter(Boolean),
     queryFn: () => getFn(),
     select: (data) => addMediatype(data, mediaType),
     staleTime: 60 * 60 * 1000,
   });
+
+  const content = () => {
+    if (isLoading) {
+      return <CarouselLoading />;
+    }
+    if (isError) {
+      return <span>데이터를 불러오지 못했습니다.</span>;
+    }
+    if (!categoryData?.results.length) {
+      return <span>컨텐츠가 없습니다.</span>;
+    }
+    return <ListCarousel data={categoryData.results} />;
+  };
 
   return (
     <CategoryStyle>
@@ -37,11 +54,7 @@ export const Category = ({
       </CategoryName>
       {tabButton === "time" && <TimeTab />}
       {tabButton === "mediaType" && <MediaTypeTab />}
-      {categoryData ? (
-        <ListCarousel data={categoryData?.results} />
-      ) : (
-        <CarouselLoading />
-      )}
+      {content()}
     </CategoryStyle>
   );
 };
