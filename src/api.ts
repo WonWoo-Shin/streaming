@@ -47,9 +47,9 @@ export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
 };
 
 export const getGenre = (mediaType: TMediaType) => {
-  return fetch(
-    `${BASE_PATH}/genre/${mediaType}/list?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  return apiClient(
+    `${BASE_PATH}/gen/${mediaType}/list?api_key=${API_KEY}&language=${LANGUAGE}`
+  );
 };
 
 export const getVideos = async (
