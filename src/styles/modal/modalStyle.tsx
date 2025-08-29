@@ -72,7 +72,6 @@ export const ModalOverview = styled.div`
 `;
 
 export const BgImage = styled.div<{ $bgImg: string }>`
-  display: block;
   position: absolute;
   top: 0;
   right: 0;
@@ -201,6 +200,7 @@ export const Badge = styled.div`
 `;
 
 export const Poster = styled.img`
+  display: block;
   width: 200px;
   aspect-ratio: 2 / 3;
   border-radius: 5px;

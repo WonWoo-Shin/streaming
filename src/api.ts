@@ -1,6 +1,7 @@
 import {
   IGetDetail,
   IGetEpisodes,
+  IGetEpisodesResults,
   IGetVideosResults,
   IItemList,
   TMediaType,
@@ -88,9 +89,9 @@ export const getEpisode = (
   itemId: IItemList["id"],
   seasonNumber: IGetEpisodes["season_number"]
 ) => {
-  return fetch(
+  return apiClient<IGetEpisodesResults>(
     `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getEpisodeVideos = (

@@ -40,7 +40,11 @@ export const ModalEpisode = ({
 }: IEpisodeProps) => {
   const [selectSeason, setSelectSeason] = useState(1);
 
-  const { data: episodeData, isLoading } = useQuery<IGetEpisodesResults>({
+  const {
+    data: episodeData,
+    isLoading,
+    isError,
+  } = useQuery<IGetEpisodesResults>({
     queryKey: ["episode", itemId, selectSeason],
     queryFn: () => getEpisode(itemId, selectSeason),
   });
@@ -49,6 +53,32 @@ export const ModalEpisode = ({
     isOpen: false,
     episode: {} as any,
   });
+
+  if (isLoading) {
+    return <ContentsMessage>로드 중..</ContentsMessage>;
+  }
+
+  if (isError) {
+    return (
+      <ContentsMessage>
+        데이터를 불러오지 못했습니다.
+        <br /> 잠시 후 다시 시도해주세요.
+      </ContentsMessage>
+    );
+  }
+
+  if (!episodeData?.episodes) {
+    return (
+      <ContentsMessage>
+        잘못된 데이터입니다.
+        <br /> 관리자에게 문의해주세요.
+      </ContentsMessage>
+    );
+  }
+
+  if (!episodeData.episodes.length) {
+    return <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>;
+  }
 
   return (
     <>
@@ -59,51 +89,37 @@ export const ModalEpisode = ({
           setSelectSeason={setSelectSeason}
         />
       )}
-      {isLoading ? (
-        <ContentsMessage>로드 중..</ContentsMessage>
-      ) : episodeData?.success === false ? (
-        <ContentsMessage>
-          데이터를 불러오지 못했습니다.
-          <br /> 잠시 후 다시 시도해주세요.
-        </ContentsMessage>
-      ) : episodeData?.episodes.length === 0 ? (
-        <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>
-      ) : (
-        <ul>
-          {episodeData?.episodes.map((episode) => (
-            <ColumnListContainer key={episode.id}>
-              <ColumnList
-                onClick={() =>
-                  setEpisodeModal({
-                    isOpen: true,
-                    episode,
-                  })
-                }
-              >
-                <ListThumbnail className="thumbnail">
-                  <img
-                    src={createImage(
-                      "w400",
-                      episode.still_path ?? backDropPath
-                    )}
-                    alt=""
-                  />
-                </ListThumbnail>
-                <EpisodeInfo>
-                  <EpisodeMainInfo>
-                    <div>
-                      <EpisodeNumber>{episode.episode_number}화</EpisodeNumber>
-                      <ListName>{episode.name}</ListName>
-                    </div>
-                    <ListDate>{convertDate(episode.air_date)}</ListDate>
-                  </EpisodeMainInfo>
-                  <EpisodeOverview>{episode.overview}</EpisodeOverview>
-                </EpisodeInfo>
-              </ColumnList>
-            </ColumnListContainer>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {episodeData?.episodes.map((episode) => (
+          <ColumnListContainer key={episode.id}>
+            <ColumnList
+              onClick={() =>
+                setEpisodeModal({
+                  isOpen: true,
+                  episode,
+                })
+              }
+            >
+              <ListThumbnail className="thumbnail">
+                <img
+                  src={createImage("w400", episode.still_path ?? backDropPath)}
+                  alt=""
+                />
+              </ListThumbnail>
+              <EpisodeInfo>
+                <EpisodeMainInfo>
+                  <div>
+                    <EpisodeNumber>{episode.episode_number}화</EpisodeNumber>
+                    <ListName>{episode.name}</ListName>
+                  </div>
+                  <ListDate>{convertDate(episode.air_date)}</ListDate>
+                </EpisodeMainInfo>
+                <EpisodeOverview>{episode.overview}</EpisodeOverview>
+              </EpisodeInfo>
+            </ColumnList>
+          </ColumnListContainer>
+        ))}
+      </ul>
       <AnimatePresence>
         {episodeModal.isOpen && (
           <EpisodeDetailModal
