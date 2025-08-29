@@ -5,8 +5,8 @@ import {
 } from "../../../styles/modal/modalColumnListStyle";
 import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import { IGetDetail, IGetVideos, IItemList } from "../../../type";
-import { VideoListItem } from "./VideoListItem";
 import { useEffect, useState } from "react";
+import { VideoList } from "./VIdeoList";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -61,27 +61,17 @@ export const ModalVideos = ({
   }
   return (
     <>
-      {isVideoLoading ? (
-        <ContentsMessage>로드 중..</ContentsMessage>
-      ) : (
-        <ul>
-          {videos?.map((video) => (
-            <VideoListItem key={video.id} itemId={itemId} video={video} />
-          ))}
-        </ul>
-      )}
+      <VideoList
+        isLoading={isVideoLoading}
+        videos={videos ?? []}
+        itemId={itemId}
+      />
       {showMoreVideos && (
-        <>
-          {isPreVideoLoading ? (
-            <ContentsMessage>로드 중..</ContentsMessage>
-          ) : (
-            <ul>
-              {preVideos?.map((video) => (
-                <VideoListItem key={video.id} itemId={itemId} video={video} />
-              ))}
-            </ul>
-          )}
-        </>
+        <VideoList
+          isLoading={isPreVideoLoading}
+          videos={preVideos ?? []}
+          itemId={itemId}
+        />
       )}
       {isMoreVideos && originalLanguage !== "ko" && (
         <MoreList>
