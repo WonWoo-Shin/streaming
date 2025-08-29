@@ -1,7 +1,10 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { MoreButton, MoreList } from "../../styles/modal/modalColumnListStyle";
-import { ContentsMessage } from "../../styles/modal/modalStyle";
-import { IGetDetail, IGetVideos, IItemList } from "../../type";
+import {
+  MoreButton,
+  MoreList,
+} from "../../../styles/modal/modalColumnListStyle";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
+import { IGetDetail, IGetVideos, IItemList } from "../../../type";
 import { VideoListItem } from "./VideoListItem";
 import { useEffect, useState } from "react";
 
@@ -9,7 +12,7 @@ interface IProps {
   itemId: IItemList["id"];
   videos: IGetVideos[] | undefined;
   preVideos: IGetVideos[] | undefined;
-  videosLoadSuccess: boolean | undefined;
+  videosError: boolean;
   isVideoLoading: boolean;
   isPreVideoLoading: boolean;
   originalLanguage: IGetDetail["original_language"] | undefined;
@@ -19,7 +22,7 @@ export const ModalVideos = ({
   itemId,
   videos,
   preVideos,
-  videosLoadSuccess,
+  videosError,
   isVideoLoading,
   isPreVideoLoading,
   originalLanguage,
@@ -45,16 +48,19 @@ export const ModalVideos = ({
 
   const noVideos = videos?.length === 0 && preVideos?.length === 0;
 
+  if (videosError) {
+    return (
+      <ContentsMessage>
+        데이터를 불러오지 못했습니다.
+        <br /> 잠시 후 다시 시도해주세요.
+      </ContentsMessage>
+    );
+  }
+  if (noVideos) {
+    return <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>;
+  }
   return (
     <>
-      {videosLoadSuccess === false ? (
-        <ContentsMessage>
-          데이터를 불러오지 못했습니다.
-          <br /> 잠시 후 다시 시도해주세요.
-        </ContentsMessage>
-      ) : (
-        noVideos && <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>
-      )}
       {isVideoLoading ? (
         <ContentsMessage>로드 중..</ContentsMessage>
       ) : (

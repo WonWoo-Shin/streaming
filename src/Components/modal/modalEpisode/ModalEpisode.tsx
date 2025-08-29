@@ -4,9 +4,9 @@ import {
   IGetDetail,
   IGetEpisodesResults,
   IItemList,
-} from "../../type";
-import { getEpisode } from "../../api";
-import { ContentsMessage } from "../../styles/modal/modalStyle";
+} from "../../../type";
+import { getEpisode } from "../../../api";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import {
   ColumnListContainer,
   ColumnList,
@@ -17,9 +17,9 @@ import {
   EpisodeNumber,
   EpisodeMainInfo,
   EpisodeOverview,
-} from "../../styles/modal/modalColumnListStyle";
-import { createImage } from "../../utils/createImgae";
-import { convertDate } from "../../utils/convertDate";
+} from "../../../styles/modal/modalColumnListStyle";
+import { createImage } from "../../../utils/createImgae";
+import { convertDate } from "../../../utils/convertDate";
 import { useState } from "react";
 import { SeasonNav } from "./SeasonNav";
 import { EpisodeDetailModal } from "./EpisodeDetailModal";

@@ -10,16 +10,16 @@ import {
   CompanyImage,
   InfoHead,
   InfoSection,
-} from "../../styles/modal/modalInfoStyle";
+} from "../../../styles/modal/modalInfoStyle";
 import {
   ICredits,
   IItemList,
   IProductionCompanies,
   TMediaType,
-} from "../../type";
-import { createImage } from "../../utils/createImgae";
-import { getCredits } from "../../api";
-import { ContentsMessage } from "../../styles/modal/modalStyle";
+} from "../../../type";
+import { createImage } from "../../../utils/createImgae";
+import { getCredits } from "../../../api";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
 
 interface IProps {
   itemId: IItemList["id"];

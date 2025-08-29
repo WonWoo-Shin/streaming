@@ -7,10 +7,10 @@ import {
   ListThumbnail,
   PlayIcon,
   VideoInfo,
-} from "../../styles/modal/modalColumnListStyle";
-import { IGetVideos, IItemList } from "../../type";
-import { convertDate } from "../../utils/convertDate";
-import { watchVideoStateFamily } from "../../atom";
+} from "../../../styles/modal/modalColumnListStyle";
+import { IGetVideos, IItemList } from "../../../type";
+import { convertDate } from "../../../utils/convertDate";
+import { watchVideoStateFamily } from "../../../atom";
 
 interface IProps {
   video: IGetVideos;

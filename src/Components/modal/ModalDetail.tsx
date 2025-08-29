@@ -31,15 +31,15 @@ import {
 import { createImage } from "../../utils/createImgae";
 import { useEffect, useRef, useState } from "react";
 import { NavItem } from "./NavItem";
-import { ModalVideos } from "./ModalVideos";
+import { ModalVideos } from "./modalVideos/ModalVideos";
 import { convertDate } from "../../utils/convertDate";
-import { ModalRecommend } from "./ModalRecommend";
-import { ModalEpisode } from "./ModalEpisode";
+import { ModalRecommend } from "./modalRecommend/ModalRecommend";
+import { ModalEpisode } from "./modalEpisode/ModalEpisode";
 import { WatchVideo } from "./WatchVIdeo";
 import { AnimatePresence } from "framer-motion";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { watchVideoStateFamily } from "../../atom";
-import { ModalInfo } from "./ModalInfo";
+import { ModalInfo } from "./modalInfo/ModalInfo";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -71,23 +71,25 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
     queryFn: () => getDetail(mediaType, itemId),
   });
 
-  const { data: videosData, isLoading: isVideoLoading } =
-    useQuery<IGetVideosResults>({
-      queryKey: ["video", itemId],
-      queryFn: () => getVideos(itemId, mediaType, "ko"),
-    });
+  const {
+    data: videosData,
+    isLoading: isVideoLoading,
+    isError: isVideosError,
+  } = useQuery<IGetVideosResults>({
+    queryKey: ["video", itemId],
+    queryFn: () => getVideos(itemId, mediaType, "ko"),
+  });
 
-  const { data: videosPreData, isLoading: isPreVideoLoading } =
-    useQuery<IGetVideosResults>({
-      queryKey: ["videoPre", itemId],
-      queryFn: () =>
-        getVideos(
-          itemId,
-          mediaType as TMediaType,
-          detailData?.original_language
-        ),
-      enabled: videosData?.results.length === 0 && !!detailData,
-    });
+  const {
+    data: videosPreData,
+    isLoading: isPreVideoLoading,
+    isError: isPreVideosError,
+  } = useQuery<IGetVideosResults>({
+    queryKey: ["videoPre", itemId],
+    queryFn: () =>
+      getVideos(itemId, mediaType as TMediaType, detailData?.original_language),
+    enabled: videosData?.results.length === 0 && !!detailData,
+  });
 
   const videos = videosData?.results;
   const preVideos = videosPreData?.results;
@@ -299,7 +301,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             itemId={itemId}
             videos={videos}
             preVideos={preVideos}
-            videosLoadSuccess={videosData?.success}
+            videosError={isVideosError || isPreVideosError}
             isVideoLoading={isVideoLoading}
             isPreVideoLoading={isPreVideoLoading}
             originalLanguage={detailData?.original_language}

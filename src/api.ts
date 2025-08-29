@@ -12,14 +12,14 @@ const API_KEY = "148c0ccf226283888461d198a48dce07";
 const LANGUAGE = "ko-KR";
 const YOUTUBE_API_KEY = "AIzaSyAeoFkxAxrpXBk09xXdue0GZ79e9DGOh8w";
 
-const apiClient = async (fetchUrl: string) => {
+const apiClient = async <T>(fetchUrl: string): Promise<T> => {
   const response = await fetch(fetchUrl);
 
   if (!response.ok) {
     throw new Error(response.status + "");
   }
 
-  return response.json();
+  return response.json() as Promise<T>;
 };
 
 export const getNowShowing = () => {
@@ -41,31 +41,29 @@ export const getTrending = (mediaType: TMediaType, time: TTime) => {
 };
 
 export const getDetail = (mediaType: TMediaType, itemId: IItemList["id"]) => {
-  return apiClient(
+  return apiClient<IGetDetail>(
     `${BASE_PATH}/${mediaType}/${itemId}?append_to_response=seasons&api_key=${API_KEY}&language=${LANGUAGE}`
   );
 };
 
 export const getGenre = (mediaType: TMediaType) => {
-  return apiClient(
-    `${BASE_PATH}/gen/${mediaType}/list?api_key=${API_KEY}&language=${LANGUAGE}`
-  );
+  return fetch(
+    `${BASE_PATH}/genre/${mediaType}/list?api_key=${API_KEY}&language=${LANGUAGE}`
+  ).then((response) => response.json());
 };
 
 export const getVideos = async (
   itemId: number,
   mediaType: TMediaType,
   language?: IGetDetail["original_language"]
-) => {
+): Promise<IGetVideosResults> => {
   const alowedLanguage: IGetDetail["original_language"][] = ["en", "ko", "ja"]; //해당 국가 영상만 표시하도록 허용
   const allowLanguage =
     language && alowedLanguage.includes(language) ? language : "en"; //language가 위의 허용 국가에 포함돼 있다면 그대로, 아니라면 영어로 적용
 
-  const videosResults: IGetVideosResults = await fetch(
+  const videosResults = await apiClient<IGetVideosResults>(
     `${BASE_PATH}/${mediaType}/${itemId}/videos?api_key=${API_KEY}&language=${allowLanguage}`
-  ).then((response) => response.json());
-
-  if (videosResults.success === false) return { success: false, results: [] };
+  );
 
   //이용 불가 영상 필터링
   const filterPromise = videosResults.results.map(async (video) => {

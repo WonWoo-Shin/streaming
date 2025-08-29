@@ -5,8 +5,8 @@ import {
   SeasonSelect,
   SelectItem,
   SelectList,
-} from "../../styles/modal/modalColumnListStyle";
-import { ISeasons } from "../../type";
+} from "../../../styles/modal/modalColumnListStyle";
+import { ISeasons } from "../../../type";
 
 interface IProps {
   seasons: ISeasons[];

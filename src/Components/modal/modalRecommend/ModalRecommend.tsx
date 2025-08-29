@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { IItemList, IItemListResults, TMediaType } from "../../type";
-import { getRecommend } from "../../api";
-import { ContentsMessage } from "../../styles/modal/modalStyle";
+import { IItemList, IItemListResults, TMediaType } from "../../../type";
+import { getRecommend } from "../../../api";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import {
   ItemContainer,
   ItemImage,
   ItemTitle,
   RecommendContainer,
-} from "../../styles/modal/modalRecommendStyle";
-import { createImage } from "../../utils/createImgae";
+} from "../../../styles/modal/modalRecommendStyle";
+import { createImage } from "../../../utils/createImgae";
 import { Link } from "react-router-dom";
 
 interface IProps {

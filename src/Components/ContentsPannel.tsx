@@ -64,7 +64,7 @@ export const ContentsPannel = ({
     clearTimeout(delay);
   };
 
-  const { data: genreList, isError } = useQuery<IGetGenre>({
+  const { data: genreList } = useQuery<IGetGenre>({
     queryKey: ["genre", media_type],
     queryFn: () => getGenre(media_type),
   });
@@ -99,13 +99,9 @@ export const ContentsPannel = ({
               <PannelPreviewText>
                 <span>{title ?? name}</span>
                 <span>
-                  {isError ? (
-                    <p>데이터를 불러오지 못했습니다.</p>
-                  ) : (
-                    genre_ids.map((genreId) => (
-                      <p key={genreId}>{findGenre(genreId)}</p>
-                    ))
-                  )}
+                  {genre_ids.map((genreId) => (
+                    <p key={genreId}>{findGenre(genreId)}</p>
+                  ))}
                 </span>
               </PannelPreviewText>
             </PannelPreview>

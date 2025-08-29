@@ -72,6 +72,7 @@ export const ModalOverview = styled.div`
 `;
 
 export const BgImage = styled.div<{ $bgImg: string }>`
+  display: block;
   position: absolute;
   top: 0;
   right: 0;

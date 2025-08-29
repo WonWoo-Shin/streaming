@@ -3,14 +3,14 @@ import {
   ContentsMessage,
   ModalBackground,
   ModalContainer,
-} from "../../styles/modal/modalStyle";
+} from "../../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
 import {
   IEpisodeModal,
   IGetDetail,
   IGetEpisodeImages,
   IGetVideosResults,
-} from "../../type";
+} from "../../../type";
 import {
   EpisodeModalWindow,
   ModalHeader,
@@ -19,13 +19,13 @@ import {
   SliderDots,
   StillImage,
   SubHead,
-} from "../../styles/modal/episodeModalStyle";
-import { createImage } from "../../utils/createImgae";
+} from "../../../styles/modal/episodeModalStyle";
+import { createImage } from "../../../utils/createImgae";
 import { useQuery } from "@tanstack/react-query";
-import { getEpisodeImages, getEpisodeVideos } from "../../api";
-import { VideoListItem } from "./VideoListItem";
+import { getEpisodeImages, getEpisodeVideos } from "../../../api";
+import { VideoListItem } from "./../modalVideos/VideoListItem";
 import Slider, { Settings } from "react-slick";
-import { CustomArrow } from "../CustomArrow";
+import { CustomArrow } from "../../CustomArrow";
 
 const modalVariant: Variants = {
   initial: {
