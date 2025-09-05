@@ -1,5 +1,6 @@
 import {
   IGetDetail,
+  IGetEpisodeImages,
   IGetEpisodes,
   IGetEpisodesResults,
   IGetVideosResults,
@@ -94,25 +95,25 @@ export const getEpisode = (
   );
 };
 
+export const getEpisodeImages = (
+  itemId: IItemList["id"],
+  seasonNumber: IGetEpisodes["season_number"],
+  episodeNumber: IGetEpisodes["episode_number"]
+) => {
+  return apiClient<IGetEpisodeImages>(
+    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/images?api_key=${API_KEY}`
+  );
+};
+
 export const getEpisodeVideos = (
   itemId: IItemList["id"],
   seasonNumber: IGetEpisodes["season_number"],
   episodeNumber: IGetEpisodes["episode_number"],
   language: IGetDetail["original_language"]
 ) => {
-  return fetch(
+  return apiClient<IGetVideosResults>(
     `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/videos?api_key=${API_KEY}&include_video_language=${language}&language=${LANGUAGE}`
-  ).then((response) => response.json());
-};
-
-export const getEpisodeImages = (
-  itemId: IItemList["id"],
-  seasonNumber: IGetEpisodes["season_number"],
-  episodeNumber: IGetEpisodes["episode_number"]
-) => {
-  return fetch(
-    `${BASE_PATH}/tv/${itemId}/season/${seasonNumber}/episode/${episodeNumber}/images?api_key=${API_KEY}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getCredits = (mediaType: TMediaType, itemId: IItemList["id"]) => {

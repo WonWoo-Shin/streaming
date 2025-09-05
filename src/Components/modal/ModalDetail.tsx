@@ -22,6 +22,7 @@ import {
   ModalOverview,
   More,
   Overview,
+  OverviewBackground,
   Poster,
   ReleaseDate,
   Title,
@@ -88,7 +89,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
     queryKey: ["videoPre", itemId],
     queryFn: () =>
       getVideos(itemId, mediaType as TMediaType, detailData?.original_language),
-    enabled: videosData?.results.length === 0 && !!detailData,
+    enabled: videosData?.results?.length === 0 && !!detailData,
   });
 
   const videos = videosData?.results;
@@ -139,12 +140,14 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   return (
     <>
       <ModalOverview>
-        <BgImage
-          $bgImg={createImage(
-            "w780",
-            detailData?.backdrop_path ?? detailData?.poster_path ?? ""
-          )}
-        />
+        <OverviewBackground>
+          <BgImage
+            $bgImg={createImage(
+              "w780",
+              detailData?.backdrop_path ?? detailData?.poster_path ?? ""
+            )}
+          />
+        </OverviewBackground>
         <ModalNav>
           <ExitBtn onClick={closeModal}>
             {" "}

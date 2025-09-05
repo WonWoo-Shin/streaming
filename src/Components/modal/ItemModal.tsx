@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import {
   ModalBackground,
-  ModalContainer,
+  ModalScreen,
   ModalScrollUp,
   ModalWindow,
   ScrollUpBtn,
@@ -30,16 +30,16 @@ const modalVariant: Variants = {
 
 const modalWindowVariant: Variants = {
   initial: {
-    translateY: 200,
+    y: 200,
   },
   animate: {
-    translateY: 0,
+    y: 0,
     transition: {
       ease: [0.25, 0.1, 0.25, 1],
     },
   },
   exit: {
-    translateY: 200,
+    y: 200,
     transition: {
       ease: [0.25, 0.1, 0.25, 1],
     },
@@ -81,8 +81,8 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
   return (
     <>
       {createPortal(
-        <ModalContainer
-          id="modal-container"
+        <ModalScreen
+          id="modal-screen"
           variants={modalVariant}
           initial="initial"
           animate="animate"
@@ -130,7 +130,7 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
               )}
             </AnimatePresence>
           </ModalWindow>
-        </ModalContainer>,
+        </ModalScreen>,
         rootModal
       )}
     </>

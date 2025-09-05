@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const ModalContainer = styled(motion.div)`
+export const ModalScreen = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,11 +71,15 @@ export const ModalOverview = styled.div`
   position: relative;
 `;
 
-export const BgImage = styled.div<{ $bgImg: string }>`
+export const OverviewBackground = styled.div`
   position: absolute;
   top: 0;
   right: 0;
   z-index: -1;
+`;
+
+export const BgImage = styled.div<{ $bgImg: string }>`
+  position: relative;
   width: 800px;
   height: 480px;
   background-image: url(${(props) => props.$bgImg});
@@ -83,8 +87,9 @@ export const BgImage = styled.div<{ $bgImg: string }>`
   background-position: center center;
   &::after {
     content: "";
+    display: block;
     position: absolute;
-    inset: 0px;
+    inset: 0;
     background: linear-gradient(
         to top,
         ${(props) => props.theme.background.secondary} 0px,
@@ -107,6 +112,9 @@ export const ModalNav = styled.nav`
 `;
 
 export const ExitBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   border: none;
@@ -243,6 +251,7 @@ export const ModalContent = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding: 40px 50px;
+  margin-bottom: 20px;
 `;
 
 export const ContentNav = styled.ul`

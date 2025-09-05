@@ -1,4 +1,4 @@
-import { ModalContainer } from "../../styles/modal/modalStyle";
+import { ModalScreen } from "../../styles/modal/modalStyle";
 import {
   NoTrailer,
   VideoModalNav,
@@ -25,13 +25,13 @@ interface IProps extends IWatchVideo {
 }
 
 export const WatchVideo = ({ videoKey, videoName, setWatchVideo }: IProps) => {
-  const modalContainer = document.getElementById("modal-container");
+  const modalContainer = document.getElementById("modal-screen");
   if (!modalContainer) return null;
 
   return (
     <>
       {createPortal(
-        <ModalContainer
+        <ModalScreen
           variants={modalVariant}
           initial="initial"
           animate="animate"
@@ -83,7 +83,7 @@ export const WatchVideo = ({ videoKey, videoName, setWatchVideo }: IProps) => {
               />
             )}
           </VideoModalWindow>
-        </ModalContainer>,
+        </ModalScreen>,
         modalContainer
       )}
     </>

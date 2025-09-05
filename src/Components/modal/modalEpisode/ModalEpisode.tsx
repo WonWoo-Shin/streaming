@@ -22,7 +22,7 @@ import { createImage } from "../../../utils/createImgae";
 import { convertDate } from "../../../utils/convertDate";
 import { useState } from "react";
 import { SeasonNav } from "./SeasonNav";
-import { EpisodeDetailModal } from "./EpisodeDetailModal";
+import { EpisodeInfoModal } from "./EpisodeInfoModal";
 import { AnimatePresence } from "framer-motion";
 
 interface IEpisodeProps {
@@ -90,7 +90,7 @@ export const ModalEpisode = ({
         />
       )}
       <ul>
-        {episodeData?.episodes.map((episode) => (
+        {episodeData.episodes.map((episode) => (
           <ColumnListContainer key={episode.id}>
             <ColumnList
               onClick={() =>
@@ -122,7 +122,7 @@ export const ModalEpisode = ({
       </ul>
       <AnimatePresence>
         {episodeModal.isOpen && (
-          <EpisodeDetailModal
+          <EpisodeInfoModal
             {...episodeModal}
             itemId={itemId}
             language={language}

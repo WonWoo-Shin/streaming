@@ -143,7 +143,7 @@ export const ListCarousel = ({ data }: { data: IItemList[] }) => {
             : index === showItem - 1;
 
           return (
-            <CarouselItemContainer key={item.id} $itemWidth={itemWidth}>
+            <CarouselItemContainer key={index} $itemWidth={itemWidth}>
               <ContentsPannel
                 {...item}
                 index={index}
