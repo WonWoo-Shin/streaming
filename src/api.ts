@@ -1,4 +1,5 @@
 import {
+  ICredits,
   IGetDetail,
   IGetEpisodeImages,
   IGetEpisodes,
@@ -117,9 +118,9 @@ export const getEpisodeVideos = (
 };
 
 export const getCredits = (mediaType: TMediaType, itemId: IItemList["id"]) => {
-  return fetch(
+  return apiClient<ICredits>(
     `${BASE_PATH}/${mediaType}/${itemId}/credits?api_key=${API_KEY}&language=${LANGUAGE}`
-  ).then((response) => response.json());
+  );
 };
 
 export const getRecommend = (
