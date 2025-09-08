@@ -6,6 +6,7 @@ import {
   IGetEpisodesResults,
   IGetVideosResults,
   IItemList,
+  IItemListResults,
   TMediaType,
   TTime,
 } from "./type";
@@ -127,9 +128,9 @@ export const getRecommend = (
   mediaType: TMediaType,
   itemId: IItemList["id"]
 ) => {
-  return fetch(
+  return apiClient<IItemListResults>(
     `${BASE_PATH}/${mediaType}/${itemId}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
-  ).then((response) => response.json());
+  );
 };
 
 export const getTvSearch = (query: string) => {
