@@ -64,6 +64,41 @@ export const SearchResults = () => {
   useAdjustShowItem();
   const showItem = useRecoilValue(screenState);
 
+  const content = () => {
+    if (isLoading) {
+      return <SearchMessage>검색 중...</SearchMessage>;
+    }
+    if (isTvError || isMovieError) {
+      return (
+        <SearchMessage>
+          데이터를 불러오지 못했습니다.
+          <br /> 잠시 후 다시 시도해주세요.
+        </SearchMessage>
+      );
+    }
+    if (!searchData.length) {
+      return <SearchMessage>검색 결과가 없습니다.</SearchMessage>;
+    }
+    return (
+      <ResultsList>
+        {searchData?.map((data, index) => {
+          const isLeftEnd = index % showItem === 0;
+          const isRightEnd = (index + 1) % showItem === 0;
+
+          return (
+            <ContentsPannel
+              key={data.id}
+              {...data}
+              index={index}
+              isLeftEnd={isLeftEnd}
+              isRightEnd={isRightEnd}
+            />
+          );
+        })}
+      </ResultsList>
+    );
+  };
+
   return (
     <>
       <Header isHome={false} />
@@ -72,33 +107,7 @@ export const SearchResults = () => {
           <ResultsName>
             <SearchKeyword>'{keyword}'</SearchKeyword> 검색 결과
           </ResultsName>
-          {isLoading ? (
-            <SearchMessage>검색 중...</SearchMessage>
-          ) : isTvError || isMovieError ? (
-            <SearchMessage>
-              데이터를 불러오지 못했습니다.
-              <br /> 잠시 후 다시 시도해주세요.
-            </SearchMessage>
-          ) : searchData?.length === 0 ? (
-            <SearchMessage>검색 결과가 없습니다.</SearchMessage>
-          ) : (
-            <ResultsList>
-              {searchData?.map((data, index) => {
-                const isLeftEnd = index % showItem === 0;
-                const isRightEnd = (index + 1) % showItem === 0;
-
-                return (
-                  <ContentsPannel
-                    key={data.id}
-                    {...data}
-                    index={index}
-                    isLeftEnd={isLeftEnd}
-                    isRightEnd={isRightEnd}
-                  />
-                );
-              })}
-            </ResultsList>
-          )}
+          {content()}
         </ResultsWrapper>
         <AnimatePresence
           onExitComplete={() => {

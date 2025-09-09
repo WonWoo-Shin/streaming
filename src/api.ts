@@ -134,13 +134,13 @@ export const getRecommend = (
 };
 
 export const getTvSearch = (query: string) => {
-  return apiClient(
+  return apiClient<IItemListResults>(
     `${BASE_PATH}/search/tv?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
   );
 };
 
 export const getMovieSearch = (query: string) => {
-  return apiClient(
+  return apiClient<IItemListResults>(
     `${BASE_PATH}/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=${LANGUAGE}&page=1`
   );
 };
