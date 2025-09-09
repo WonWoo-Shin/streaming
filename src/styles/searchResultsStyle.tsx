@@ -23,6 +23,7 @@ export const SearchKeyword = styled.span`
 
 export const SearchMessage = styled.span`
   color: ${(props) => props.theme.font.secondary};
+  line-height: 1.5;
 `;
 
 export const ResultsList = styled.ul`

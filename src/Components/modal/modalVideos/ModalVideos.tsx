@@ -46,22 +46,13 @@ export const ModalVideos = ({
     setIsMoreVideos(videos && !!videos.length);
   }, [videos]);
 
-  const noVideos = videos?.length === 0 && preVideos?.length === 0;
+  const noVideos = !videos?.length && !preVideos?.length;
 
   if (videosError) {
     return (
       <ContentsMessage>
         데이터를 불러오지 못했습니다.
         <br /> 잠시 후 다시 시도해주세요.
-      </ContentsMessage>
-    );
-  }
-
-  if (!videos && !preVideos) {
-    return (
-      <ContentsMessage>
-        잘못된 데이터입니다.
-        <br /> 관리자에게 문의해주세요.
       </ContentsMessage>
     );
   }
