@@ -59,15 +59,6 @@ export const EpisodeInfoDetail = ({
       ),
   });
 
-  if (!episodeVideosData?.results || !episodeImagesData?.stills) {
-    return (
-      <ContentsMessage>
-        잘못된 데이터입니다.
-        <br /> 관리자에게 문의해주세요.
-      </ContentsMessage>
-    );
-  }
-
   const isLoading = isImagesLoading || isVideosLoading;
   const isError = isImagesError || isVideosError;
 
@@ -98,7 +89,7 @@ export const EpisodeInfoDetail = ({
   }
 
   if (noInfo) {
-    <ContentsMessage>에피소드 정보가 없습니다.</ContentsMessage>;
+    return <ContentsMessage>에피소드 정보가 없습니다.</ContentsMessage>;
   }
 
   return (
@@ -134,23 +125,27 @@ export const EpisodeInfoDetail = ({
           ))}
         </Slider>
       </StillImage>
-      <Section>
-        <SubHead>줄거리</SubHead>
-        <Overview>{episode.overview}</Overview>
-      </Section>
-      <Section>
-        <SubHead>동영상</SubHead>
-        <ul>
-          {episodeVideosData?.results.map((video) => (
-            <VideoListItem
-              key={video.id}
-              itemId={itemId}
-              video={video}
-              thumbnailWidth="220px"
-            />
-          ))}
-        </ul>
-      </Section>
+      {!!episode.overview && (
+        <Section>
+          <SubHead>줄거리</SubHead>
+          <Overview>{episode.overview}</Overview>
+        </Section>
+      )}
+      {!!episodeVideosData?.results.length && (
+        <Section>
+          <SubHead>동영상</SubHead>
+          <ul>
+            {episodeVideosData?.results.map((video) => (
+              <VideoListItem
+                key={video.id}
+                itemId={itemId}
+                video={video}
+                thumbnailWidth="220px"
+              />
+            ))}
+          </ul>
+        </Section>
+      )}
     </>
   );
 };

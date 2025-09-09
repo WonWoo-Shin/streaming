@@ -67,16 +67,7 @@ export const ModalEpisode = ({
     );
   }
 
-  if (!episodeData?.episodes) {
-    return (
-      <ContentsMessage>
-        잘못된 데이터입니다.
-        <br /> 관리자에게 문의해주세요.
-      </ContentsMessage>
-    );
-  }
-
-  if (!episodeData.episodes.length) {
+  if (!episodeData?.episodes.length) {
     return <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>;
   }
 
