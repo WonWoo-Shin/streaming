@@ -128,6 +128,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   if (isDetailLoading) {
     return <ModalMessage>로드 중...</ModalMessage>;
   }
+
   if (isDetailError) {
     return (
       <ModalMessage>
@@ -137,6 +138,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
       </ModalMessage>
     );
   }
+
   return (
     <>
       <ModalOverview>

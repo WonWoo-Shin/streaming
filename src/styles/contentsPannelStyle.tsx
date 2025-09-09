@@ -18,6 +18,7 @@ export const PannelImage = styled.img`
 `;
 
 export const PannelTitle = styled.h2`
+  max-width: 14.2em;
   height: var(--title-height);
   margin-top: var(--title-margin);
   font-size: 1em;
