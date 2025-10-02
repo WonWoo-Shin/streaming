@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PannelContainer,
   PannelImage,
@@ -53,15 +53,29 @@ export const ContentsPannel = ({
   isTransition,
 }: IProps) => {
   const [showPreview, setShowPreview] = useState(false);
-  const [delay, setDelay] = useState<number>();
+  // const [delay, setDelay] = useState<number>();
+
+  // const pannelMouseEnter = () => {
+  //   setDelay(setTimeout(() => setShowPreview(true), 500));
+  // };
+
+  // const pannelMouseLeave = () => {
+  //   setShowPreview(false);
+  //   clearTimeout(delay);
+  // };
 
   const pannelMouseEnter = () => {
-    setDelay(setTimeout(() => setShowPreview(true), 500));
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setShowPreview(true);
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }, []);
   };
 
   const pannelMouseLeave = () => {
     setShowPreview(false);
-    clearTimeout(delay);
   };
 
   const { data: genreList } = useQuery<IGetGenre>({

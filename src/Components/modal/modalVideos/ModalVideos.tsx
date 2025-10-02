@@ -46,6 +46,8 @@ export const ModalVideos = ({
     setIsMoreVideos(videos && !!videos.length);
   }, [videos]);
 
+  const isLoading = isVideoLoading || isPreVideoLoading;
+
   const noVideos = !videos?.length && !preVideos?.length;
 
   if (videosError) {
@@ -57,7 +59,7 @@ export const ModalVideos = ({
     );
   }
 
-  if (noVideos) {
+  if (noVideos && !isLoading) {
     return <ContentsMessage>컨텐츠가 없습니다.</ContentsMessage>;
   }
 
