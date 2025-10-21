@@ -85,6 +85,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
     data: videosPreData,
     isLoading: isPreVideoLoading,
     isError: isPreVideosError,
+    refetch: preVideosRefetch,
   } = useQuery<IGetVideosResults>({
     queryKey: ["videoPre", itemId],
     queryFn: () =>
@@ -310,6 +311,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             isVideoLoading={isVideoLoading}
             isPreVideoLoading={isPreVideoLoading}
             originalLanguage={detailData?.original_language}
+            refetch={preVideosRefetch}
           />
         )}
         {currentTab === "info" && (

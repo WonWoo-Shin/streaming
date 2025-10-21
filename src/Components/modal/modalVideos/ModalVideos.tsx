@@ -1,12 +1,17 @@
-import { useQueryClient } from "@tanstack/react-query";
 import {
   MoreButton,
   MoreList,
 } from "../../../styles/modal/modalColumnListStyle";
 import { ContentsMessage } from "../../../styles/modal/modalStyle";
-import { IGetDetail, IGetVideos, IItemList } from "../../../type";
+import {
+  IGetDetail,
+  IGetVideos,
+  IGetVideosResults,
+  IItemList,
+} from "../../../type";
 import { useEffect, useState } from "react";
 import { VideoList } from "./VIdeoList";
+import { QueryObserverResult } from "@tanstack/react-query";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -16,6 +21,7 @@ interface IProps {
   isVideoLoading: boolean;
   isPreVideoLoading: boolean;
   originalLanguage: IGetDetail["original_language"] | undefined;
+  refetch: () => Promise<QueryObserverResult<IGetVideosResults, Error>>;
 }
 
 export const ModalVideos = ({
@@ -26,29 +32,30 @@ export const ModalVideos = ({
   isVideoLoading,
   isPreVideoLoading,
   originalLanguage,
+  refetch,
 }: IProps) => {
-  const [showMoreVideos, setShowMoreVideos] = useState(videos?.length === 0); // videos가 없다면 더보기를 열어둔 상태로 시작
+  const [showMoreVideos, setShowMoreVideos] = useState(false);
   useEffect(() => {
     setShowMoreVideos(videos?.length === 0);
   }, [videos]);
 
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    if (showMoreVideos && originalLanguage !== "ko") {
-      queryClient.fetchQuery({
-        queryKey: ["videoPre", itemId],
-      });
-    }
-  }, [showMoreVideos]);
-
-  const [isMoreVideos, setIsMoreVideos] = useState(videos && !!videos.length);
-  useEffect(() => {
-    setIsMoreVideos(videos && !!videos.length);
-  }, [videos]);
+  const isMoreVideos =
+    videos && videos.length !== 0 && originalLanguage !== "ko"; // 더 표시할 비디오가 있다 => videos가 하나 이상 있다 and original Lang이 한국 외
 
   const isLoading = isVideoLoading || isPreVideoLoading;
 
   const noVideos = !videos?.length && !preVideos?.length;
+
+  const [hasRefetched, setHasRefetched] = useState(false);
+
+  const clickMoreButton = () => {
+    setShowMoreVideos((prev) => !prev);
+
+    if (!hasRefetched) {
+      refetch();
+      setHasRefetched(true);
+    }
+  };
 
   if (videosError) {
     return (
@@ -77,11 +84,11 @@ export const ModalVideos = ({
           itemId={itemId}
         />
       )}
-      {isMoreVideos && originalLanguage !== "ko" && (
+      {isMoreVideos && (
         <MoreList>
           <MoreButton
             className={showMoreVideos ? "rotate" : ""}
-            onClick={() => setShowMoreVideos((prev) => !prev)}
+            onClick={clickMoreButton}
           >
             {showMoreVideos ? "접기" : "더보기"}
             <svg
