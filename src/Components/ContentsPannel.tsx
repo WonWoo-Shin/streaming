@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   PannelContainer,
   PannelImage,
@@ -40,88 +40,82 @@ interface IProps extends IItemList {
   isTransition?: boolean;
 }
 
-export const ContentsPannel = ({
-  id,
-  backdrop_path,
-  poster_path,
-  title,
-  name,
-  media_type,
-  genre_ids,
-  isLeftEnd,
-  isRightEnd,
-  isTransition,
-}: IProps) => {
-  const [showPreview, setShowPreview] = useState(false);
-  // const [delay, setDelay] = useState<number>();
+export const ContentsPannel = React.memo(
+  ({
+    id,
+    backdrop_path,
+    poster_path,
+    title,
+    name,
+    media_type,
+    genre_ids,
+    isLeftEnd,
+    isRightEnd,
+    isTransition,
+  }: IProps) => {
+    const [showPreview, setShowPreview] = useState(false);
+    const delayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // const pannelMouseEnter = () => {
-  //   setDelay(setTimeout(() => setShowPreview(true), 500));
-  // };
-
-  // const pannelMouseLeave = () => {
-  //   setShowPreview(false);
-  //   clearTimeout(delay);
-  // };
-
-  const pannelMouseEnter = () => {
-    useEffect(() => {
-      const timeout = setTimeout(() => {
+    const pannelMouseEnter = () => {
+      delayRef.current = setTimeout(() => {
         setShowPreview(true);
       }, 500);
+    };
 
-      return () => clearTimeout(timeout);
-    }, []);
-  };
+    const pannelMouseLeave = () => {
+      setShowPreview(false);
+      if (delayRef.current) {
+        clearTimeout(delayRef.current);
+      }
+    };
 
-  const pannelMouseLeave = () => {
-    setShowPreview(false);
-  };
+    const { data: genreList } = useQuery<IGetGenre>({
+      queryKey: ["genre", media_type],
+      queryFn: () => getGenre(media_type),
+    });
 
-  const { data: genreList } = useQuery<IGetGenre>({
-    queryKey: ["genre", media_type],
-    queryFn: () => getGenre(media_type),
-  });
+    const findGenre = (genreId: IGenre["id"]) => {
+      return genreList?.genres.find((genre) => genre.id == genreId)?.name;
+    };
 
-  const findGenre = (genreId: IGenre["id"]) => {
-    return genreList?.genres.find((genre) => genre.id == genreId)?.name;
-  };
-
-  return (
-    <PannelContainer
-      onMouseEnter={pannelMouseEnter}
-      onMouseLeave={pannelMouseLeave}
-    >
-      <Link to={`modal/${media_type}/${id}`}>
-        <PannelImage src={createImage("w500", backdrop_path ?? poster_path)} />
-        <PannelTitle>{title ?? name}</PannelTitle>
-        <AnimatePresence>
-          {showPreview && !isTransition && (
-            <PannelPreview
-              className={
-                isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
-              }
-              variants={previewVariant}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PannelImage
-                className="preview"
-                src={createImage("w500", backdrop_path ?? poster_path)}
-              />
-              <PannelPreviewText>
-                <span>{title ?? name}</span>
-                <span>
-                  {genre_ids.map((genreId) => (
-                    <p key={genreId}>{findGenre(genreId)}</p>
-                  ))}
-                </span>
-              </PannelPreviewText>
-            </PannelPreview>
-          )}
-        </AnimatePresence>
-      </Link>
-    </PannelContainer>
-  );
-};
+    return (
+      <PannelContainer
+        onMouseEnter={pannelMouseEnter}
+        onMouseLeave={pannelMouseLeave}
+      >
+        <Link to={`modal/${media_type}/${id}`}>
+          <PannelImage
+            src={createImage("w500", backdrop_path ?? poster_path)}
+          />
+          <PannelTitle>{title ?? name}</PannelTitle>
+          <AnimatePresence>
+            {showPreview && !isTransition && (
+              <PannelPreview
+                className={
+                  isLeftEnd ? "left_end" : isRightEnd ? "right_end" : "center"
+                }
+                variants={previewVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <PannelImage
+                  className="preview"
+                  src={createImage("w500", backdrop_path ?? poster_path)}
+                />
+                <PannelPreviewText>
+                  <span>{title ?? name}</span>
+                  <span>
+                    {genre_ids.map((genreId) => (
+                      <p key={genreId}>{findGenre(genreId)}</p>
+                    ))}
+                  </span>
+                </PannelPreviewText>
+              </PannelPreview>
+            )}
+          </AnimatePresence>
+        </Link>
+      </PannelContainer>
+    );
+  }
+);
