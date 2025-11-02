@@ -19,9 +19,6 @@ export const HeaderContainer = styled.header<IHeaderProps>`
   color: ${(props) => props.theme.font.primary};
   transition: ${(props) =>
     props.$isThemeToggle ? "none" : "background-color 0.4s"};
-  body.modal-open & {
-    padding-right: calc(50px + var(--scroll-width));
-  }
 `;
 
 export const HeaderLogo = styled.div`

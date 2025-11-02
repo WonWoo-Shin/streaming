@@ -6,7 +6,8 @@ import { Main } from "./main/Main";
 
 import { AnimatePresence } from "framer-motion";
 import { Header } from "./header/Header";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { Footer } from "./Footer";
 
 export const Home = () => {
   const { itemId } = useParams();
@@ -15,17 +16,25 @@ export const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  if (itemId && wrapperRef.current) {
+    wrapperRef.current.classList.add("modal-open");
+  }
+
+  const modalExitComplete = () => {
+    if (wrapperRef.current) {
+      wrapperRef.current.classList.remove("modal-open");
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper ref={wrapperRef}>
       <Header isHome />
       <Banner />
       <Main />
-      <AnimatePresence
-        onExitComplete={() => {
-          const body = document.body;
-          body.classList.remove("modal-open");
-        }}
-      >
+      <Footer />
+      <AnimatePresence onExitComplete={modalExitComplete}>
         {" "}
         {itemId && <ItemModal itemId={itemId} />}
       </AnimatePresence>

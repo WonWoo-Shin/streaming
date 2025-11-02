@@ -5,15 +5,12 @@ export const ModalScreen = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  inset: 0px;
   z-index: 20;
 `;
 
 export const ModalBackground = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -21,11 +18,11 @@ export const ModalWindow = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-y: auto;
   z-index: 1;
   width: 100%;
   max-width: 1080px;
-  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
+  margin: 25px 0;
   border-radius: 5px;
   background-color: ${(props) => props.theme.background.secondary};
   &::-webkit-scrollbar {
@@ -85,11 +82,13 @@ export const BgImage = styled.div<{ $bgImg: string }>`
   background-image: url(${(props) => props.$bgImg});
   background-size: cover;
   background-position: center center;
+  border-top-right-radius: 5px;
   &::after {
     content: "";
     display: block;
     position: absolute;
     inset: 0;
+    border-radius: inherit;
     background: linear-gradient(
         to top,
         ${(props) => props.theme.background.secondary} 0px,

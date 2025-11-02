@@ -121,19 +121,16 @@ export const GlobalStyle = styled.createGlobalStyle`
     display: block;
   }
   body {
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-color: ${(props) => props.theme.background.primary};
     line-height: 1;
-    overflow-x: hidden;
     font-size: 1vw;
     @media (max-width: 1400px) {
       font-size: 1.2vw;
     }
     @media (max-width: 1100px) {
       font-size: 1.4vw;
-    }
-    &.modal-open {
-      overflow: hidden;
-      padding-right: var(--scroll-width);
     }
   }
   ol,

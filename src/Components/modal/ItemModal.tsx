@@ -58,7 +58,7 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
   const navigate = useNavigate();
 
   const body = document.body;
-  body.classList.add("modal-open"); // body css에서 scroll 없애기
+  body.classList.add("modal-open");
 
   const closeModal = () => {
     navigate(basePath ?? "/");
