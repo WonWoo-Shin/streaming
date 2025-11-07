@@ -17,14 +17,23 @@ export const Home = () => {
   }, []);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperElement = wrapperRef.current;
 
-  if (itemId && wrapperRef.current) {
-    wrapperRef.current.classList.add("modal-open");
+  const scrollRef = useRef(0);
+
+  // 모달창이 열렸을 때 실행값
+  if (itemId && wrapperElement) {
+    scrollRef.current = window.scrollY;
+    wrapperElement.style.top = `-${scrollRef.current}px`;
+    wrapperElement.classList.add("modal-open");
   }
+  // 모달창이 열렸을 때 실행값
 
   const modalExitComplete = () => {
     if (wrapperRef.current) {
       wrapperRef.current.classList.remove("modal-open");
+      console.log(scrollRef.current);
+      window.scrollTo(0, scrollRef.current);
     }
   };
 

@@ -26,8 +26,6 @@ export const Header = ({ isHome }: IProps) => {
     }
   };
 
-  const headerRef = useRef<HTMLHeadElement>(null);
-
   const [isLimpid, setIsLimpid] = useState(isHome);
 
   const { scrollY } = useScroll();
@@ -51,11 +49,7 @@ export const Header = ({ isHome }: IProps) => {
   };
 
   return (
-    <HeaderContainer
-      ref={headerRef}
-      $isLimpid={isLimpid}
-      $isThemeToggle={isThemeToggle}
-    >
+    <HeaderContainer $isLimpid={isLimpid} $isThemeToggle={isThemeToggle}>
       <HeaderLogo>
         <Link to="/" onClick={logoClick}>
           스스슥
