@@ -56,6 +56,7 @@ export const ContentsPannel = React.memo(
     isTransition,
   }: IProps) => {
     const [showPreview, setShowPreview] = useState(false);
+
     const delayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const pannelMouseEnter = () => {
