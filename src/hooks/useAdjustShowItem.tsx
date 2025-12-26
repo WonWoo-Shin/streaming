@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
+
 import { screenState } from "../atom";
-import { useEffect } from "react";
 
 export const useAdjustShowItem = () => {
   const isBelow1400 = useMediaQuery({ query: "(max-width: 1400px)" });

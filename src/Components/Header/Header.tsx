@@ -1,4 +1,9 @@
+import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+
+import { isDarkState } from "../../atom";
 import {
   BtnTag,
   HeaderContainer,
@@ -7,12 +12,9 @@ import {
   ThemeBtn,
   SearchBtn,
 } from "../../styles/headerStyle";
-import { Link, useLocation } from "react-router-dom";
-import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
-import { useRecoilState } from "recoil";
-import { isDarkState } from "../../atom";
-import { SearchIcon } from "./SearchIcon";
+
 import { Search } from "./Search";
+import { SearchIcon } from "./SearchIcon";
 
 interface IProps {
   isHome: boolean;

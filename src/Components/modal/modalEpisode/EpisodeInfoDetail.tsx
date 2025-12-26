@@ -1,4 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import Slider, { Settings } from "react-slick";
+
+import { getEpisodeImages, getEpisodeVideos } from "../../../api";
 import {
   ModalHeader,
   Overview,
@@ -7,6 +10,7 @@ import {
   StillImage,
   SubHead,
 } from "../../../styles/modal/episodeModalStyle";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import {
   IGetDetail,
   IGetEpisodeImages,
@@ -14,11 +18,8 @@ import {
   IGetVideosResults,
   IItemList,
 } from "../../../type";
-import { getEpisodeImages, getEpisodeVideos } from "../../../api";
-import Slider, { Settings } from "react-slick";
-import { CustomArrow } from "../../CustomArrow";
-import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import { createImage } from "../../../utils/createImgae";
+import { CustomArrow } from "../../CustomArrow";
 import { VideoListItem } from "../modalVideos/VideoListItem";
 
 interface IProps {

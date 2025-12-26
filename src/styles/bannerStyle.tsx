@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { TDirection } from "../type";
 
 export const SliderContainer = styled.div`

@@ -1,4 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+import { AnimatePresence, Variants } from "framer-motion";
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { getGenre } from "../api";
 import {
   PannelContainer,
   PannelImage,
@@ -8,10 +13,7 @@ import {
 } from "../styles/contentsPannelStyle";
 import { IGenre, IGetGenre, IItemList } from "../type";
 import { createImage } from "../utils/createImgae";
-import { useQuery } from "@tanstack/react-query";
-import { getGenre } from "../api";
-import { AnimatePresence, Variants } from "framer-motion";
-import { Link } from "react-router-dom";
+
 
 const previewVariant: Variants = {
   initial: {

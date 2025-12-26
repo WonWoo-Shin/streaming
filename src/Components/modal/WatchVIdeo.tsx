@@ -1,11 +1,12 @@
-import { ModalScreen } from "../../styles/modal/modalStyle";
+import { Variants } from "framer-motion";
+import { createPortal } from "react-dom";
+
 import {
   NoTrailer,
   VideoModalNav,
   VideoModalWindow,
 } from "../../styles/modal/modalColumnListStyle";
-import { Variants } from "framer-motion";
-import { createPortal } from "react-dom";
+import { ModalScreen } from "../../styles/modal/modalStyle";
 import { IWatchVideo } from "../../type";
 
 const modalVariant: Variants = {

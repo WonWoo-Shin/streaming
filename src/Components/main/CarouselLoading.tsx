@@ -1,4 +1,6 @@
 import { useRecoilValue } from "recoil";
+
+import { screenState } from "../../atom";
 import {
   CarouselItemContainer,
   Container,
@@ -8,7 +10,6 @@ import {
   TextLoading,
   Title,
 } from "../../styles/carouselStyle";
-import { screenState } from "../../atom";
 
 export const CarouselLoading = () => {
   const showItem = useRecoilValue(screenState);

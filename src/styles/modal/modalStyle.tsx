@@ -29,7 +29,7 @@ export const ModalWindow = styled(motion.div)`
   border-radius: 5px;
   background-color: ${(props) => props.theme.background.secondary};
   &::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
   }
   @media (max-width: 1080px) {
     height: 100%;

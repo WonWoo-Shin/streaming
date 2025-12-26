@@ -1,7 +1,7 @@
 import { CustomArrowProps } from "react-slick";
 
-import { TDirection } from "../../type";
 import { SlideArrowStyle } from "../../styles/bannerStyle";
+import { TDirection } from "../../type";
 
 interface ISlideArroeProps extends CustomArrowProps {
   position: TDirection;

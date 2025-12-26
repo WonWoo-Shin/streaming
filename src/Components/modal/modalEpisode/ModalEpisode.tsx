@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  IEpisodeModal,
-  IGetDetail,
-  IGetEpisodesResults,
-  IItemList,
-} from "../../../type";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+
 import { getEpisode } from "../../../api";
-import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import {
   ColumnListContainer,
   ColumnList,
@@ -18,12 +14,19 @@ import {
   EpisodeMainInfo,
   EpisodeOverview,
 } from "../../../styles/modal/modalColumnListStyle";
-import { createImage } from "../../../utils/createImgae";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
+import {
+  IEpisodeModal,
+  IGetDetail,
+  IGetEpisodesResults,
+  IItemList,
+} from "../../../type";
 import { convertDate } from "../../../utils/convertDate";
-import { useState } from "react";
-import { SeasonNav } from "./SeasonNav";
+import { createImage } from "../../../utils/createImgae";
+
 import { EpisodeInfoModal } from "./EpisodeInfoModal";
-import { AnimatePresence } from "framer-motion";
+import { SeasonNav } from "./SeasonNav";
+
 
 interface IEpisodeProps {
   itemId: IItemList["id"];

@@ -1,12 +1,15 @@
-import { useParams } from "react-router-dom";
-import { Wrapper } from "../styles/homeStyle";
-import { Banner } from "./banner/Banner";
-import { ItemModal } from "./modal/ItemModal";
-import { Main } from "./main/Main";
-
 import { AnimatePresence } from "framer-motion";
-import { Header } from "./header/Header";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import { Wrapper } from "../styles/homeStyle";
+
+import { Banner } from "./banner/Banner";
+import { Header } from "./header/Header";
+import { Main } from "./main/Main";
+import { ItemModal } from "./modal/ItemModal";
+
+
 
 export const Home = () => {
   const { itemId } = useParams();

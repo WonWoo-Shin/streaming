@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil";
-import { TabBtn, TabContainer } from "../../styles/mainStyle";
+
 import { trendingTimeState } from "../../atom";
+import { TabBtn, TabContainer } from "../../styles/mainStyle";
 
 export const TimeTab = () => {
   const [trendingTime, setTrendingTime] = useRecoilState(trendingTimeState);

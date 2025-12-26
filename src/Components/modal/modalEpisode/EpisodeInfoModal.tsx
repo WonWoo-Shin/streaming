@@ -1,8 +1,9 @@
-import { createPortal } from "react-dom";
-import { ModalBackground, ModalScreen } from "../../../styles/modal/modalStyle";
 import { Variants } from "framer-motion";
-import { IEpisodeModal, IGetDetail } from "../../../type";
+import { createPortal } from "react-dom";
+
 import { EpisodeModalWindow } from "../../../styles/modal/episodeModalStyle";
+import { ModalBackground, ModalScreen } from "../../../styles/modal/modalStyle";
+import { IEpisodeModal, IGetDetail } from "../../../type";
 
 import { EpisodeInfoDetail } from "./EpisodeInfoDetail";
 

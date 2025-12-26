@@ -5,8 +5,8 @@ export const sliceArray = (
 ) => {
   const length = arr.length;
   const isStartNegative = startIndex < 0;
-  let result: any[] = [];
-  let frontPiece: any[] = [];
+  const result: any[] = [];
+  const frontPiece: any[] = [];
 
   if (isStartNegative) {
     frontPiece.push(...arr.slice(startIndex));

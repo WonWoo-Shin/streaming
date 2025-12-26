@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil";
-import { TabBtn, TabContainer } from "../../styles/mainStyle";
+
 import { topRatedMediaTypeState } from "../../atom";
+import { TabBtn, TabContainer } from "../../styles/mainStyle";
 
 export const MediaTypeTab = () => {
   const [topRatedMediaType, setTopRatedMediaType] = useRecoilState(

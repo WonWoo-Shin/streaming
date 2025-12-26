@@ -1,4 +1,5 @@
 import { CustomArrowProps } from "react-slick";
+
 import { SlideArrow } from "../styles/modal/episodeModalStyle";
 import { TDirection } from "../type";
 

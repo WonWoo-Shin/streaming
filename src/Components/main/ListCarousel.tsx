@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+
+import { screenState } from "../../atom";
 import {
   Carousel,
   CarouselItemContainer,
   Container,
 } from "../../styles/carouselStyle";
-
-import { sliceArray } from "../../utils/sliceArray";
 import { IItemList } from "../../type";
+import { sliceArray } from "../../utils/sliceArray";
+import { ContentsPannel } from "../ContentsPannel";
 
 import { CarouselButton } from "./CarouselButton";
-import { useRecoilValue } from "recoil";
-import { screenState } from "../../atom";
-import { ContentsPannel } from "../ContentsPannel";
 
 export const ListCarousel = ({ data }: { data: IItemList[] }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
