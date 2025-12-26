@@ -9,8 +9,6 @@ import { Header } from "./header/Header";
 import { Main } from "./main/Main";
 import { ItemModal } from "./modal/ItemModal";
 
-
-
 export const Home = () => {
   const { itemId } = useParams();
 
