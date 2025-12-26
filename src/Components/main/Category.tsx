@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { CategoryName, CategoryStyle } from "../../styles/mainStyle";
 import { IItemListResults, TMediaType, TTime } from "../../type";
-import { addMediatype } from "../../utils/addMediaType";
-
 import { CarouselLoading } from "./CarouselLoading";
 import { ListCarousel } from "./ListCarousel";
-import { MediaTypeTab } from "./MediaTypeTab";
 import { TimeTab } from "./TimeTab";
+import { MediaTypeTab } from "./MediaTypeTab";
+import { addMediatype } from "../../utils/addMediaType";
 
 interface ICategoryProps {
   isSuccess?: boolean;

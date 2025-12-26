@@ -1,15 +1,13 @@
-import { Transition, Variants } from "framer-motion";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import {
   InputWrapper,
   SearchBar,
   SearchIconWrapper,
   SearchInput,
 } from "../../styles/headerStyle";
-
 import { SearchIcon } from "./SearchIcon";
+import { Transition, Variants } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const defaultTransition: Transition = {
   ease: [0.25, 0.1, 0.25, 1],

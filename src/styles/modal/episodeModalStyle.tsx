@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { ModalWindow } from "./modalStyle";
 
 export const EpisodeModalWindow = styled(ModalWindow)`

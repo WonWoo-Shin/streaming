@@ -1,6 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
-import { getCredits } from "../../../api";
 import {
   CastContainer,
   CastImage,
@@ -13,7 +11,6 @@ import {
   InfoHead,
   InfoSection,
 } from "../../../styles/modal/modalInfoStyle";
-import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import {
   ICredits,
   IItemList,
@@ -21,6 +18,8 @@ import {
   TMediaType,
 } from "../../../type";
 import { createImage } from "../../../utils/createImgae";
+import { getCredits } from "../../../api";
+import { ContentsMessage } from "../../../styles/modal/modalStyle";
 
 interface IProps {
   itemId: IItemList["id"];

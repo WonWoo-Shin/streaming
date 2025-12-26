@@ -1,6 +1,4 @@
 import { useSetRecoilState } from "recoil";
-
-import { watchVideoStateFamily } from "../../../atom";
 import {
   ColumnList,
   ColumnListContainer,
@@ -12,6 +10,7 @@ import {
 } from "../../../styles/modal/modalColumnListStyle";
 import { IGetVideos, IItemList } from "../../../type";
 import { convertDate } from "../../../utils/convertDate";
+import { watchVideoStateFamily } from "../../../atom";
 
 interface IProps {
   video: IGetVideos;

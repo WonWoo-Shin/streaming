@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useRecoilState, useResetRecoilState } from "recoil";
-
 import { getDetail, getVideos } from "../../api";
-import { watchVideoStateFamily } from "../../atom";
+import {
+  IGetDetail,
+  IGetVideosResults,
+  IItemList,
+  TCurrentTab,
+  TMediaType,
+} from "../../type";
+import { useParams } from "react-router-dom";
 import {
   Badge,
   BadgeArea,
@@ -27,22 +29,18 @@ import {
   TitleArea,
   Vote,
 } from "../../styles/modal/modalStyle";
-import {
-  IGetDetail,
-  IGetVideosResults,
-  IItemList,
-  TCurrentTab,
-  TMediaType,
-} from "../../type";
-import { convertDate } from "../../utils/convertDate";
 import { createImage } from "../../utils/createImgae";
-
-import { ModalEpisode } from "./modalEpisode/ModalEpisode";
-import { ModalInfo } from "./modalInfo/ModalInfo";
-import { ModalRecommend } from "./modalRecommend/ModalRecommend";
-import { ModalVideos } from "./modalVideos/ModalVideos";
+import { useEffect, useRef, useState } from "react";
 import { NavItem } from "./NavItem";
+import { ModalVideos } from "./modalVideos/ModalVideos";
+import { convertDate } from "../../utils/convertDate";
+import { ModalRecommend } from "./modalRecommend/ModalRecommend";
+import { ModalEpisode } from "./modalEpisode/ModalEpisode";
 import { WatchVideo } from "./WatchVIdeo";
+import { AnimatePresence } from "framer-motion";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { watchVideoStateFamily } from "../../atom";
+import { ModalInfo } from "./modalInfo/ModalInfo";
 
 interface IProps {
   itemId: IItemList["id"];

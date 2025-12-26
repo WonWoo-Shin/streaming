@@ -1,13 +1,4 @@
-import {
-  AnimatePresence,
-  useMotionValueEvent,
-  useScroll,
-  Variants,
-} from "framer-motion";
-import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
-
 import {
   ModalBackground,
   ModalScreen,
@@ -15,16 +6,15 @@ import {
   ModalWindow,
   ScrollUpBtn,
 } from "../../styles/modal/modalStyle";
-
-import { ModalDetail } from "./ModalDetail";
-
-import "overlayscrollbars/overlayscrollbars.css";
 import {
-  OverlayScrollbars,
-  ScrollbarsHidingPlugin,
-  SizeObserverPlugin,
-  ClickScrollPlugin,
-} from "overlayscrollbars";
+  AnimatePresence,
+  useMotionValueEvent,
+  useScroll,
+  Variants,
+} from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ModalDetail } from "./ModalDetail";
+import { useRef, useState } from "react";
 
 const modalVariant: Variants = {
   initial: {

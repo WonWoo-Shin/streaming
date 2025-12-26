@@ -1,6 +1,5 @@
 import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import { IGetVideos, IItemList } from "../../../type";
-
 import { VideoListItem } from "./VideoListItem";
 
 interface IProps {

@@ -1,12 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-
-import { getMovieSearch, getTvSearch } from "../../api";
-import { screenState } from "../../atom";
-import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 import {
   ResultsList,
   ResultsName,
@@ -15,11 +7,19 @@ import {
   SearchMessage,
   Wrapper,
 } from "../../styles/searchResultsStyle";
+import { useQuery } from "@tanstack/react-query";
+import { getMovieSearch, getTvSearch } from "../../api";
 import { IItemListResults } from "../../type";
-import { addMediatype } from "../../utils/addMediaType";
-import { ContentsPannel } from "../ContentsPannel";
-import { Header } from "../header/Header";
+
 import { ItemModal } from "../modal/ItemModal";
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Header } from "../header/Header";
+import { ContentsPannel } from "../ContentsPannel";
+import { useRecoilValue } from "recoil";
+import { screenState } from "../../atom";
+import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
+import { addMediatype } from "../../utils/addMediaType";
 
 export const SearchResults = () => {
   const { keyword, itemId } = useParams();

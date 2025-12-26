@@ -1,11 +1,9 @@
-import { useRecoilValue } from "recoil";
-
-import { getNowShowing, getTopRated, getTrending } from "../../api";
-import { topRatedMediaTypeState, trendingTimeState } from "../../atom";
-import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 import { MainContainer } from "../../styles/mainStyle";
-
+import { getNowShowing, getTopRated, getTrending } from "../../api";
+import { useRecoilValue } from "recoil";
+import { topRatedMediaTypeState, trendingTimeState } from "../../atom";
 import { Category } from "./Category";
+import { useAdjustShowItem } from "../../hooks/useAdjustShowItem";
 
 export const Main = () => {
   useAdjustShowItem();

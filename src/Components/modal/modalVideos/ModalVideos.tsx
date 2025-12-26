@@ -1,6 +1,3 @@
-import { QueryObserverResult } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-
 import {
   MoreButton,
   MoreList,
@@ -12,9 +9,9 @@ import {
   IGetVideosResults,
   IItemList,
 } from "../../../type";
-
+import { useEffect, useState } from "react";
 import { VideoList } from "./VIdeoList";
-
+import { QueryObserverResult } from "@tanstack/react-query";
 
 interface IProps {
   itemId: IItemList["id"];

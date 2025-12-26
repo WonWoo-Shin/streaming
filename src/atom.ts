@@ -1,5 +1,4 @@
 import { atom, atomFamily } from "recoil";
-
 import { IWatchVideo, TMediaType, TTime } from "./type";
 
 export const isDarkState = atom({

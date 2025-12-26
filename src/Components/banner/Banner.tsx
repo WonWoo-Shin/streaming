@@ -1,16 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import Slider, { Settings } from "react-slick";
-
-import { getTrending } from "../../api";
 import {
   BannerSlider,
   SliderContainer,
   SliderDots,
 } from "../../styles/bannerStyle";
-import { IItemListResults } from "../../type";
-
 import { SlideArrow } from "./SliderArrow";
+import { IItemListResults } from "../../type";
 import { SliderItem } from "./SliderItem";
+import { useQuery } from "@tanstack/react-query";
+import { getTrending } from "../../api";
 
 export const Banner = () => {
   const settings: Settings = {
