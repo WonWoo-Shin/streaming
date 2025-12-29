@@ -70,22 +70,23 @@ export const getVideos = async (
   );
 
   //이용 불가 영상 필터링
-  const filterPromise = videosResults.results.map(async (video) => {
-    const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=status&id=${video.key}&key=${YOUTUBE_API_KEY}`
-    );
-    const fetchData = await response.json();
-    return fetchData;
-  });
+  // const filterPromise = videosResults.results.map(async (video) => {
+  //   const response = await fetch(
+  //     `https://www.googleapis.com/youtube/v3/videos?part=status&id=${video.key}&key=${YOUTUBE_API_KEY}`
+  //   );
+  //   const fetchData = await response.json();
+  //   return fetchData;
+  // });
 
-  const fetchResults = await Promise.all(filterPromise);
+  // const fetchResults = await Promise.all(filterPromise);
 
-  const filteredVideos = videosResults.results.filter((_, index) => {
-    return fetchResults[index].items.length !== 0;
-  });
+  // const filteredVideos = videosResults.results.filter((_, index) => {
+  //   return fetchResults[index].items.length !== 0;
+  // });
   //이용 불가 영상 필터링
 
-  return { results: filteredVideos };
+  return videosResults;
+  // return { results: filteredVideos };
 };
 
 export const getEpisode = (

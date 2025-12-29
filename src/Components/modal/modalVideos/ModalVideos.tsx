@@ -21,7 +21,9 @@ interface IProps {
   isVideoLoading: boolean;
   isPreVideoLoading: boolean;
   originalLanguage: IGetDetail["original_language"] | undefined;
-  refetch: () => Promise<QueryObserverResult<IGetVideosResults, Error>>;
+  preVideosRefetch: () => Promise<
+    QueryObserverResult<IGetVideosResults, Error>
+  >;
 }
 
 export const ModalVideos = ({
@@ -32,7 +34,7 @@ export const ModalVideos = ({
   isVideoLoading,
   isPreVideoLoading,
   originalLanguage,
-  refetch,
+  preVideosRefetch,
 }: IProps) => {
   const [showMoreVideos, setShowMoreVideos] = useState(false);
   useEffect(() => {
@@ -52,7 +54,7 @@ export const ModalVideos = ({
     setShowMoreVideos((prev) => !prev);
 
     if (!hasRefetched) {
-      refetch();
+      preVideosRefetch(); // 더보기 버튼을 누를경우 preVideo를 fetch시켜 리스트에 표시
       setHasRefetched(true);
     }
   };

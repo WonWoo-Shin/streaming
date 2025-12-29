@@ -311,7 +311,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             isVideoLoading={isVideoLoading}
             isPreVideoLoading={isPreVideoLoading}
             originalLanguage={detailData?.original_language}
-            refetch={preVideosRefetch}
+            preVideosRefetch={preVideosRefetch}
           />
         )}
         {currentTab === "info" && (
