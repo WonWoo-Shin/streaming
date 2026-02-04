@@ -21,7 +21,7 @@ export const ModalWindow = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
   z-index: 1;
   width: 100%;
   max-width: 1080px;
@@ -29,7 +29,7 @@ export const ModalWindow = styled(motion.div)`
   border-radius: 5px;
   background-color: ${(props) => props.theme.background.secondary};
   &::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
   }
   @media (max-width: 1080px) {
     height: 100%;
@@ -90,7 +90,8 @@ export const BgImage = styled.div<{ $bgImg: string }>`
     display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(
+    background:
+      linear-gradient(
         to top,
         ${(props) => props.theme.background.secondary} 0px,
         ${(props) => props.theme.background.secondary}00 200px

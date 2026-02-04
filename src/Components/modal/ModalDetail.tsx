@@ -41,6 +41,7 @@ import { AnimatePresence } from "framer-motion";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { watchVideoStateFamily } from "../../atom";
 import { ModalInfo } from "./modalInfo/ModalInfo";
+import SimpleBar from "simplebar-react";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -113,12 +114,12 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   }, [detailData]);
 
   const [currentTab, setCurrentTab] = useState<TCurrentTab>(
-    mediaType === "tv" ? "episode" : "video"
+    mediaType === "tv" ? "episode" : "video",
   );
 
   // 모달창 별로 동영상 재생 유무 state 관리
   const [watchVideo, setWatchVideo] = useRecoilState(
-    watchVideoStateFamily(itemId)
+    watchVideoStateFamily(itemId),
   );
   const resetWatchVideo = useResetRecoilState(watchVideoStateFamily(itemId));
   useEffect(() => {
@@ -141,13 +142,13 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   }
 
   return (
-    <>
+    <SimpleBar style={{ minHeight: 0 }}>
       <ModalOverview>
         <OverviewBackground>
           <BgImage
             $bgImg={createImage(
               "w780",
-              detailData?.backdrop_path ?? detailData?.poster_path ?? ""
+              detailData?.backdrop_path ?? detailData?.poster_path ?? "",
             )}
           />
         </OverviewBackground>
@@ -334,6 +335,6 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
           <WatchVideo {...watchVideo} setWatchVideo={setWatchVideo} />
         )}
       </AnimatePresence>
-    </>
+    </SimpleBar>
   );
 };

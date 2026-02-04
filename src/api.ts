@@ -14,7 +14,7 @@ import {
 const BASE_PATH = "https://api.themoviedb.org/3";
 const API_KEY = "148c0ccf226283888461d198a48dce07";
 const LANGUAGE = "ko-KR";
-const YOUTUBE_API_KEY = "AIzaSyAeoFkxAxrpXBk09xXdue0GZ79e9DGOh8w";
+// const YOUTUBE_API_KEY = "####";
 
 const apiClient = async <T>(fetchUrl: string): Promise<T> => {
   const response = await fetch(fetchUrl);

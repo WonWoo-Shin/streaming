@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
+import SimpleBar from "simplebar-react";
 
 const modalVariant: Variants = {
   initial: {
@@ -131,7 +132,7 @@ export const ItemModal = ({ itemId, basePath }: IProps) => {
             </AnimatePresence>
           </ModalWindow>
         </ModalScreen>,
-        rootModal
+        rootModal,
       )}
     </>
   );
