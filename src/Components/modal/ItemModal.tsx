@@ -12,10 +12,9 @@ import {
   useScroll,
   Variants,
 } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
-import SimpleBar from "simplebar-react";
 
 const modalVariant: Variants = {
   initial: {
@@ -48,13 +47,15 @@ const modalWindowVariant: Variants = {
 };
 
 interface IProps {
-  itemId: string;
   basePath?: string;
 }
 
-export const ItemModal = ({ itemId, basePath }: IProps) => {
+export const ItemModal = ({ basePath }: IProps) => {
   const rootModal = document.getElementById("root-modal");
   if (!rootModal) return null;
+
+  const { itemId } = useParams();
+  if (!itemId) return;
 
   const navigate = useNavigate();
 

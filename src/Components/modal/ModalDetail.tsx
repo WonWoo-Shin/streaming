@@ -41,7 +41,6 @@ import { AnimatePresence } from "framer-motion";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { watchVideoStateFamily } from "../../atom";
 import { ModalInfo } from "./modalInfo/ModalInfo";
-import SimpleBar from "simplebar-react";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -142,7 +141,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   }
 
   return (
-    <SimpleBar style={{ minHeight: 0 }}>
+    <>
       <ModalOverview>
         <OverviewBackground>
           <BgImage
@@ -268,7 +267,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
       </ModalOverview>
       <ModalContent>
         <ContentNav>
-          {preMediaType === "tv" && (
+          {mediaType === "tv" && (
             <NavItem
               tab="episode"
               tabName="에피소드"
@@ -335,6 +334,6 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
           <WatchVideo {...watchVideo} setWatchVideo={setWatchVideo} />
         )}
       </AnimatePresence>
-    </SimpleBar>
+    </>
   );
 };

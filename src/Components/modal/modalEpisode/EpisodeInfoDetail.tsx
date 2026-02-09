@@ -20,6 +20,7 @@ import { CustomArrow } from "../../CustomArrow";
 import { ContentsMessage } from "../../../styles/modal/modalStyle";
 import { createImage } from "../../../utils/createImgae";
 import { VideoListItem } from "../modalVideos/VideoListItem";
+import SimpleBar from "simplebar-react";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -55,7 +56,7 @@ export const EpisodeInfoDetail = ({
         itemId,
         episode.season_number,
         episode.episode_number,
-        language
+        language,
       ),
   });
 

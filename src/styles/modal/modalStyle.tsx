@@ -269,7 +269,8 @@ export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
   cursor: pointer;
 `;
 
-export const CurrentBar = styled(motion.div)`
+export const CurrentBar = styled.div`
+  // motion div 임시 해제
   width: 100%;
   height: 3px;
   margin-top: 12px;
