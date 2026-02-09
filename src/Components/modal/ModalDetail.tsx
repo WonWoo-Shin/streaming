@@ -55,13 +55,6 @@ interface IParams {
 export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
   const { mediaType } = useParams() as unknown as IParams;
 
-  const [preMediaType, setPreMediaType] = useState(mediaType);
-  useEffect(() => {
-    if (mediaType) {
-      setPreMediaType(mediaType);
-    }
-  }, [mediaType]); // 모달창이 닫힐 때 자연스러운 애니메이션을 위해 preState에 저장
-
   const {
     data: detailData,
     isFetched: isDetailFetched,
