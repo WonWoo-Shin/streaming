@@ -260,7 +260,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
         </Overview>
       </ModalOverview>
       <ModalContent>
-        {/* <ContentNav>
+        <ContentNav>
           {mediaType === "tv" && (
             <NavItem
               tab="episode"
@@ -287,12 +287,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             tabMatch={currentTab === "recommend"}
             setCurrentTab={setCurrentTab}
           />
-        </ContentNav> */}
-        <ContentNavBar
-          mediaType={mediaType}
-          currentTab={currentTab}
-          setCurrentTab={setCurrentTab}
-        />
+        </ContentNav>
         {currentTab === "episode" && (
           <ModalEpisode
             itemId={itemId}
