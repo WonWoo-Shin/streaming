@@ -41,6 +41,7 @@ import { AnimatePresence } from "framer-motion";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { watchVideoStateFamily } from "../../atom";
 import { ModalInfo } from "./modalInfo/ModalInfo";
+import { ContentNavBar } from "./ContentNavBar";
 
 interface IProps {
   itemId: IItemList["id"];
@@ -259,7 +260,7 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
         </Overview>
       </ModalOverview>
       <ModalContent>
-        <ContentNav>
+        {/* <ContentNav>
           {mediaType === "tv" && (
             <NavItem
               tab="episode"
@@ -286,7 +287,12 @@ export const ModalDetail = ({ itemId, basePath, closeModal }: IProps) => {
             tabMatch={currentTab === "recommend"}
             setCurrentTab={setCurrentTab}
           />
-        </ContentNav>
+        </ContentNav> */}
+        <ContentNavBar
+          mediaType={mediaType}
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+        />
         {currentTab === "episode" && (
           <ModalEpisode
             itemId={itemId}

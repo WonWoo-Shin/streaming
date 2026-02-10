@@ -17,6 +17,9 @@ export const NavItem = ({
   return (
     <NavItemStyle onClick={() => setCurrentTab(tab)} $tabMatch={tabMatch}>
       <span>{tabName}</span>
+      {tabMatch && (
+        <CurrentBar layoutId="currentBar" style={{ originY: "0px" }} />
+      )}
     </NavItemStyle>
   );
 };

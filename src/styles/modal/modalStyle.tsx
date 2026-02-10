@@ -258,10 +258,10 @@ export const ModalContent = styled.div`
 export const ContentNav = styled.ul`
   display: flex;
   gap: 35px;
-  margin-bottom: 20px;
 `;
 
 export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
+  padding-bottom: 12px;
   font-size: 20px;
   font-weight: 600;
   color: ${(props) =>
@@ -269,11 +269,10 @@ export const NavItemStyle = styled.li<{ $tabMatch: boolean }>`
   cursor: pointer;
 `;
 
-export const CurrentBar = styled.div`
+export const CurrentBar = styled(motion.div)`
   // motion div 임시 해제
   width: 100%;
   height: 3px;
-  margin-top: 12px;
   background-color: ${(props) => props.theme.etc.pointGreen};
 `;
 
