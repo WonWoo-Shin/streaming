@@ -28,11 +28,20 @@ export const ModalWindow = styled(motion.div)`
   height: calc(100vh - 50px);
   border-radius: 5px;
   background-color: ${(props) => props.theme.background.secondary};
-  &::-webkit-scrollbar {
-    /* display: none; */
-  }
   @media (max-width: 1080px) {
     height: 100%;
+  }
+  .simplebar-track {
+    right: 5px;
+  }
+  .simplebar-vertical {
+    width: 10px;
+  }
+  .simplebar-scrollbar:before {
+    background: ${(props) => props.theme.scrollBar.scrollThumb};
+  }
+  .simplebar-visible:before {
+    opacity: 1;
   }
 `;
 
@@ -65,6 +74,12 @@ export const ScrollUpBtn = styled(motion.button)`
   svg {
     color: ${(props) => props.theme.font.paragraph};
   }
+`;
+
+export const ModalDetailWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const ModalOverview = styled.div`

@@ -1,6 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles/App.css";
+import "simplebar-react/dist/simplebar.min.css";
 
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/globalStyle";
