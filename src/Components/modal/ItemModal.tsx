@@ -15,6 +15,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ModalDetail } from "./ModalDetail";
 import { useRef, useState } from "react";
+import SimpleBar from "simplebar-react";
 
 const modalVariant: Variants = {
   initial: {
@@ -66,15 +67,15 @@ export const ItemModal = ({ basePath }: IProps) => {
     navigate(basePath ?? "/");
   };
 
-  const modalWindowRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({ container: modalWindowRef });
+  const simpleBarRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({ container: simpleBarRef });
 
   const [showScrollUp, setShowScrollUp] = useState(false); // scroll 최상단 이동 버튼
   useMotionValueEvent(scrollY, "change", (current) => {
     setShowScrollUp(current >= 200);
   });
   const moveScrollTop = () => {
-    const windowRefCurrent = modalWindowRef.current;
+    const windowRefCurrent = simpleBarRef.current;
     if (windowRefCurrent) {
       windowRefCurrent.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -92,18 +93,22 @@ export const ItemModal = ({ basePath }: IProps) => {
         >
           <ModalBackground onClick={closeModal} />
           <ModalWindow
-            ref={modalWindowRef}
             variants={modalWindowVariant}
             initial="initial"
             animate="animate"
             exit="exit"
           >
-            <ModalDetail
-              key={itemId} // Link로 인한 itemId 변경시 재랜더링
-              itemId={+itemId}
-              closeModal={closeModal}
-              basePath={basePath}
-            />
+            <SimpleBar
+              scrollableNodeProps={{ ref: simpleBarRef }}
+              style={{ minHeight: 0 }}
+            >
+              <ModalDetail
+                key={itemId} // Link로 인한 itemId 변경시 재랜더링
+                itemId={+itemId}
+                closeModal={closeModal}
+                basePath={basePath}
+              />
+            </SimpleBar>
             <AnimatePresence>
               {showScrollUp && (
                 <ModalScrollUp>

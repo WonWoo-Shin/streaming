@@ -21,7 +21,6 @@ export const ModalWindow = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-y: hidden;
   z-index: 1;
   width: 100%;
   max-width: 1080px;
@@ -31,18 +30,18 @@ export const ModalWindow = styled(motion.div)`
   @media (max-width: 1080px) {
     height: 100%;
   }
-  .simplebar-track {
+  /* .simplebar-track {
     right: 5px;
   }
   .simplebar-vertical {
     width: 10px;
   }
-  .simplebar-scrollbar:before {
+  .simplebar-scrollbar::before {
     background: ${(props) => props.theme.scrollBar.scrollThumb};
   }
-  .simplebar-visible:before {
+  .simplebar-visible::before {
     opacity: 1;
-  }
+  } */
 `;
 
 export const ModalMessage = styled.div`
